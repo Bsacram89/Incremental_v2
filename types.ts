@@ -20,8 +20,12 @@ export interface CaseStudyItem {
 
 export interface PortfolioReport {
   title: string;
-  desc: string;
-  link: string;
+  subtitle: string;
+  image: string;
+  objective: string;
+  kpis: string[];
+  impact: string;
+  tags: string[];
 }
 
 export interface ContactFormData {
