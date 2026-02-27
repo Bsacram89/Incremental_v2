@@ -155,11 +155,11 @@ const Hero = () => {
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
 
       <div className="max-w-7xl mx-auto px-4 z-10 grid lg:grid-cols-2 gap-12 items-center">
-        <div className="relative">
+        <div className="relative min-w-0">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.15em] mb-6 max-w-full overflow-hidden">
             <Zap size={14} className="shrink-0" /> <span className="truncate">Desde 2004 • Power BI • Consultoria de Resultados</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-montserrat leading-tight mb-6 text-white uppercase">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-montserrat leading-tight mb-6 text-white uppercase">
             Incrementando <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Lucro e Caixa</span> Real
           </h1>
           <p className="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
