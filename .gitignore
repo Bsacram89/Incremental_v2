@@ -16,6 +16,10 @@ dist-ssr
 *-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.json
 Codgos/DEPRECATED/incremental-409513-4eabd58e1b18.json
 
+# Claude Code temp files
+.claude/
+[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9].png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
