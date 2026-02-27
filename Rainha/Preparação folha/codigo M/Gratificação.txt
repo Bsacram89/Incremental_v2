@@ -1,0 +1,19 @@
+let
+    Fonte = Folder.Files("G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2025\Maio\folha"),
+    Personalizar1 = Table.SelectRows(Fonte, each ([Attributes]?[Hidden]? <> true)),
+    #"Linhas Filtradas" = Table.SelectRows(Personalizar1, each Text.Contains([Name], "Gratificação")),
+    #"Personalização Adicionada" = Table.AddColumn(#"Linhas Filtradas", "Personalizar", each Excel.Workbook([Content])),
+    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Personalizar"}),
+    #"Personalizar Expandido" = Table.ExpandTableColumn(#"Outras Colunas Removidas", "Personalizar", {"Name", "Data", "Item", "Kind", "Hidden"}, {"Name", "Data", "Item", "Kind", "Hidden"}),
+    #"Linhas Filtradas3" = Table.SelectRows(#"Personalizar Expandido", each ([Kind] = "Sheet")),
+    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Linhas Filtradas3",{"Data"}),
+    #"Data Expandido" = Table.ExpandTableColumn(#"Outras Colunas Removidas1", "Data", {"Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10"}, {"Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9", "Column10"}),
+    #"Linhas Filtradas2" = Table.SelectRows(#"Data Expandido", each ([Column2] <> null) and ([Column3] <> null)),
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Linhas Filtradas2", [PromoteAllScalars=true]),
+    #"Linhas Filtradas1" = Table.SelectRows(#"Cabeçalhos Promovidos", each ([COLABORADOR] <> "COLABORADOR")),
+    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Linhas Filtradas1", "Valor Total", each if [Gratificação] = null then [Salário reajustado] else [Gratificação]),
+    #"Outras Colunas Removidas5" = Table.SelectColumns(#"Coluna Condicional Adicionada",{"COLABORADOR", "Função", "Razão Social", "Alocação", "Origem", "Valor Total"}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Outras Colunas Removidas5",{{"COLABORADOR", type text}, {"Função", type text}, {"Razão Social", type text}, {"Alocação", type text}, {"Origem", type text}, {"Valor Total", Int64.Type}}),
+    #"Texto Aparado" = Table.TransformColumns(#"Tipo Alterado",{{"COLABORADOR", Text.Trim, type text}})
+in
+    #"Texto Aparado"

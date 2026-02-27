@@ -1,0 +1,35 @@
+{
+  "timestamp": "20250621_180009",
+  "arquivos": {
+    "fenix": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\FOLHA DE PAGAMENTO 052025 EXCEL fenix.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\fenix_FOLHA DE PAGAMENTO 052025 EXCEL fenix.xlsx",
+      "hash": "0676a44fd416447fb55e7257a8b86b82"
+    },
+    "genesis": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\FOLHA GENESIS EXCEL 052025.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\genesis_FOLHA GENESIS EXCEL 052025.xlsx",
+      "hash": "817dad5c06cc55b7890f91cd2f2408a9"
+    },
+    "alocacoes": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Alocações 052025.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\alocacoes_Alocações 052025.xlsx",
+      "hash": "18f9ea8ae56ee1f0ace1433fdd02c7f0"
+    },
+    "extrato": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Extrato Mensal.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\extrato_Extrato Mensal.xlsx",
+      "hash": "103aa041a2381ecdd8fc1dd3a1cba348"
+    },
+    "gratificacao": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Gratificação.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\gratificacao_Gratificação.xlsx",
+      "hash": "7a6f37cf93efacbc07f2eda28a7fd9fa"
+    },
+    "nao_contabil": {
+      "original": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Folha não contábil.xlsx",
+      "backup": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\backup\\backup_20250621_180009\\nao_contabil_Folha não contábil.xlsx",
+      "hash": "14026f6e30514b63adb4e5803206bd11"
+    }
+  }
+}

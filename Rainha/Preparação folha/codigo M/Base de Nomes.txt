@@ -1,0 +1,17 @@
+let
+    Fonte = Folder.Files("G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2025\Maio\folha"),
+    #"Linhas Filtradas" = Table.SelectRows(Fonte, each ([Name] = "Alocações 052025.xlsx")),
+    #"G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2024\Abril\Folhas\_FUNCIONARIOS POR ALOCAÇÃO xlsx" = #"Linhas Filtradas"{[#"Folder Path"="G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2025\Maio\folha\",Name="Alocações 052025.xlsx"]}[Content],
+    #"Pasta de Trabalho Importada do Excel" = Excel.Workbook(#"G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2024\Abril\Folhas\_FUNCIONARIOS POR ALOCAÇÃO xlsx"),
+    #"Folha Mensal 042024_Sheet" = #"Pasta de Trabalho Importada do Excel"{[Item="ALOCAÇÃO MAIO",Kind="Sheet"]}[Data],
+    #"Linhas Filtradas1" = Table.SelectRows(#"Folha Mensal 042024_Sheet", each ([Column1] <> "GRUPO RAINHA - ALOCAÇÕES JULHO/24" and [Column1] <> "Relação de funcionarios por Alocação") and ([Column2] <> null and [Column2] <> "RELAÇÃO DE COLABORADORES POR ALOCAÇÃO - 11/2024")),
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"Linhas Filtradas1", [PromoteAllScalars=true]),
+    #"Colunas Renomeadas1" = Table.RenameColumns(#"Cabeçalhos Promovidos",{{"NOME", "Nome"}, {"FUNÇÃO", "Função"}, {"ALOCAÇAO", "ALOCAÇÃO"}}),
+    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Renomeadas1",{"Nome", "Função", "EMPRESA", "ALOCAÇÃO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas", {"Nome"}),
+    #"Texto Aparado" = Table.TransformColumns(#"Duplicatas Removidas",{{"Nome", Text.Trim, type text}}),
+    #"Colunas Renomeadas" = Table.RenameColumns(#"Texto Aparado",{{"EMPRESA", "Razão Social"}, {"ALOCAÇÃO", "Alocações"}}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Nome", type text}, {"Função", type text}, {"Razão Social", type text}, {"Alocações", type text}}),
+    #"Linhas Classificadas" = Table.Sort(#"Tipo Alterado",{{"Nome", Order.Ascending}})
+in
+    #"Linhas Classificadas"

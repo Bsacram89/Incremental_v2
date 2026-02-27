@@ -1,0 +1,7 @@
+let
+    Fonte = Table.Combine({#"Extrato Mensal", Fenix, Genesis}),
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"LOJAS", "Nome", "Cargo", "Adm:", "Situação", "Atributo", "Valor"}),
+    #"Linhas Filtradas" = Table.SelectRows(#"Outras Colunas Removidas", each ([Atributo] <> "1/3 DAS FERIAS" and [Atributo] <> "1/3 FERIAS INDENIZADAS RESC" and [Atributo] <> "1/3 FERIAS PROPORCIONAIS RESCISAO" and [Atributo] <> "1/3 FERIAS RESCISAO " and [Atributo] <> "13 SALARIO INTEGRAL RESCISAO" and [Atributo] <> "13o 1/12 INDENIZADO" and [Atributo] <> "Adiantamento" and [Atributo] <> "ADIANTAMENTO DE FERIAS" and [Atributo] <> "AFAST.P/ACID.TRABALHO" and [Atributo] <> "AVISO PREVIO" and [Atributo] <> "AVISO PREVIO ESPECIAL CCT" and [Atributo] <> "FERIAS 1/12 INDENIZADO" and [Atributo] <> "FERIAS PROPORCIONAIS" and [Atributo] <> "FERIAS VENCIDAS" and [Atributo] <> "I.N.S.S." and [Atributo] <> "INSS 13 SAL.RESCISAO" and [Atributo] <> "INSS DIF FER DESC A MAIOR" and [Atributo] <> "INSS DIFERENCA FERIAS" and [Atributo] <> "INSS EMPREGADOR" and [Atributo] <> "INSS FERIAS" and [Atributo] <> "INSS Folha" and [Atributo] <> "INSS SOBRE RESCISAO" and [Atributo] <> "IRRF EMPREGADOR" and [Atributo] <> "IRRF FERIAS")),
+    #"Texto Aparado" = Table.TransformColumns(#"Linhas Filtradas",{{"Nome", Text.Trim, type text}})
+in
+    #"Texto Aparado"

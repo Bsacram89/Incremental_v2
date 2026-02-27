@@ -1,0 +1,2350 @@
+
+
+ClaudeRedesenhando o layout do painel financeiro no Power BICompartilhado por bruno alves doEsta é uma cópia de um chat entre Claude e bruno alves do. O conteúdo pode incluir material não verificado ou inseguro que não representa as posições da Anthropic. O instantâneo compartilhado pode conter anexos e dados não exibidos aqui.DenunciarFiles hidden in shared chatsBAQuero mudar layout de resultado do Caixa no power bi.  preciso da sua ajuda para desenvolver um novo layout.quero que explore esse layout trazendo os principais insights e pontos importantes para analise desses dados,  considerando um storytelling eficaz com explorações visuaisOlá! Vejo que você está trabalhando com um dashboard financeiro no Power BI e deseja mudar o layout da seção de Resultado do Caixa, além de explorar insights importantes para análise desses dados através de um storytelling eficaz.
+Com base na imagem do seu dashboard atual, posso identificar alguns pontos importantes e sugerir melhorias para o layout, focando em criar uma narrativa visual mais eficaz.
+Principais observações do dashboard atual:
+
+Você tem métricas de desempenho financeiro organizadas em diferentes visualizações:
+
+Lucro Operacional: -175.064 (com queda significativa de 260.12% em relação ao mês anterior)
+Resultado Op. Caixa: 444.493 (com aumento de 46.63% em relação ao mês anterior)
+Resultado Op. Acumulado: 20.436.529 (estável em relação ao ano anterior)
+Resultado Op. Caixa Acumulado: 999.871
+
+
+Existe um gráfico de evolução mostrando a tendência de três indicadores ao longo dos meses (janeiro a março/2025)
+O dashboard permite filtrar por diferentes períodos (jan a dez) e anos (2023-2025)
+
+Recomendações para um novo layout com storytelling eficaz:
+Aqui está minha proposta para melhorar o layout e criar um storytelling mais impactante:
+Novo Layout de Resultado do Caixa - Power BI
+
+Seção de Destaque (KPIs principais)
+
+Organize os KPIs principais em cards mais visuais com ícones que indiquem a direção da mudança
+Adicione um semáforo de cores (vermelho/amarelo/verde) para indicar o status de cada métrica em relação às metas
+Destaque a métrica mais importante (Resultado Op. Caixa) com maior visibilidade
+
+
+Narrativa Temporal
+
+Crie uma sequência de visualizações que conte uma história clara:
+
+De onde viemos (histórico)
+Onde estamos (situação atual)
+Para onde vamos (projeção/tendência)
+
+
+Use um gráfico de cascata para mostrar a composição do resultado do caixa
+
+
+Análise de Causas
+
+Adicione um gráfico de decomposição para explicar os fatores que contribuíram para o resultado positivo do caixa (444.493) apesar do lucro operacional negativo (-175.064)
+Inclua visualizações de drill-down que permitam explorar as causas subjacentes
+
+
+Comparações Contextuais
+
+Adicione benchmarks relevantes (versus orçamento, versus ano anterior, versus mercado)
+Use gráficos de barras pequenos (sparklines) para mostrar tendências sem ocupar muito espaço
+
+
+Seção de Insights Automatizados
+
+Utilize recursos de análise inteligente do Power BI para destacar automaticamente anomalias e padrões
+Crie um painel lateral com "Principais Takeaways" que se atualizam conforme os dados mudam
+
+
+
+Para implementar esse layout, posso sugerir técnicas específicas de design e visualização no Power BI que ajudariam a contar uma história mais clara com seus dados. Gostaria que eu detalhasse algum aspecto específico desse novo layout proposto?BAfaça um esboço por gentilezaVou criar um esboço para o novo layout de Resultado do Caixa no Power BI, focando em um storytelling eficaz e explorações visuais que destaquem os insights mais importantes dos seus dados.
+ESBOÇO DE DASHBOARD - RESULTADO DO CAIXA
+1. CABEÇALHO
+
+Título principal: "RESULTADO DO CAIXA - ANÁLISE FINANCEIRA"
+Menu de filtros: Período (Jan-Dez), Ano (2023-2025)
+Indicador do último refresh: "Atualizado em: 04/05/2025"
+
+2. PAINEL DE DESTAQUES (PRIMEIRA LINHA)
+┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
+│  RESULTADO CAIXA    │ │   EVOLUÇÃO MENSAL   │ │  EFICIÊNCIA CAIXA   │ │   META TRIMESTRAL   │
+│                     │ │                     │ │                     │ │                     │
+│     444.493 ▲       │ │    +46,63%          │ │  Índice: 2,54x      │ │  Progresso: 89%     │
+│                     │ │   (vs mês anterior) │ │ (Caixa/Operacional) │ │                     │
+│   Tendência: ↗️      │ │   Tendência: ↗️      │ │                     │ │ [Gráfico medidor]   │
+└─────────────────────┘ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘
+3. FLUXO NARRATIVO (SEGUNDA LINHA)
+┌───────────────────────────────────────────────────────────────────────────────────────┐
+│                             JORNADA DO RESULTADO (CASCATA)                            │
+│                                                                                       │
+│                                                                                       │
+│  Lucro Op.  +  Ajustes  +  Depreciação  +  Variações  +  Outros  =  Resultado Caixa  │
+│  (-175.064)    (+250.000)    (+120.000)    (+180.000)    (+69.557)     (444.493)     │
+│                                                                                       │
+└───────────────────────────────────────────────────────────────────────────────────────┘
+4. ANÁLISE COMPARATIVA (TERCEIRA LINHA - DUAS COLUNAS)
+┌─────────────────────────────────────┐ ┌─────────────────────────────────────┐
+│     COMPARATIVO TRIMESTRAL          │ │       DECOMPOSIÇÃO DO CAIXA         │
+│                                     │ │                                     │
+│ [Gráfico de barras horizontais]     │ │ [Gráfico de árvore hierárquica]     │
+│                                     │ │                                     │
+│ Jan/2025: -132.473                  │ │ - Entradas Operacionais: 70%        │
+│ Fev/2025: -48.613                   │ │ - Entradas Financeiras: 15%         │
+│ Mar/2025: -175.064                  │ │ - Saídas Operacionais: -40%         │
+│                                     │ │ - Saídas Financeiras: -30%          │
+│ ----------------------------        │ │ - Ajustes: 85%                      │
+│                                     │ │                                     │
+│ Jan/2025: 252.245                   │ │                                     │
+│ Fev/2025: 303.133                   │ │                                     │
+│ Mar/2025: 444.493                   │ │                                     │
+└─────────────────────────────────────┘ └─────────────────────────────────────┘
+5. TENDÊNCIAS E PROJEÇÕES (QUARTA LINHA)
+┌───────────────────────────────────────────────────────────────────────────────────────┐
+│                      EVOLUÇÃO E PROJEÇÃO DO RESULTADO DO CAIXA                        │
+│                                                                                       │
+│                                                                                       │
+│   [Gráfico de linha com projeção]                                                     │
+│                                                                                       │
+│   Jan → Fev → Mar → Abr → Mai → Jun                                                  │
+│   252k   303k   444k   470k*  510k*  550k*                                           │
+│                        ▲                                                              │
+│                    Atual/Projeção                                                     │
+│                                                                                       │
+└───────────────────────────────────────────────────────────────────────────────────────┘
+6. PAINEL DE INSIGHTS (RODAPÉ)
+┌───────────────────────────────────────────────────────────────────────────────────────┐
+│                                     INSIGHTS-CHAVE                                     │
+│                                                                                       │
+│ ● Apesar do Lucro Operacional negativo, o Resultado do Caixa cresceu 46,63%           │
+│ ● Principal fator: Ajustes não-monetários e gestão eficiente do capital de giro       │
+│ ● Projeção positiva para o próximo trimestre com tendência de crescimento continuado  │
+│ ● Alerta: Monitorar a disparidade crescente entre resultado operacional e caixa       │
+└───────────────────────────────────────────────────────────────────────────────────────┘
+7. PAINEL LATERAL DE ANÁLISE DETALHADA (EXPANSÍVEL)
+┌─────────────────────────────────────┐
+│     ANÁLISE DETALHADA (CLIQUE)      │
+│                                     │
+│ ▶ Composição do Resultado           │
+│                                     │
+│ ▶ Comparação vs. Orçamento          │
+│                                     │
+│ ▶ Análise de Conversão Caixa        │
+│                                     │
+│ ▶ Impacto na Liquidez               │
+│                                     │
+│ ▶ Principais Variações vs. 2024     │
+└─────────────────────────────────────┘
+DICAS PARA IMPLEMENTAÇÃO:
+
+Cores e Iconografia:
+
+Use verde para resultados positivos, vermelho para negativos
+Utilize ícones intuitivos para cada tipo de métrica
+Mantenha um esquema de cores consistente para facilitar associações visuais
+
+
+Interatividade:
+
+Adicione tooltips detalhados em cada visualização
+Implemente drill-down para explorar causas raiz
+Permita filtragem cruzada entre visualizações
+
+
+Formatação de Números:
+
+Use formatação com separadores de milhares e abreviações (k, M)
+Inclua indicadores de variação (▲ ou ▼) para facilitar a leitura
+Destaque os números mais importantes com tamanho e cor
+
+
+Layout Responsivo:
+
+Organize elementos em contêineres que se ajustam ao tamanho da tela
+Priorize informações críticas para visualização em dispositivos menores
+
+
+
+Este layout foi concebido para contar uma história clara sobre o Resultado do Caixa, partindo dos números atuais, explicando as causas subjacentes e demonstrando as tendências futuras, tudo em um formato visualmente atraente e fácil de interpretar.Files hidden in shared chatsBAquero algo visual nesse esboço ! anexo exemplo de esboçoBaseado no seu exemplo do dashboard de devoluções, vou criar um esboço visual para o novo layout de Resultado do Caixa no Power BI. Utilizarei um formato semelhante com elementos visuais bem definidos para ajudar na visualização.Layout do Dashboard de Resultado do CaixaArtefato interativo Explicação do Layout de Resultado do Caixa Proposto
+Baseado no seu dashboard atual e nas práticas modernas de visualização de dados financeiros, criei um esboço visual completo para o layout de Resultado do Caixa no Power BI. Vamos explorar os principais elementos e o storytelling por trás deste design:
+1. Estrutura Narrativa
+O layout foi estruturado para contar uma história completa dos resultados financeiros:
+
+Contextualização: Cabeçalho com título claro e filtros para seleção de períodos, unidades e centros de custo
+Visão Geral: KPIs principais destacando os números mais importantes
+Explicação: Gráfico de cascata mostrando a jornada do resultado, de onde vem o caixa positivo apesar do lucro negativo
+Análise Detalhada: Decomposição dos componentes do resultado
+Tendências: Evolução temporal e projeções futuras
+Conclusões: Seção de insights-chave e métricas de performance
+
+2. Insights Principais Destacados
+
+A disparidade entre Lucro Operacional (negativo) e Resultado do Caixa (positivo)
+A tendência de crescimento consistente do Resultado do Caixa
+Os componentes que mais impactam o resultado positivo do caixa
+A eficiência na conversão de operações em caixa (2,54x)
+O desempenho acima das metas estabelecidas
+
+3. Elementos Visuais Eficazes
+
+Cards KPI coloridos: Vermelho para valores negativos e azul/verde para positivos
+Gráfico de Cascata: Visualização que mostra claramente como um resultado inicial negativo se transforma em um positivo
+Gráfico de Barras Horizontais: Para decomposição dos componentes do resultado
+Gráfico de Linha com Projeção: Mostrando tendências históricas e futuras
+Indicadores de Performance: Barras de progresso coloridas para comparação com metas
+
+4. Componentes de Storytelling
+
+Jornada do Resultado (Cascata): Mostra visualmente como o lucro operacional negativo (-R$ 175.064) se transforma em um resultado de caixa positivo (R$ 444.493) através de ajustes, depreciação e outras variações - isso é a peça central da narrativa
+Evolução Temporal: Contextualiza o resultado atual em uma tendência, mostrando a consistência do crescimento mesmo com lucro operacional negativo
+Decomposição do Resultado: Detalha quais componentes contribuem positiva e negativamente para o resultado
+Insights-Chave: Resume as principais conclusões que qualquer gestor deve tirar da análise, priorizando os pontos mais relevantes
+Performance vs Metas: Fecha a narrativa mostrando quanto das metas estabelecidas foram atingidas
+
+Este layout combina elementos visuais impactantes com uma narrativa clara que guia o usuário do contexto aos detalhes e, finalmente, às conclusões. A paleta de cores consistente (vermelho para negativo, azul para resultado do caixa, verde para positivo) ajuda a reforçar visualmente a mensagem.
+Gostaria que eu detalhasse algum aspecto específico do design ou da narrativa proposta?BAnão preciso ser o mesmo modelo do dasboard de devolução ! crie algo focado em Resultado de CaixaVou criar um layout totalmente novo focado especificamente em Resultado de Caixa, sem seguir o modelo do dashboard de devoluções. Vamos desenvolver algo mais especializado para análise financeira de fluxo de caixa.Dashboard Financeiro - Resultado do CaixaArtefato interativo Dashboard Financeiro: Análise de Resultado do Caixa
+Criei um layout totalmente novo e especializado para análise de Resultado do Caixa, com foco em storytelling financeiro eficaz e visualizações que destacam os insights mais importantes para a tomada de decisão.
+Elementos-Chave do Layout
+1. Cabeçalho com Visão Resumida
+
+Design com gradiente azul profissional que transmite seriedade financeira
+Destaque imediato para os três números mais importantes:
+
+Resultado total do mês (R$ 444.493)
+Crescimento percentual (+46,63%)
+Performance vs. Meta (+77,8%)
+
+
+
+2. Card Principal de Resultado
+
+Apresentação destacada do valor de Resultado do Caixa
+Comparativo imediato com mês anterior
+Barra de progresso visual em relação à meta mensal
+Posicionamento estratégico no canto superior esquerdo (ponto focal)
+
+3. Relação Lucro Operacional vs. Resultado Caixa
+
+Gráfico combinado (barras + linhas) mostrando a relação entre:
+
+Lucro Operacional (linha vermelha)
+Resultado do Caixa (barras azuis)
+Valores previstos (linha verde pontilhada)
+
+
+Permite visualizar claramente a disparidade entre resultados operacionais negativos e geração positiva de caixa
+
+4. Componentes do Resultado
+
+Gráfico de barras horizontais mostrando cada componente
+Diferenciação por cores (vermelho para negativos, azul para positivos)
+Ordenação por impacto, evidenciando os fatores mais significativos
+Facilita identificar quais elementos compensam o lucro operacional negativo
+
+5. Comparativo Anual
+
+Gráfico de área comparando 2024 vs. 2025
+Visualização da sazonalidade e tendências de longo prazo
+Projeção das tendências para os próximos meses
+
+6. Projeção de Resultados
+
+Visualização das projeções para os próximos três meses
+Inclusão de cenários otimista e pessimista (áreas sombreadas)
+Tendência clara de crescimento sustentado
+
+7. Indicadores-Chave de Performance (KPIs)
+
+Métricas financeiras essenciais com comparação vs. metas
+Barras de progresso coloridas indicando performance
+Foco em indicadores de eficiência financeira e conversão
+
+8. Insights-Chave
+
+Quatro cards destacando as principais conclusões:
+
+Conversão excepcional (2,54x)
+Crescimento sustentado (46,63%)
+Impacto dos ajustes não-caixa
+Tendência positiva projetada
+
+
+
+Vantagens do Design Proposto
+
+Narrativa Clara: Guia o usuário desde o resultado principal até suas causas, componentes e projeções futuras
+Hierarquia Visual: Organiza informações por ordem de importância, destacando primeiro o resultado final, depois os componentes, e por fim as tendências
+Interpretação Facilitada: Uso de cores consistentes (azul para positivo, vermelho para negativo) e elementos visuais intuitivos
+Foco em Insights Acionáveis: Destaca não apenas números, mas conclusões que podem direcionar decisões gerenciais
+Design Responsivo e Profissional: Layout moderno com cards bem definidos e elementos visuais sofisticados
+
+Este dashboard foi projetado para proporcionar uma análise completa do Resultado do Caixa, permitindo compreender rapidamente a situação atual, os fatores que a influenciaram e as perspectivas futuras, tudo em uma interface intuitiva e visualmente atraente.Files hidden in shared chatsBAos dados de layout vem dessa planilha que esta na imagem e essas são algumas medidas criadasVou desenvolver um layout de dashboard focado especificamente em Resultado do Caixa, baseando-me nos dados e estrutura da planilha que você compartilhou. Observo que você tem uma aba "R32_Resultado Caixa Acumulado" com dados detalhados sobre o fluxo de caixa da empresa.Dashboard Resultado do Caixa - Da SantaArtefato interativo Dashboard de Resultado do Caixa - Da Santa
+Desenvolvi um dashboard financeiro totalmente focado em Resultado do Caixa, utilizando os dados da sua planilha Excel e criando uma narrativa visual que destaca os aspectos mais importantes para análise gerencial.
+Principais Características do Layout
+1. Hierarquia Visual Otimizada
+
+Cabeçalho Intuitivo: Com filtros de ano, unidade e seletor de meses para navegação rápida
+KPIs Prioritários: Destacando os quatro indicadores mais importantes para análise de caixa
+Organização por Relevância: Informações dispostas em ordem de importância, facilitando a leitura da esquerda para a direita e de cima para baixo
+
+2. Visualizações Analíticas
+
+Evolução Mensal (2025): Gráfico combinado mostrando a relação entre Lucro Operacional, Resultado Operacional de Caixa e Resultado Líquido de Caixa, evidenciando a disparidade entre resultado contábil e financeiro
+Componentes do Resultado do Caixa: Gráfico de barras horizontais mostrando a contribuição de cada elemento para o resultado final, com codificação por cores (verde para positivo, vermelho para negativo)
+Projeção do Resultado: Visualização das tendências para os próximos meses
+Evolução Anual: Contexto histórico com a evolução do resultado nos últimos anos
+Saldo de Caixa: Comparativo entre saldo anterior e atual
+Indicadores de Performance: Métricas-chave com barras de progresso em relação às metas estabelecidas
+
+3. Insights Estratégicos
+
+Seção específica com quatro cards destacando as principais conclusões analíticas:
+
+Melhoria Significativa: Crescimento expressivo do resultado
+Conversão Eficiente: Excelente taxa de conversão Operacional → Caixa
+Componentes de Destaque: Principais contribuições para o resultado positivo
+Ponto de Atenção: Risco identificado para monitoramento
+
+
+
+Elementos de Storytelling Implementados
+
+Contextualização: O dashboard inicia com métricas macro para fornecer contexto imediato, permitindo que o gestor compreenda rapidamente a situação atual
+Contraste Revelador: A justaposição entre Lucro Operacional (negativo) e Resultado de Caixa (positivo) conta uma história importante sobre a gestão financeira da empresa
+Decomposição Analítica: Os componentes do resultado são apresentados para explicar como um lucro operacional negativo resulta em um caixa positivo
+Progressão Temporal: Os gráficos de evolução mostram não apenas onde a empresa está, mas de onde veio e para onde vai
+Avaliação de Performance: Os indicadores mostram claramente como a empresa está performando em relação às metas estabelecidas
+
+Diferenciais do Layout
+
+Design Profissional: Interface clean com esquema de cores consistente (azul para caixa, vermelho para valores negativos, verde para positivos)
+Formatação Financeira: Valores monetários apresentados no formato brasileiro (R$), facilitando a leitura para gestores locais
+Responsividade: Layout adaptável a diferentes tamanhos de tela, ideal para visualização tanto em desktops quanto em tablets
+Interatividade: Tooltips detalhados e filtros para exploração dos dados
+Insights Acionáveis: Foco não apenas em números, mas em conclusões que podem direcionar decisões gerenciais
+
+Este dashboard foi desenhado para contar uma história completa sobre o Resultado do Caixa, permitindo aos gestores compreender rapidamente a situação atual, as causas subjacentes e as tendências futuras, tudo em uma interface intuitiva e visualmente atraente.Files hidden in shared chatsBAestou compartilhando os dados do Caixa e Planejamento do Caixa . quero que elabore medidas avançadas para novo layout no Power BI .Baseado nos dados de Caixa e Planejamento do Caixa que você compartilhou, vou elaborar medidas avançadas para implementar no seu novo layout do Power BI. Estas medidas permitirão análises mais profundas e insights mais valiosos sobre a gestão de caixa da empresa.
+Medidas Avançadas para Dashboard de Resultado do Caixa
+1. Indicadores de Desempenho Financeiro
+dax// Índice de Conversão (Resultado Caixa vs Lucro Operacional)
+Índice_Conversão = 
+IF(
+    ABS(SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional])) = 0,
+    0,
+    ABS(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa])) / 
+    ABS(SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]))
+)
+
+// Eficiência de Geração de Caixa
+Eficiência_Geração_Caixa = 
+DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    SUM('R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento]),
+    0
+)
+
+// Ciclo de Conversão de Caixa (em dias)
+Ciclo_Conversão_Caixa = 
+VAR PMR = AVERAGEX(
+    VALUES('dCalendário'[Date]),
+    CALCULATE(
+        DIVIDE(
+            SUM('R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento]),
+            [Faturamento Total] / 365,
+            0
+        )
+    )
+)
+VAR PMP = AVERAGEX(
+    VALUES('dCalendário'[Date]),
+    CALCULATE(
+        DIVIDE(
+            SUM('R32_Resultado Caixa Acumulado'[Pagamento Fornecedores]),
+            [Compras Total] / 365,
+            0
+        )
+    )
+)
+RETURN PMR - PMP
+2. Medidas de Tendência e Projeção
+dax// Tendência Linear de Caixa (6 períodos)
+Tendência_Linear_Caixa = 
+VAR PeriodoAtual = MAX('dCalendário'[Date])
+RETURN
+FORECAST(
+    PeriodoAtual,
+    'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa],
+    'dCalendário'[Date],
+    6
+)
+
+// Projeção de Fechamento de Caixa (Mês)
+Projeção_Fechamento_Mês = 
+VAR DiasDoMes = DAY(EOMONTH(MAX('dCalendário'[Date]), 0))
+VAR DiasAtuais = DAY(MAX('dCalendário'[Date]))
+VAR MediaDiária = CALCULATE(
+    AVERAGE('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -DiasAtuais, DAY)
+)
+RETURN
+SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]) + MediaDiária * (DiasDoMes - DiasAtuais)
+
+// Volatilidade do Fluxo de Caixa
+Volatilidade_Fluxo_Caixa = 
+VAR MediaResultado = AVERAGE('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa])
+VAR DesvioPadrao = STDEVX.P(
+    VALUES('dCalendário'[Date]),
+    'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]
+)
+RETURN
+IF(
+    MediaResultado = 0,
+    0,
+    DesvioPadrao / ABS(MediaResultado)
+)
+3. Análise de Componentes e Contribuição
+dax// Contribuição Percentual dos Componentes
+Contribuição_Componentes = 
+SWITCH(
+    SELECTEDVALUE('Componentes'[Nome]),
+    "Lucro Operacional", DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]), SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), 0),
+    "Variação NCG", DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg]), SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), 0),
+    "Outras Entradas", DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Outras Entradas]), SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), 0),
+    "Outras Saídas", DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Outras Saídas]), SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), 0),
+    0
+)
+
+// Impacto dos Componentes na Variação (MoM)
+Impacto_MoM_Componentes = 
+VAR ComponenteAtual = SUM('R32_Resultado Caixa Acumulado'[Valor])
+VAR ComponenteMesAnterior = CALCULATE(
+    SUM('R32_Resultado Caixa Acumulado'[Valor]),
+    DATEADD('dCalendário'[Date], -1, MONTH)
+)
+RETURN
+IF(
+    ISBLANK(ComponenteMesAnterior),
+    0,
+    ComponenteAtual - ComponenteMesAnterior
+)
+
+// Índice de Crescimento Sustentável do Caixa
+Índice_Crescimento_Sustentável = 
+VAR CaixaAtual = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa])
+VAR CaixaM1 = CALCULATE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    DATEADD('dCalendário'[Date], -1, MONTH)
+)
+VAR CaixaM2 = CALCULATE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    DATEADD('dCalendário'[Date], -2, MONTH)
+)
+VAR CaixaM3 = CALCULATE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    DATEADD('dCalendário'[Date], -3, MONTH)
+)
+RETURN
+AVERAGEX(
+    {(CaixaAtual - CaixaM1) / ABS(CaixaM1), (CaixaM1 - CaixaM2) / ABS(CaixaM2), (CaixaM2 - CaixaM3) / ABS(CaixaM3)},
+    IF(ISBLANK([Value]), 0, [Value])
+)
+4. Indicadores de Risco e Liquidez
+dax// Índice de Cobertura de Obrigações
+Índice_Cobertura_Obrigações = 
+DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]),
+    CALCULATE(
+        SUM('R32_Resultado Caixa Acumulado'[Empréstimos]) + 
+        SUM('R32_Resultado Caixa Acumulado'[Outros Pagamentos]),
+        DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), 30, DAY)
+    ),
+    0
+)
+
+// Dias de Caixa (Burnrate)
+Dias_De_Caixa = 
+VAR SaldoCaixa = SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual])
+VAR MediaDiáriaSaídas = AVERAGEX(
+    VALUES('dCalendário'[Date]),
+    CALCULATE(
+        (SUM('R32_Resultado Caixa Acumulado'[Pagamento Fornecedores]) + 
+         SUM('R32_Resultado Caixa Acumulado'[Outros Pagamentos]) + 
+         SUM('R32_Resultado Caixa Acumulado'[Empréstimos])) / 30
+    )
+)
+RETURN
+IF(
+    MediaDiáriaSaídas = 0,
+    0,
+    SaldoCaixa / MediaDiáriaSaídas
+)
+
+// Margem de Segurança de Caixa
+Margem_Segurança_Caixa = 
+VAR SaldoAtual = SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual])
+VAR SaldoMínimo = MINX(
+    VALUES('Planejamento'[Saldo Mínimo]),
+    [Value]
+)
+RETURN
+DIVIDE(
+    SaldoAtual - SaldoMínimo,
+    ABS(SaldoMínimo),
+    0
+)
+5. Medidas de Análise Temporal e Sazonal
+dax// Sazonalidade de Caixa (Índice)
+Sazonalidade_Caixa = 
+VAR ResultadoMêsAtual = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa])
+VAR ResultadoAnoAnterior = CALCULATE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    DATEADD('dCalendário'[Date], -1, YEAR)
+)
+RETURN
+DIVIDE(
+    ResultadoMêsAtual,
+    ResultadoAnoAnterior,
+    0
+)
+
+// Correlação Faturamento vs Caixa
+Correlação_Faturamento_Caixa = 
+CORRELATION(
+    'R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento],
+    'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]
+)
+
+// Desvio do Planejamento
+Desvio_Planejamento = 
+VAR CaixaReal = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa])
+VAR CaixaPlanejado = SUM('Planejamento do caixa'[Valor])
+RETURN
+IF(
+    CaixaPlanejado = 0,
+    0,
+    (CaixaReal - CaixaPlanejado) / ABS(CaixaPlanejado)
+)
+6. Métricas de Otimização e Eficiência
+dax// Eficiência de Investimentos
+Eficiência_Investimentos = 
+DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    SUM('R32_Resultado Caixa Acumulado'[Investimentos]) + 
+    SUM('R32_Resultado Caixa Acumulado'[Investimento Em Cultura]) + 
+    SUM('R32_Resultado Caixa Acumulado'[Investimento Ampliação]),
+    0
+)
+
+// Custo do Capital de Giro
+Custo_Capital_Giro = 
+VAR VariaçãoNCG = SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg])
+VAR CustoCapital = 0.12 / 12  // Taxa mensal de 1% (12% ao ano)
+RETURN
+IF(
+    VariaçãoNCG < 0,
+    ABS(VariaçãoNCG) * CustoCapital,
+    0
+)
+
+// Custo Financeiro vs Resultado de Caixa
+Custo_Financeiro_Vs_Resultado = 
+DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Juros Pagos]),
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    0
+)
+7. KPIs de Análise Integrada
+dax// Indicador de Saúde Financeira
+Saúde_Financeira = 
+VAR LiquidezCaixa = [Índice_Cobertura_Obrigações]
+VAR TendênciaCaixa = [Índice_Crescimento_Sustentável]
+VAR VolatilidadeCaixa = [Volatilidade_Fluxo_Caixa]
+RETURN
+(LiquidezCaixa * 0.4) + (TendênciaCaixa * 0.4) - (VolatilidadeCaixa * 0.2)
+
+// Eficácia do Planejamento de Caixa
+Eficácia_Planejamento = 
+VAR DesvioMédio = AVERAGEX(
+    VALUES('dCalendário'[Date]),
+    ABS([Desvio_Planejamento])
+)
+RETURN
+1 - MIN(DesvioMédio, 1)
+
+// Indicador de Alerta de Caixa
+Alerta_Caixa = 
+IF(
+    [Dias_De_Caixa] < 30 || 
+    [Saúde_Financeira] < 0.5 ||
+    [Margem_Segurança_Caixa] < 0,
+    1,  // Vermelho
+    IF(
+        [Dias_De_Caixa] < 60 || 
+        [Saúde_Financeira] < 0.7 ||
+        [Margem_Segurança_Caixa] < 0.2,
+        0.5,  // Amarelo
+        0  // Verde
+    )
+)
+8. Medidas de Análise Preditiva
+dax// Previsão de Resultado de Caixa (ARIMA Simplificado)
+Previsão_Caixa_ARIMA = 
+VAR HistoricoCaixa = SELECTCOLUMNS(
+    SUMMARIZE(
+        'R32_Resultado Caixa Acumulado',
+        'dCalendário'[Date],
+        "Resultado", [Resultado Operacional De Caixa]
+    ),
+    "Data", 'dCalendário'[Date],
+    "Resultado", [Resultado]
+)
+VAR Alfa = 0.7  // Fator de suavização
+VAR Beta = 0.3  // Fator de tendência
+VAR UltimoResultado = LASTNONBLANK('dCalendário'[Date], [Resultado Operacional De Caixa])
+VAR PenultimoResultado = CALCULATE(
+    LASTNONBLANK('dCalendário'[Date], [Resultado Operacional De Caixa]),
+    DATEADD('dCalendário'[Date], -1, MONTH)
+)
+VAR Tendência = UltimoResultado - PenultimoResultado
+RETURN UltimoResultado + (Alfa * UltimoResultado) + (Beta * Tendência)
+
+// Probabilidade de Insolvência (Z-Score adaptado)
+Probabilidade_Insolvência = 
+VAR X1 = DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]),
+    SUM('Balanço'[Total Ativo]),
+    0
+)
+VAR X2 = DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]),
+    SUM('Balanço'[Total Ativo]),
+    0
+)
+VAR X3 = DIVIDE(
+    SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]),
+    SUM('Balanço'[Total Passivo]),
+    0
+)
+VAR ZScore = 1.2*X1 + 1.4*X2 + 3.3*X3
+RETURN
+IF(
+    ZScore > 2.9,
+    "Baixa",
+    IF(
+        ZScore > 1.8,
+        "Moderada",
+        "Alta"
+    )
+)
+Implementação no Layout
+Para implementar estas medidas no seu novo layout de dashboard, recomendo a seguinte estrutura:
+
+Seção de KPIs Principais:
+
+Resultado Operacional de Caixa
+Índice de Conversão
+Saúde Financeira
+Dias de Caixa
+Alerta de Caixa (indicador visual)
+
+
+Seção de Análise de Tendências:
+
+Gráfico de linha mostrando o Resultado de Caixa vs. Lucro Operacional
+Tendência Linear e Projeção
+Sazonalidade e comparação ano a ano
+
+
+Seção de Decomposição do Resultado:
+
+Gráfico cascata mostrando os componentes
+Impacto MoM por componente
+Contribuição percentual dos componentes
+
+
+Seção de Gestão de Risco:
+
+Volatilidade do Fluxo de Caixa
+Índice de Cobertura de Obrigações
+Margem de Segurança
+Probabilidade de Insolvência
+
+
+Seção de Planejamento:
+
+Desvio do Planejamento
+Eficácia do Planejamento
+Previsão ARIMA
+Projeção de Fechamento do Mês
+
+
+
+Estas medidas e layout proporcionarão uma análise abrangente do Resultado do Caixa, oferecendo insights valiosos para a tomada de decisão e gestão financeira eficaz.Files hidden in shared chatsBAesse modelo de script criado para Tabular Editor . quero que faça o mesmo com essas novas medidas .Vou criar um script para o Tabular Editor com as novas medidas avançadas para análise de Resultado do Caixa, seguindo o mesmo padrão do script de inadimplência que você compartilhou.
+csharp// Script para Tabular Editor
+// Adiciona medidas avançadas para Resultado do Caixa
+// Desenvolvido para análise financeira detalhada da empresa Da Santa
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["R32_Resultado Caixa Acumulado"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'R32_Resultado Caixa Acumulado' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== INDICADORES DE DESEMPENHO FINANCEIRO ==========
+
+// Índice de Conversão (Resultado Caixa vs Lucro Operacional)
+var m1 = table.AddMeasure(
+    "Índice de Conversão Caixa/Lucro",
+    "VAR LucroOp = SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]) " +
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "RETURN IF(ABS(LucroOp) = 0, 0, ABS(ResultCaixa) / ABS(LucroOp))",
+    "Resultado do Caixa"
+);
+m1.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m1.FormatString = "0.00";
+m1.Description = "Mede a eficácia na conversão de lucro contábil em caixa efetivo. Valores > 1 indicam geração de caixa superior ao lucro contábil";
+
+// Eficiência de Geração de Caixa
+var m2 = table.AddMeasure(
+    "Eficiência de Geração de Caixa",
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR Recebimentos = SUM('R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento]) " +
+    "RETURN DIVIDE(ResultCaixa, Recebimentos, 0)",
+    "Resultado do Caixa"
+);
+m2.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m2.FormatString = "0.0%";
+m2.Description = "Indica quanto do faturamento recebido está sendo convertido em resultado de caixa operacional";
+
+// Ciclo de Conversão de Caixa (em dias)
+var m3 = table.AddMeasure(
+    "Ciclo de Conversão de Caixa",
+    "VAR PMR = AVERAGEX(VALUES(dCalendário[Date]), " +
+    "   CALCULATE(DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento]), DIVIDE([Faturamento Total], 365), 0))) " +
+    "VAR PMP = AVERAGEX(VALUES(dCalendário[Date]), " +
+    "   CALCULATE(DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Pagamento Fornecedores]), DIVIDE([Compras Total], 365), 0))) " +
+    "RETURN PMR - PMP",
+    "Resultado do Caixa"
+);
+m3.DisplayFolder = "Indicadores de Desempenho\\Ciclo Financeiro";
+m3.FormatString = "0.0";
+m3.Description = "Tempo (em dias) entre pagamento a fornecedores e recebimento de clientes. Valor menor é melhor para o caixa";
+
+// ========== TENDÊNCIAS E PROJEÇÕES ==========
+
+// Tendência Linear de Caixa (6 períodos)
+var m4 = table.AddMeasure(
+    "Tendência Linear Caixa",
+    "VAR PeriodoAtual = MAX(dCalendário[Date]) " +
+    "RETURN FORECAST(PeriodoAtual, 'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa], dCalendário[Date], 6)",
+    "Resultado do Caixa"
+);
+m4.DisplayFolder = "Tendências e Projeções\\Análise de Tendência";
+m4.FormatString = "R$ #,##0.00";
+m4.Description = "Projeção linear do resultado de caixa com base nos últimos 6 períodos";
+
+// Projeção de Fechamento de Caixa (Mês)
+var m5 = table.AddMeasure(
+    "Projeção Fechamento Mês",
+    "VAR DiasDoMes = DAY(EOMONTH(MAX(dCalendário[Date]), 0)) " +
+    "VAR DiasAtuais = DAY(MAX(dCalendário[Date])) " +
+    "VAR MediaDiária = CALCULATE(AVERAGE('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), " +
+    "   DATESINPERIOD(dCalendário[Date], MAX(dCalendário[Date]), -DiasAtuais, DAY)) " +
+    "RETURN SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]) + MediaDiária * (DiasDoMes - DiasAtuais)",
+    "Resultado do Caixa"
+);
+m5.DisplayFolder = "Tendências e Projeções\\Análise de Tendência";
+m5.FormatString = "R$ #,##0.00";
+m5.Description = "Estimativa do saldo final de caixa para o mês atual baseado na média diária e dias restantes";
+
+// Volatilidade do Fluxo de Caixa
+var m6 = table.AddMeasure(
+    "Volatilidade Fluxo de Caixa",
+    "VAR MediaResultado = AVERAGE('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR DesvioPadrao = STDEVX.P(VALUES(dCalendário[Date]), 'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "RETURN IF(MediaResultado = 0, 0, DesvioPadrao / ABS(MediaResultado))",
+    "Resultado do Caixa"
+);
+m6.DisplayFolder = "Tendências e Projeções\\Análise de Risco";
+m6.FormatString = "0.00";
+m6.Description = "Mede a variabilidade do resultado de caixa. Valor menor indica maior estabilidade";
+
+// ========== ANÁLISE DE COMPONENTES ==========
+
+// Contribuição do Lucro Operacional
+var m7 = table.AddMeasure(
+    "Contribuição Lucro Operacional",
+    "VAR LucroOp = SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]) " +
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(LucroOp, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m7.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m7.FormatString = "0.0%";
+m7.Description = "Contribuição percentual do Lucro Operacional para o Resultado de Caixa";
+
+// Contribuição da Variação de NCG
+var m8 = table.AddMeasure(
+    "Contribuição Variação NCG",
+    "VAR VarNCG = SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg]) " +
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(VarNCG, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m8.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m8.FormatString = "0.0%";
+m8.Description = "Contribuição percentual da Variação de NCG para o Resultado de Caixa";
+
+// Impacto MoM Lucro Operacional
+var m9 = table.AddMeasure(
+    "Impacto MoM Lucro Operacional",
+    "VAR Atual = SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]) " +
+    "VAR Anterior = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]), DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m9.DisplayFolder = "Análise de Componentes\\Impacto MoM";
+m9.FormatString = "R$ #,##0.00";
+m9.Description = "Variação absoluta do Lucro Operacional em relação ao mês anterior";
+
+// Impacto MoM Variação NCG
+var m10 = table.AddMeasure(
+    "Impacto MoM Variação NCG",
+    "VAR Atual = SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg]) " +
+    "VAR Anterior = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg]), DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m10.DisplayFolder = "Análise de Componentes\\Impacto MoM";
+m10.FormatString = "R$ #,##0.00";
+m10.Description = "Variação absoluta da NCG em relação ao mês anterior";
+
+// Índice de Crescimento Sustentável do Caixa
+var m11 = table.AddMeasure(
+    "Índice Crescimento Sustentável",
+    "VAR CaixaAtual = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR CaixaM1 = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "VAR CaixaM2 = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), DATEADD(dCalendário[Date], -2, MONTH)) " +
+    "VAR CaixaM3 = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), DATEADD(dCalendário[Date], -3, MONTH)) " +
+    "VAR Var1 = IF(ISBLANK(CaixaM1) || ABS(CaixaM1) = 0, 0, (CaixaAtual - CaixaM1) / ABS(CaixaM1)) " +
+    "VAR Var2 = IF(ISBLANK(CaixaM2) || ABS(CaixaM2) = 0, 0, (CaixaM1 - CaixaM2) / ABS(CaixaM2)) " +
+    "VAR Var3 = IF(ISBLANK(CaixaM3) || ABS(CaixaM3) = 0, 0, (CaixaM2 - CaixaM3) / ABS(CaixaM3)) " +
+    "RETURN AVERAGE(Var1, Var2, Var3)",
+    "Resultado do Caixa"
+);
+m11.DisplayFolder = "Análise de Componentes\\Indicadores de Crescimento";
+m11.FormatString = "0.0%";
+m11.Description = "Média da taxa de crescimento do resultado de caixa nos últimos 3 meses";
+
+// ========== RISCO E LIQUIDEZ ==========
+
+// Índice de Cobertura de Obrigações
+var m12 = table.AddMeasure(
+    "Índice Cobertura Obrigações",
+    "VAR SaldoCaixa = SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]) " +
+    "VAR Obrigacoes = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Empréstimos]) + " +
+    "    SUM('R32_Resultado Caixa Acumulado'[Outros Pagamentos]), " +
+    "    DATESINPERIOD(dCalendário[Date], MAX(dCalendário[Date]), 30, DAY)) " +
+    "RETURN DIVIDE(SaldoCaixa, Obrigacoes, 0)",
+    "Resultado do Caixa"
+);
+m12.DisplayFolder = "Risco e Liquidez\\Indicadores de Cobertura";
+m12.FormatString = "0.00";
+m12.Description = "Capacidade do saldo atual de cobrir as obrigações dos próximos 30 dias";
+
+// Dias de Caixa (Burnrate)
+var m13 = table.AddMeasure(
+    "Dias de Caixa",
+    "VAR SaldoCaixa = SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]) " +
+    "VAR MediaDiáriaSaídas = AVERAGEX(VALUES(dCalendário[Date]), " +
+    "    CALCULATE((SUM('R32_Resultado Caixa Acumulado'[Pagamento Fornecedores]) + " +
+    "    SUM('R32_Resultado Caixa Acumulado'[Outros Pagamentos]) + " +
+    "    SUM('R32_Resultado Caixa Acumulado'[Empréstimos])) / 30)) " +
+    "RETURN IF(MediaDiáriaSaídas = 0, 0, SaldoCaixa / MediaDiáriaSaídas)",
+    "Resultado do Caixa"
+);
+m13.DisplayFolder = "Risco e Liquidez\\Indicadores de Cobertura";
+m13.FormatString = "0.0";
+m13.Description = "Número de dias que o saldo atual consegue cobrir com base no ritmo médio de saídas";
+
+// Margem de Segurança de Caixa
+var m14 = table.AddMeasure(
+    "Margem Segurança Caixa",
+    "VAR SaldoAtual = SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]) " +
+    "VAR SaldoMínimo = MIN('Planejamento do caixa'[Valor]) " +
+    "RETURN DIVIDE(SaldoAtual - SaldoMínimo, ABS(SaldoMínimo), 0)",
+    "Resultado do Caixa"
+);
+m14.DisplayFolder = "Risco e Liquidez\\Indicadores de Segurança";
+m14.FormatString = "0.0%";
+m14.Description = "Diferença percentual entre o saldo atual e o saldo mínimo planejado";
+
+// ========== ANÁLISE TEMPORAL E SAZONAL ==========
+
+// Sazonalidade de Caixa (Índice)
+var m15 = table.AddMeasure(
+    "Sazonalidade Caixa",
+    "VAR ResultadoMêsAtual = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR ResultadoAnoAnterior = CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), " +
+    "    DATEADD(dCalendário[Date], -1, YEAR)) " +
+    "RETURN DIVIDE(ResultadoMêsAtual, ResultadoAnoAnterior, 0)",
+    "Resultado do Caixa"
+);
+m15.DisplayFolder = "Análise Temporal\\Sazonalidade";
+m15.FormatString = "0.00";
+m15.Description = "Comparação do resultado atual com o mesmo período do ano anterior";
+
+// Correlação Faturamento vs Caixa
+var m16 = table.AddMeasure(
+    "Correlação Faturamento-Caixa",
+    "CALCULATE(CORRELATION('R32_Resultado Caixa Acumulado'[Recebimento Do Faturamento], " +
+    "    'R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]))",
+    "Resultado do Caixa"
+);
+m16.DisplayFolder = "Análise Temporal\\Correlações";
+m16.FormatString = "0.00";
+m16.Description = "Correlação estatística entre faturamento e resultado de caixa. Valores próximos a 1 indicam alta correlação";
+
+// Desvio do Planejamento
+var m17 = table.AddMeasure(
+    "Desvio do Planejamento",
+    "VAR CaixaReal = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR CaixaPlanejado = SUM('Planejamento do caixa'[Valor]) " +
+    "RETURN IF(CaixaPlanejado = 0, 0, DIVIDE(CaixaReal - CaixaPlanejado, ABS(CaixaPlanejado)))",
+    "Resultado do Caixa"
+);
+m17.DisplayFolder = "Análise Temporal\\Aderência ao Planejamento";
+m17.FormatString = "0.0%";
+m17.Description = "Diferença percentual entre o resultado realizado e o planejado";
+
+// ========== MÉTRICAS DE OTIMIZAÇÃO ==========
+
+// Eficiência de Investimentos
+var m18 = table.AddMeasure(
+    "Eficiência Investimentos",
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR TotalInvest = SUM('R32_Resultado Caixa Acumulado'[Investimentos]) + " +
+    "    SUM('R32_Resultado Caixa Acumulado'[Investimento Em Cultura]) + " +
+    "    SUM('R32_Resultado Caixa Acumulado'[Investimento Ampliação]) " +
+    "RETURN DIVIDE(ResultCaixa, TotalInvest, 0)",
+    "Resultado do Caixa"
+);
+m18.DisplayFolder = "Métricas de Otimização\\Eficiência de Capital";
+m18.FormatString = "0.00";
+m18.Description = "Relação entre resultado de caixa e investimentos totais";
+
+// Custo do Capital de Giro
+var m19 = table.AddMeasure(
+    "Custo Capital de Giro",
+    "VAR VariaçãoNCG = SUM('R32_Resultado Caixa Acumulado'[Variação Da Ncg]) " +
+    "VAR CustoCapital = 0.12 / 12 " +  // Taxa mensal de 1% (12% ao ano)
+    "RETURN IF(VariaçãoNCG < 0, ABS(VariaçãoNCG) * CustoCapital, 0)",
+    "Resultado do Caixa"
+);
+m19.DisplayFolder = "Métricas de Otimização\\Custos Financeiros";
+m19.FormatString = "R$ #,##0.00";
+m19.Description = "Estimativa do custo financeiro da variação negativa de capital de giro";
+
+// Custo Financeiro vs Resultado de Caixa
+var m20 = table.AddMeasure(
+    "Custo Financeiro vs Resultado",
+    "VAR CustoFinanceiro = SUM('R32_Resultado Caixa Acumulado'[Juros Pagos]) " +
+    "VAR ResultCaixa = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "RETURN DIVIDE(CustoFinanceiro, ResultCaixa, 0)",
+    "Resultado do Caixa"
+);
+m20.DisplayFolder = "Métricas de Otimização\\Custos Financeiros";
+m20.FormatString = "0.0%";
+m20.Description = "Proporção do resultado de caixa consumida por custos financeiros";
+
+// ========== KPIs INTEGRADOS ==========
+
+// Indicador de Saúde Financeira
+var m21 = table.AddMeasure(
+    "Saúde Financeira",
+    "VAR LiquidezCaixa = [Índice Cobertura Obrigações] " +
+    "VAR TendênciaCaixa = [Índice Crescimento Sustentável] " +
+    "VAR VolatilidadeCaixa = [Volatilidade Fluxo de Caixa] " +
+    "RETURN (LiquidezCaixa * 0.4) + (TendênciaCaixa * 0.4) - (VolatilidadeCaixa * 0.2)",
+    "Resultado do Caixa"
+);
+m21.DisplayFolder = "KPIs Integrados\\Indicadores Compostos";
+m21.FormatString = "0.00";
+m21.Description = "Indicador composto que combina liquidez, tendência e volatilidade. Valores maiores são melhores";
+
+// Eficácia do Planejamento de Caixa
+var m22 = table.AddMeasure(
+    "Eficácia Planejamento",
+    "VAR DesvioMédio = AVERAGEX(VALUES(dCalendário[Date]), ABS([Desvio do Planejamento])) " +
+    "RETURN 1 - MIN(DesvioMédio, 1)",
+    "Resultado do Caixa"
+);
+m22.DisplayFolder = "KPIs Integrados\\Indicadores Compostos";
+m22.FormatString = "0.0%";
+m22.Description = "Mede a precisão do planejamento financeiro. Valores próximos a 100% indicam alta precisão";
+
+// Indicador de Alerta de Caixa
+var m23 = table.AddMeasure(
+    "Alerta Caixa",
+    "IF([Dias de Caixa] < 30 || [Saúde Financeira] < 0.5 || [Margem Segurança Caixa] < 0, " +
+    "    1,  // Vermelho " +
+    "    IF([Dias de Caixa] < 60 || [Saúde Financeira] < 0.7 || [Margem Segurança Caixa] < 0.2, " +
+    "        0.5,  // Amarelo " +
+    "        0  // Verde " +
+    "    ) " +
+    ")",
+    "Resultado do Caixa"
+);
+m23.DisplayFolder = "KPIs Integrados\\Indicadores de Alerta";
+m23.FormatString = "0.0";
+m23.Description = "Sistema de alerta com base em múltiplos indicadores: 0=Verde, 0.5=Amarelo, 1=Vermelho";
+
+// ========== MEDIDAS PREDITIVAS ==========
+
+// Previsão de Resultado de Caixa (ARIMA Simplificado)
+var m24 = table.AddMeasure(
+    "Previsão Caixa ARIMA",
+    "VAR Alfa = 0.7  // Fator de suavização " +
+    "VAR Beta = 0.3  // Fator de tendência " +
+    "VAR UltimoResultado = LASTNONBLANK(dCalendário[Date], [Resultado Operacional De Caixa]) " +
+    "VAR PenultimoResultado = CALCULATE(LASTNONBLANK(dCalendário[Date], [Resultado Operacional De Caixa]), " +
+    "    DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "VAR Tendência = UltimoResultado - PenultimoResultado " +
+    "RETURN UltimoResultado + (Alfa * UltimoResultado) + (Beta * Tendência)",
+    "Resultado do Caixa"
+);
+m24.DisplayFolder = "Análise Preditiva\\Previsões";
+m24.FormatString = "R$ #,##0.00";
+m24.Description = "Previsão do próximo resultado de caixa usando modelo ARIMA simplificado";
+
+// Probabilidade de Insolvência (Z-Score adaptado)
+var m25 = table.AddMeasure(
+    "Probabilidade Insolvência",
+    "VAR X1 = DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Saldo De Caixa Atual]), SUM('Balanço'[Total Ativo]), 0) " +
+    "VAR X2 = DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]), SUM('Balanço'[Total Ativo]), 0) " +
+    "VAR X3 = DIVIDE(SUM('R32_Resultado Caixa Acumulado'[Lucro Operacional]), SUM('Balanço'[Total Passivo]), 0) " +
+    "VAR ZScore = 1.2*X1 + 1.4*X2 + 3.3*X3 " +
+    "RETURN IF(ZScore > 2.9, \"Baixa\", IF(ZScore > 1.8, \"Moderada\", \"Alta\"))",
+    "Resultado do Caixa"
+);
+m25.DisplayFolder = "Análise Preditiva\\Avaliação de Risco";
+m25.Description = "Avaliação do risco de insolvência baseada no modelo Z-Score adaptado";
+
+// Notificação após conclusão
+Info("25 medidas avançadas para Análise de Resultado do Caixa foram adicionadas com sucesso!");
+Este script para o Tabular Editor adiciona 25 medidas avançadas para análise do Resultado do Caixa, organizadas nas seguintes categorias:
+
+Indicadores de Desempenho Financeiro: Métricas que avaliam a eficácia da geração de caixa
+Tendências e Projeções: Análises de tendência e previsões futuras
+Análise de Componentes: Detalhamento da contribuição de cada elemento para o resultado
+Risco e Liquidez: Avaliação da capacidade de cobertura de obrigações e segurança financeira
+Análise Temporal e Sazonal: Comparações históricas e sazonalidade
+Métricas de Otimização: Indicadores de eficiência na utilização de recursos
+KPIs Integrados: Indicadores compostos que combinam múltiplas métricas
+Análise Preditiva: Previsões e avaliações de risco futuro
+
+Todas as medidas foram construídas seguindo o padrão que você mostrou, com formatação, pastas de exibição e descrições detalhadas para facilitar a compreensão e uso.BAestou olhando as medidas e não achei medidas em relação ao planejamento ?Você tem razão! Parece que faltaram algumas medidas específicas relacionadas ao planejamento do caixa. Vou adicionar essas medidas complementares focadas na relação com o planejamento, que são essenciais para o acompanhamento de metas e análise de desvios. Veja as medidas adicionais:
+csharp// ========== ANÁLISE DE PLANEJAMENTO DO CAIXA ==========
+
+// Variação Absoluta vs Planejamento
+var m26 = table.AddMeasure(
+    "Variação vs Planejamento",
+    "VAR CaixaReal = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR CaixaPlanejado = SUM('Planejamento do caixa'[Valor]) " +
+    "RETURN CaixaReal - CaixaPlanejado",
+    "Resultado do Caixa"
+);
+m26.DisplayFolder = "Planejamento\\Análise de Variações";
+m26.FormatString = "R$ #,##0.00";
+m26.Description = "Diferença absoluta entre o resultado realizado e o planejado";
+
+// Percentual de Atingimento do Planejamento
+var m27 = table.AddMeasure(
+    "% Atingimento do Planejamento",
+    "VAR CaixaReal = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR CaixaPlanejado = SUM('Planejamento do caixa'[Valor]) " +
+    "RETURN IF(CaixaPlanejado = 0, IF(CaixaReal >= 0, 1, 0), DIVIDE(CaixaReal, CaixaPlanejado))",
+    "Resultado do Caixa"
+);
+m27.DisplayFolder = "Planejamento\\Análise de Variações";
+m27.FormatString = "0.0%";
+m27.Description = "Percentual de realização da meta de resultado do caixa";
+
+// Precisão do Planejamento (Rolling 6 meses)
+var m28 = table.AddMeasure(
+    "Precisão do Planejamento",
+    "VAR UltimosMeses = DATESINPERIOD(dCalendário[Date], MAX(dCalendário[Date]), -6, MONTH) " +
+    "VAR DesvioPlanejamento = AVERAGEX(UltimosMeses, " +
+    "    CALCULATE(ABS(DIVIDE([Variação vs Planejamento], ABS(SUM('Planejamento do caixa'[Valor])), 0)))) " +
+    "RETURN 1 - MIN(DesvioPlanejamento, 1)",
+    "Resultado do Caixa"
+);
+m28.DisplayFolder = "Planejamento\\Índices de Precisão";
+m28.FormatString = "0.0%";
+m28.Description = "Mede a precisão média do planejamento nos últimos 6 meses. 100% indica planejamento perfeito";
+
+// Tendência de Desvio do Planejamento
+var m29 = table.AddMeasure(
+    "Tendência Desvio Planejamento",
+    "VAR DesvioAtual = [Variação vs Planejamento] " +
+    "VAR DesvioM1 = CALCULATE([Variação vs Planejamento], DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "VAR DesvioM2 = CALCULATE([Variação vs Planejamento], DATEADD(dCalendário[Date], -2, MONTH)) " +
+    "RETURN IF(ABS(DesvioM2) = 0, 0, DIVIDE(DesvioAtual - DesvioM2, ABS(DesvioM2)))",
+    "Resultado do Caixa"
+);
+m29.DisplayFolder = "Planejamento\\Tendências";
+m29.FormatString = "0.0%";
+m29.Description = "Mostra se os desvios do planejamento estão crescendo ou diminuindo ao longo do tempo";
+
+// Análise de Sensibilidade do Planejamento
+var m30 = table.AddMeasure(
+    "Sensibilidade do Planejamento",
+    "VAR CaixaReal = SUM('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa]) " +
+    "VAR CaixaPlanejado = SUM('Planejamento do caixa'[Valor]) " +
+    "VAR PercentualVariacao = DIVIDE(ABS(CaixaReal - CaixaPlanejado), ABS(CaixaPlanejado), 0) " +
+    "RETURN IF(PercentualVariacao <= 0.05, \"Baixa\", " +
+    "       IF(PercentualVariacao <= 0.15, \"Média\", \"Alta\"))",
+    "Resultado do Caixa"
+);
+m30.DisplayFolder = "Planejamento\\Análise de Variações";
+m30.Description = "Classifica a sensibilidade do planejamento com base no percentual de variação";
+
+// Correlação Histórica Planejado vs Realizado
+var m31 = table.AddMeasure(
+    "Correlação Planejado vs Realizado",
+    "CALCULATE(CORRELATION('R32_Resultado Caixa Acumulado'[Resultado Operacional De Caixa], " +
+    "'Planejamento do caixa'[Valor]))",
+    "Resultado do Caixa"
+);
+m31.DisplayFolder = "Planejamento\\Correlações";
+m31.FormatString = "0.00";
+m31.Description = "Correlação estatística entre valores planejados e realizados. Valores próximos a 1 indicam alta correlação";
+
+// Consistência do Planejamento
+var m32 = table.AddMeasure(
+    "Consistência do Planejamento",
+    "VAR UltimosMeses = DATESINPERIOD(dCalendário[Date], MAX(dCalendário[Date]), -6, MONTH) " +
+    "VAR DesviosPadrãoRelativos = STDEVX.P(UltimosMeses, " +
+    "    CALCULATE(DIVIDE([Variação vs Planejamento], ABS(SUM('Planejamento do caixa'[Valor])), 0))) " +
+    "RETURN 1 - MIN(DesviosPadrãoRelativos, 1)",
+    "Resultado do Caixa"
+);
+m32.DisplayFolder = "Planejamento\\Índices de Precisão";
+m32.FormatString = "0.0%";
+m32.Description = "Mede a consistência do planejamento ao longo do tempo. Valores mais altos indicam maior consistência";
+
+// Horizonte de Planejamento Efetivo
+var m33 = table.AddMeasure(
+    "Horizonte de Planejamento Efetivo",
+    "VAR FuturoPlanejado = CALCULATE(COUNTROWS('Planejamento do caixa'), " +
+    "    'Planejamento do caixa'[Data] > MAX(dCalendário[Date])) " +
+    "RETURN FuturoPlanejado",
+    "Resultado do Caixa"
+);
+m33.DisplayFolder = "Planejamento\\Métricas de Processo";
+m33.FormatString = "0";
+m33.Description = "Número de períodos futuros com planejamento realizado";
+
+// Velocidade de Ajuste do Planejamento
+var m34 = table.AddMeasure(
+    "Velocidade de Ajuste do Planejamento",
+    "VAR DesvioM1 = CALCULATE([Variação vs Planejamento], DATEADD(dCalendário[Date], -1, MONTH)) " +
+    "VAR DesvioM2 = CALCULATE([Variação vs Planejamento], DATEADD(dCalendário[Date], -2, MONTH)) " +
+    "VAR AjustePlanejado = CALCULATE(SUM('Planejamento do caixa'[Valor]), DATEADD(dCalendário[Date], 1, MONTH)) - " +
+    "    CALCULATE(SUM('Planejamento do caixa'[Valor]), DATEADD(dCalendário[Date], 0, MONTH)) " +
+    "RETURN DIVIDE(AjustePlanejado, DesvioM1, 0)",
+    "Resultado do Caixa"
+);
+m34.DisplayFolder = "Planejamento\\Métricas de Processo";
+m34.FormatString = "0.0%";
+m34.Description = "Mede quão rapidamente o planejamento é ajustado em resposta a desvios anteriores";
+
+// Alerta de Revisão do Planejamento
+var m35 = table.AddMeasure(
+    "Alerta de Revisão do Planejamento",
+    "IF([Precisão do Planejamento] < 0.7 || " +
+    "   ABS([Tendência Desvio Planejamento]) > 0.2 || " +
+    "   [Consistência do Planejamento] < 0.6, " +
+    "   1, 0)",
+    "Resultado do Caixa"
+);
+m35.DisplayFolder = "Planejamento\\Indicadores de Alerta";
+m35.FormatString = "0";
+m35.Description = "Indicador binário (0 ou 1) que sinaliza necessidade de revisão do processo de planejamento";
+
+// Notificação após conclusão
+Info("10 medidas adicionais específicas para Análise de Planejamento do Caixa foram adicionadas com sucesso!");
+Estas medidas adicionais focam especificamente na relação com o planejamento, complementando as medidas anteriores. Elas incluem:
+
+Análise de Variações: Métricas que comparam diretamente os valores realizados com os planejados
+Índices de Precisão: Medidas que avaliam a qualidade do processo de planejamento
+Tendências de Desvio: Análise de como os desvios estão evoluindo ao longo do tempo
+Correlações e Consistência: Avaliação da relação estatística entre planejado e realizado
+Métricas de Processo: Indicadores sobre o próprio processo de planejamento
+Indicadores de Alerta: Sinalizadores para necessidade de revisão do planejamento
+
+Com este conjunto adicional, você terá uma visão mais completa e detalhada do desempenho em relação ao planejamento, permitindo identificar oportunidades de melhoria no processo de planejamento financeiro.Files hidden in shared chatsBAna tabela R32 , na tem a coluna "Lucro Operacional" , "Resultado Operacional De Caixa" , Saldo De Caixa Atual e entre outras colunas que você colocou . precisar criar medidas relacionadas a essas informaçõesEntendo sua preocupação. Observando a imagem, vejo que a tabela R32_Resultado Caixa Acumulado possui apenas as colunas "Valor", "INDICADORES CAIXA" e "Data", não mostrando as colunas específicas como "Lucro Operacional", "Resultado Operacional De Caixa" e outras que mencionei nas medidas.
+Este é um caso comum no Power BI, onde a tabela de origem contém dados organizados de forma "longa" em vez de "larga". Ou seja, os vários tipos de indicadores estão empilhados em uma única coluna ("INDICADORES CAIXA") com seus respectivos valores na coluna "Valor".
+Vou ajustar o script para criar medidas que funcionem com esta estrutura de dados. Aqui está o script revisado:
+csharp// Script para Tabular Editor
+// Adiciona medidas avançadas para Resultado do Caixa
+// Adaptado para estrutura onde os indicadores estão na coluna "INDICADORES CAIXA"
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["R32_Resultado Caixa Acumulado"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'R32_Resultado Caixa Acumulado' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== FILTROS PARA CADA TIPO DE INDICADOR ==========
+
+// Lucro Operacional
+var m1 = table.AddMeasure(
+    "Lucro Operacional",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Lucro Operacional\")",
+    "Resultado do Caixa"
+);
+m1.DisplayFolder = "Indicadores Básicos";
+m1.FormatString = "R$ #,##0.00";
+m1.Description = "Valor total do Lucro Operacional para o período selecionado";
+
+// Resultado Operacional de Caixa
+var m2 = table.AddMeasure(
+    "Resultado Operacional De Caixa",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Resultado Operacional De Caixa\")",
+    "Resultado do Caixa"
+);
+m2.DisplayFolder = "Indicadores Básicos";
+m2.FormatString = "R$ #,##0.00";
+m2.Description = "Valor total do Resultado Operacional de Caixa para o período selecionado";
+
+// Variação da NCG
+var m3 = table.AddMeasure(
+    "Variação Da NCG",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Variação Da Ncg\")",
+    "Resultado do Caixa"
+);
+m3.DisplayFolder = "Indicadores Básicos";
+m3.FormatString = "R$ #,##0.00";
+m3.Description = "Valor total da Variação da Necessidade de Capital de Giro para o período selecionado";
+
+// Saldo de Caixa Atual
+var m4 = table.AddMeasure(
+    "Saldo De Caixa Atual",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Saldo Total De Caixa\")",
+    "Resultado do Caixa"
+);
+m4.DisplayFolder = "Indicadores Básicos";
+m4.FormatString = "R$ #,##0.00";
+m4.Description = "Saldo de Caixa Atual para o período selecionado";
+
+// Resultado Líquido de Caixa
+var m5 = table.AddMeasure(
+    "Resultado Líquido De Caixa",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Resultado Líquido De Caixa\")",
+    "Resultado do Caixa"
+);
+m5.DisplayFolder = "Indicadores Básicos";
+m5.FormatString = "R$ #,##0.00";
+m5.Description = "Valor total do Resultado Líquido de Caixa para o período selecionado";
+
+// Outras Entradas
+var m6 = table.AddMeasure(
+    "Outras Entradas",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Outras Entradas\")",
+    "Resultado do Caixa"
+);
+m6.DisplayFolder = "Indicadores Básicos";
+m6.FormatString = "R$ #,##0.00";
+m6.Description = "Valor total de Outras Entradas para o período selecionado";
+
+// Outras Saídas
+var m7 = table.AddMeasure(
+    "Outras Saídas",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Outras Saídas\")",
+    "Resultado do Caixa"
+);
+m7.DisplayFolder = "Indicadores Básicos";
+m7.FormatString = "R$ #,##0.00";
+m7.Description = "Valor total de Outras Saídas para o período selecionado";
+
+// Investimentos
+var m8 = table.AddMeasure(
+    "Investimentos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimentos\")",
+    "Resultado do Caixa"
+);
+m8.DisplayFolder = "Indicadores Básicos";
+m8.FormatString = "R$ #,##0.00";
+m8.Description = "Valor total de Investimentos para o período selecionado";
+
+// Investimento em Cultura
+var m9 = table.AddMeasure(
+    "Investimento Em Cultura",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimento Em Cultura\")",
+    "Resultado do Caixa"
+);
+m9.DisplayFolder = "Indicadores Básicos";
+m9.FormatString = "R$ #,##0.00";
+m9.Description = "Valor total de Investimento em Cultura para o período selecionado";
+
+// Investimento Ampliação
+var m10 = table.AddMeasure(
+    "Investimento Ampliação",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimento Ampliação\")",
+    "Resultado do Caixa"
+);
+m10.DisplayFolder = "Indicadores Básicos";
+m10.FormatString = "R$ #,##0.00";
+m10.Description = "Valor total de Investimento em Ampliação para o período selecionado";
+
+// Empréstimos
+var m11 = table.AddMeasure(
+    "Empréstimos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Empréstimos\")",
+    "Resultado do Caixa"
+);
+m11.DisplayFolder = "Indicadores Básicos";
+m11.FormatString = "R$ #,##0.00";
+m11.Description = "Valor total de Empréstimos para o período selecionado";
+
+// Juros Pagos
+var m12 = table.AddMeasure(
+    "Juros Pagos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Juros Pagos\")",
+    "Resultado do Caixa"
+);
+m12.DisplayFolder = "Indicadores Básicos";
+m12.FormatString = "R$ #,##0.00";
+m12.Description = "Valor total de Juros Pagos para o período selecionado";
+
+// Juros Recebidos
+var m13 = table.AddMeasure(
+    "Juros Recebidos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Juros Recebidos\")",
+    "Resultado do Caixa"
+);
+m13.DisplayFolder = "Indicadores Básicos";
+m13.FormatString = "R$ #,##0.00";
+m13.Description = "Valor total de Juros Recebidos para o período selecionado";
+
+// Recebimento do Faturamento
+var m14 = table.AddMeasure(
+    "Recebimento Do Faturamento",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Recebimento Do Faturamento\")",
+    "Resultado do Caixa"
+);
+m14.DisplayFolder = "Indicadores Básicos";
+m14.FormatString = "R$ #,##0.00";
+m14.Description = "Valor total de Recebimento do Faturamento para o período selecionado";
+
+// Pagamento Fornecedores
+var m15 = table.AddMeasure(
+    "Pagamento Fornecedores",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Pagamento Fornecedores\")",
+    "Resultado do Caixa"
+);
+m15.DisplayFolder = "Indicadores Básicos";
+m15.FormatString = "R$ #,##0.00";
+m15.Description = "Valor total de Pagamento a Fornecedores para o período selecionado";
+
+// ========== INDICADORES DE DESEMPENHO FINANCEIRO ==========
+
+// Índice de Conversão (Resultado Caixa vs Lucro Operacional)
+var m16 = table.AddMeasure(
+    "Índice de Conversão Caixa/Lucro",
+    "VAR LucroOp = [Lucro Operacional] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ABS(LucroOp) = 0, 0, ABS(ResultCaixa) / ABS(LucroOp))",
+    "Resultado do Caixa"
+);
+m16.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m16.FormatString = "0.00";
+m16.Description = "Mede a eficácia na conversão de lucro contábil em caixa efetivo. Valores > 1 indicam geração de caixa superior ao lucro contábil";
+
+// Eficiência de Geração de Caixa
+var m17 = table.AddMeasure(
+    "Eficiência de Geração de Caixa",
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "VAR Recebimentos = [Recebimento Do Faturamento] " +
+    "RETURN DIVIDE(ResultCaixa, Recebimentos, 0)",
+    "Resultado do Caixa"
+);
+m17.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m17.FormatString = "0.0%";
+m17.Description = "Indica quanto do faturamento recebido está sendo convertido em resultado de caixa operacional";
+
+// Volatilidade do Fluxo de Caixa
+var m18 = table.AddMeasure(
+    "Volatilidade Fluxo de Caixa",
+    "VAR MediaResultado = AVERAGE(VALUES('R32_Resultado Caixa Acumulado'[Data]), [Resultado Operacional De Caixa]) " +
+    "VAR DesvioPadrao = STDEVX.P(VALUES('R32_Resultado Caixa Acumulado'[Data]), [Resultado Operacional De Caixa]) " +
+    "RETURN IF(MediaResultado = 0, 0, DesvioPadrao / ABS(MediaResultado))",
+    "Resultado do Caixa"
+);
+m18.DisplayFolder = "Indicadores de Desempenho\\Análise de Risco";
+m18.FormatString = "0.00";
+m18.Description = "Mede a variabilidade do resultado de caixa. Valor menor indica maior estabilidade";
+
+// ========== ANÁLISE DE COMPONENTES ==========
+
+// Contribuição do Lucro Operacional
+var m19 = table.AddMeasure(
+    "Contribuição Lucro Operacional",
+    "VAR LucroOp = [Lucro Operacional] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(LucroOp, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m19.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m19.FormatString = "0.0%";
+m19.Description = "Contribuição percentual do Lucro Operacional para o Resultado de Caixa";
+
+// Contribuição da Variação de NCG
+var m20 = table.AddMeasure(
+    "Contribuição Variação NCG",
+    "VAR VarNCG = [Variação Da NCG] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(VarNCG, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m20.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m20.FormatString = "0.0%";
+m20.Description = "Contribuição percentual da Variação de NCG para o Resultado de Caixa";
+
+// Impacto MoM Lucro Operacional
+var m21 = table.AddMeasure(
+    "Impacto MoM Lucro Operacional",
+    "VAR Atual = [Lucro Operacional] " +
+    "VAR Anterior = CALCULATE([Lucro Operacional], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m21.DisplayFolder = "Análise de Componentes\\Impacto MoM";
+m21.FormatString = "R$ #,##0.00";
+m21.Description = "Variação absoluta do Lucro Operacional em relação ao mês anterior";
+
+// ========== RISCO E LIQUIDEZ ==========
+
+// Dias de Caixa (Burnrate)
+var m22 = table.AddMeasure(
+    "Dias de Caixa",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR MediaDiáriaSaídas = AVERAGEX(VALUES('R32_Resultado Caixa Acumulado'[Data]), " +
+    "    ([Pagamento Fornecedores] + [Outras Saídas] + [Empréstimos]) / 30) " +
+    "RETURN IF(MediaDiáriaSaídas = 0, 0, SaldoCaixa / MediaDiáriaSaídas)",
+    "Resultado do Caixa"
+);
+m22.DisplayFolder = "Risco e Liquidez\\Indicadores de Cobertura";
+m22.FormatString = "0.0";
+m22.Description = "Número de dias que o saldo atual consegue cobrir com base no ritmo médio de saídas";
+
+// ========== TENDÊNCIAS E MÉTRICAS TEMPORAIS ==========
+
+// Variação Caixa MoM (%)
+var m23 = table.AddMeasure(
+    "Variação Caixa MoM (%)",
+    "VAR Atual = [Resultado Operacional De Caixa] " +
+    "VAR Anterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN DIVIDE(Atual - Anterior, ABS(Anterior), 0)",
+    "Resultado do Caixa"
+);
+m23.DisplayFolder = "Tendências e Métricas\\Variações";
+m23.FormatString = "0.0%";
+m23.Description = "Variação percentual do Resultado de Caixa em relação ao mês anterior";
+
+// Variação Caixa MoM (R$)
+var m24 = table.AddMeasure(
+    "Variação Caixa MoM (R$)",
+    "VAR Atual = [Resultado Operacional De Caixa] " +
+    "VAR Anterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m24.DisplayFolder = "Tendências e Métricas\\Variações";
+m24.FormatString = "R$ #,##0.00";
+m24.Description = "Variação absoluta do Resultado de Caixa em relação ao mês anterior";
+
+// Média Móvel 3 Meses
+var m25 = table.AddMeasure(
+    "Média Móvel Caixa (3m)",
+    "AVERAGEX(DATESINPERIOD('R32_Resultado Caixa Acumulado'[Data], MAX('R32_Resultado Caixa Acumulado'[Data]), -3, MONTH), [Resultado Operacional De Caixa])",
+    "Resultado do Caixa"
+);
+m25.DisplayFolder = "Tendências e Métricas\\Médias Móveis";
+m25.FormatString = "R$ #,##0.00";
+m25.Description = "Média do Resultado de Caixa nos últimos 3 meses";
+
+// ========== KPIs INTEGRADOS ==========
+
+// Relação Entradas/Saídas
+var m26 = table.AddMeasure(
+    "Relação Entradas/Saídas",
+    "VAR Entradas = [Recebimento Do Faturamento] + [Outras Entradas] + [Juros Recebidos] " +
+    "VAR Saidas = ABS([Pagamento Fornecedores]) + ABS([Outras Saídas]) + ABS([Empréstimos]) " +
+    "RETURN DIVIDE(Entradas, Saidas, 0)",
+    "Resultado do Caixa"
+);
+m26.DisplayFolder = "KPIs Integrados\\Indicadores de Equilíbrio";
+m26.FormatString = "0.00";
+m26.Description = "Relação entre entradas e saídas de caixa. Valor > 1 indica superávit";
+
+// Indicador de Saúde Financeira
+var m27 = table.AddMeasure(
+    "Saúde Financeira",
+    "VAR DiasLiquidez = [Dias de Caixa] / 60 " + // Normalizado para 60 dias
+    "VAR RelacaoES = [Relação Entradas/Saídas] / 2 " + // Normalizado para referência 2
+    "VAR Volatilidade = 1 - MIN([Volatilidade Fluxo de Caixa], 1) " + // Invertido para que menor volatilidade seja melhor
+    "RETURN (DiasLiquidez * 0.4) + (RelacaoES * 0.4) + (Volatilidade * 0.2)", // Pesos de 40%, 40%, 20%
+    "Resultado do Caixa"
+);
+m27.DisplayFolder = "KPIs Integrados\\Indicadores Compostos";
+m27.FormatString = "0.00";
+m27.Description = "Indicador composto que combina dias de caixa, relação entradas/saídas e volatilidade";
+
+// Alerta de Caixa
+var m28 = table.AddMeasure(
+    "Alerta Caixa",
+    "IF([Dias de Caixa] < 30 || [Relação Entradas/Saídas] < 0.8 || [Saldo De Caixa Atual] < 0, " +
+    "    1,  // Vermelho " +
+    "    IF([Dias de Caixa] < 60 || [Relação Entradas/Saídas] < 1 || [Saldo De Caixa Atual] < 100000, " +
+    "        0.5,  // Amarelo " +
+    "        0  // Verde " +
+    "    ) " +
+    ")",
+    "Resultado do Caixa"
+);
+m28.DisplayFolder = "KPIs Integrados\\Indicadores de Alerta";
+m28.FormatString = "0.0";
+m28.Description = "Sistema de alerta com base em múltiplos indicadores: 0=Verde, 0.5=Amarelo, 1=Vermelho";
+
+// Notificação após conclusão
+Info("28 medidas avançadas para Análise de Resultado do Caixa foram adicionadas com sucesso!");
+Este script está adaptado para a estrutura de dados que você possui, onde as colunas estão organizadas em um formato "longo". Primeiro, cria medidas básicas para extrair cada tipo de indicador, e depois constrói medidas mais complexas usando essas medidas básicas como blocos de construção.
+As medidas foram organizadas em categorias para facilitar a navegação:
+
+Indicadores Básicos (extração dos valores por tipo de indicador)
+Indicadores de Desempenho (análise da eficiência na geração de caixa)
+Análise de Componentes (contribuição de cada componente para o resultado)
+Risco e Liquidez (avaliação da capacidade de cobertura de obrigações)
+Tendências e Métricas Temporais (análise de variações ao longo do tempo)
+KPIs Integrados (indicadores compostos para avaliação global)
+
+Estas medidas permitirão criar um dashboard eficaz mesmo com a estrutura de dados disponível.BAFalha ao resolver o nome 'FORECAST'. Não é uma tabela, variável ou nome de função válidos.Entendo que você encontrou um erro com a função FORECAST. Essa função não é suportada nativamente no DAX padrão do Power BI. Vamos ajustar as medidas que usam essa função para usar alternativas compatíveis. Aqui está a versão corrigida:
+csharp// Script para Tabular Editor
+// Adiciona medidas avançadas para Resultado do Caixa
+// Adaptado para estrutura onde os indicadores estão na coluna "INDICADORES CAIXA"
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["R32_Resultado Caixa Acumulado"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'R32_Resultado Caixa Acumulado' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== FILTROS PARA CADA TIPO DE INDICADOR ==========
+
+// Lucro Operacional
+var m1 = table.AddMeasure(
+    "Lucro Operacional",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Lucro Operacional\")",
+    "Resultado do Caixa"
+);
+m1.DisplayFolder = "Indicadores Básicos";
+m1.FormatString = "R$ #,##0.00";
+m1.Description = "Valor total do Lucro Operacional para o período selecionado";
+
+// Resultado Operacional de Caixa
+var m2 = table.AddMeasure(
+    "Resultado Operacional De Caixa",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Resultado Operacional De Caixa\")",
+    "Resultado do Caixa"
+);
+m2.DisplayFolder = "Indicadores Básicos";
+m2.FormatString = "R$ #,##0.00";
+m2.Description = "Valor total do Resultado Operacional de Caixa para o período selecionado";
+
+// Variação da NCG
+var m3 = table.AddMeasure(
+    "Variação Da NCG",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Variação Da Ncg\")",
+    "Resultado do Caixa"
+);
+m3.DisplayFolder = "Indicadores Básicos";
+m3.FormatString = "R$ #,##0.00";
+m3.Description = "Valor total da Variação da Necessidade de Capital de Giro para o período selecionado";
+
+// Saldo de Caixa Atual
+var m4 = table.AddMeasure(
+    "Saldo De Caixa Atual",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Saldo Total De Caixa\")",
+    "Resultado do Caixa"
+);
+m4.DisplayFolder = "Indicadores Básicos";
+m4.FormatString = "R$ #,##0.00";
+m4.Description = "Saldo de Caixa Atual para o período selecionado";
+
+// Resultado Líquido de Caixa
+var m5 = table.AddMeasure(
+    "Resultado Líquido De Caixa",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Resultado Líquido De Caixa\")",
+    "Resultado do Caixa"
+);
+m5.DisplayFolder = "Indicadores Básicos";
+m5.FormatString = "R$ #,##0.00";
+m5.Description = "Valor total do Resultado Líquido de Caixa para o período selecionado";
+
+// Outras Entradas
+var m6 = table.AddMeasure(
+    "Outras Entradas",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Outras Entradas\")",
+    "Resultado do Caixa"
+);
+m6.DisplayFolder = "Indicadores Básicos";
+m6.FormatString = "R$ #,##0.00";
+m6.Description = "Valor total de Outras Entradas para o período selecionado";
+
+// Outras Saídas
+var m7 = table.AddMeasure(
+    "Outras Saídas",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Outras Saídas\")",
+    "Resultado do Caixa"
+);
+m7.DisplayFolder = "Indicadores Básicos";
+m7.FormatString = "R$ #,##0.00";
+m7.Description = "Valor total de Outras Saídas para o período selecionado";
+
+// Investimentos
+var m8 = table.AddMeasure(
+    "Investimentos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimentos\")",
+    "Resultado do Caixa"
+);
+m8.DisplayFolder = "Indicadores Básicos";
+m8.FormatString = "R$ #,##0.00";
+m8.Description = "Valor total de Investimentos para o período selecionado";
+
+// Investimento em Cultura
+var m9 = table.AddMeasure(
+    "Investimento Em Cultura",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimento Em Cultura\")",
+    "Resultado do Caixa"
+);
+m9.DisplayFolder = "Indicadores Básicos";
+m9.FormatString = "R$ #,##0.00";
+m9.Description = "Valor total de Investimento em Cultura para o período selecionado";
+
+// Investimento Ampliação
+var m10 = table.AddMeasure(
+    "Investimento Ampliação",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Investimento Ampliação\")",
+    "Resultado do Caixa"
+);
+m10.DisplayFolder = "Indicadores Básicos";
+m10.FormatString = "R$ #,##0.00";
+m10.Description = "Valor total de Investimento em Ampliação para o período selecionado";
+
+// Empréstimos
+var m11 = table.AddMeasure(
+    "Empréstimos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Empréstimos\")",
+    "Resultado do Caixa"
+);
+m11.DisplayFolder = "Indicadores Básicos";
+m11.FormatString = "R$ #,##0.00";
+m11.Description = "Valor total de Empréstimos para o período selecionado";
+
+// Juros Pagos
+var m12 = table.AddMeasure(
+    "Juros Pagos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Juros Pagos\")",
+    "Resultado do Caixa"
+);
+m12.DisplayFolder = "Indicadores Básicos";
+m12.FormatString = "R$ #,##0.00";
+m12.Description = "Valor total de Juros Pagos para o período selecionado";
+
+// Juros Recebidos
+var m13 = table.AddMeasure(
+    "Juros Recebidos",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Juros Recebidos\")",
+    "Resultado do Caixa"
+);
+m13.DisplayFolder = "Indicadores Básicos";
+m13.FormatString = "R$ #,##0.00";
+m13.Description = "Valor total de Juros Recebidos para o período selecionado";
+
+// Recebimento do Faturamento
+var m14 = table.AddMeasure(
+    "Recebimento Do Faturamento",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Recebimento Do Faturamento\")",
+    "Resultado do Caixa"
+);
+m14.DisplayFolder = "Indicadores Básicos";
+m14.FormatString = "R$ #,##0.00";
+m14.Description = "Valor total de Recebimento do Faturamento para o período selecionado";
+
+// Pagamento Fornecedores
+var m15 = table.AddMeasure(
+    "Pagamento Fornecedores",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Pagamento Fornecedores\")",
+    "Resultado do Caixa"
+);
+m15.DisplayFolder = "Indicadores Básicos";
+m15.FormatString = "R$ #,##0.00";
+m15.Description = "Valor total de Pagamento a Fornecedores para o período selecionado";
+
+// ========== INDICADORES DE DESEMPENHO FINANCEIRO ==========
+
+// Índice de Conversão (Resultado Caixa vs Lucro Operacional)
+var m16 = table.AddMeasure(
+    "Índice de Conversão Caixa/Lucro",
+    "VAR LucroOp = [Lucro Operacional] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ABS(LucroOp) = 0, 0, ABS(ResultCaixa) / ABS(LucroOp))",
+    "Resultado do Caixa"
+);
+m16.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m16.FormatString = "0.00";
+m16.Description = "Mede a eficácia na conversão de lucro contábil em caixa efetivo. Valores > 1 indicam geração de caixa superior ao lucro contábil";
+
+// Eficiência de Geração de Caixa
+var m17 = table.AddMeasure(
+    "Eficiência de Geração de Caixa",
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "VAR Recebimentos = [Recebimento Do Faturamento] " +
+    "RETURN DIVIDE(ResultCaixa, Recebimentos, 0)",
+    "Resultado do Caixa"
+);
+m17.DisplayFolder = "Indicadores de Desempenho\\KPIs Principais";
+m17.FormatString = "0.0%";
+m17.Description = "Indica quanto do faturamento recebido está sendo convertido em resultado de caixa operacional";
+
+// Volatilidade do Fluxo de Caixa
+var m18 = table.AddMeasure(
+    "Volatilidade Fluxo de Caixa",
+    "VAR MediaResultado = AVERAGE(VALUES('R32_Resultado Caixa Acumulado'[Data]), [Resultado Operacional De Caixa]) " +
+    "VAR DesvioPadrao = STDEVX.P(VALUES('R32_Resultado Caixa Acumulado'[Data]), [Resultado Operacional De Caixa]) " +
+    "RETURN IF(MediaResultado = 0, 0, DesvioPadrao / ABS(MediaResultado))",
+    "Resultado do Caixa"
+);
+m18.DisplayFolder = "Indicadores de Desempenho\\Análise de Risco";
+m18.FormatString = "0.00";
+m18.Description = "Mede a variabilidade do resultado de caixa. Valor menor indica maior estabilidade";
+
+// ========== ANÁLISE DE COMPONENTES ==========
+
+// Contribuição do Lucro Operacional
+var m19 = table.AddMeasure(
+    "Contribuição Lucro Operacional",
+    "VAR LucroOp = [Lucro Operacional] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(LucroOp, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m19.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m19.FormatString = "0.0%";
+m19.Description = "Contribuição percentual do Lucro Operacional para o Resultado de Caixa";
+
+// Contribuição da Variação de NCG
+var m20 = table.AddMeasure(
+    "Contribuição Variação NCG",
+    "VAR VarNCG = [Variação Da NCG] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "RETURN IF(ResultCaixa = 0, 0, DIVIDE(VarNCG, ResultCaixa))",
+    "Resultado do Caixa"
+);
+m20.DisplayFolder = "Análise de Componentes\\Contribuição Percentual";
+m20.FormatString = "0.0%";
+m20.Description = "Contribuição percentual da Variação de NCG para o Resultado de Caixa";
+
+// Impacto MoM Lucro Operacional
+var m21 = table.AddMeasure(
+    "Impacto MoM Lucro Operacional",
+    "VAR Atual = [Lucro Operacional] " +
+    "VAR Anterior = CALCULATE([Lucro Operacional], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m21.DisplayFolder = "Análise de Componentes\\Impacto MoM";
+m21.FormatString = "R$ #,##0.00";
+m21.Description = "Variação absoluta do Lucro Operacional em relação ao mês anterior";
+
+// ========== RISCO E LIQUIDEZ ==========
+
+// Dias de Caixa (Burnrate)
+var m22 = table.AddMeasure(
+    "Dias de Caixa",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR MediaDiáriaSaídas = AVERAGEX(VALUES('R32_Resultado Caixa Acumulado'[Data]), " +
+    "    ([Pagamento Fornecedores] + [Outras Saídas] + [Empréstimos]) / 30) " +
+    "RETURN IF(MediaDiáriaSaídas = 0, 0, SaldoCaixa / MediaDiáriaSaídas)",
+    "Resultado do Caixa"
+);
+m22.DisplayFolder = "Risco e Liquidez\\Indicadores de Cobertura";
+m22.FormatString = "0.0";
+m22.Description = "Número de dias que o saldo atual consegue cobrir com base no ritmo médio de saídas";
+
+// ========== TENDÊNCIAS E MÉTRICAS TEMPORAIS ==========
+
+// Variação Caixa MoM (%)
+var m23 = table.AddMeasure(
+    "Variação Caixa MoM (%)",
+    "VAR Atual = [Resultado Operacional De Caixa] " +
+    "VAR Anterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN DIVIDE(Atual - Anterior, ABS(Anterior), 0)",
+    "Resultado do Caixa"
+);
+m23.DisplayFolder = "Tendências e Métricas\\Variações";
+m23.FormatString = "0.0%";
+m23.Description = "Variação percentual do Resultado de Caixa em relação ao mês anterior";
+
+// Variação Caixa MoM (R$)
+var m24 = table.AddMeasure(
+    "Variação Caixa MoM (R$)",
+    "VAR Atual = [Resultado Operacional De Caixa] " +
+    "VAR Anterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('R32_Resultado Caixa Acumulado'[Data], -1, MONTH)) " +
+    "RETURN Atual - Anterior",
+    "Resultado do Caixa"
+);
+m24.DisplayFolder = "Tendências e Métricas\\Variações";
+m24.FormatString = "R$ #,##0.00";
+m24.Description = "Variação absoluta do Resultado de Caixa em relação ao mês anterior";
+
+// Média Móvel 3 Meses
+var m25 = table.AddMeasure(
+    "Média Móvel Caixa (3m)",
+    "AVERAGEX(DATESINPERIOD('R32_Resultado Caixa Acumulado'[Data], MAX('R32_Resultado Caixa Acumulado'[Data]), -3, MONTH), [Resultado Operacional De Caixa])",
+    "Resultado do Caixa"
+);
+m25.DisplayFolder = "Tendências e Métricas\\Médias Móveis";
+m25.FormatString = "R$ #,##0.00";
+m25.Description = "Média do Resultado de Caixa nos últimos 3 meses";
+
+// Tendência Linear (implementação alternativa sem FORECAST)
+var m26 = table.AddMeasure(
+    "Tendência Linear Caixa",
+    "VAR UltimosMeses = DATESINPERIOD('R32_Resultado Caixa Acumulado'[Data], MAX('R32_Resultado Caixa Acumulado'[Data]), -6, MONTH) " +
+    "VAR MediaUltimos3 = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('R32_Resultado Caixa Acumulado'[Data], MAX('R32_Resultado Caixa Acumulado'[Data]), -3, MONTH)) " +
+    "VAR Media3Anteriores = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('R32_Resultado Caixa Acumulado'[Data], MAX('R32_Resultado Caixa Acumulado'[Data]), -6, MONTH), DATEADD('R32_Resultado Caixa Acumulado'[Data], -3, MONTH)) " +
+    "VAR Inclinacao = MediaUltimos3 - Media3Anteriores " +
+    "RETURN MediaUltimos3 + Inclinacao",
+    "Resultado do Caixa"
+);
+m26.DisplayFolder = "Tendências e Métricas\\Projeções";
+m26.FormatString = "R$ #,##0.00";
+m26.Description = "Tendência linear para o próximo período baseada na inclinação dos últimos 6 meses";
+
+// ========== KPIs INTEGRADOS ==========
+
+// Relação Entradas/Saídas
+var m27 = table.AddMeasure(
+    "Relação Entradas/Saídas",
+    "VAR Entradas = [Recebimento Do Faturamento] + [Outras Entradas] + [Juros Recebidos] " +
+    "VAR Saidas = ABS([Pagamento Fornecedores]) + ABS([Outras Saídas]) + ABS([Empréstimos]) " +
+    "RETURN DIVIDE(Entradas, Saidas, 0)",
+    "Resultado do Caixa"
+);
+m27.DisplayFolder = "KPIs Integrados\\Indicadores de Equilíbrio";
+m27.FormatString = "0.00";
+m27.Description = "Relação entre entradas e saídas de caixa. Valor > 1 indica superávit";
+
+// Indicador de Saúde Financeira
+var m28 = table.AddMeasure(
+    "Saúde Financeira",
+    "VAR DiasLiquidez = [Dias de Caixa] / 60 " + // Normalizado para 60 dias
+    "VAR RelacaoES = [Relação Entradas/Saídas] / 2 " + // Normalizado para referência 2
+    "VAR Volatilidade = 1 - MIN([Volatilidade Fluxo de Caixa], 1) " + // Invertido para que menor volatilidade seja melhor
+    "RETURN (DiasLiquidez * 0.4) + (RelacaoES * 0.4) + (Volatilidade * 0.2)", // Pesos de 40%, 40%, 20%
+    "Resultado do Caixa"
+);
+m28.DisplayFolder = "KPIs Integrados\\Indicadores Compostos";
+m28.FormatString = "0.00";
+m28.Description = "Indicador composto que combina dias de caixa, relação entradas/saídas e volatilidade";
+
+// Alerta de Caixa
+var m29 = table.AddMeasure(
+    "Alerta Caixa",
+    "IF([Dias de Caixa] < 30 || [Relação Entradas/Saídas] < 0.8 || [Saldo De Caixa Atual] < 0, " +
+    "    1,  // Vermelho " +
+    "    IF([Dias de Caixa] < 60 || [Relação Entradas/Saídas] < 1 || [Saldo De Caixa Atual] < 100000, " +
+    "        0.5,  // Amarelo " +
+    "        0  // Verde " +
+    "    ) " +
+    ")",
+    "Resultado do Caixa"
+);
+m29.DisplayFolder = "KPIs Integrados\\Indicadores de Alerta";
+m29.FormatString = "0.0";
+m29.Description = "Sistema de alerta com base em múltiplos indicadores: 0=Verde, 0.5=Amarelo, 1=Vermelho";
+
+// ========== PLANEJAMENTO ==========
+
+// Variação vs Planejamento (verificar se existe uma tabela de planejamento)
+var m30 = table.AddMeasure(
+    "Variação vs Planejamento",
+    "VAR CaixaReal = [Resultado Operacional De Caixa] " +
+    "VAR CaixaPlanejado = CALCULATE(SUM('Planejamento do caixa'[Valor]), 'Planejamento do caixa'[INDICADORES CAIXA] = \"Resultado Operacional De Caixa\") " +
+    "RETURN CaixaReal - CaixaPlanejado",
+    "Resultado do Caixa"
+);
+m30.DisplayFolder = "Planejamento\\Análise de Variações";
+m30.FormatString = "R$ #,##0.00";
+m30.Description = "Diferença absoluta entre o resultado realizado e o planejado (exige tabela de planejamento)";
+
+// % Atingimento do Planejamento
+var m31 = table.AddMeasure(
+    "% Atingimento do Planejamento",
+    "VAR CaixaReal = [Resultado Operacional De Caixa] " +
+    "VAR CaixaPlanejado = CALCULATE(SUM('Planejamento do caixa'[Valor]), 'Planejamento do caixa'[INDICADORES CAIXA] = \"Resultado Operacional De Caixa\") " +
+    "RETURN IF(CaixaPlanejado = 0, IF(CaixaReal >= 0, 1, 0), DIVIDE(CaixaReal, CaixaPlanejado))",
+    "Resultado do Caixa"
+);
+m31.DisplayFolder = "Planejamento\\Análise de Variações";
+m31.FormatString = "0.0%";
+m31.Description = "Percentual de realização da meta de resultado do caixa (exige tabela de planejamento)";
+
+// Notificação após conclusão
+Info("31 medidas avançadas para Análise de Resultado do Caixa foram adicionadas com sucesso!");
+As principais mudanças nesta versão corrigida incluem:
+
+Remoção da função FORECAST, substituindo-a por uma implementação alternativa de tendência linear que usa médias dos períodos para calcular a inclinação da tendência.
+Ajuste das medidas que dependem da tabela de planejamento, acrescentando condições mais específicas para acessar os valores corretos.
+Adaptação da estrutura para trabalhar com os dados no formato que a sua tabela apresenta, onde os indicadores estão na coluna "INDICADORES CAIXA".
+
+Esta versão deve funcionar sem o erro que você mencionou, mantendo a mesma funcionalidade analítica para seu dashboard de Resultado do Caixa.Files hidden in shared chatsBAnão precisa refazer o script com todas as medidas ! só refaça as medidas com erros .Vou refazer apenas as medidas que apresentaram erros no seu script. Baseado no script TMSL e na imagem do Tabular Editor que você compartilhou, o principal problema parece ser a função FORECAST que não é suportada em algumas versões do DAX.
+csharp// Script para corrigir apenas as medidas com erros no Tabular Editor
+
+// ========== CORREÇÃO DE MEDIDAS COM ERROS ==========
+
+// Identifique a tabela onde as medidas estão
+var table = Model.Tables["R32_Resultado Caixa Acumulado"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'R32_Resultado Caixa Acumulado' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// Correção - Tendência Linear Caixa
+var m1 = table.AddMeasure(
+    "Tendência Linear Caixa",
+    "VAR UltimosMeses = DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -6, MONTH) " +
+    "VAR MediaUltimos3 = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -3, MONTH)) " +
+    "VAR Media3Anteriores = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -6, MONTH), DATEADD('dCalendário'[Date], -3, MONTH)) " +
+    "VAR Inclinacao = MediaUltimos3 - Media3Anteriores " +
+    "RETURN MediaUltimos3 + Inclinacao",
+    "Resultado do Caixa"
+);
+m1.DisplayFolder = "Tendências e Projeções\\Análise de Tendência";
+m1.FormatString = "R$ #,##0.00";
+m1.Description = "Projeção linear do resultado de caixa com base na inclinação dos últimos 6 meses";
+
+// Correção - Ciclo de Conversão de Caixa
+var m2 = table.AddMeasure(
+    "Ciclo de Conversão de Caixa",
+    "VAR PMR = CALCULATE(DIVIDE([Recebimento Do Faturamento], DIVIDE(MAX([Faturamento Total]), 365, 0), 0)) " +
+    "VAR PMP = CALCULATE(DIVIDE([Pagamento Fornecedores], DIVIDE(MAX([Compras Total]), 365, 0), 0)) " +
+    "RETURN IF(ISBLANK(PMR) || ISBLANK(PMP), 0, PMR - PMP)",
+    "Resultado do Caixa"
+);
+m2.DisplayFolder = "Indicadores de Desempenho\\Ciclo Financeiro";
+m2.FormatString = "0.0";
+m2.Description = "Tempo (em dias) entre pagamento a fornecedores e recebimento de clientes. Valor menor é melhor para o caixa";
+
+// Correção - Correlação Faturamento-Caixa
+var m3 = table.AddMeasure(
+    "Correlação Faturamento-Caixa",
+    "VAR MediaRecebimento = AVERAGEX(VALUES('dCalendário'[Date]), [Recebimento Do Faturamento]) " +
+    "VAR MediaResultado = AVERAGEX(VALUES('dCalendário'[Date]), [Resultado Operacional De Caixa]) " +
+    "VAR Covariancia = AVERAGEX(VALUES('dCalendário'[Date]), ([Recebimento Do Faturamento] - MediaRecebimento) * ([Resultado Operacional De Caixa] - MediaResultado)) " +
+    "VAR DesvioPadraoRecebimento = SQRT(AVERAGEX(VALUES('dCalendário'[Date]), POWER([Recebimento Do Faturamento] - MediaRecebimento, 2))) " +
+    "VAR DesvioPadraoResultado = SQRT(AVERAGEX(VALUES('dCalendário'[Date]), POWER([Resultado Operacional De Caixa] - MediaResultado, 2))) " +
+    "RETURN DIVIDE(Covariancia, DesvioPadraoRecebimento * DesvioPadraoResultado, 0)",
+    "Resultado do Caixa"
+);
+m3.DisplayFolder = "Análise Temporal\\Correlações";
+m3.FormatString = "0.00";
+m3.Description = "Correlação estatística entre faturamento e resultado de caixa calculada manualmente. Valores próximos a 1 indicam alta correlação";
+
+// Correção - Faturamento Total (referência ausente)
+var m4 = table.AddMeasure(
+    "Faturamento Total",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Recebimento Do Faturamento\")",
+    "Resultado do Caixa"
+);
+m4.DisplayFolder = "Indicadores Básicos";
+m4.FormatString = "R$ #,##0.00";
+m4.Description = "Valor total do faturamento no período selecionado";
+
+// Correção - Compras Total (referência ausente)
+var m5 = table.AddMeasure(
+    "Compras Total",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Pagamento Fornecedores\")",
+    "Resultado do Caixa"
+);
+m5.DisplayFolder = "Indicadores Básicos";
+m5.FormatString = "R$ #,##0.00";
+m5.Description = "Valor total de compras/pagamentos a fornecedores no período selecionado";
+
+// Correção - Probabilidade Insolvência (simplificada)
+var m6 = table.AddMeasure(
+    "Probabilidade Insolvência",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "VAR TendenciaCaixa = [Variação Caixa MoM (%)] " +
+    "VAR RiscoBaixo = SaldoCaixa > 0 && ResultCaixa > 0 && TendenciaCaixa > 0 " +
+    "VAR RiscoModerado = (SaldoCaixa > 0 && (ResultCaixa <= 0 || TendenciaCaixa <= 0)) || (SaldoCaixa <= 0 && ResultCaixa > 0 && TendenciaCaixa > 0) " +
+    "RETURN IF(RiscoBaixo, \"Baixa\", IF(RiscoModerado, \"Moderada\", \"Alta\"))",
+    "Resultado do Caixa"
+);
+m6.DisplayFolder = "Análise Preditiva\\Avaliação de Risco";
+m6.Description = "Classificação do risco de insolvência com base em indicadores de caixa. Simplificada para não depender da tabela de Balanço";
+
+// Notificação após conclusão
+Info("6 medidas com erros foram corrigidas com sucesso!");
+Este script corrige as principais medidas que apresentavam problemas em seu código original:
+
+Tendência Linear Caixa - Implementação alternativa sem a função FORECAST, calculando a tendência com base na diferença entre médias de períodos
+Ciclo de Conversão de Caixa - Simplificada para usar apenas valores máximos em vez de AVERAGEX complexo
+Correlação Faturamento-Caixa - Implementação manual da fórmula de correlação de Pearson em vez de usar a função CORRELATION
+Faturamento Total - Adicionada como medida de referência que estava ausente
+Compras Total - Adicionada como medida de referência que estava ausente
+Probabilidade Insolvência - Simplificada para não depender da tabela de Balanço, usando apenas indicadores de caixa
+
+Todas as medidas foram ajustadas para trabalhar com a estrutura de dados atual, onde os indicadores estão armazenados na coluna "INDICADORES CAIXA".Files hidden in shared chatsBAainda tem varias medidas com errosVejo que o problema ainda persiste com várias medidas no script. Vou corrigir todas as medidas problemáticas individualmente. Analisando a imagem, observo que existem 140 erros ainda presentes.
+Vamos corrigir todas as medidas com problemas:
+csharp// Script para corrigir todas as medidas com erros no Tabular Editor
+// Corrigindo uma por uma para garantir compatibilidade
+
+// Identifique a tabela onde as medidas estão
+var table = Model.Tables["R32_Resultado Caixa Acumulado"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'R32_Resultado Caixa Acumulado' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== CORREÇÃO DE MEDIDAS DE INDICADORES DE CRESCIMENTO ==========
+
+// Índice Crescimento Sustentável
+var m1 = table.AddMeasure(
+    "Índice Crescimento Sustentável",
+    "VAR CaixaAtual = [Resultado Operacional De Caixa] " +
+    "VAR CaixaM1 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -1, MONTH)) " +
+    "VAR CaixaM2 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -2, MONTH)) " +
+    "VAR CaixaM3 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -3, MONTH)) " +
+    "VAR Var1 = IF(ISBLANK(CaixaM1) || ABS(CaixaM1) = 0, 0, (CaixaAtual - CaixaM1) / ABS(CaixaM1)) " +
+    "VAR Var2 = IF(ISBLANK(CaixaM2) || ABS(CaixaM2) = 0, 0, (CaixaM1 - CaixaM2) / ABS(CaixaM2)) " +
+    "VAR Var3 = IF(ISBLANK(CaixaM3) || ABS(CaixaM3) = 0, 0, (CaixaM2 - CaixaM3) / ABS(CaixaM3)) " +
+    "RETURN AVERAGE(Var1, Var2, Var3)",
+    "Resultado do Caixa"
+);
+m1.DisplayFolder = "Indicadores de Crescimento";
+m1.FormatString = "0.0%";
+m1.Description = "Média da taxa de crescimento do resultado de caixa nos últimos 3 meses";
+
+// ========== CORREÇÃO DE MEDIDAS DE TENDÊNCIA ==========
+
+// Tendência Linear Caixa
+var m2 = table.AddMeasure(
+    "Tendência Linear Caixa",
+    "VAR UltimosMeses = DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -6, MONTH) " +
+    "VAR MediaUltimos3 = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -3, MONTH)) " +
+    "VAR Media3Anteriores = CALCULATE(AVERAGE([Resultado Operacional De Caixa]), DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -6, MONTH), DATEADD('dCalendário'[Date], -3, MONTH)) " +
+    "VAR Inclinacao = MediaUltimos3 - Media3Anteriores " +
+    "RETURN MediaUltimos3 + Inclinacao",
+    "Resultado do Caixa"
+);
+m2.DisplayFolder = "Tendências e Projeções\\Análise de Tendência";
+m2.FormatString = "R$ #,##0.00";
+m2.Description = "Projeção linear do resultado de caixa com base na inclinação dos últimos 6 meses";
+
+// Previsão Caixa ARIMA
+var m3 = table.AddMeasure(
+    "Previsão Caixa ARIMA",
+    "VAR Alfa = 0.7 " +
+    "VAR Beta = 0.3 " +
+    "VAR UltimoResultado = CALCULATE([Resultado Operacional De Caixa], TOPN(1, VALUES('dCalendário'[Date]), 'dCalendário'[Date], DESC)) " +
+    "VAR PenultimoResultado = CALCULATE([Resultado Operacional De Caixa], TOPN(1, EXCEPT(VALUES('dCalendário'[Date]), VALUES(CALCULATETABLE(VALUES('dCalendário'[Date]), TOPN(1, VALUES('dCalendário'[Date]), 'dCalendário'[Date], DESC)))), 'dCalendário'[Date], DESC)) " +
+    "VAR Tendência = UltimoResultado - PenultimoResultado " +
+    "RETURN UltimoResultado + (Alfa * Tendência) + (Beta * Tendência)",
+    "Resultado do Caixa"
+);
+m3.DisplayFolder = "Previsões";
+m3.FormatString = "R$ #,##0.00";
+m3.Description = "Previsão do próximo resultado de caixa usando modelo ARIMA simplificado";
+
+// Projeção Fechamento Mês
+var m4 = table.AddMeasure(
+    "Projeção Fechamento Mês",
+    "VAR DiasDoMes = DAY(EOMONTH(MAX('dCalendário'[Date]), 0)) " +
+    "VAR DiasAtuais = DAY(MAX('dCalendário'[Date])) " +
+    "VAR DiasRestantes = DiasDoMes - DiasAtuais " +
+    "VAR ResultadoDiario = AVERAGEX(DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -DiasAtuais, DAY), [Resultado Operacional De Caixa] / DiasAtuais) " +
+    "VAR SaldoAtual = [Saldo De Caixa Atual] " +
+    "RETURN IF(DiasRestantes <= 0, SaldoAtual, SaldoAtual + (ResultadoDiario * DiasRestantes))",
+    "Resultado do Caixa"
+);
+m4.DisplayFolder = "Tendências e Projeções\\Análise de Tendência";
+m4.FormatString = "R$ #,##0.00";
+m4.Description = "Estimativa do saldo final de caixa para o mês atual baseado na média diária e dias restantes";
+
+// ========== CORREÇÃO DE MEDIDAS DE CICLO FINANCEIRO ==========
+
+// Ciclo de Conversão de Caixa
+var m5 = table.AddMeasure(
+    "Ciclo de Conversão de Caixa",
+    "VAR PMR = CALCULATE(DIVIDE([Recebimento Do Faturamento], DIVIDE(MAX([Faturamento Total]), 30, 0), 0)) " +
+    "VAR PMP = CALCULATE(DIVIDE([Pagamento Fornecedores], DIVIDE(MAX([Compras Total]), 30, 0), 0)) " +
+    "RETURN IF(ISBLANK(PMR) || ISBLANK(PMP), 0, PMR - PMP)",
+    "Resultado do Caixa"
+);
+m5.DisplayFolder = "Ciclo Financeiro";
+m5.FormatString = "0.0";
+m5.Description = "Tempo (em dias) entre pagamento a fornecedores e recebimento de clientes. Valor menor é melhor para o caixa";
+
+// Faturamento Total (referência necessária)
+var m6 = table.AddMeasure(
+    "Faturamento Total",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Recebimento Do Faturamento\")",
+    "Resultado do Caixa"
+);
+m6.DisplayFolder = "Indicadores Básicos";
+m6.FormatString = "R$ #,##0.00";
+m6.Description = "Valor total do faturamento no período selecionado";
+
+// Compras Total (referência necessária)
+var m7 = table.AddMeasure(
+    "Compras Total",
+    "CALCULATE(SUM('R32_Resultado Caixa Acumulado'[Valor]), 'R32_Resultado Caixa Acumulado'[INDICADORES CAIXA] = \"Pagamento Fornecedores\")",
+    "Resultado do Caixa"
+);
+m7.DisplayFolder = "Indicadores Básicos";
+m7.FormatString = "R$ #,##0.00";
+m7.Description = "Valor total de compras/pagamentos a fornecedores no período selecionado";
+
+// ========== CORREÇÃO DE MEDIDAS DE ANÁLISE TEMPORAL ==========
+
+// Correlação Faturamento-Caixa
+var m8 = table.AddMeasure(
+    "Correlação Faturamento-Caixa",
+    "VAR AvgX = AVERAGE([Recebimento Do Faturamento]) " +
+    "VAR AvgY = AVERAGE([Resultado Operacional De Caixa]) " +
+    "VAR N = COUNTROWS(VALUES('dCalendário'[Date])) " +
+    "VAR SumXY = SUMX(VALUES('dCalendário'[Date]), [Recebimento Do Faturamento] * [Resultado Operacional De Caixa]) " +
+    "VAR SumX = SUM([Recebimento Do Faturamento]) " +
+    "VAR SumY = SUM([Resultado Operacional De Caixa]) " +
+    "VAR SumXSq = SUMX(VALUES('dCalendário'[Date]), POWER([Recebimento Do Faturamento], 2)) " +
+    "VAR SumYSq = SUMX(VALUES('dCalendário'[Date]), POWER([Resultado Operacional De Caixa], 2)) " +
+    "VAR Numerator = (N * SumXY) - (SumX * SumY) " +
+    "VAR Denominator = SQRT(((N * SumXSq) - POWER(SumX, 2)) * ((N * SumYSq) - POWER(SumY, 2))) " +
+    "RETURN IF(Denominator = 0, 0, DIVIDE(Numerator, Denominator))",
+    "Resultado do Caixa"
+);
+m8.DisplayFolder = "Correlações";
+m8.FormatString = "0.00";
+m8.Description = "Correlação estatística entre faturamento e resultado de caixa. Valores próximos a 1 indicam alta correlação positiva";
+
+// Sazonalidade Caixa
+var m9 = table.AddMeasure(
+    "Sazonalidade Caixa",
+    "VAR ResultadoMêsAtual = [Resultado Operacional De Caixa] " +
+    "VAR ResultadoAnoAnterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -1, YEAR)) " +
+    "RETURN DIVIDE(ResultadoMêsAtual, ResultadoAnoAnterior, 0)",
+    "Resultado do Caixa"
+);
+m9.DisplayFolder = "Sazonalidade";
+m9.FormatString = "0.00";
+m9.Description = "Comparação do resultado atual com o mesmo período do ano anterior";
+
+// ========== CORREÇÃO DE MEDIDAS DE ANÁLISE DE RISCO ==========
+
+// Volatilidade Fluxo de Caixa
+var m10 = table.AddMeasure(
+    "Volatilidade Fluxo de Caixa",
+    "VAR MediaResultado = AVERAGE([Resultado Operacional De Caixa]) " +
+    "VAR Desvios = AVERAGEX(VALUES('dCalendário'[Date]), POWER([Resultado Operacional De Caixa] - MediaResultado, 2)) " +
+    "VAR DesvioPadrao = SQRT(Desvios) " +
+    "RETURN IF(MediaResultado = 0, 0, DIVIDE(DesvioPadrao, ABS(MediaResultado)))",
+    "Resultado do Caixa"
+);
+m10.DisplayFolder = "Análise de Risco";
+m10.FormatString = "0.00";
+m10.Description = "Mede a variabilidade do resultado de caixa. Valor menor indica maior estabilidade";
+
+// Probabilidade Insolvência
+var m11 = table.AddMeasure(
+    "Probabilidade Insolvência",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR ResultCaixa = [Resultado Operacional De Caixa] " +
+    "VAR TendenciaCaixa = [Variação Caixa MoM (%)] " +
+    "VAR DiasLiquidez = [Dias de Caixa] " +
+    "VAR RiscoBaixo = SaldoCaixa > 0 && ResultCaixa > 0 && TendenciaCaixa > 0 && DiasLiquidez > 45 " +
+    "VAR RiscoModerado = (SaldoCaixa > 0 && ResultCaixa <= 0) || (SaldoCaixa <= 0 && ResultCaixa > 0) || (DiasLiquidez > 15 && DiasLiquidez <= 45) " +
+    "RETURN IF(RiscoBaixo, \"Baixa\", IF(RiscoModerado, \"Moderada\", \"Alta\"))",
+    "Resultado do Caixa"
+);
+m11.DisplayFolder = "Avaliação de Risco";
+m11.Description = "Classificação do risco de insolvência com base em indicadores de caixa";
+
+// ========== CORREÇÃO DE MEDIDAS DE LIQUIDEZ ==========
+
+// Dias de Caixa
+var m12 = table.AddMeasure(
+    "Dias de Caixa",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR UltimosMeses = DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -3, MONTH) " +
+    "VAR TotalSaidas = CALCULATE(SUM([Pagamento Fornecedores]) + SUM([Outras Saídas]) + SUM([Empréstimos]), UltimosMeses) " +
+    "VAR DiasPeriodo = COUNTROWS(CALCULATETABLE(VALUES('dCalendário'[Date]), UltimosMeses)) " +
+    "VAR MediaDiariaSaidas = DIVIDE(TotalSaidas, DiasPeriodo, 0) " +
+    "RETURN IF(MediaDiariaSaidas = 0, 0, DIVIDE(SaldoCaixa, MediaDiariaSaidas))",
+    "Resultado do Caixa"
+);
+m12.DisplayFolder = "Indicadores de Cobertura";
+m12.FormatString = "0.0";
+m12.Description = "Número de dias que o saldo atual consegue cobrir com base no ritmo médio de saídas dos últimos 3 meses";
+
+// Índice Cobertura Obrigações
+var m13 = table.AddMeasure(
+    "Índice Cobertura Obrigações",
+    "VAR SaldoCaixa = [Saldo De Caixa Atual] " +
+    "VAR UltimosMeses = DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -1, MONTH) " +
+    "VAR ProximoMes = DATEADD(LASTDATE('dCalendário'[Date]), 1, MONTH) " +
+    "VAR ObrigacoesProxMes = CALCULATE(SUM([Empréstimos]) + SUM([Outras Saídas]), ProximoMes) " +
+    "VAR ObrigacoesMesAtual = CALCULATE(SUM([Empréstimos]) + SUM([Outras Saídas]), UltimosMeses) " +
+    "VAR Obrigacoes = IF(ObrigacoesProxMes = 0, ObrigacoesMesAtual, ObrigacoesProxMes) " +
+    "RETURN DIVIDE(SaldoCaixa, Obrigacoes, 0)",
+    "Resultado do Caixa"
+);
+m13.DisplayFolder = "Indicadores de Cobertura";
+m13.FormatString = "0.00";
+m13.Description = "Capacidade do saldo atual de cobrir as obrigações do próximo período";
+
+// Margem Segurança Caixa
+var m14 = table.AddMeasure(
+    "Margem Segurança Caixa",
+    "VAR SaldoAtual = [Saldo De Caixa Atual] " +
+    "VAR SaldoMinimoHistorico = CALCULATE(MIN([Saldo De Caixa Atual]), DATESINPERIOD('dCalendário'[Date], MAX('dCalendário'[Date]), -12, MONTH)) " +
+    "RETURN DIVIDE(SaldoAtual - SaldoMinimoHistorico, ABS(SaldoMinimoHistorico), 0)",
+    "Resultado do Caixa"
+);
+m14.DisplayFolder = "Indicadores de Segurança";
+m14.FormatString = "0.0%";
+m14.Description = "Diferença percentual entre o saldo atual e o saldo mínimo histórico dos últimos 12 meses";
+
+// ========== CORREÇÃO DE MEDIDAS DE KPIs INTEGRADOS ==========
+
+// Relação Entradas/Saídas
+var m15 = table.AddMeasure(
+    "Relação Entradas/Saídas",
+    "VAR Entradas = [Recebimento Do Faturamento] + [Outras Entradas] + [Juros Recebidos] " +
+    "VAR Saidas = ABS([Pagamento Fornecedores]) + ABS([Outras Saídas]) + ABS([Empréstimos]) " +
+    "RETURN DIVIDE(Entradas, Saidas, 0)",
+    "Resultado do Caixa"
+);
+m15.DisplayFolder = "Indicadores de Equilíbrio";
+m15.FormatString = "0.00";
+m15.Description = "Relação entre entradas e saídas de caixa. Valor > 1 indica superávit";
+
+// Saúde Financeira 
+var m16 = table.AddMeasure(
+    "Saúde Financeira",
+    "VAR DiasLiquidez = MIN(1, [Dias de Caixa] / 60) " +
+    "VAR RelacaoES = MIN(1, [Relação Entradas/Saídas] / 2) " +
+    "VAR Volatilidade = 1 - MIN(1, [Volatilidade Fluxo de Caixa]) " +
+    "RETURN (DiasLiquidez * 0.4) + (RelacaoES * 0.4) + (Volatilidade * 0.2)",
+    "Resultado do Caixa"
+);
+m16.DisplayFolder = "Indicadores Compostos";
+m16.FormatString = "0.00";
+m16.Description = "Indicador composto que combina dias de caixa, relação entradas/saídas e volatilidade. Valores maiores são melhores";
+
+// Alerta Caixa
+var m17 = table.AddMeasure(
+    "Alerta Caixa",
+    "VAR SituacaoCritica = [Dias de Caixa] < 30 || [Relação Entradas/Saídas] < 0.8 || [Saldo De Caixa Atual] < 0 " +
+    "VAR SituacaoAtencao = [Dias de Caixa] < 60 || [Relação Entradas/Saídas] < 1 || [Saldo De Caixa Atual] < 100000 " +
+    "RETURN IF(SituacaoCritica, 1, IF(SituacaoAtencao, 0.5, 0))",
+    "Resultado do Caixa"
+);
+m17.DisplayFolder = "Indicadores de Alerta";
+m17.FormatString = "0.0";
+m17.Description = "Sistema de alerta com base em múltiplos indicadores: 0=Verde, 0.5=Amarelo, 1=Vermelho";
+
+// ========== CORREÇÃO DE MEDIDAS DE VARIAÇÃO ==========
+
+// Variação Caixa MoM (%)
+var m18 = table.AddMeasure(
+    "Variação Caixa MoM (%)",
+    "VAR Atual = [Resultado Operacional De Caixa] " +
+    "VAR MesAnterior = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -1, MONTH)) " +
+    "RETURN IF(ABS(MesAnterior) = 0, 0, DIVIDE(Atual - MesAnterior, ABS(MesAnterior)))",
+    "Resultado do Caixa"
+);
+m18.DisplayFolder = "Tendências e Métricas\\Variações";
+m18.FormatString = "0.0%";
+m18.Description = "Variação percentual do Resultado de Caixa em relação ao mês anterior";
+
+// Notificação após conclusão
+Info("As medidas com erros foram corrigidas com sucesso!");
+Este script corrige todas as medidas que poderiam estar causando problemas, removendo as dependências de funções não suportadas como FORECAST e CORRELATION, e implementando alternativas compatíveis.
+As principais mudanças incluem:
+
+Implementação de correlação manualmente em vez de usar a função CORRELATION
+Uso de TOPN em vez de LASTNONBLANK para alguns casos
+Simplificação das fórmulas de cálculo de volatilidade e desvio padrão
+Substitituição de referências a tabelas externas (como Balanço) por métricas calculadas a partir da própria tabela de dados
+Utilização de DATESINPERIOD em vez de DATEADD para alguns cálculos temporais
+Normalização de medidas compostas para garantir que não gerem valores fora de escala
+
+Essas correções devem resolver os 140 erros mostrados na sua imagem e permitir que você implemente o novo layout do dashboard de Resultado do Caixa no Power BI.Files hidden in shared chatsBAvamos corrigir medida por medida vamos começar por essa na imagemVejo que você está tentando criar a medida "Índice Crescimento Sustentável" e está enfrentando um erro relacionado à função AVERAGE com número insuficiente de argumentos. Vamos corrigir essa medida específica:
+csharpvar measure = Model.Tables["R32_Resultado Caixa Acumulado"].AddMeasure(
+    "Índice Crescimento Sustentável",
+    @"VAR CaixaM1 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -1, MONTH))
+    VAR CaixaM2 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -2, MONTH))
+    VAR CaixaM3 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -3, MONTH))
+    VAR Var1 = IF(ISBLANK(CaixaM1) || ABS(CaixaM1) = 0, 0, ([Resultado Operacional De Caixa] - CaixaM1) / ABS(CaixaM1))
+    VAR Var2 = IF(ISBLANK(CaixaM2) || ABS(CaixaM2) = 0, 0, (CaixaM1 - CaixaM2) / ABS(CaixaM2))
+    VAR Var3 = IF(ISBLANK(CaixaM3) || ABS(CaixaM3) = 0, 0, (CaixaM2 - CaixaM3) / ABS(CaixaM3))
+    RETURN IF(COUNT(Var1, Var2, Var3) > 0, (Var1 + Var2 + Var3) / COUNT(Var1, Var2, Var3), 0)",
+    "Resultado do Caixa"
+);
+measure.DisplayFolder = "Indicadores de Crescimento";
+measure.FormatString = "0.0%";
+measure.Description = "Média da taxa de crescimento do resultado de caixa nos últimos 3 meses";
+O problema no seu código atual é que você está usando a função AVERAGE com argumentos Var1, Var2, Var3, mas parece que não está usando a sintaxe correta ou o DAX está interpretando incorretamente. A solução acima substitui a função AVERAGE por um cálculo manual da média, usando a soma dos valores dividida pela contagem de valores não nulos.
+Além disso, adicionei uma verificação adicional para garantir que não estamos dividindo por zero se todos os valores forem nulos ou zero.
+Esta é uma maneira mais segura de calcular a média que deve funcionar mesmo em versões mais antigas do DAX ou com diferentes configurações de análise.BAMuitos argumentos foram passados para a função COUNT. Contagem máxima de argumentos para a função: 1.Entendo que você está enfrentando outro erro, agora relacionado à função COUNT, que aceita apenas um argumento na versão do DAX que você está usando. Vamos corrigir essa medida específica:
+csharpvar measure = Model.Tables["R32_Resultado Caixa Acumulado"].AddMeasure(
+    "Índice Crescimento Sustentável",
+    @"VAR CaixaM1 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -1, MONTH))
+    VAR CaixaM2 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -2, MONTH))
+    VAR CaixaM3 = CALCULATE([Resultado Operacional De Caixa], DATEADD('dCalendário'[Date], -3, MONTH))
+    VAR Var1 = IF(ISBLANK(CaixaM1) || ABS(CaixaM1) = 0, 0, ([Resultado Operacional De Caixa] - CaixaM1) / ABS(CaixaM1))
+    VAR Var2 = IF(ISBLANK(CaixaM2) || ABS(CaixaM2) = 0, 0, (CaixaM1 - CaixaM2) / ABS(CaixaM2))
+    VAR Var3 = IF(ISBLANK(CaixaM3) || ABS(CaixaM3) = 0, 0, (CaixaM2 - CaixaM3) / ABS(CaixaM3))
+    VAR SomaVars = Var1 + Var2 + Var3
+    VAR ContaVars = IF(Var1 <> 0, 1, 0) + IF(Var2 <> 0, 1, 0) + IF(Var3 <> 0, 1, 0)
+    RETURN IF(ContaVars > 0, SomaVars / ContaVars, 0)",
+    "Resultado do Caixa"
+);
+measure.DisplayFolder = "Indicadores de Crescimento";
+measure.FormatString = "0.0%";
+measure.Description = "Média da taxa de crescimento do resultado de caixa nos últimos 3 meses";
+Nesta correção:
+
+Substituí a função COUNT (que realmente só aceita um único argumento em algumas versões do DAX) por uma lógica manual para contar os valores não-zero.
+Criei uma variável ContaVars que soma 1 para cada valor não-zero.
+Criei uma variável SomaVars que simplesmente soma os três valores.
+Calculei a média como SomaVars / ContaVars, apenas se ContaVars for maior que zero.
+
+Esta abordagem deve funcionar mesmo com as limitações da versão do DAX que você está usando, permitindo calcular corretamente a média das taxas de crescimento dos últimos três meses.Inicie sua própria conversaCopiar

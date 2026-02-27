@@ -1,0 +1,93 @@
+{
+  "timestamp": "2025-06-27T11:30:48.699004",
+  "arquivo_carregado": "stock_data_structured.csv",
+  "total_registros": 6516,
+  "total_colunas": 10,
+  "colunas": [
+    "Produto",
+    "Código_Interno",
+    "GTIN_PLU",
+    "Fornecedor",
+    "NCM",
+    "Quantidade_Estoque",
+    "Custo_Bruto",
+    "Custo_Líquido_R",
+    "Custo_Bruto.1",
+    "Custo_Bruto.2"
+  ],
+  "tipos_dados": {
+    "Produto": "object",
+    "Código_Interno": "float64",
+    "GTIN_PLU": "float64",
+    "Fornecedor": "object",
+    "NCM": "object",
+    "Quantidade_Estoque": "float64",
+    "Custo_Bruto": "float64",
+    "Custo_Líquido_R": "float64",
+    "Custo_Bruto.1": "float64",
+    "Custo_Bruto.2": "float64"
+  },
+  "valores_nulos": {
+    "Produto": 1,
+    "Código_Interno": 2,
+    "GTIN_PLU": 2,
+    "Fornecedor": 44,
+    "NCM": 2,
+    "Quantidade_Estoque": 1,
+    "Custo_Bruto": 1,
+    "Custo_Líquido_R": 1,
+    "Custo_Bruto.1": 1,
+    "Custo_Bruto.2": 1
+  },
+  "resumo_estatistico": {
+    "Código_Interno": {
+      "count": 6514,
+      "mean": 223955.23979121892,
+      "std": 129440.74438085093,
+      "min": 1.0,
+      "max": 360624.0
+    },
+    "GTIN_PLU": {
+      "count": 6514,
+      "mean": 6613832931315.933,
+      "std": 2889892938745.4336,
+      "min": 1.0,
+      "max": 57891095110624.0
+    },
+    "Quantidade_Estoque": {
+      "count": 6515,
+      "mean": 16620.20754873369,
+      "std": 483201.7362118144,
+      "min": 0.0,
+      "max": 22704743.0
+    },
+    "Custo_Bruto": {
+      "count": 6515,
+      "mean": 22.992547715579434,
+      "std": 81.44874988267473,
+      "min": 0.0,
+      "max": 4321.663333
+    },
+    "Custo_Líquido_R": {
+      "count": 6515,
+      "mean": 19.024284237452036,
+      "std": 60.43808646467027,
+      "min": 0.0,
+      "max": 2907.437808
+    },
+    "Custo_Bruto.1": {
+      "count": 6515,
+      "mean": 329.93915340435916,
+      "std": 985.370459607035,
+      "min": 0.0,
+      "max": 35889.115033002
+    },
+    "Custo_Bruto.2": {
+      "count": 6515,
+      "mean": 290.99043710683327,
+      "std": 893.1762062044521,
+      "min": 0.0,
+      "max": 33377.020829922
+    }
+  }
+}

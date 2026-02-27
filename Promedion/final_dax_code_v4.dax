@@ -1,0 +1,96 @@
+```dax
+Saldo Projetado Final V4 = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            FILTER(
+                ALL('dCalendário'), 
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            )
+        )
+    )
+
+// 4. Calcular o ACUMULADO de ENTRADAS projetadas
+VAR _EntradasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), 
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,    
+            'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" },
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS", // Filtro específico para ENTRADAS
+            REMOVEFILTERS('dCalendário') 
+        )
+    )
+
+// 5. Calcular o ACUMULADO de SAÍDAS projetadas
+VAR _SaidasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), // Soma os valores (assumidos positivos)
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,    
+            'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" },
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS", // Filtro específico para SAÍDAS
+            REMOVEFILTERS('dCalendário') 
+        )
+    )
+
+// 6. Calcular o saldo projetado bruto (será BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0) // Subtrai Saídas
+    )
+
+// 7. Verificar se houve transações projetadas NO PERÍODO TOTAL até a data atual
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_EntradasProjetadasAcumuladas)) || NOT(ISBLANK(_SaidasProjetadasAcumuladas)), // Verifica se houve entrada OU saída
+        FALSE()
+    )
+
+// 8. RETURN final baseado nas variáveis pré-calculadas
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, 
+        BLANK(),
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, 
+            _SaldoProjetadoCalculado, 
+            _UltimoSaldoReal // Ou BLANK() se preferir não mostrar nada até a primeira projeção
+        )
+    )
+```
+
+**Explicação da Correção (V4):**
+
+O erro crucial era a suposição incorreta sobre os valores de SAÍDAS. Esta versão `Saldo Projetado Final V4` corrige isso:
+
+1.  **Cálculos Separados:** Em vez de um `_NetProjetadoAcumulado`, agora temos:
+    *   `_EntradasProjetadasAcumuladas`: Calcula a soma acumulada apenas das transações com `GRUPO | DÉB CRÉD = "ENTRADAS"`.
+    *   `_SaidasProjetadasAcumuladas`: Calcula a soma acumulada apenas das transações com `GRUPO | DÉB CRÉD = "SAÍDAS"`.
+2.  **Subtração Explícita:** No cálculo final (`_SaldoProjetadoCalculado`), subtraímos explicitamente as saídas: `_UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0)`.
+3.  **Estrutura Mantida:** A estrutura linear e a lógica de filtro direto na `Base de Dados` com `REMOVEFILTERS('dCalendário')` foram mantidas, pois pareciam funcionar corretamente para a sintaxe e a acumulação (o problema era apenas o sinal).
+
+Com esta correção, as despesas devem ser subtraídas corretamente, e o saldo projetado deve refletir a realidade das suas transações futuras.
+
+Por favor, teste esta versão `Saldo Projetado Final V4`.

@@ -1,0 +1,17 @@
+{
+  "client": "padaria_real",
+  "rules": [
+    {
+      "sheet": "E1_EntradaDadosPadaria",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "A1:Z100" 
+          }
+        }
+      ]
+    }
+    
+  ]
+}

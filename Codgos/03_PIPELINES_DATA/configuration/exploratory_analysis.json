@@ -1,0 +1,130 @@
+{
+  "download_info": {
+    "successful_url": "https://page1.genspark.site/get_upload_url/debef0ea0d6e1628eb0af4f03a1e2a665078b4082478f244177647d35ed05b45/default/279bb5c3-3f33-42c4-af99-e43683321dd0",
+    "method": "GET",
+    "file_size_bytes": 662468,
+    "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  },
+  "file_info": {
+    "filename": "Relatorio_estoque.xlsx",
+    "sheets": [
+      "report"
+    ],
+    "dimensions": {
+      "rows": 6539,
+      "columns": 10
+    }
+  },
+  "columns_info": [
+    {
+      "name": "Unnamed: 0",
+      "dtype": "object",
+      "non_null_count": 6536,
+      "null_count": 3,
+      "sample_values": [
+        "Relatório de Consulta de Valor Total de Estoque",
+        "25/06/2025 14:34:10",
+        "Filtros:"
+      ]
+    },
+    {
+      "name": "Unnamed: 1",
+      "dtype": "object",
+      "non_null_count": 6515,
+      "null_count": 24,
+      "sample_values": [
+        "Código Interno",
+        116,
+        85
+      ]
+    },
+    {
+      "name": "Unnamed: 2",
+      "dtype": "object",
+      "non_null_count": 6515,
+      "null_count": 24,
+      "sample_values": [
+        "GTIN/PLU",
+        "4",
+        "7898177790892"
+      ]
+    },
+    {
+      "name": "Unnamed: 3",
+      "dtype": "object",
+      "non_null_count": 6473,
+      "null_count": 66,
+      "sample_values": [
+        "Fornecedor",
+        "ELS",
+        "KIREY FESTA IND.COM.DE ARTIGOS"
+      ]
+    },
+    {
+      "name": "Unnamed: 4",
+      "dtype": "object",
+      "non_null_count": 6515,
+      "null_count": 24,
+      "sample_values": [
+        "NCM",
+        "0803.90.00",
+        "1401.10.00"
+      ]
+    },
+    {
+      "name": "Unnamed: 5",
+      "dtype": "object",
+      "non_null_count": 6516,
+      "null_count": 23,
+      "sample_values": [
+        "Quantidade de Estoque",
+        753.21,
+        50
+      ]
+    },
+    {
+      "name": "Unnamed: 6",
+      "dtype": "object",
+      "non_null_count": 6516,
+      "null_count": 23,
+      "sample_values": [
+        "Custo Bruto (R$)",
+        6.355303,
+        4.06
+      ]
+    },
+    {
+      "name": "Unnamed: 7",
+      "dtype": "object",
+      "non_null_count": 6516,
+      "null_count": 23,
+      "sample_values": [
+        "Custo Líquido (R$)",
+        6.355303,
+        3.021241
+      ]
+    },
+    {
+      "name": "Unnamed: 8",
+      "dtype": "object",
+      "non_null_count": 6516,
+      "null_count": 23,
+      "sample_values": [
+        "Custo Total Bruto (R$)",
+        4786.87777263,
+        203
+      ]
+    },
+    {
+      "name": "Unnamed: 9",
+      "dtype": "object",
+      "non_null_count": 6516,
+      "null_count": 23,
+      "sample_values": [
+        "Custo Total Líquido (R$)",
+        4786.87777263,
+        151.06205
+      ]
+    }
+  ]
+}

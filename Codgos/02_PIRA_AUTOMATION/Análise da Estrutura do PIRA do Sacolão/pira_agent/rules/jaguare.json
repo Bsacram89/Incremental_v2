@@ -1,0 +1,204 @@
+{
+  "client": "jaguare",
+  "rules": [
+    {
+      "sheet": "R2_Análise de Resul. Acum.",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R3_ QGA Unidade",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R3_ QGA Analista",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R6_Despesas Fixas - Operações",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R10_Balancete Gerencial",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "Despesas Provisionadas",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "A2:S4000"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E2_BDT - CORREÇÃO",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D4:D14"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "G4:G14"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E2_CR_ Estoques_CP - CORREÇÃO",
+      "operations": [
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E7:F7",
+            "destination": "E36:F36",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E10:F24",
+            "destination": "E39:F52",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "J10:J24",
+            "destination": "J39:J53",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E28:F29",
+            "destination": "E55:F56",
+            "clear_source": true
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E3_Salários - CORREÇÃO",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D5:D24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "G5:I24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K5:N24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "P5:S24"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E4_Impostos",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D5:D6"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E5_Entradas e Saídas Estoque",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "E6"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "F13:G27"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E6_Fat Cliente",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D4:G19"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D28:G35"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K8:K9"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E8_Informações Gerais",
+      "operations": [
+        {
+          "type": "update_inf_gerais",
+          "params": {}
+        }
+      ]
+    }
+  ]
+}

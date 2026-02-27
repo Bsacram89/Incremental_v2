@@ -1,0 +1,92 @@
+```dax
+Saldo Projetado Final = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+//    Assume que a coluna [PAGTO] contém a data de realização para ambos.
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), // Remove filtro de status existente para aplicar o novo
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } // Status que indicam realização
+        ),
+        REMOVEFILTERS ( 'dCalendário' ) // Garante que pegamos a última data realizada geral, ignorando o filtro de data do visual
+    )
+
+// Se não houver nenhum dia com transação realizada, não há base para projeção.
+IF ( ISBLANK ( _UltimoDiaRealizado ), BLANK(),
+
+    // 2. Se a data atual no visual for ANTES ou IGUAL à última data real, o saldo é o real, não o projetado.
+    //    Retorna BLANK para esta medida, pois ela só deve mostrar projeções.
+    IF ( _DataContexto <= _UltimoDiaRealizado, BLANK(),
+
+        // --- A partir daqui, estamos calculando para datas FUTURAS ( > _UltimoDiaRealizado ) ---
+
+        // 3. Obter o último saldo real acumulado, calculado ATÉ _UltimoDiaRealizado.
+        //    É crucial que a medida [Saldo Real Acumulado] calcule corretamente o saldo apenas com base
+        //    nas transações com status "Pago" e "Recebido" até a data fornecida.
+        VAR _UltimoSaldoReal = 
+            CALCULATE (
+                [Saldo Real Acumulado], 
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            )
+
+        // 4. Calcular o total de ENTRADAS projetadas ("Em aberto", "Atrasado") 
+        //    desde o dia SEGUINTE a _UltimoDiaRealizado ATÉ _DataContexto.
+        //    Assume relação entre 'dCalendário'[Date] e 'Base de Dados'[VENCIMENTO] para itens projetados.
+        VAR _EntradasProjetadasAcumuladas = 
+            CALCULATE (
+                SUM ( 'Base de Dados'[REAL] ), // Soma os valores das entradas
+                FILTER (
+                    ALL ( 'dCalendário'[Date] ), // Itera sobre todas as datas para aplicar o filtro de período
+                    'dCalendário'[Date] > _UltimoDiaRealizado && 
+                    'dCalendário'[Date] <= _DataContexto
+                ),
+                KEEPFILTERS( 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" ), // Filtra apenas ENTRADAS
+                KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } ) // Filtra status projetados
+            )
+
+        // 5. Calcular o total de SAÍDAS projetadas ("Em aberto", "Atrasado")
+        //    desde o dia SEGUINTE a _UltimoDiaRealizado ATÉ _DataContexto.
+        VAR _SaidasProjetadasAcumuladas = 
+            CALCULATE (
+                SUM ( 'Base de Dados'[REAL] ), // Soma os valores das saídas (assumindo que são positivos)
+                FILTER (
+                    ALL ( 'dCalendário'[Date] ), 
+                    'dCalendário'[Date] > _UltimoDiaRealizado && 
+                    'dCalendário'[Date] <= _DataContexto
+                ),
+                KEEPFILTERS( 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" ), // Filtra apenas SAÍDAS
+                KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } ) // Filtra status projetados
+            )
+
+        // 6. Verifica se houve alguma movimentação projetada no período futuro analisado.
+        //    Isso evita mostrar um saldo constante (o último real) caso não haja projeções.
+        VAR _TemTransacaoProjetadaNoPeriodo = 
+            NOT(ISBLANK(_EntradasProjetadasAcumuladas)) || NOT(ISBLANK(_SaidasProjetadasAcumuladas))
+
+        // 7. Calcula e retorna o Saldo Projetado final.
+        RETURN
+            IF(
+                _TemTransacaoProjetadaNoPeriodo, // Só mostra se houver projeção no período
+                _UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0), // Saldo Base + Entradas Proj. - Saídas Proj.
+                BLANK() // Se não houver projeção no período, não mostra nada.
+            )
+    )
+)
+```
+
+**Principais Ajustes e Considerações:**
+
+1.  **`_UltimoDiaRealizado`:** Corrigido para incluir `STATUS IN { 
+"Pago", "Recebido" }`. Isso garante que a data base para a projeção seja a última data em que houve uma entrada ou saída efetivamente realizada.
+2.  **Status Projetados:** As variáveis `_EntradasProjetadasAcumuladas` e `_SaidasProjetadasAcumuladas` agora incluem `STATUS IN { "Em aberto", "Atrasado" }`. Isso considera todas as transações futuras ou pendentes como parte da projeção. Se "Atrasado" não deve ser projetado, remova-o da lista.
+3.  **Cálculo Separado de Entradas/Saídas:** Mantive o cálculo separado para `_EntradasProjetadasAcumuladas` e `_SaidasProjetadasAcumuladas` para maior clareza e para garantir que a lógica de `GRUPO | DÉB CRÉD` seja aplicada corretamente. Assumi que os valores em `Base de Dados[REAL]` são sempre positivos e a subtração é feita no final. Se as saídas já tiverem valor negativo em `[REAL]`, você pode simplificar para um único cálculo `_NetProjetadoAcumulado` como na versão anterior, mas aplicando os filtros de status e débito/crédito corretos.
+4.  **`_TemTransacaoProjetadaNoPeriodo`:** Simplificado para verificar se alguma das variáveis de projeção acumulada não é `BLANK`.
+5.  **Clareza e Estrutura:** A fórmula está estruturada com comentários numerados para facilitar o entendimento de cada passo lógico.
+6.  **Dependência de `[Saldo Real Acumulado]`:** A precisão do resultado final ainda depende fundamentalmente da correção e eficiência da sua medida `[Saldo Real Acumulado]`. Certifique-se de que ela calcula o saldo acumulado considerando apenas os status "Pago" e "Recebido" até a data especificada.
+7.  **Relações:** A performance e correção dependem das relações corretas entre `dCalendário[Date]` e as colunas de data relevantes em `Base de Dados` (`[PAGTO]` para realizados, `[VENCIMENTO]` para projetados).
+
+Teste esta versão final. Ela deve corrigir o problema do valor constante e considerar corretamente os diferentes status e tipos de transação para calcular o saldo projetado dia a dia após a última transação realizada.
+```

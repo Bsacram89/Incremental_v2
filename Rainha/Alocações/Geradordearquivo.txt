@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção de Nomes - Arquivo Excel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .corrections-log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .correction-item {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: white;
+            border-left: 3px solid #28a745;
+            border-radius: 3px;
+        }
+        .original-name {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .corrected-name {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e8;
+            border-radius: 8px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+        .process-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: transform 0.2s;
+        }
+        .process-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+        .file-input {
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .status-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .status-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Correção de Nomes - Arquivo de Alocações</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalNames">40</div>
+                <div class="stat-label">Nomes Verificados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="foundNames">26</div>
+                <div class="stat-label">Nomes Encontrados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="corrections">24</div>
+                <div class="stat-label">Correções Aplicadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="accuracy">65%</div>
+                <div class="stat-label">Taxa de Correspondência</div>
+            </div>
+        </div>
+
+        <div class="file-input">
+            <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+            <label for="fileInput" style="cursor: pointer; color: #007bff;">
+                📁 Clique aqui para selecionar o arquivo Excel ou use o arquivo já carregado
+            </label>
+        </div>
+
+        <div id="status"></div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <button class="process-btn" onclick="processFile()">🔄 Processar Correções</button>
+            <button class="download-btn" onclick="downloadCorrectedFile()" id="downloadBtn" style="display: none;">
+                📥 Baixar Arquivo Corrigido
+            </button>
+        </div>
+
+        <div class="corrections-log" id="correctionsLog" style="display: none;">
+            <h3>📋 Log de Correções Aplicadas:</h3>
+            <div id="correctionsList"></div>
+        </div>
+
+        <div class="download-section" style="display: none;" id="downloadSection">
+            <h3>✅ Arquivo Pronto para Download!</h3>
+            <p>O arquivo foi processado com sucesso. Clique no botão acima para baixar o arquivo corrigido.</p>
+            <p><strong>Nome do arquivo:</strong> Alocações_052025_Corrigido.xlsx</p>
+        </div>
+    </div>
+
+    <script>
+        let correctedWorkbook = null;
+        
+        // Mapeamento das correções
+        const correcoesNomes = {
+            "ADRIANA CLEIDE ALVES": "ADRIANA CLEIDE ALVES FIGUEREDO SANTOS",
+            "ANNE KAROLINA NASCIMENTO SANTOS": "ANNE KAROLINA NASCIMENTO DOS SANTOS",
+            "CAROLINE BERNARDO DA SILVA": "CAROLINE BERNARDO SILVA",
+            "CASSIANO VITOR GUIMARÃES": "CASSIANO VITOR SANTOS GUIMARAES",
+            "CLEIFERSON DE SANTANA DOS STOS": "CLEIFERSON DE SANTANA DOS SANTOS",
+            "CRISTIANE DE SANTANA BRANDAO": "CRISTIANE DE SANTANA BRANDAO FARIAS",
+            "DANIEL SEALIAN RIBEIRO": "DANIEL SEALIAN RIBEIRO DOS SANTOS",
+            "EDINEA SOUZA DA CONCEIÇÃO": "EDINEA SOUZA DA CONCEICAO DE AZEVEDO",
+            "EDISLEY DA CONCEIÇÃO": "EDISLEY DA CONCEICAO",
+            "HELIOMARQUES MOREIRA": "HELIOMARQUES MOREIRA MARTINS",
+            "JESSICA DA CONCEIÇÃO SANTANA": "JESSICA DA CONCEICAO SANTANA",
+            "MABEL CAVALCANTI DA SILVA": "MABEL CAVALCANTI DA SILVA CONCEICAO",
+            "MANUELA DOS SANTOS": "MANUELA DOS SANTOS DE JESUS",
+            "MARIA ADENILZA DE JESUS": "MARIA ADENILZA DE JESUS SANTOS",
+            "MARIA JOSE CONI FONSECA": "MARIA JOSE SANTOS DE ALMEIDA",
+            "MARIA ROSILENE DOS SANTOS": "MARIA ROSILENE DOS SANTOS LIMA",
+            "MARILIA FERREIRA MASCARENHAS": "MARILIA FERREIRA MASCARENHAS PEREIRA",
+            "MARTA ORTENCIA OLIVEIRA": "MARTA ORTENCIA OLIVEIRA DA SILVA",
+            "MICHELLE JESUS ROCHA": "MICHELLE JESUS ROCHA ESTRELA",
+            "RAQUEL BONFIM OLIVEIRA": "RAQUEL BONFIM OLIVEIRA DA SILVA",
+            "RUAN NASCIMENTO PEREIRA": "RUAN NASCIMENTO PEREIRA SANTOS",
+            "VALDILENE DOS SANTOS": "VALDILENE DOS SANTOS BACELAR",
+            "VALERIA BATISTA DOS SANTOS - 26/09": "VALERIA BATISTA DOS SANTOS",
+            "ZILDA DA MOTA LIMA": "ZILDA DA MOTA LIMA SANTOS"
+        };
+
+        async function processFile() {
+            try {
+                showStatus('Processando arquivo...', 'info');
+                
+                // Usar o arquivo já enviado ou o arquivo selecionado pelo usuário
+                let file;
+                const fileInput = document.getElementById('fileInput');
+                
+                if (fileInput.files && fileInput.files[0]) {
+                    file = fileInput.files[0];
+                } else {
+                    // Usar o arquivo já carregado
+                    file = await window.fs.readFile('Alocações 052025.xlsx');
+                }
+
+                const arrayBuffer = file instanceof ArrayBuffer ? file : await file.arrayBuffer();
+                const workbook = XLSX.read(arrayBuffer);
+                const worksheet = workbook.Sheets["ALOCAÇÃO MAIO"];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                // Aplicar correções
+                let correcoesAplicadas = 0;
+                const logCorrecoes = [];
+
+                for (let i = 2; i < jsonData.length; i++) {
+                    if (jsonData[i] && jsonData[i][1]) {
+                        const nomeAtual = jsonData[i][1].toString().trim();
+                        
+                        if (correcoesNomes[nomeAtual]) {
+                            logCorrecoes.push({
+                                linha: i + 1,
+                                original: nomeAtual,
+                                corrigido: correcoesNomes[nomeAtual]
+                            });
+                            jsonData[i][1] = correcoesNomes[nomeAtual];
+                            correcoesAplicadas++;
+                        }
+                    }
+                }
+
+                // Criar novo workbook com dados corrigidos
+                correctedWorkbook = XLSX.utils.book_new();
+                const novaWorksheet = XLSX.utils.aoa_to_sheet(jsonData);
+                XLSX.utils.book_append_sheet(correctedWorkbook, novaWorksheet, "ALOCAÇÃO MAIO");
+
+                // Mostrar log de correções
+                displayCorrections(logCorrecoes);
+                
+                // Atualizar estatísticas
+                document.getElementById('corrections').textContent = correcoesAplicadas;
+
+                // Mostrar elementos de download
+                document.getElementById('downloadBtn').style.display = 'inline-block';
+                document.getElementById('downloadSection').style.display = 'block';
+                
+                showStatus(`Processamento concluído! ${correcoesAplicadas} correções aplicadas.`, 'success');
+
+            } catch (error) {
+                console.error('Erro ao processar arquivo:', error);
+                showStatus('Erro ao processar arquivo: ' + error.message, 'error');
+            }
+        }
+
+        function displayCorrections(corrections) {
+            const correctionsList = document.getElementById('correctionsList');
+            const correctionsLog = document.getElementById('correctionsLog');
+            
+            correctionsList.innerHTML = '';
+            corrections.forEach(correction => {
+                const div = document.createElement('div');
+                div.className = 'correction-item';
+                div.innerHTML = `
+                    <strong>Linha ${correction.linha}:</strong><br>
+                    <span class="original-name">❌ ${correction.original}</span><br>
+                    <span class="corrected-name">✅ ${correction.corrigido}</span>
+                `;
+                correctionsList.appendChild(div);
+            });
+            
+            correctionsLog.style.display = 'block';
+        }
+
+        function downloadCorrectedFile() {
+            if (!correctedWorkbook) {
+                showStatus('Nenhum arquivo processado para download.', 'error');
+                return;
+            }
+
+            try {
+                const wbout = XLSX.write(correctedWorkbook, { bookType: 'xlsx', type: 'array' });
+                const blob = new Blob([wbout], { type: 'application/octet-stream' });
+                
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Alocações_052025_Corrigido.xlsx';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showStatus('Arquivo baixado com sucesso!', 'success');
+            } catch (error) {
+                console.error('Erro ao baixar arquivo:', error);
+                showStatus('Erro ao baixar arquivo: ' + error.message, 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = type === 'success' ? 'status-success' : 
+                              type === 'error' ? 'status-error' : '';
+            status.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Processar automaticamente se já temos o arquivo
+        window.addEventListener('load', () => {
+            // Aguardar um pouco para garantir que o arquivo foi carregado
+            setTimeout(() => {
+                if (window.fs && window.fs.readFile) {
+                    processFile();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

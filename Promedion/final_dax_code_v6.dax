@@ -1,0 +1,101 @@
+```dax
+Saldo Projetado Final V6 = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            FILTER(
+                ALL('dCalendário'), 
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            )
+            // Assumindo que [Saldo Real Acumulado] já lida corretamente com seu próprio contexto
+            // ou não é afetado por colunas como FORN/CLIENTE. Se for, pode precisar de ALLEXCEPT aqui também.
+        )
+    )
+
+// 4. Calcular o ACUMULADO de ENTRADAS projetadas (APENAS "Em aberto") - IGNORANDO FILTROS EXTRAS
+VAR _EntradasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), 
+            // Modificador de contexto: Remove todos os filtros da Base de Dados, exceto os da relação com dCalendário
+            ALLEXCEPT('Base de Dados', 'dCalendário'[Date]), 
+            // Reaplicar filtros necessários DENTRO do contexto modificado:
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,    
+            'Base de Dados'[STATUS] = "Em aberto", 
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" 
+        )
+    )
+
+// 5. Calcular o ACUMULADO de SAÍDAS projetadas (APENAS "Em aberto") - IGNORANDO FILTROS EXTRAS
+VAR _SaidasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), 
+            // Modificador de contexto: Remove todos os filtros da Base de Dados, exceto os da relação com dCalendário
+            ALLEXCEPT('Base de Dados', 'dCalendário'[Date]),
+            // Reaplicar filtros necessários DENTRO do contexto modificado:
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,    
+            'Base de Dados'[STATUS] = "Em aberto", 
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" 
+        )
+    )
+
+// 6. Calcular o saldo projetado bruto (será BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0) 
+    )
+
+// 7. Verificar se houve transações projetadas ("Em aberto") NO PERÍODO TOTAL até a data atual
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_EntradasProjetadasAcumuladas)) || NOT(ISBLANK(_SaidasProjetadasAcumuladas)),
+        FALSE()
+    )
+
+// 8. RETURN final baseado nas variáveis pré-calculadas
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, 
+        BLANK(),
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, 
+            _SaldoProjetadoCalculado, 
+            _UltimoSaldoReal // Ou BLANK() se preferir não mostrar nada até a primeira projeção
+        )
+    )
+```
+
+**Explicação da Correção (V6):**
+
+O problema que você observou é causado pelo "contexto de filtro". Quando você adiciona "FORN/CLIENTE", a medida passa a calcular o valor para cada um deles separadamente.
+
+Para corrigir isso, usamos a função `ALLEXCEPT` nas variáveis `_EntradasProjetadasAcumuladas` e `_SaidasProjetadasAcumuladas`:
+
+*   `ALLEXCEPT('Base de Dados', 'dCalendário'[Date])`: Este comando diz ao `CALCULATE` para ignorar **todos** os filtros que vêm da tabela `Base de Dados` (como "FORN/CLIENTE", "EMPRESA", etc.), **exceto** aqueles que vêm da relação com a tabela `dCalendário` (ou seja, o filtro de data).
+*   **Reaplicação de Filtros:** Depois de remover os filtros indesejados, reaplicamos os filtros que *queremos* considerar dentro do `CALCULATE` (intervalo de `VENCIMENTO`, `STATUS = "Em aberto"`, `GRUPO | DÉB CRÉD`).
+
+Isso garante que o cálculo do acumulado some todas as transações relevantes para a data, independentemente de quais outras colunas (como "FORN/CLIENTE") estejam no visual.
+
+Teste esta versão `Saldo Projetado Final V6`. Ela deve manter o valor do saldo projetado consistente, mesmo quando você adicionar outras colunas ao seu visual.

@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Avançada de Estoque – LJ-03 Santa Cruz</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .highlight {
+            color: #0078D4;
+        }
+        .data-chip {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container bg-white">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Main content area -->
+        <div class="flex flex-col justify-between h-full">
+            <!-- Title section -->
+            <div class="px-24 pt-32">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-chart-line text-5xl mr-6 highlight"></i>
+                    <h1 class="text-6xl font-bold title-text">Análise Avançada de Estoque</h1>
+                </div>
+                <h2 class="text-5xl font-semibold subtitle-text ml-16 mb-8">LJ-03 SANTA CRUZ</h2>
+                
+                <!-- Description box -->
+                <div class="data-chip p-6 mx-16 my-12 rounded-lg max-w-4xl">
+                    <p class="text-2xl font-medium mb-4">Resumo executivo da análise de estoque em 31/05/2025</p>
+                    <p class="text-xl mb-2"><i class="fas fa-check-circle highlight mr-2"></i> Base para implementação de painéis em Power BI</p>
+                    <p class="text-xl mb-2"><i class="fas fa-check-circle highlight mr-2"></i> Indicadores chave de gestão de inventário</p>
+                    <p class="text-xl mb-2"><i class="fas fa-check-circle highlight mr-2"></i> Análise de exceções e oportunidades</p>
+                    <p class="text-xl"><i class="fas fa-check-circle highlight mr-2"></i> Segmentações personalizadas para tomada de decisão</p>
+                </div>
+            </div>
+            
+            <!-- Visual elements -->
+            <div class="flex justify-end px-24 mb-24">
+                <div class="mr-12">
+                    <img src="https://cdn.pixabay.com/photo/2018/09/20/16/34/analysis-3691108_1280.png" alt="Análise de dados" class="h-64 object-contain">
+                </div>
+                <div>
+                    <img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/data-3331279_1280.png" alt="Dashboard" class="h-64 object-contain">
+                </div>
+            </div>
+            
+            <!-- Footer info -->
+            <div class="px-24 pb-16">
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="text-2xl font-medium">LOJA PRINCIPAL</p>
+                        <p class="text-xl text-gray-600">Setor Comercial</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xl font-medium">Data de Referência: <span class="highlight">31/05/2025</span></p>
+                        <p class="text-lg text-gray-600">Gerado em: 25/06/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full h-8 absolute bottom-0"></div>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores Chave de Estoque – Visão Geral</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            height: 230px;
+        }
+        .kpi-icon {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0078D4;
+        }
+        .kpi-label {
+            font-size: 18px;
+            color: #505050;
+            font-weight: 500;
+        }
+        .kpi-description {
+            font-size: 14px;
+            color: #767676;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .chart-container {
+            height: 350px;
+        }
+        .section-divider {
+            border-top: 1px solid #e0e0e0;
+            width: 100%;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-8">
+            <div class="flex items-center">
+                <i class="fas fa-tachometer-alt text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Indicadores Chave de Estoque – Visão Geral</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Principais métricas de desempenho para monitoramento do estoque</p>
+        </div>
+        
+        <!-- KPI Cards Section 1 -->
+        <div class="px-16 py-6">
+            <div class="grid grid-cols-3 gap-8">
+                <!-- Valor Total em Estoque -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Valor Total em Estoque</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">R$ 2.149.553,58</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">Soma do valor monetário de todos os produtos atualmente em estoque</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Giro de Estoque -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Giro de Estoque</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">3,8</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">Qtd Vendida ÷ Estoque Médio (vezes que o estoque renova em um período)</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DSI -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">DSI (Days Sales Inventory)</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">24,3 dias</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">(Estoque Médio ÷ Custo das Vendas) × 30 (dias para vender todo estoque)</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KPI Cards Section 2 -->
+        <div class="px-16 py-6">
+            <div class="grid grid-cols-3 gap-8">
+                <!-- Custo Total de Estoque -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Custo Total de Estoque</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">R$ 1.935.598,22</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">Soma do custo de aquisição de todos os produtos em estoque</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Percentual de Produtos com Estoque Zerado -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Produtos com Estoque Zerado</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">7,6%</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">Percentual de produtos cadastrados que estão com quantidade zero em estoque</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 7.6%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- On-Shelf Availability -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="kpi-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">On-Shelf Availability</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">92,4%</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="kpi-description">1 - (Produtos em ruptura ÷ Total de produtos) (disponibilidade na gôndola)</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 92.4%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chart Section -->
+        <div class="px-16 py-8">
+            <div class="section-divider"></div>
+            <div class="flex">
+                <div class="w-1/2 pr-8">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Evolução mensal dos indicadores</h2>
+                    <div class="chart-container">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-1/2 pl-8">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Distribuição do valor por categoria</h2>
+                    <div class="chart-container">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom section with contextual info -->
+        <div class="px-16 py-6">
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-blue-500 text-xl mr-3"></i>
+                    <p class="text-gray-700">Os dados apresentados são baseados na data de referência <strong>31/05/2025</strong> da loja <strong>LJ-03 Santa Cruz</strong>. Atualizados diariamente.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+    </div>
+    
+    <script>
+        // Line Chart Configuration
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
+                datasets: [
+                    {
+                        label: 'Valor de Estoque (Milhões R$)',
+                        data: [1.8, 1.9, 2.0, 2.1, 2.15],
+                        borderColor: '#0078D4',
+                        backgroundColor: 'rgba(0, 120, 212, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Giro de Estoque',
+                        data: [3.2, 3.4, 3.5, 3.7, 3.8],
+                        borderColor: '#107C10',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        // Pie Chart Configuration
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Alimentos', 'Bebidas', 'Higiene', 'Limpeza', 'Perfumaria', 'Outros'],
+                datasets: [{
+                    data: [35, 25, 15, 12, 8, 5],
+                    backgroundColor: [
+                        '#0078D4', '#107C10', '#FFB900', '#D83B01', '#B4009E', '#5C2D91'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curva ABC – Priorização dos Itens do Estoque</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .abc-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            height: 240px;
+        }
+        .abc-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .class-a {
+            background-color: #FFEBE6;
+            color: #D83B01;
+        }
+        .class-b {
+            background-color: #FFF4CE;
+            color: #986F0B;
+        }
+        .class-c {
+            background-color: #E7F2DA;
+            color: #107C10;
+        }
+        .abc-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .abc-label {
+            font-size: 18px;
+            color: #505050;
+            font-weight: 500;
+        }
+        .abc-description {
+            font-size: 14px;
+            color: #767676;
+        }
+        .chart-container {
+            height: 400px;
+        }
+        .info-box {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .abc-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .abc-table th {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 16px;
+        }
+        .abc-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .abc-table tr:last-child td {
+            border-bottom: none;
+            font-weight: 600;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-4">
+            <div class="flex items-center">
+                <i class="fas fa-chart-pie text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Curva ABC – Priorização dos Itens do Estoque</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Análise de Pareto: identificando os produtos que representam maior valor no estoque</p>
+        </div>
+        
+        <!-- Info box -->
+        <div class="px-16 mb-4">
+            <div class="info-box">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-2xl mr-3 title-text"></i>
+                    <p class="text-lg">A Curva ABC classifica os produtos por seu valor total no estoque: <strong class="text-red-600">Classe A</strong> (alta prioridade, 80% do valor), <strong class="text-yellow-600">Classe B</strong> (média prioridade, 15% do valor) e <strong class="text-green-600">Classe C</strong> (baixa prioridade, 5% do valor). Esta análise permite direcionar esforços de gestão e controle para os itens de maior relevância financeira.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ABC Cards Section -->
+        <div class="px-16 py-4">
+            <div class="grid grid-cols-3 gap-8">
+                <!-- Class A Card -->
+                <div class="abc-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="abc-icon class-a">
+                            <span class="font-bold">A</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="abc-label">Classe A: Alta Prioridade</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-value text-red-600">1.675 produtos</p>
+                        <p class="text-xl font-semibold mt-1">R$ 1.719.506,95</p>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-description">25,7% dos produtos representam 80% do valor total do estoque</p>
+                        <p class="abc-description mt-1">Necessitam de controle rigoroso e frequente</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <span class="ml-2 text-sm font-medium">80%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Class B Card -->
+                <div class="abc-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="abc-icon class-b">
+                            <span class="font-bold">B</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="abc-label">Classe B: Média Prioridade</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-value text-yellow-600">2.105 produtos</p>
+                        <p class="text-xl font-semibold mt-1">R$ 322.486,74</p>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-description">32,3% dos produtos representam 15% do valor total do estoque</p>
+                        <p class="abc-description mt-1">Controle moderado e periódico</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 15%"></div>
+                            </div>
+                            <span class="ml-2 text-sm font-medium">15%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Class C Card -->
+                <div class="abc-card p-6 flex flex-col">
+                    <div class="flex items-center mb-4">
+                        <div class="abc-icon class-c">
+                            <span class="font-bold">C</span>
+                        </div>
+                        <div class="ml-4">
+                            <p class="abc-label">Classe C: Baixa Prioridade</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-value text-green-600">2.734 produtos</p>
+                        <p class="text-xl font-semibold mt-1">R$ 107.559,90</p>
+                    </div>
+                    <div class="mt-2">
+                        <p class="abc-description">42,0% dos produtos representam apenas 5% do valor do estoque</p>
+                        <p class="abc-description mt-1">Controle simplificado e mais espaçado</p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 5%"></div>
+                            </div>
+                            <span class="ml-2 text-sm font-medium">5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chart Section -->
+        <div class="px-16 py-6">
+            <div class="flex">
+                <div class="w-3/5 pr-8">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Curva ABC – Análise de Pareto</h2>
+                    <div class="chart-container">
+                        <canvas id="paretoChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-2/5 pl-4">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Tabela ABC Detalhada</h2>
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <table class="abc-table">
+                            <thead>
+                                <tr>
+                                    <th>Classe</th>
+                                    <th>Produtos</th>
+                                    <th>% Produtos</th>
+                                    <th>Valor Total (R$)</th>
+                                    <th>% Valor</th>
+                                    <th>Qtde Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold text-red-600">A</td>
+                                    <td>1.675</td>
+                                    <td>25,7%</td>
+                                    <td>1.719.506,95</td>
+                                    <td>80,0%</td>
+                                    <td>432.929,96</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-yellow-600">B</td>
+                                    <td>2.105</td>
+                                    <td>32,3%</td>
+                                    <td>322.486,74</td>
+                                    <td>15,0%</td>
+                                    <td>44.594,68</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-green-600">C</td>
+                                    <td>2.734</td>
+                                    <td>42,0%</td>
+                                    <td>107.559,90</td>
+                                    <td>5,0%</td>
+                                    <td>23.933,62</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>6.514</td>
+                                    <td>100%</td>
+                                    <td>2.149.553,58</td>
+                                    <td>100%</td>
+                                    <td>501.458,26</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Distribution Pie Chart -->
+                    <div class="mt-6">
+                        <h2 class="text-2xl font-semibold title-text mb-4">Distribuição dos Produtos</h2>
+                        <div style="height: 200px;">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Insights Box -->
+        <div class="px-16 py-4">
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="flex">
+                    <i class="fas fa-lightbulb text-yellow-500 text-3xl mr-4 mt-1"></i>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Insights para Power BI</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Classe A:</strong> Implementar alertas de ruptura automáticos e monitoramento diário</p>
+                            <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>KPI:</strong> Manter percentual de categorias dentro dos parâmetros ideais (80%-15%-5%)</p>
+                            <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Aprofundamento:</strong> Criar drill-through para análise por fornecedor e categoria</p>
+                            <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Alerta:</strong> Destacar migração de produtos entre classes (especialmente B→A)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom section with contextual info -->
+        <div class="px-16 py-4">
+            <div class="flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    <p>Fonte: Sistema de Gestão de Estoques - Data de Referência: <strong>31/05/2025</strong></p>
+                </div>
+                <div class="flex">
+                    <p>Loja: <strong>LJ-03 Santa Cruz</strong></p>
+                    <p class="ml-8">Slide <strong>3</strong>/8</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+    </div>
+    
+    <script>
+        // Pareto Chart
+        const paretoCtx = document.getElementById('paretoChart').getContext('2d');
+        const paretoChart = new Chart(paretoCtx, {
+            type: 'bar',
+            data: {
+                labels: ['0%', '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: 'Valor por percentual de produtos',
+                        data: [0, 45, 65, 72, 76, 78, 80, 85, 90, 95, 100],
+                        backgroundColor: [
+                            'rgba(216, 59, 1, 0.8)',
+                            'rgba(216, 59, 1, 0.8)',
+                            'rgba(216, 59, 1, 0.8)',
+                            'rgba(152, 111, 11, 0.8)',
+                            'rgba(152, 111, 11, 0.8)',
+                            'rgba(152, 111, 11, 0.8)',
+                            'rgba(152, 111, 11, 0.8)',
+                            'rgba(16, 124, 16, 0.8)',
+                            'rgba(16, 124, 16, 0.8)',
+                            'rgba(16, 124, 16, 0.8)',
+                            'rgba(16, 124, 16, 0.8)'
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 1
+                    },
+                    {
+                        type: 'line',
+                        label: 'Valor acumulado (%)',
+                        data: [0, 45, 65, 72, 76, 78, 80, 85, 90, 95, 100],
+                        borderColor: '#0078D4',
+                        backgroundColor: 'transparent',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#0078D4',
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Valor Acumulado (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Percentual de Produtos'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 80,
+                                yMax: 80,
+                                borderColor: 'red',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                label: {
+                                    content: '80% do valor',
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Pie Chart Configuration
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Classe A (25,7%)', 'Classe B (32,3%)', 'Classe C (42,0%)'],
+                datasets: [{
+                    data: [25.7, 32.3, 42.0],
+                    backgroundColor: [
+                        '#D83B01',
+                        '#986F0B',
+                        '#107C10'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribuição de Produtos por Classe'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuição de Valor e Produtos de Maior Peso</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .kpi-card:hover {
+            transform: translateY(-4px);
+        }
+        .kpi-icon {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0078D4;
+        }
+        .kpi-label {
+            font-size: 16px;
+            color: #505050;
+            font-weight: 500;
+        }
+        .chart-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 480px;
+        }
+        .info-tag {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 16px;
+            right: 24px;
+            font-size: 14px;
+            color: #505050;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-8">
+            <div class="flex items-center">
+                <i class="fas fa-chart-bar text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Distribuição de Valor e Produtos de Maior Peso</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Concentração de capital: identificando os itens que representam maior investimento no estoque</p>
+        </div>
+        
+        <!-- KPI Cards Row -->
+        <div class="px-16 py-4">
+            <div class="grid grid-cols-4 gap-6">
+                <!-- Maior produto em valor -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-3">
+                        <div class="kpi-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Maior produto em valor</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">R$ 32.856,00</p>
+                        <p class="text-sm text-gray-600 mt-1">Smartphone XYZ Ultra 256GB</p>
+                    </div>
+                </div>
+                
+                <!-- Top 20 produtos -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-3">
+                        <div class="kpi-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Top 20 produtos</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">28,7%</p>
+                        <p class="text-sm text-gray-600 mt-1">do valor total em estoque</p>
+                    </div>
+                </div>
+                
+                <!-- Concentração ABC -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-3">
+                        <div class="kpi-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Concentração ABC</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">80/15/5</p>
+                        <p class="text-sm text-gray-600 mt-1">% valor em produtos A/B/C</p>
+                    </div>
+                </div>
+                
+                <!-- Coeficiente de Gini -->
+                <div class="kpi-card p-6 flex flex-col">
+                    <div class="flex items-center mb-3">
+                        <div class="kpi-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="kpi-label">Coeficiente de Gini</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="kpi-value">0,78</p>
+                        <p class="text-sm text-gray-600 mt-1">Alta concentração de valor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="px-16 py-4">
+            <div class="flex gap-8">
+                <!-- Horizontal Bar Chart - Top 20 Products -->
+                <div class="w-3/5">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Top 20 Produtos por Valor Total</h2>
+                    <div class="chart-container">
+                        <canvas id="topProductsChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Histogram - Value Distribution -->
+                <div class="w-2/5">
+                    <h2 class="text-2xl font-semibold title-text mb-4">Distribuição de Valor no Estoque</h2>
+                    <div class="chart-container">
+                        <canvas id="valueDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Info Box -->
+        <div class="px-16 py-4">
+            <div class="info-tag">
+                <div class="flex items-start">
+                    <i class="fas fa-lightbulb text-2xl mr-3 title-text"></i>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">Insights sobre a distribuição de valor</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Forte concentração de valor:</strong> Apenas 25,7% dos produtos (classe A) representam 80% do valor total do estoque</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Priorização de gestão:</strong> Foco nos top 20 produtos pode gerar impacto significativo na redução de capital imobilizado</p>
+                            </div>
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Alta desigualdade:</strong> O coeficiente de Gini de 0,78 indica forte concentração (valores próximos a 1 indicam maior desigualdade)</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Oportunidade:</strong> Revisar políticas de estoque para produtos de alto valor para melhorar ROI e fluxo de caixa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom section with contextual info -->
+        <div class="px-16 py-4 mt-4">
+            <div class="flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    <p>Fonte: Sistema de Gestão de Estoque - Data de Referência: <strong>31/05/2025</strong></p>
+                </div>
+                <div>
+                    <p>Loja: <strong>LJ-03 Santa Cruz</strong> | Total de produtos analisados: <strong>6.516</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+        
+        <!-- Page number -->
+        <div class="page-number">4/8</div>
+    </div>
+    
+    <script>
+        // Top Products Chart Configuration
+        const topProductsCtx = document.getElementById('topProductsChart').getContext('2d');
+        const topProductsChart = new Chart(topProductsCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Smartphone XYZ Ultra 256GB',
+                    'Smart TV 65" OLED 4K',
+                    'Notebook Ultra Slim i7',
+                    'Refrigerador Frost Free 500L',
+                    'Console de Videogame Premium',
+                    'Ar Condicionado Split 18000BTU',
+                    'Máquina de Lavar 15kg',
+                    'Câmera DSLR Profissional',
+                    'Forno Elétrico Embutir 80L',
+                    'Tablet Premium 256GB',
+                    'Secadora de Roupas 12kg',
+                    'Cafeteira Premium Automática',
+                    'Smart Watch Ultra Premium',
+                    'Home Theater Surround 7.1',
+                    'Fogão 6 Bocas Premium',
+                    'Micro-ondas Digital 42L',
+                    'Aspirador de Pó Robô',
+                    'Monitor Ultrawide 34"',
+                    'Impressora Multifuncional Laser',
+                    'Purificador de Água Premium'
+                ],
+                datasets: [{
+                    label: 'Valor Total em Estoque (R$)',
+                    data: [
+                        32856, 27192, 26388, 23985, 19980,
+                        18326, 15246, 12792, 10788, 9584,
+                        8550, 7686, 6578, 6120, 5940,
+                        5340, 4536, 3960, 3780, 3570
+                    ],
+                    backgroundColor: '#0078D4',
+                    barThickness: 16
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'R$ ' + context.raw.toLocaleString('pt-BR');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: true,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                if (value >= 1000) {
+                                    return 'R$ ' + value/1000 + 'k';
+                                }
+                                return 'R$ ' + value;
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Value Distribution Chart (Histogram)
+        const valueDistributionCtx = document.getElementById('valueDistributionChart').getContext('2d');
+        const valueDistributionChart = new Chart(valueDistributionCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '0-100', '100-500', '500-1k', '1k-2k', '2k-5k', 
+                    '5k-10k', '10k-15k', '15k-20k', '20k-30k', '>30k'
+                ],
+                datasets: [{
+                    label: 'Quantidade de Produtos',
+                    data: [2145, 1872, 1023, 728, 431, 176, 82, 35, 18, 6],
+                    backgroundColor: [
+                        '#85C1E9', '#85C1E9', '#85C1E9', '#85C1E9', '#85C1E9', 
+                        '#5499C7', '#5499C7', '#2E86C1', '#2E86C1', '#0078D4'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                return 'Faixa de Valor: ' + context[0].label + ' R$';
+                            },
+                            label: function(context) {
+                                return 'Quantidade: ' + context.raw + ' produtos';
+                            },
+                            afterLabel: function(context) {
+                                const percentages = [32.9, 28.7, 15.7, 11.2, 6.6, 2.7, 1.3, 0.5, 0.3, 0.1];
+                                return 'Percentual: ' + percentages[context.dataIndex] + '% do total';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantidade de Produtos'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Valor do Produto (R$)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Exceções: Riscos e Oportunidades</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .chart-container {
+            height: 280px;
+            position: relative;
+        }
+        .metric-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .metric-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+        .metric-icon {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-right: 12px;
+        }
+        .risk-icon {
+            background-color: #FFEBE6;
+            color: #D83B01;
+        }
+        .opportunity-icon {
+            background-color: #E7F2DA;
+            color: #107C10;
+        }
+        .neutral-icon {
+            background-color: #FFF4CE;
+            color: #986F0B;
+        }
+        .metric-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #505050;
+        }
+        .metric-body {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .kpi-risk {
+            color: #D83B01;
+        }
+        .kpi-neutral {
+            color: #986F0B;
+        }
+        .kpi-opportunity {
+            color: #107C10;
+        }
+        .kpi-description {
+            font-size: 14px;
+            color: #767676;
+            margin-bottom: 12px;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .alert-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #D83B01;
+            color: white;
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .info-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #0078D4;
+            color: white;
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .warning-box {
+            background-color: #FFF4CE;
+            border-left: 4px solid #986F0B;
+            padding: 12px 16px;
+            border-radius: 0 4px 4px 0;
+        }
+        .info-box {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+            padding: 12px 16px;
+            border-radius: 0 4px 4px 0;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-6">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Dashboard de Exceções: Riscos e Oportunidades</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Monitoramento de situações críticas e exceções que demandam atenção imediata</p>
+        </div>
+        
+        <!-- KPI Summary Row -->
+        <div class="px-16 py-4">
+            <div class="grid grid-cols-4 gap-6">
+                <!-- Products with Zero Stock -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon risk-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3 class="metric-title">Produtos com Estoque Zero</h3>
+                    </div>
+                    <div class="metric-body">
+                        <p class="kpi-value kpi-risk">497 produtos</p>
+                        <p class="kpi-description">7,6% do total de SKUs cadastrados</p>
+                        <div class="mt-2">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Classe A:</span>
+                                <span class="font-medium">84 produtos (16,9%)</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                                <div class="bg-red-600 h-2 rounded-full" style="width: 16.9%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Impacto financeiro potencial:</span>
+                                <span class="font-medium text-red-600">R$ 186.432,12</span>
+                            </div>
+                        </div>
+                        <span class="alert-badge">CRÍTICO</span>
+                    </div>
+                </div>
+                
+                <!-- Products at Risk of Rupture -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon risk-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="metric-title">Risco de Ruptura</h3>
+                    </div>
+                    <div class="metric-body">
+                        <p class="kpi-value kpi-risk">218 produtos</p>
+                        <p class="kpi-description">3,3% do total com estoque abaixo do mínimo</p>
+                        <div class="mt-2">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Alto giro + Baixo estoque:</span>
+                                <span class="font-medium">65 produtos</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                                <div class="bg-red-600 h-2 rounded-full" style="width: 29.8%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Lead time médio:</span>
+                                <span class="font-medium">4,2 dias</span>
+                            </div>
+                        </div>
+                        <span class="alert-badge">RISCO</span>
+                    </div>
+                </div>
+                
+                <!-- Products with Negative Margin -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon neutral-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3 class="metric-title">Margem Negativa</h3>
+                    </div>
+                    <div class="metric-body">
+                        <p class="kpi-value kpi-neutral">153 produtos</p>
+                        <p class="kpi-description">2,3% do total com margem negativa</p>
+                        <div class="mt-2">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Perdas mensais estimadas:</span>
+                                <span class="font-medium text-yellow-600">R$ 23.476,89</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 23%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Margem média:</span>
+                                <span class="font-medium">-3,8%</span>
+                            </div>
+                        </div>
+                        <span class="info-badge">ATENÇÃO</span>
+                    </div>
+                </div>
+                
+                <!-- Products with High Stock and Low Turnover -->
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon opportunity-icon">
+                            <i class="fas fa-dolly-flatbed"></i>
+                        </div>
+                        <h3 class="metric-title">Estoque Superdimensionado</h3>
+                    </div>
+                    <div class="metric-body">
+                        <p class="kpi-value kpi-opportunity">327 produtos</p>
+                        <p class="kpi-description">5,0% do total com excesso de estoque</p>
+                        <div class="mt-2">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Capital imobilizado:</span>
+                                <span class="font-medium text-green-600">R$ 148.952,75</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 52%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Oportunidade de liquidação:</span>
+                                <span class="font-medium">+ R$ 89.371,65</span>
+                            </div>
+                        </div>
+                        <span class="info-badge">OPORTUNIDADE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts Row -->
+        <div class="px-16 py-4">
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Left Column: Stock Zero by Category + Quantity Distribution -->
+                <div class="grid grid-rows-2 gap-6 h-full">
+                    <!-- Products with Zero Stock by Category -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h3 class="metric-title">Produtos com Estoque Zero por Categoria</h3>
+                        </div>
+                        <div class="metric-body">
+                            <div class="chart-container">
+                                <canvas id="zeroStockChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quantity Distribution -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h3 class="metric-title">Distribuição de Quantidades em Estoque</h3>
+                        </div>
+                        <div class="metric-body">
+                            <div class="chart-container">
+                                <canvas id="quantityDistChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Margin Distribution + Value Contribution -->
+                <div class="grid grid-rows-2 gap-6 h-full">
+                    <!-- Margin Distribution -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 class="metric-title">Distribuição de Margens</h3>
+                        </div>
+                        <div class="metric-body">
+                            <div class="chart-container">
+                                <canvas id="marginDistChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Value Contribution by Category -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="metric-title">Contribuição de Valor por Categoria</h3>
+                        </div>
+                        <div class="metric-body">
+                            <div class="chart-container">
+                                <canvas id="valueContribChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Warning and Info Box -->
+        <div class="px-16 py-4">
+            <div class="warning-box">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle text-yellow-700 text-2xl mr-3"></i>
+                    <div>
+                        <p class="font-medium text-lg text-yellow-800">Atenção aos itens críticos!</p>
+                        <p class="text-gray-700">84 produtos da Classe A estão com estoque zero, representando potencial perda de vendas de até R$ 186.432,12. Recomenda-se ação imediata.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-box">
+                <div class="flex items-center">
+                    <i class="fas fa-lightbulb text-blue-700 text-2xl mr-3"></i>
+                    <div>
+                        <p class="font-medium text-lg text-blue-800">Oportunidade de otimização</p>
+                        <p class="text-gray-700">Liquidação de produtos superdimensionados pode liberar R$ 89.371,65 em capital de giro. Considere transferências entre lojas para equilibrar estoque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+    </div>
+    
+    <script>
+        // Products with Zero Stock by Category
+        const zeroStockCtx = document.getElementById('zeroStockChart').getContext('2d');
+        const zeroStockChart = new Chart(zeroStockCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Eletrônicos', 'Alimentos', 'Higiene', 'Limpeza', 'Bebidas', 'Perfumaria'],
+                datasets: [{
+                    label: 'Produtos com Estoque Zero',
+                    data: [142, 96, 85, 64, 58, 52],
+                    backgroundColor: [
+                        '#ff6b6b', '#ff9e7d', '#ffc07d', '#ffe07d', '#d3e07d', '#a5e07d'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantidade de Produtos',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Quantity Distribution
+        const quantityDistCtx = document.getElementById('quantityDistChart').getContext('2d');
+        const quantityDistChart = new Chart(quantityDistCtx, {
+            type: 'bar',
+            data: {
+                labels: ['0', '1-5', '6-10', '11-20', '21-50', '51-100', '101+'],
+                datasets: [{
+                    label: 'Quantidade de Produtos',
+                    data: [497, 1256, 1842, 1573, 923, 317, 108],
+                    backgroundColor: '#0078D4',
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantidade de Produtos',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Faixa de Estoque',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Margin Distribution
+        const marginDistCtx = document.getElementById('marginDistChart').getContext('2d');
+        const marginDistChart = new Chart(marginDistCtx, {
+            type: 'bar',
+            data: {
+                labels: ['< 0%', '0-10%', '10-20%', '20-30%', '30-40%', '> 40%'],
+                datasets: [{
+                    label: 'Quantidade de Produtos',
+                    data: [153, 824, 1923, 2219, 1106, 291],
+                    backgroundColor: [
+                        '#ff6b6b', '#ffc07d', '#a5e07d', '#7dd5e0', '#7da5e0', '#c17de0'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantidade de Produtos',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Faixa de Margem',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Value Contribution by Category
+        const valueContribCtx = document.getElementById('valueContribChart').getContext('2d');
+        const valueContribChart = new Chart(valueContribCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Eletrônicos', 'Alimentos', 'Higiene', 'Limpeza', 'Bebidas', 'Perfumaria'],
+                datasets: [{
+                    data: [42, 24, 13, 9, 8, 4],
+                    backgroundColor: [
+                        '#0078D4', '#107C10', '#FFB900', '#D83B01', '#B4009E', '#5C2D91'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos com Estoque e Sem Venda – Últimos 30 dias</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 16px;
+        }
+        .data-table th {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 2px solid #0078D4;
+        }
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .data-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .data-table tbody tr:hover {
+            background-color: #f1f8fe;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .status-a {
+            background-color: #FFEBE6;
+            color: #D83B01;
+        }
+        .status-b {
+            background-color: #FFF4CE;
+            color: #986F0B;
+        }
+        .status-c {
+            background-color: #E7F2DA;
+            color: #107C10;
+        }
+        .warning-icon {
+            color: #D83B01;
+        }
+        .info-tag {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 16px;
+            right: 24px;
+            font-size: 14px;
+            color: #505050;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-8">
+            <div class="flex items-center">
+                <i class="fas fa-boxes text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Produtos com Estoque e Sem Venda – Últimos 30 dias</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Capital estagnado: produtos com estoque disponível mas sem movimentação recente</p>
+        </div>
+        
+        <!-- Info box -->
+        <div class="px-16 mb-6">
+            <div class="info-tag">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-2xl mr-3 title-text"></i>
+                    <p class="text-lg">Esta análise identifica produtos que representam capital imobilizado, mantendo estoque sem gerar vendas nos últimos 30 dias. Recomenda-se uma revisão estratégica destes itens para possíveis ações de marketing, reposicionamento ou liquidação.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary KPI Cards -->
+        <div class="px-16 py-4">
+            <div class="flex gap-6">
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Total de produtos parados</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold title-text">583</p>
+                        <p class="text-lg ml-2 text-gray-500">produtos</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">8,9% do total do catálogo</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Valor total imobilizado</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold title-text">R$ 327.482,53</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">15,2% do valor total em estoque</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Produtos Classe A sem giro</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold text-red-600">84</p>
+                        <p class="text-lg ml-2 text-gray-500">produtos</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">14,4% dos produtos parados</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Média de dias sem venda</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold title-text">62</p>
+                        <p class="text-lg ml-2 text-gray-500">dias</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Máximo: 186 dias</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Table Section -->
+        <div class="px-16 py-6">
+            <div class="mb-4 flex justify-between items-center">
+                <h2 class="text-2xl font-semibold title-text">Produtos com Maior Capital Imobilizado</h2>
+                <div class="flex items-center">
+                    <span class="mr-8 text-gray-600"><i class="fas fa-filter mr-2"></i> Filtrado por: Valor Total (Decrescente)</span>
+                    <span class="text-gray-600"><i class="fas fa-eye mr-2"></i> Exibindo 15 de 583 produtos</span>
+                </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Código</th>
+                            <th>Qtde em Estoque</th>
+                            <th>Valor Total (R$)</th>
+                            <th>Dias sem Venda</th>
+                            <th>Classe ABC</th>
+                            <th>Ação Recomendada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Smartphone XYZ Ultra 256GB</td>
+                            <td>11758932</td>
+                            <td>24</td>
+                            <td class="font-medium">32.856,00</td>
+                            <td>45</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-red-600 font-medium"><i class="fas fa-tag mr-1"></i> Promoção urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Smart TV 65" OLED 4K</td>
+                            <td>11529847</td>
+                            <td>8</td>
+                            <td class="font-medium">27.192,00</td>
+                            <td>38</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-red-600 font-medium"><i class="fas fa-tag mr-1"></i> Promoção urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Notebook Ultra Slim i7</td>
+                            <td>11645382</td>
+                            <td>12</td>
+                            <td class="font-medium">26.388,00</td>
+                            <td>42</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-red-600 font-medium"><i class="fas fa-tag mr-1"></i> Promoção urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Refrigerador Frost Free 500L</td>
+                            <td>10983721</td>
+                            <td>15</td>
+                            <td class="font-medium">23.985,00</td>
+                            <td>56</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-orange-600 font-medium"><i class="fas fa-exchange-alt mr-1"></i> Redistribuir lojas</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Console de Videogame Premium</td>
+                            <td>11876543</td>
+                            <td>18</td>
+                            <td class="font-medium">19.980,00</td>
+                            <td>34</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-orange-600 font-medium"><i class="fas fa-bullhorn mr-1"></i> Campanha marketing</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Ar Condicionado Split 18000BTU</td>
+                            <td>10765234</td>
+                            <td>22</td>
+                            <td class="font-medium">18.326,00</td>
+                            <td>76</td>
+                            <td><span class="status-badge status-a">A</span></td>
+                            <td><span class="text-red-600 font-medium"><i class="fas fa-tag mr-1"></i> Promoção urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Máquina de Lavar 15kg</td>
+                            <td>11092837</td>
+                            <td>14</td>
+                            <td class="font-medium">15.246,00</td>
+                            <td>48</td>
+                            <td><span class="status-badge status-b">B</span></td>
+                            <td><span class="text-orange-600 font-medium"><i class="fas fa-exchange-alt mr-1"></i> Redistribuir lojas</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Câmera DSLR Profissional</td>
+                            <td>11328756</td>
+                            <td>8</td>
+                            <td class="font-medium">12.792,00</td>
+                            <td>92</td>
+                            <td><span class="status-badge status-b">B</span></td>
+                            <td><span class="text-red-600 font-medium"><i class="fas fa-tag mr-1"></i> Promoção urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Forno Elétrico Embutir 80L</td>
+                            <td>10674832</td>
+                            <td>12</td>
+                            <td class="font-medium">10.788,00</td>
+                            <td>72</td>
+                            <td><span class="status-badge status-b">B</span></td>
+                            <td><span class="text-orange-600 font-medium"><i class="fas fa-bullhorn mr-1"></i> Campanha marketing</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Tablet Premium 256GB</td>
+                            <td>11475869</td>
+                            <td>16</td>
+                            <td class="font-medium">9.584,00</td>
+                            <td>62</td>
+                            <td><span class="status-badge status-b">B</span></td>
+                            <td><span class="text-yellow-600 font-medium"><i class="fas fa-sync-alt mr-1"></i> Revisar exposição</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Secadora de Roupas 12kg</td>
+                            <td>10889142</td>
+                            <td>9</td>
+                            <td class="font-medium">8.550,00</td>
+                            <td>58</td>
+                            <td><span class="status-badge status-b">B</span></td>
+                            <td><span class="text-orange-600 font-medium"><i class="fas fa-exchange-alt mr-1"></i> Redistribuir lojas</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Cafeteira Premium Automática</td>
+                            <td>11732865</td>
+                            <td>14</td>
+                            <td class="font-medium">7.686,00</td>
+                            <td>46</td>
+                            <td><span class="status-badge status-c">C</span></td>
+                            <td><span class="text-yellow-600 font-medium"><i class="fas fa-sync-alt mr-1"></i> Revisar exposição</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Smart Watch Ultra Premium</td>
+                            <td>11865432</td>
+                            <td>22</td>
+                            <td class="font-medium">6.578,00</td>
+                            <td>54</td>
+                            <td><span class="status-badge status-c">C</span></td>
+                            <td><span class="text-yellow-600 font-medium"><i class="fas fa-bullhorn mr-1"></i> Campanha marketing</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Liquidificador Premium 1200W</td>
+                            <td>10452786</td>
+                            <td>28</td>
+                            <td class="font-medium">4.872,00</td>
+                            <td>64</td>
+                            <td><span class="status-badge status-c">C</span></td>
+                            <td><span class="text-green-600 font-medium"><i class="fas fa-percent mr-1"></i> Desconto progressivo</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Aspirador de Pó Robô</td>
+                            <td>11236789</td>
+                            <td>18</td>
+                            <td class="font-medium">4.536,00</td>
+                            <td>82</td>
+                            <td><span class="status-badge status-c">C</span></td>
+                            <td><span class="text-green-600 font-medium"><i class="fas fa-percent mr-1"></i> Desconto progressivo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Action Box -->
+        <div class="px-16 mt-6">
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <div class="flex items-start">
+                    <div class="warning-icon text-3xl mr-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Recomendações para aumentar giro de estoque</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Classe A:</strong> Ação imediata - promoção, reposicionamento ou transferência</p>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Classe B:</strong> Avaliação em 15 dias - revisar exposição e preços</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Classe C:</strong> Monitorar por 30 dias - aplicar desconto progressivo</p>
+                            </div>
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> Considerar bundles com produtos de alta rotatividade</p>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> Verificar sazonalidade antes de tomar decisões finais</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> Para produtos com tecnologia, avaliar geração/lançamento de novos modelos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom section with contextual info -->
+        <div class="px-16 py-4 mt-4">
+            <div class="flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    <p>Fonte: Sistema de Gestão de Vendas e Estoque - Data de Referência: <strong>31/05/2025</strong></p>
+                </div>
+                <div>
+                    <p>Loja: <strong>LJ-03 Santa Cruz</strong> | Período sem venda: <strong>últimos 30 dias</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+        
+        <!-- Page number -->
+        <div class="page-number">6/8</div>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos em Ruptura com Histórico de Venda</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .slide-container {
+            width: 1920px;
+            min-height: 1080px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .header-bar {
+            background-color: #0078D4;
+            height: 16px;
+        }
+        .title-text {
+            color: #0078D4;
+        }
+        .subtitle-text {
+            color: #505050;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 16px;
+        }
+        .data-table th {
+            background-color: #E6F2FB;
+            color: #0078D4;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 2px solid #0078D4;
+        }
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .data-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .data-table tbody tr:hover {
+            background-color: #f1f8fe;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .status-high {
+            background-color: #FFEBE6;
+            color: #D83B01;
+        }
+        .status-medium {
+            background-color: #FFF4CE;
+            color: #986F0B;
+        }
+        .status-low {
+            background-color: #E7F2DA;
+            color: #107C10;
+        }
+        .warning-icon {
+            color: #D83B01;
+        }
+        .info-tag {
+            background-color: #E6F2FB;
+            border-left: 4px solid #0078D4;
+            padding: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+        .bottom-bar {
+            background-color: #0078D4;
+            height: 8px;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 16px;
+            right: 24px;
+            font-size: 14px;
+            color: #505050;
+        }
+        .trend-up {
+            color: #D83B01;
+        }
+        .trend-stable {
+            color: #986F0B;
+        }
+        .trend-down {
+            color: #107C10;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Header accent bar -->
+        <div class="header-bar w-full"></div>
+        
+        <!-- Title section -->
+        <div class="px-16 pt-12 pb-8">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-4xl mr-4 title-text"></i>
+                <h1 class="text-4xl font-bold title-text">Produtos em Ruptura com Histórico de Venda</h1>
+            </div>
+            <p class="text-xl subtitle-text ml-12 mt-2">Vendas perdidas: produtos com demanda comprovada mas sem disponibilidade em estoque</p>
+        </div>
+        
+        <!-- Info box -->
+        <div class="px-16 mb-6">
+            <div class="info-tag">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-2xl mr-3 title-text"></i>
+                    <p class="text-lg">Esta análise identifica produtos com ruptura de estoque que possuem histórico de vendas nos últimos 30 dias. Estas situações representam perdas de receita imediata e necessitam atenção prioritária para reposição rápida e adequação da política de estoque mínimo.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary KPI Cards -->
+        <div class="px-16 py-4">
+            <div class="flex gap-6">
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Produtos em ruptura</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold title-text">497</p>
+                        <p class="text-lg ml-2 text-gray-500">produtos</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">7,6% do total do catálogo</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Vendas perdidas estimadas</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold text-red-600">R$ 183.675,42</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">8,5% do valor total em estoque</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Produtos Classe A em ruptura</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold text-red-600">72</p>
+                        <p class="text-lg ml-2 text-gray-500">produtos</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">14,5% dos produtos em ruptura</p>
+                </div>
+                
+                <div class="kpi-card p-6 w-1/4">
+                    <p class="text-lg text-gray-600 mb-1">Dias médios em ruptura</p>
+                    <div class="flex items-baseline">
+                        <p class="text-3xl font-bold title-text">8,3</p>
+                        <p class="text-lg ml-2 text-gray-500">dias</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Máximo: 34 dias</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Table Section -->
+        <div class="px-16 py-6">
+            <div class="mb-4 flex justify-between items-center">
+                <h2 class="text-2xl font-semibold title-text">Produtos Prioritários para Reposição</h2>
+                <div class="flex items-center">
+                    <span class="mr-8 text-gray-600"><i class="fas fa-filter mr-2"></i> Filtrado por: Vendas Perdidas (Decrescente)</span>
+                    <span class="text-gray-600"><i class="fas fa-eye mr-2"></i> Exibindo 15 de 497 produtos</span>
+                </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Código</th>
+                            <th>Vendas Últ. 30 dias</th>
+                            <th>Vendas Perdidas (R$)</th>
+                            <th>Dias em Ruptura</th>
+                            <th>Classe ABC</th>
+                            <th>Tendência de Demanda</th>
+                            <th>Status Reposição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Smart TV 55" QLED 4K</td>
+                            <td>10873546</td>
+                            <td>32</td>
+                            <td class="font-medium">38.720,00</td>
+                            <td>6</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-red-600 font-medium">Não iniciada</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Smartphone Premium 128GB</td>
+                            <td>11587432</td>
+                            <td>45</td>
+                            <td class="font-medium">34.875,00</td>
+                            <td>4</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Notebook Gamer i7 16GB</td>
+                            <td>11645382</td>
+                            <td>18</td>
+                            <td class="font-medium">28.782,00</td>
+                            <td>8</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-green-600 font-medium">Em trânsito</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Console de Videogame 1TB</td>
+                            <td>10983721</td>
+                            <td>24</td>
+                            <td class="font-medium">21.576,00</td>
+                            <td>12</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Ar Condicionado Split 12000BTU</td>
+                            <td>10894723</td>
+                            <td>28</td>
+                            <td class="font-medium">18.620,00</td>
+                            <td>7</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-red-600 font-medium">Não iniciada</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Refrigerador Duplex Frost Free</td>
+                            <td>10765234</td>
+                            <td>15</td>
+                            <td class="font-medium">16.485,00</td>
+                            <td>9</td>
+                            <td><span class="status-badge status-high">A</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Smartwatch Fitness Premium</td>
+                            <td>11092837</td>
+                            <td>42</td>
+                            <td class="font-medium">12.390,00</td>
+                            <td>5</td>
+                            <td><span class="status-badge status-medium">B</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-green-600 font-medium">Em trânsito</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Máquina Lavar e Secar 11kg</td>
+                            <td>10328756</td>
+                            <td>12</td>
+                            <td class="font-medium">10.788,00</td>
+                            <td>14</td>
+                            <td><span class="status-badge status-medium">B</span></td>
+                            <td><span class="trend-down"><i class="fas fa-arrow-down mr-1"></i> Baixa</span></td>
+                            <td><span class="text-red-600 font-medium">Não iniciada</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Forno Microondas 32L Digital</td>
+                            <td>10674832</td>
+                            <td>25</td>
+                            <td class="font-medium">8.975,00</td>
+                            <td>10</td>
+                            <td><span class="status-badge status-medium">B</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Cadeira Gamer Ergonômica</td>
+                            <td>11475869</td>
+                            <td>22</td>
+                            <td class="font-medium">7.876,00</td>
+                            <td>15</td>
+                            <td><span class="status-badge status-medium">B</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-green-600 font-medium">Em trânsito</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Batedeira Planetária 5L</td>
+                            <td>10889142</td>
+                            <td>34</td>
+                            <td class="font-medium">6.460,00</td>
+                            <td>8</td>
+                            <td><span class="status-badge status-medium">B</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Cafeteira Cápsula Automática</td>
+                            <td>10732865</td>
+                            <td>38</td>
+                            <td class="font-medium">5.472,00</td>
+                            <td>6</td>
+                            <td><span class="status-badge status-low">C</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-green-600 font-medium">Em trânsito</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Headphone Bluetooth Premium</td>
+                            <td>11865432</td>
+                            <td>48</td>
+                            <td class="font-medium">4.368,00</td>
+                            <td>3</td>
+                            <td><span class="status-badge status-low">C</span></td>
+                            <td><span class="trend-up"><i class="fas fa-arrow-up mr-1"></i> Alta</span></td>
+                            <td><span class="text-yellow-600 font-medium">Pedido emitido</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Liquidificador 1000W 5 Vel.</td>
+                            <td>10452786</td>
+                            <td>32</td>
+                            <td class="font-medium">3.840,00</td>
+                            <td>9</td>
+                            <td><span class="status-badge status-low">C</span></td>
+                            <td><span class="trend-down"><i class="fas fa-arrow-down mr-1"></i> Baixa</span></td>
+                            <td><span class="text-red-600 font-medium">Não iniciada</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Panela Elétrica Multifunções</td>
+                            <td>10236789</td>
+                            <td>29</td>
+                            <td class="font-medium">3.248,00</td>
+                            <td>11</td>
+                            <td><span class="status-badge status-low">C</span></td>
+                            <td><span class="trend-stable"><i class="fas fa-equals mr-1"></i> Estável</span></td>
+                            <td><span class="text-green-600 font-medium">Em trânsito</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Action Box -->
+        <div class="px-16 mt-6">
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <div class="flex items-start">
+                    <div class="warning-icon text-3xl mr-4">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Ações Recomendadas para Gestão de Rupturas</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Produtos A:</strong> Ativar pedidos emergenciais e solicitar prioridade de entrega</p>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Produtos B:</strong> Verificar pedidos existentes e antecipar entregas quando possível</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> <strong>Produtos C:</strong> Incluir no próximo ciclo de compras ou transferir entre lojas</p>
+                            </div>
+                            <div>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> Revisar política de estoque mínimo dos produtos com tendência de alta</p>
+                                <p class="mb-1"><i class="fas fa-check-circle text-green-600 mr-2"></i> Implementar sistema de alerta antecipado para prevenção de rupturas</p>
+                                <p><i class="fas fa-check-circle text-green-600 mr-2"></i> Avaliar alternativas para ofertar aos clientes enquanto aguarda reposição</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom section with contextual info -->
+        <div class="px-16 py-4 mt-4">
+            <div class="flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    <p>Fonte: Sistema de Gestão de Vendas e Estoque - Data de Referência: <strong>31/05/2025</strong></p>
+                </div>
+                <div>
+                    <p>Loja: <strong>LJ-03 Santa Cruz</strong> | Período de histórico de vendas: <strong>últimos 30 dias</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom accent bar -->
+        <div class="bottom-bar w-full absolute bottom-0"></div>
+        
+        <!-- Page number -->
+        <div class="page-number">7/8</div>
+    </div>
+</body>
+</html>

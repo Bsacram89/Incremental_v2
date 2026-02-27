@@ -1,0 +1,84 @@
+```dax
+Saldo Projetado Linear = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+//    (Usando IF na definição da variável, não na estrutura principal)
+
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            FILTER(
+                ALL("dCalendário"),
+                "dCalendário"[Date] = _UltimoDiaRealizado
+            )
+        )
+    )
+
+VAR _NetProjetadoAcumulado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), // Assume SAÍDAS já são negativas
+            FILTER (
+                ALL ( 'dCalendário'[Date] ), 
+                'dCalendário'[Date] > _UltimoDiaRealizado && 'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } )
+        )
+    )
+
+// 4. Calcular o saldo projetado bruto (será BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_NetProjetadoAcumulado, 0) // Usa COALESCE para tratar BLANK em _NetProjetadoAcumulado
+    )
+
+// 5. Verificar se houve transações projetadas NO PERÍODO TOTAL até a data atual
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_NetProjetadoAcumulado)),
+        FALSE()
+    )
+
+// 6. RETURN final baseado nas variáveis pré-calculadas, com estrutura IF simples
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, // Se for data real, anterior ou sem base, retorna BLANK
+        BLANK(),
+        // Senão (é data futura válida), verifica se houve projeção
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, 
+            _SaldoProjetadoCalculado, // Se houve projeção, retorna o saldo calculado
+            _UltimoSaldoReal // Se NÃO houve projeção AINDA, retorna o último saldo real base
+                               // (Ou BLANK() se preferir não mostrar nada aqui)
+        )
+    )
+```
+
+**Explicação da Estrutura Linear:**
+
+Peço desculpas, na versão anterior (`V2`) eu reintroduzi incorretamente a estrutura `IF` que causava o erro de sintaxe, declarando variáveis após o `BLANK()`. 
+
+Esta nova versão (`Saldo Projetado Linear`) **retorna à estrutura linear** que usamos na versão `Simplificado`, onde **todas as variáveis (`VAR`) são declaradas primeiro**, antes do `RETURN` final. A lógica de cálculo aprimorada da `V2` (para `_UltimoSaldoReal` e `_NetProjetadoAcumulado`) foi mantida.
+
+1.  **Todas as VARs Primeiro:** Todas as variáveis são definidas sequencialmente.
+2.  **Cálculo Condicional na VAR:** A lógica `IF( NOT _IsDataRealOuAnteriorOuSemBase, ...)` é usada *dentro* da definição das variáveis para evitar cálculos desnecessários, mas sem quebrar a estrutura linear.
+3.  **RETURN Simples:** O `RETURN` final usa uma estrutura `IF` simples e não aninhada profundamente, baseada nas variáveis já calculadas.
+
+Essa estrutura linear é a mais segura em DAX para evitar erros de sintaxe com condicionais complexas. Por favor, teste esta versão `Saldo Projetado Linear`.

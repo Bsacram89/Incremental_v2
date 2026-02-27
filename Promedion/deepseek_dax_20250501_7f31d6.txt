@@ -1,0 +1,59 @@
+Saldo Final Acumulado Corrigido = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// 1. Encontrar o último dia com saldo real
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]), 
+        FILTER(
+            ALL('Base de Dados'[STATUS]),
+            'Base de Dados'[STATUS] IN {"Pago", "Recebido"}
+        ),
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 2. Obter o último saldo real
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        FILTER(
+            ALL('dCalendário'),
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        )
+    )
+
+// 3. Calcular entradas projetadas acumuladas
+VAR _EntradasProjetadas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[STATUS] = "Em aberto" &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" &&
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado &&
+            'Base de Dados'[VENCIMENTO] <= _DataContexto
+        ),
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 4. Calcular saídas projetadas acumuladas
+VAR _SaidasProjetadas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[STATUS] = "Em aberto" &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" &&
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado &&
+            'Base de Dados'[VENCIMENTO] <= _DataContexto
+        ),
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 5. Retorno condicional
+RETURN
+    IF(
+        _DataContexto <= _UltimoDiaRealizado,
+        BLANK(),
+        _UltimoSaldoReal + COALESCE(_EntradasProjetadas, 0) - COALESCE(_SaidasProjetadas, 0)
+    )

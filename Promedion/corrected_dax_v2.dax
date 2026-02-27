@@ -1,0 +1,68 @@
+```dax
+Saldo Projetado Corrigido V2 = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' ) // Garante que pegamos a última data realizada geral
+    )
+
+// 2. Se não houver dia realizado ou a data atual é no passado/presente, retorna BLANK
+IF ( ISBLANK ( _UltimoDiaRealizado ) || _DataContexto <= _UltimoDiaRealizado, BLANK(),
+
+    // --- A partir daqui, estamos em datas FUTURAS ( > _UltimoDiaRealizado ) ---
+
+    // 3. Obter o último saldo real acumulado, calculado ATÉ _UltimoDiaRealizado.
+    //    Usamos ALL("dCalendário") para garantir que pegamos o valor correto independente do filtro de data atual.
+    VAR _UltimoSaldoReal = 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            FILTER(
+                ALL("dCalendário"),
+                "dCalendário"[Date] = _UltimoDiaRealizado
+            )
+        )
+
+    // 4. Calcular o *ACUMULADO LÍQUIDO* de todas as transações PROJETADAS
+    //    desde o dia SEGUINTE a _UltimoDiaRealizado ATÉ a data atual (_DataContexto).
+    //    Assume que SAÍDAS já têm valor negativo em 'Base de Dados'[REAL].
+    VAR _NetProjetadoAcumulado = 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), // Soma entradas (positivas) e saídas (negativas)
+            FILTER (
+                ALL ( 'dCalendário'[Date] ), // Remove filtro de data do contexto atual para calcular o acumulado
+                'dCalendário'[Date] > _UltimoDiaRealizado && 
+                'dCalendário'[Date] <= _DataContexto // Acumula TUDO desde o início da projeção até a data atual
+            ),
+            KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } ) // Filtra status projetados
+            // Relação entre 'dCalendário'[Date] e 'Base de Dados'[VENCIMENTO] é crucial aqui
+        )
+
+    // 5. Verifica se houve alguma movimentação projetada NO PERÍODO TOTAL até a data atual.
+    VAR _TemTransacaoProjetadaNoPeriodo = NOT(ISBLANK(_NetProjetadoAcumulado))
+
+    // 6. Calcula e retorna o Saldo Projetado final.
+    RETURN
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, // Só mostra se houver projeção no período acumulado
+            _UltimoSaldoReal + _NetProjetadoAcumulado, // Saldo Base + Acumulado Líquido Projetado
+            _UltimoSaldoReal // Se não houver NENHUMA projeção até a data, mostra o último saldo real.
+                            // Ou BLANK() se preferir não mostrar nada nesses casos.
+        )
+)
+```
+
+**Principais Alterações e Explicações:**
+
+1.  **`_UltimoSaldoReal`:** Adicionei `FILTER(ALL("dCalendário"), ...)` ao redor da condição de data. Isso força o cálculo do `[Saldo Real Acumulado]` a ignorar o filtro de data da linha atual do visual e usar estritamente a `_UltimoDiaRealizado`, garantindo que peguemos o valor base correto.
+2.  **`_NetProjetadoAcumulado`:** Esta é a mudança principal. A lógica agora calcula a soma líquida (`SUM('Base de Dados'[REAL])`) de **TODAS** as transações projetadas (`STATUS IN { "Em aberto", "Atrasado" }`) que ocorrem no intervalo de datas desde o dia seguinte ao último dia realizado (`'dCalendário'[Date] > _UltimoDiaRealizado`) **até** a data atual no contexto da linha (`'dCalendário'[Date] <= _DataContexto`). Isso deve criar o efeito de **acumulado** dia após dia.
+3.  **Assunção sobre Saídas:** Esta versão assume que a coluna `'Base de Dados'[REAL]` já contém valores **negativos** para as saídas. Se este não for o caso (se saídas forem positivas), a fórmula precisará ser ajustada para calcular entradas e saídas separadamente e subtrair as saídas, como na versão anterior, mas mantendo a lógica de filtro acumulado (`FILTER(ALL('dCalendário'[Date]), ...)`).
+4.  **Retorno sem Projeção:** No `RETURN` final, se `_TemTransacaoProjetadaNoPeriodo` for falso (ou seja, não há nenhuma transação projetada entre `_UltimoDiaRealizado + 1` e `_DataContexto`), a fórmula agora retorna `_UltimoSaldoReal`. Isso significa que o saldo projetado mostrará o último saldo real até que a primeira transação projetada ocorra. Se você preferir que ele mostre `BLANK()` nesses casos, basta substituir `_UltimoSaldoReal` por `BLANK()` na última linha do `IF`.
+
+Por favor, teste esta nova versão `Saldo Projetado Corrigido V2`. Ela deve resolver o problema do valor inicial incorreto e garantir que o saldo acumule corretamente as projeções dia a dia.

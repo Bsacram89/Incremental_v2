@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Estoque - Maio 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --r-background-color: #ffffff;
+            --r-main-font: 'Montserrat', sans-serif;
+            --r-main-font-size: 28px;
+            --r-main-color: #222;
+            --r-heading-font: 'Montserrat', sans-serif;
+            --r-heading-color: #0046ad;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-link-color: #0046ad;
+            --r-link-color-hover: #003380;
+        }
+        
+        .reveal .slides section {
+            text-align: left;
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #0046ad;
+        }
+        
+        .reveal h1 {
+            font-size: 2.5em;
+        }
+        
+        .reveal h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+        
+        .header-bar {
+            height: 12px;
+            width: 100%;
+            background-color: #0046ad;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .blue-accent {
+            color: #0046ad;
+        }
+        
+        .kpi-card {
+            border-left: 4px solid #0046ad;
+            padding-left: 16px;
+            margin-bottom: 16px;
+            background-color: #f8fafc;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chart-container {
+            height: 350px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .insight-box {
+            background-color: rgba(0, 70, 173, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .icon-box {
+            background-color: rgba(0, 70, 173, 0.1);
+            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+        
+        .icon-box i {
+            color: #0046ad;
+            font-size: 22px;
+        }
+        
+        .reveal .progress {
+            color: #0046ad;
+        }
+        
+        .footer-info {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* Ensure sections are properly positioned */
+        .reveal .slides > section {
+            display: none;
+        }
+        
+        .reveal .slides > section.present {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">            <!-- Slide 1: Capa -->
+            <section>
+                <div class="header-bar"></div>
+                <div style="margin-top: 100px;">
+                    <h1 class="blue-accent">ANÁLISE DE ESTOQUE</h1>
+                    <h2 class="blue-accent">Maio 2025</h2>
+                    <div style="margin-top: 50px;">
+                        <p style="font-size: 1.2em; color: #666;">Relatório Automatizado via Python</p>
+                        <div style="margin-top: 30px;">
+                            <div class="icon-box">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="icon-box">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="icon-box">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <i class="fas fa-calendar-alt"></i> 27 de Junho de 2025
+                </div>
+            </section>
+
+            <!-- Slide 2: Contexto -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>CONTEXTO E OBJETIVO</h2>
+                <div style="margin-top: 40px;">
+                    <div class="kpi-card">
+                        <h3 style="color: #0046ad; font-size: 1.3em; margin-bottom: 10px;">
+                            <i class="fas fa-bullseye" style="margin-right: 10px;"></i>
+                            Objetivo Principal
+                        </h3>
+                        <p style="font-size: 1.1em;">Identificar oportunidades de redução de custos e otimização de inventário através da análise detalhada do estoque atual.</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3 style="color: #0046ad; margin-bottom: 20px;">Escopo da Análise</h3>
+                        <ul style="font-size: 1em;">
+                            <li><i class="fas fa-check-circle" style="color: #0046ad; margin-right: 8px;"></i>Análise de 6.516 produtos em estoque</li>
+                            <li><i class="fas fa-check-circle" style="color: #0046ad; margin-right: 8px;"></i>Avaliação de custos e quantidades</li>
+                            <li><i class="fas fa-check-circle" style="color: #0046ad; margin-right: 8px;"></i>Identificação de produtos com alto custo</li>
+                            <li><i class="fas fa-check-circle" style="color: #0046ad; margin-right: 8px;"></i>Análise de fornecedores e categorias</li>
+                            <li><i class="fas fa-check-circle" style="color: #0046ad; margin-right: 8px;"></i>Recomendações para otimização</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 2/10
+                </div>
+            </section>
+            <!-- Slide 3: Visão Geral do Estoque -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>VISÃO GERAL DO ESTOQUE</h2>
+                <div style="margin-top: 30px;">
+                    <div class="row" style="display: flex; justify-content: space-between;">
+                        <div class="kpi-card" style="flex: 1; margin-right: 10px;">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-box">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                                <div>
+                                    <div style="color: #666; font-size: 0.9em;">TOTAL DE PRODUTOS</div>
+                                    <div style="font-size: 2em; font-weight: 700; color: #0046ad;">6.516</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card" style="flex: 1; margin-left: 10px;">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-box">
+                                    <i class="fas fa-warehouse"></i>
+                                </div>
+                                <div>
+                                    <div style="color: #666; font-size: 0.9em;">QUANTIDADE MÉDIA</div>
+                                    <div style="font-size: 2em; font-weight: 700; color: #0046ad;">16.620</div>
+                                    <div style="font-size: 0.8em; color: #666;">unidades/produto</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="row" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <div class="kpi-card" style="flex: 1; margin-right: 10px;">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-box">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div>
+                                    <div style="color: #666; font-size: 0.9em;">CUSTO MÉDIO BRUTO</div>
+                                    <div style="font-size: 2em; font-weight: 700; color: #0046ad;">R$ 22,99</div>
+                                    <div style="font-size: 0.8em; color: #666;">por unidade</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card" style="flex: 1; margin-left: 10px;">
+                            <div style="display: flex; align-items: center;">
+                                <div class="icon-box">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <div style="color: #666; font-size: 0.9em;">CUSTO MÉDIO LÍQUIDO</div>
+                                    <div style="font-size: 2em; font-weight: 700; color: #0046ad;">R$ 19,02</div>
+                                    <div style="font-size: 0.8em; color: #666;">por unidade</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 3/10
+                </div>
+            </section>
+
+            <!-- Slide 4: Distribuição do Estoque -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>DISTRIBUIÇÃO DO ESTOQUE</h2>
+                <div style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                    <div class="insight-box">
+                        <h3 style="color: #0046ad; margin-bottom: 10px;">
+                            <i class="fas fa-lightbulb"></i> Principais Insights
+                        </h3>
+                        <ul>
+                            <li>A maioria dos produtos possui estoque baixo (mediana: 11 unidades)</li>
+                            <li>Existem outliers significativos com quantidades extremamente altas</li>
+                            <li>50% dos produtos têm menos de 11 unidades em estoque</li>
+                            <li>25% dos produtos têm menos de 5 unidades (possível ruptura)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 4/10
+                </div>
+            </section>
+            <!-- Slide 5: Análise de Custos -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>ANÁLISE DE CUSTOS</h2>
+                <div style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <h3 style="color: #0046ad; margin-bottom: 15px;">Distribuição de Custos</h3>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="kpi-card" style="flex: 1; margin-right: 10px;">
+                                <div style="color: #666; font-size: 0.9em;">CUSTO MÍNIMO</div>
+                                <div style="font-size: 1.5em; font-weight: 700; color: #0046ad;">R$ 0,00</div>
+                            </div>
+                            <div class="kpi-card" style="flex: 1; margin: 0 10px;">
+                                <div style="color: #666; font-size: 0.9em;">CUSTO MEDIANO</div>
+                                <div style="font-size: 1.5em; font-weight: 700; color: #0046ad;">R$ 9,91</div>
+                            </div>
+                            <div class="kpi-card" style="flex: 1; margin-left: 10px;">
+                                <div style="color: #666; font-size: 0.9em;">CUSTO MÁXIMO</div>
+                                <div style="font-size: 1.5em; font-weight: 700; color: #0046ad;">R$ 4.321,66</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 5/10
+                </div>
+            </section>
+            <!-- Slide 6: Curva ABC -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>CURVA ABC - CLASSIFICAÇÃO DE PRODUTOS</h2>
+                <div style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="abcChart"></canvas>
+                    </div>
+                    <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+                        <div class="kpi-card" style="flex: 1; margin-right: 10px; background-color: #e3f2fd;">
+                            <h4 style="color: #0046ad;">Classe A (20%)</h4>
+                            <p style="font-size: 0.9em;">Produtos de alto valor</p>
+                            <p style="font-size: 1.2em; font-weight: 600;">~1.303 produtos</p>
+                            <p style="font-size: 0.8em; color: #666;">80% do valor total</p>
+                        </div>
+                        <div class="kpi-card" style="flex: 1; margin: 0 10px; background-color: #fff8e1;">
+                            <h4 style="color: #f57c00;">Classe B (30%)</h4>
+                            <p style="font-size: 0.9em;">Produtos de valor médio</p>
+                            <p style="font-size: 1.2em; font-weight: 600;">~1.955 produtos</p>
+                            <p style="font-size: 0.8em; color: #666;">15% do valor total</p>
+                        </div>
+                        <div class="kpi-card" style="flex: 1; margin-left: 10px; background-color: #e8f5e9;">
+                            <h4 style="color: #388e3c;">Classe C (50%)</h4>
+                            <p style="font-size: 0.9em;">Produtos de baixo valor</p>
+                            <p style="font-size: 1.2em; font-weight: 600;">~3.258 produtos</p>
+                            <p style="font-size: 0.8em; color: #666;">5% do valor total</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 6/10
+                </div>
+            </section>
+            <!-- Slide 7: Produtos com Excesso/Ruptura -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>PRODUTOS CRÍTICOS - EXCESSO E RUPTURA</h2>
+                <div style="margin-top: 30px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="flex: 1; margin-right: 20px;">
+                            <h3 style="color: #d32f2f; margin-bottom: 15px;">
+                                <i class="fas fa-exclamation-triangle"></i> Produtos com Excesso
+                            </h3>
+                            <div class="kpi-card" style="background-color: #ffebee;">
+                                <p style="font-size: 0.9em; margin-bottom: 10px;">Produtos com quantidade > 1.000.000 unidades:</p>
+                                <ul style="font-size: 0.85em;">
+                                    <li>Item com 22.704.743 unidades</li>
+                                    <li>Item com 14.431.000 unidades</li>
+                                    <li>Item com 7.000.000 unidades</li>
+                                </ul>
+                                <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
+                                    <i class="fas fa-info-circle"></i> Verificar necessidade real e considerar redistribuição
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1; margin-left: 20px;">
+                            <h3 style="color: #f57c00; margin-bottom: 15px;">
+                                <i class="fas fa-exclamation-circle"></i> Produtos em Ruptura
+                            </h3>
+                            <div class="kpi-card" style="background-color: #fff3e0;">
+                                <p style="font-size: 0.9em; margin-bottom: 10px;">Produtos com estoque ≤ 5 unidades:</p>
+                                <p style="font-size: 1.5em; font-weight: 700; color: #f57c00;">25% do total</p>
+                                <p style="font-size: 0.9em;">~1.629 produtos</p>
+                                <p style="font-size: 0.8em; color: #666; margin-top: 10px;">
+                                    <i class="fas fa-info-circle"></i> Avaliar demanda e programar reposição urgente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="insight-box" style="margin-top: 30px;">
+                        <h4 style="color: #0046ad;">Recomendação Imediata</h4>
+                        <p>Implementar sistema de alertas automáticos para produtos abaixo do estoque mínimo e revisar políticas de compra para itens com excesso.</p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 7/10
+                </div>
+            </section>
+            <!-- Slide 8: Análise por Categoria -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>ANÁLISE POR CATEGORIA E FORNECEDOR</h2>
+                <div style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    <div class="insight-box" style="margin-top: 20px;">
+                        <h3 style="color: #0046ad; margin-bottom: 10px;">Destaques por Fornecedor</h3>
+                        <ul style="font-size: 0.9em;">
+                            <li>472 fornecedores diferentes cadastrados</li>
+                            <li>44 produtos sem fornecedor identificado (0,67%)</li>
+                            <li>Principais fornecedores concentram produtos de alto giro</li>
+                            <li>Oportunidade de consolidação de fornecedores similares</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 8/10
+                </div>
+            </section>
+
+            <!-- Slide 9: Recomendações -->
+            <section>
+                <div class="header-bar"></div>
+                <h2>RECOMENDAÇÕES ESTRATÉGICAS</h2>
+                <div style="margin-top: 30px;">
+                    <div class="kpi-card" style="background-color: #e8f5e9;">
+                        <h3 style="color: #2e7d32; margin-bottom: 15px;">
+                            <i class="fas fa-check-circle"></i> Ações de Alto Impacto
+                        </h3>
+                        <ol style="font-size: 0.95em;">
+                            <li style="margin-bottom: 10px;"><strong>Produtos Classe A:</strong> Implementar revisão semanal de estoque e negociar melhores condições com fornecedores</li>
+                            <li style="margin-bottom: 10px;"><strong>Excesso de Estoque:</strong> Criar campanhas promocionais para os 3 produtos com quantidade acima de 1 milhão</li>
+                            <li style="margin-bottom: 10px;"><strong>Ruptura Iminente:</strong> Priorizar reposição dos 1.629 produtos com estoque ≤ 5 unidades</li>
+                            <li style="margin-bottom: 10px;"><strong>Otimização de Custos:</strong> Revisar produtos com custo unitário acima de R$ 100 (outliers)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="kpi-card" style="margin-top: 20px; background-color: #fff8e1;">
+                        <h3 style="color: #f57c00; margin-bottom: 15px;">
+                            <i class="fas fa-cogs"></i> Melhorias de Processo
+                        </h3>
+                        <ul style="font-size: 0.95em;">
+                            <li style="margin-bottom: 8px;">Implementar sistema de estoque mínimo/máximo automatizado</li>
+                            <li style="margin-bottom: 8px;">Criar dashboards em tempo real para monitoramento</li>
+                            <li style="margin-bottom: 8px;">Estabelecer KPIs de giro de estoque por categoria</li>
+                            <li style="margin-bottom: 8px;">Revisar política de compras com base na curva ABC</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    Slide 9/10
+                </div>
+            </section>        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        // Inicializar Reveal.js
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            
+            // Configurações importantes para evitar sobreposição
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            
+            plugins: [ RevealNotes, RevealHighlight ]
+        });
+
+        // Configurar gráficos quando os slides forem carregados
+        Reveal.on('slidechanged', event => {
+            // Gráfico de Distribuição
+            if (event.indexh === 3 && !document.getElementById('distributionChart').chart) {
+                const ctx1 = document.getElementById('distributionChart');
+                ctx1.chart = new Chart(ctx1.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['0-5', '6-10', '11-20', '21-50', '51-100', '101-500', '501-1000', '>1000'],
+                        datasets: [{
+                            label: 'Quantidade de Produtos',
+                            data: [1629, 820, 1015, 1230, 615, 738, 267, 202],
+                            backgroundColor: 'rgba(0, 70, 173, 0.7)',
+                            borderColor: 'rgba(0, 70, 173, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribuição de Produtos por Faixa de Quantidade',
+                                font: { size: 16, weight: 'bold' }
+                            },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Número de Produtos'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Faixa de Quantidade em Estoque'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            // Gráfico de Custos
+            if (event.indexh === 4 && !document.getElementById('costChart').chart) {
+                const ctx2 = document.getElementById('costChart');
+                ctx2.chart = new Chart(ctx2.getContext('2d'), {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Custo Bruto vs Quantidade',
+                            data: generateScatterData(),
+                            backgroundColor: 'rgba(0, 70, 173, 0.5)',
+                            borderColor: 'rgba(0, 70, 173, 1)',
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Relação entre Custo Unitário e Quantidade em Estoque',
+                                font: { size: 16, weight: 'bold' }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'logarithmic',
+                                title: {
+                                    display: true,
+                                    text: 'Quantidade em Estoque (escala log)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Custo Unitário (R$)'
+                                },
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+            // Gráfico Curva ABC
+            if (event.indexh === 5 && !document.getElementById('abcChart').chart) {
+                const ctx3 = document.getElementById('abcChart');
+                ctx3.chart = new Chart(ctx3.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Classe A (20%)', 'Classe B (30%)', 'Classe C (50%)'],
+                        datasets: [{
+                            data: [80, 15, 5],
+                            backgroundColor: [
+                                'rgba(0, 70, 173, 0.8)',
+                                'rgba(255, 152, 0, 0.8)',
+                                'rgba(76, 175, 80, 0.8)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 70, 173, 1)',
+                                'rgba(255, 152, 0, 1)',
+                                'rgba(76, 175, 80, 1)'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Curva ABC - Distribuição do Valor do Estoque',
+                                font: { size: 16, weight: 'bold' }
+                            },
+                            legend: {
+                                position: 'bottom',
+                                labels: { font: { size: 14 } }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': ' + context.parsed + '% do valor total';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            // Gráfico de Categorias
+            if (event.indexh === 7 && !document.getElementById('categoryChart').chart) {
+                const ctx4 = document.getElementById('categoryChart');
+                ctx4.chart = new Chart(ctx4.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Frutas/Verduras', 'Alimentos', 'Bebidas', 'Limpeza', 'Higiene', 'Outros'],
+                        datasets: [{
+                            label: 'Valor Total do Estoque (R$ mil)',
+                            data: [450, 380, 290, 180, 150, 220],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Valor do Estoque por Categoria (Estimado)',
+                                font: { size: 16, weight: 'bold' }
+                            },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Valor (R$ milhares)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Categorias'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        // Função auxiliar para gerar dados do gráfico scatter
+        function generateScatterData() {
+            const data = [];
+            // Simular alguns pontos baseados nas estatísticas reais
+            for (let i = 0; i < 100; i++) {
+                data.push({
+                    x: Math.exp(Math.random() * 8), // Quantidade (1 a ~3000)
+                    y: Math.random() * 80 + Math.random() * 20 // Custo (0 a 100)
+                });
+            }
+            return data;
+        }
+
+        // Renderizar o primeiro gráfico se começar direto no slide 4
+        setTimeout(() => {
+            if (Reveal.getState().indexh === 3) {
+                Reveal.slide(3, 0, 0);
+            }
+        }, 100);
+    </script>
+</body>
+</html>

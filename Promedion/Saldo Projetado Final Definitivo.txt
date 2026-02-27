@@ -1,0 +1,138 @@
+Saldo Projetado Final Definitivo = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA], "")
+
+// 1. Determinar o último dia com transações REALIZADAS
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 2. Verificar se estamos em uma data para projeção
+VAR _IsDataParaProjecao = 
+    NOT(ISBLANK(_UltimoDiaRealizado)) && (_DataContexto > _UltimoDiaRealizado)
+
+// 3. Obter o TOTAL do último saldo real (ignorando TODOS os filtros, exceto EMPRESA)
+VAR _UltimoSaldoReal = 
+    IF(
+        _IsDataParaProjecao,
+        CALCULATE(
+            [Saldo Real Acumulado],
+            FILTER(
+                ALL('dCalendário'),
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            ),
+            ALL('Base de Dados'[FORN/CLIENTE]),
+            VALUES('Base de Dados'[EMPRESA])  // Mantém apenas o filtro de EMPRESA
+        )
+    )
+
+// 4. Verificar se estamos em um contexto de FORN/CLIENTE específico
+VAR _ContextoFornecedor = 
+    NOT(ISBLANK(SELECTEDVALUE('Base de Dados'[FORN/CLIENTE])))
+
+// 5. Calcular o fluxo de ENTRADAS projetadas acumuladas
+VAR _EntradasProjetadas = 
+    IF(
+        _IsDataParaProjecao,
+        // Se estiver em um contexto de fornecedor específico
+        IF(
+            _ContextoFornecedor,
+            // Calcular apenas para o fornecedor selecionado
+            CALCULATE(
+                SUM('Base de Dados'[REAL]),
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+                VALUES('Base de Dados'[FORN/CLIENTE]), // Mantém o filtro de fornecedor atual
+                VALUES('Base de Dados'[EMPRESA]),      // Mantém o filtro de empresa atual
+                REMOVEFILTERS('dCalendário')
+            ),
+            // Senão, calcular o total para a empresa
+            CALCULATE(
+                SUM('Base de Dados'[REAL]),
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+                VALUES('Base de Dados'[EMPRESA]),      // Mantém o filtro de empresa atual
+                ALL('Base de Dados'[FORN/CLIENTE]),    // Remove filtro de fornecedor
+                REMOVEFILTERS('dCalendário')
+            )
+        )
+    )
+
+// 6. Calcular o fluxo de SAÍDAS projetadas acumuladas
+VAR _SaidasProjetadas = 
+    IF(
+        _IsDataParaProjecao,
+        // Se estiver em um contexto de fornecedor específico
+        IF(
+            _ContextoFornecedor,
+            // Calcular apenas para o fornecedor selecionado
+            CALCULATE(
+                ABS(SUM('Base de Dados'[REAL])),
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+                VALUES('Base de Dados'[FORN/CLIENTE]), // Mantém o filtro de fornecedor atual
+                VALUES('Base de Dados'[EMPRESA]),      // Mantém o filtro de empresa atual
+                REMOVEFILTERS('dCalendário')
+            ),
+            // Senão, calcular o total para a empresa
+            CALCULATE(
+                ABS(SUM('Base de Dados'[REAL])),
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+                VALUES('Base de Dados'[EMPRESA]),      // Mantém o filtro de empresa atual
+                ALL('Base de Dados'[FORN/CLIENTE]),    // Remove filtro de fornecedor
+                REMOVEFILTERS('dCalendário')
+            )
+        )
+    )
+
+// 7. Verificar se há alguma transação projetada
+VAR _TemProjecoes = 
+    IF(
+        _IsDataParaProjecao,
+        OR(
+            NOT(ISBLANK(_EntradasProjetadas)),
+            NOT(ISBLANK(_SaidasProjetadas))
+        ),
+        FALSE()
+    )
+
+// 8. Cálculo final - diferencia entre visualização total e detalhamento por fornecedor
+RETURN
+    IF(
+        NOT(_IsDataParaProjecao),
+        BLANK(),  // Se não for data para projeção, não mostra nada
+        IF(
+            _ContextoFornecedor,
+            // Para linhas específicas de fornecedor/cliente, mostrar apenas os valores deste fornecedor
+            IF(
+                CALCULATE(
+                    COUNTROWS('Base de Dados'),
+                    'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                    'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                    'Base de Dados'[STATUS] = "Em aberto",
+                    VALUES('Base de Dados'[FORN/CLIENTE])
+                ) > 0,
+                // Se o fornecedor tem transações futuras, mostra seu valor específico
+                (_EntradasProjetadas - _SaidasProjetadas),
+                BLANK()  // Se o fornecedor não tem transações futuras, não mostra nada
+            ),
+            // Para linhas de total ou quando não há fornecedor específico, mostrar o saldo total
+            IF(
+                _TemProjecoes,
+                _UltimoSaldoReal + COALESCE(_EntradasProjetadas, 0) - COALESCE(_SaidasProjetadas, 0),
+                _UltimoSaldoReal
+            )
+        )
+    )

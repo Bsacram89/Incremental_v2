@@ -1,0 +1,55 @@
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes
+        )
+    )
+
+// Calcula as entradas desde o início do mês até a data atual
+VAR _EntradasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" &&
+            'Base de Dados'[STATUS] = "Recebido" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        ),
+        ALL('dCalendário')
+    )
+
+// Calcula as saídas desde o início do mês até a data atual
+VAR _SaidasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" &&
+            'Base de Dados'[STATUS] = "Pago" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        ),
+        ALL('dCalendário')
+    )
+
+// Calcula o saldo final (inicial + entradas - saídas)
+RETURN
+    IF(
+        ISBLANK(_SaldoInicialMes),
+        BLANK(),  // Se não houver saldo inicial, retorna em branco
+        _SaldoInicialMes + _EntradasAcumuladas - _SaidasAcumuladas
+    )

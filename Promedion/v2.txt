@@ -1,0 +1,80 @@
+Saldo Final Acumulado = 
+
+// 1. Capturar empresa do contexto
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// 2. Determinar o último dia com transações realizadas
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        FILTER(
+            ALL('Base de Dados'[STATUS]),
+            'Base de Dados'[STATUS] IN {"Pago", "Recebido"}
+        ),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 3. Verificar se é uma data futura
+VAR _IsDataFutura = _DataContexto > _UltimoDiaRealizado
+
+// 4. Obter o último saldo calculado da tabela Saldos
+VAR _UltimoSaldoCalculado = 
+    CALCULATE(
+        MAX(Saldos[Saldo Final]),
+        Saldos[EMPRESAS] = _Empresa
+    )
+
+// 5. Calcular as entradas projetadas acumuladas até a data do contexto (apenas para datas futuras)
+VAR _EntradasProjetadas = 
+    IF(
+        _IsDataFutura,
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            FILTER(
+                ALL('Base de Dados'),
+                'Base de Dados'[EMPRESA] = _Empresa &&
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" &&
+                'Base de Dados'[STATUS] = "Em aberto" &&
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado &&
+                'Base de Dados'[VENCIMENTO] <= _DataContexto
+            ),
+            ALL('dCalendário')
+        ),
+        0
+    )
+
+// 6. Calcular as saídas projetadas acumuladas até a data do contexto (apenas para datas futuras)
+VAR _SaidasProjetadas = 
+    IF(
+        _IsDataFutura,
+        CALCULATE(
+            ABS(SUM('Base de Dados'[REAL])),
+            FILTER(
+                ALL('Base de Dados'),
+                'Base de Dados'[EMPRESA] = _Empresa &&
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" &&
+                'Base de Dados'[STATUS] = "Em aberto" &&
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado &&
+                'Base de Dados'[VENCIMENTO] <= _DataContexto
+            ),
+            ALL('dCalendário')
+        ),
+        0
+    )
+
+// 7. Verificar se existem transações projetadas 
+VAR _TemTransacoesProjetadas = _EntradasProjetadas > 0 || _SaidasProjetadas > 0
+
+// 8. Retornar o saldo projetado final
+RETURN
+    IF(
+        NOT(_IsDataFutura),
+        BLANK(),  // Para datas não futuras, retorna em branco
+        IF(
+            _TemTransacoesProjetadas,
+            _UltimoSaldoCalculado + _EntradasProjetadas - _SaidasProjetadas,  // Saldo projetado com transações
+            _UltimoSaldoCalculado  // Apenas o último saldo conhecido
+        )
+    )

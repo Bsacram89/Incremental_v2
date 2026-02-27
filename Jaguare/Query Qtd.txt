@@ -1,0 +1,64 @@
+let
+    Fonte = Folder.Files("G:\Drives compartilhados\Incremental\Clientes Atuais\Jaguare\Dados de Produção"),
+    #"Linhas Filtradas2" = Table.SelectRows(Fonte, let latest = List.Max(Fonte[Date created]) in each [Date created] = latest),
+    Attributes = Table.SelectRows(#"Linhas Filtradas2", each [Attributes]?[Hidden]? <> true),
+    Base = Table.AddColumn(Attributes, "Personalizar", each let 
+getdistinctPositions = 
+
+( CurrentFile as binary ) => // File in the current row of the table
+
+    let
+        Source = Excel.Workbook(CurrentFile),
+        Sheet1_Sheet = Source{[Item="Resultado",Kind="Sheet"]}[Data],
+        PromoteHeaders = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+    in
+        PromoteHeaders
+    in 
+
+  getdistinctPositions ([Content]))[[Personalizar]],
+    #"Personalizar Expandido" = Table.ExpandTableColumn(Base, "Personalizar", {"Conjunto", "OP", "PecasPorConjunto_Und", "DtInspecaoFinal", "QtdNaExpedicao_Und", "QtdExpedida_Und", "PerdaProdXExp_Und", "SaldoExp_Und", "NomeMaquina", "InicioProd", "OFAbertaFechada", "InicioProdOnd", "Papel1", "PesoOndPapel1", "Papel2", "PesoOndPapel2", "Papel3", "PesoOndPapel3", "Papel4", "PesoOndPapel4", "Papel5", "PesoOndPapel5", "Papel6", "PesoOndPapel6", "Pedido"}, {"Conjunto", "OP", "PecasPorConjunto_Und", "DtInspecaoFinal", "QtdNaExpedicao_Und", "QtdExpedida_Und", "PerdaProdXExp_Und", "SaldoExp_Und", "NomeMaquina", "InicioProd", "OFAbertaFechada", "InicioProdOnd", "Papel1", "PesoOndPapel1", "Papel2", "PesoOndPapel2", "Papel3", "PesoOndPapel3", "Papel4", "PesoOndPapel4", "Papel5", "PesoOndPapel5", "Papel6", "PesoOndPapel6", "Pedido"}),
+    #"Personalização Adicionada" = Table.AddColumn(#"Personalizar Expandido", "QtdExpedida", each [QtdExpedida_Und] + [PerdaProdXExp_Und] +[SaldoExp_Und]),
+    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Conjunto", "OP", "PecasPorConjunto_Und", "DtInspecaoFinal", "QtdNaExpedicao_Und", "NomeMaquina", "InicioProd", "OFAbertaFechada", "InicioProdOnd", "Papel1", "PesoOndPapel1", "Papel2", "PesoOndPapel2", "Papel3", "PesoOndPapel3", "Papel4", "PesoOndPapel4", "Papel5", "PesoOndPapel5", "Papel6", "PesoOndPapel6", "Pedido", "QtdExpedida"}),
+    #"Coluna Condicional Adicionada2" = Table.AddColumn(#"Outras Colunas Removidas", "Reajuste", each if Text.EndsWith([OP], "R") then "Reajuste" else null),
+    #"Valor Substituído" = Table.ReplaceValue(#"Coluna Condicional Adicionada2","NULL",null,Replacer.ReplaceValue,{"Conjunto", "InicioProdOnd", "Papel1", "Papel2", "Papel3", "Papel4", "Papel5", "Papel6", "Pedido",  "PesoOndPapel1", "PesoOndPapel2", "PesoOndPapel3", "PesoOndPapel4", "PesoOndPapel5", "PesoOndPapel6",  "QtdNaExpedicao_Und" }),
+    #"Outras Colunas Não Dinâmicas1" = Table.UnpivotOtherColumns(#"Valor Substituído", {"Pedido",  "InicioProdOnd", "InicioProd", "QtdExpedida","NomeMaquina", "QtdNaExpedicao_Und",  "Conjunto", "OFAbertaFechada","DtInspecaoFinal", "OP","PecasPorConjunto_Und","Reajuste"}, "Atributo", "Valor"),
+    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Outras Colunas Não Dinâmicas1", "Nome Papel", each if Text.StartsWith([Atributo], "Papel") then [Valor] else null),
+    #"Preenchido Abaixo" = Table.FillDown(#"Coluna Condicional Adicionada",{"Nome Papel"}),
+    #"Linhas Filtradas1" = Table.SelectRows(#"Preenchido Abaixo", each ([Valor] <> 0) and ([Atributo] = "PesoOndPapel1" or [Atributo] = "PesoOndPapel2" or [Atributo] = "PesoOndPapel3" or [Atributo] = "PesoOndPapel4" or [Atributo] = "PesoOndPapel5" or [Atributo] = "PesoOndPapel6")),
+    #"Tipo Alterado" = Table.TransformColumnTypes(Table.AddColumn(Table.TransformColumns(#"Linhas Filtradas1",{{"InicioProdOnd",each Date.From(DateTimeZone.From(_)), type datetime}}), "Data", each Text.PadStart(Text.From(Date.Month([InicioProdOnd])), 2, "0") & "/" & Text.From(Date.Year([InicioProdOnd]))),{{"Data", type date}}),
+    Personalizar3 = Table.NestedJoin(#"Tipo Alterado", {"Data", "Nome Papel"}, PreçoPapel, {"Name", "Papel"}, "PreçoPapel", JoinKind.LeftOuter),
+    #"PreçoPapel Expandido1" = Table.ExpandTableColumn(Personalizar3, "PreçoPapel", {"Custo"}, {"Custo"}),
+    #"Multiplicação Inserida" = Table.AddColumn(#"PreçoPapel Expandido1", "Multiplicação", each [Valor] * [Custo], type number)[[DtInspecaoFinal],[Reajuste],[OFAbertaFechada],[Conjunto],[Pedido],[Multiplicação]],
+    Data = #"Coluna Condicional Adicionada2",
+    #"Linhas Filtradas3" = Table.SelectRows(Data, each ([NomeMaquina] = "FACÃOZINHO" or [NomeMaquina] = "ONDULADEIRA")),
+    Personalizar1 = Table.Combine({#"Linhas Filtradas3",#"Multiplicação Inserida"}),
+    #"Linhas Agrupadas" = Table.Group(Personalizar1, {"DtInspecaoFinal", "OFAbertaFechada", "Conjunto", "Pedido", "Reajuste"}, {{"Peças", each List.Sum([PecasPorConjunto_Und]), type nullable number}, {"Qtd", each List.Sum([QtdExpedida]), type nullable number}, {"QtdProd", each List.Sum([QtdNaExpedicao_Und]), type nullable number}, {"Preço Papel", each List.Sum([Multiplicação]), type nullable number}}),
+    #"Divisão Inserida1" = Table.AddColumn(Table.AddColumn(#"Linhas Agrupadas", "QtdProdutida", each [Qtd] / [#"Peças"], type number), "QtdProg", each [QtdProd] / [#"Peças"], type number),
+    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Divisão Inserida1",{{"Conjunto", Int64.Type}, {"Pedido", type text}, {"OFAbertaFechada", type text}}),
+    Personalizar2 = Table.AddColumn(#"Tipo Alterado2", "Custo Proporcional", each let 
+            qtd = [QtdProdutida],
+            qtdProd = [QtdProg],
+            precoPapel = [#"Preço Papel"],
+            custoProporcional = 
+                if [OFAbertaFechada] = "Aberta" 
+                then if qtdProd <> 0 and qtd <> 0 
+                     then (qtd / qtdProd) * (precoPapel / qtd) 
+                     else null
+                else if qtdProd <> 0 and qtd <> 0 
+                     then (qtd / qtdProd) * (precoPapel / qtd) 
+                     else null
+        in
+            custoProporcional),
+    #"Divisão Inserida" = Table.AddColumn(
+    Personalizar2, 
+    "Divisão", 
+    each if [QtdProdutida] <> 0 
+         then [#"Preço Papel"] / [QtdProdutida]
+         else null, 
+    type number
+),
+    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Divisão Inserida", "Custo", each if [OFAbertaFechada] = "OF Aberta" then [Custo Proporcional] else [Divisão] , type number)[[DtInspecaoFinal],[Conjunto],[Pedido],[QtdProg],[QtdProdutida],[#"Preço Papel"],[Custo],[Custo Proporcional]],
+    #"Data Analisada" = Table.TransformColumns(#"Coluna Condicional Adicionada1",{{"DtInspecaoFinal", each Date.From(DateTimeZone.From(_)), type date}}),
+    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Data Analisada",{{"Custo Proporcional", type number}})
+in
+    #"Tipo Alterado1"

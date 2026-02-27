@@ -1,0 +1,110 @@
+{
+  "task_id": "20250626_163344",
+  "timestamp": "2025-06-26T16:33:44.420958",
+  "data_sources": [
+    {
+      "source": "Excel file download",
+      "url": "https://page1.genspark.site/get_upload_url/debef0ea0d6e1628eb0af4f03a1e2a665078b4082478f244177647d35ed05b45/default/279bb5c3-3f33-42c4-af99-e43683321dd0",
+      "method": "GET",
+      "status": "success",
+      "file_size": 662468,
+      "records_extracted": 6539
+    }
+  ],
+  "extraction_attempts": [
+    {
+      "timestamp": "2025-06-26T16:33:44.605236",
+      "url": "https://page1.genspark.site/get_upload_url/debef0ea0d6e1628eb0af4f03a1e2a665078b4082478f244177647d35ed05b45/default/279bb5c3-3f33-42c4-af99-e43683321dd0",
+      "headers_config": 1,
+      "status": "success",
+      "method": "GET"
+    }
+  ],
+  "success_count": 1,
+  "failure_count": 0,
+  "processing_phases": [
+    {
+      "phase": "file_download_and_analysis",
+      "timestamp": "2025-06-26T16:33:46.542772",
+      "records_processed": 6539,
+      "columns_identified": 10,
+      "output_files": [
+        "stock_data_raw.csv",
+        "exploratory_analysis.json",
+        "Relatorio_estoque.xlsx"
+      ]
+    },
+    {
+      "phase": "data_cleaning_and_structuring",
+      "timestamp": "2025-06-26T16:35:15.043468",
+      "input_dimensions": {
+        "rows": 6540,
+        "columns": 10
+      },
+      "output_dimensions": {
+        "rows": 6537,
+        "columns": 10
+      },
+      "header_row_identified": 0,
+      "numeric_columns": [
+        "1",
+        "2",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "text_columns": [
+        "0",
+        "3"
+      ],
+      "data_completeness": 89.66192443016674,
+      "output_files": [
+        "/home/user/output/stock_data_cleaned.csv",
+        "/home/user/output/stock_data_cleaned.xlsx",
+        "/home/user/output/data_dictionary.json"
+      ]
+    },
+    {
+      "phase": "column_identification_and_restructuring",
+      "timestamp": "2025-06-26T16:36:48.622853",
+      "columns_mapped": 10,
+      "numeric_columns_identified": 7,
+      "text_columns_identified": 3,
+      "data_completeness": 89.66192443016674,
+      "key_columns_found": {
+        "produto": [],
+        "codigo": [],
+        "quantidade": [],
+        "valor": [],
+        "fornecedor": [],
+        "categoria": []
+      },
+      "output_files": [
+        "/home/user/output/stock_data_final.csv",
+        "/home/user/output/stock_data_final.xlsx",
+        "/home/user/output/final_data_dictionary.json",
+        "/home/user/output/numeric_statistics.csv"
+      ]
+    },
+    {
+      "phase": "systematic_excel_analysis_and_extraction",
+      "timestamp": "2025-06-26T16:38:27.409408",
+      "source_sheet": "report",
+      "header_row_identified": 23,
+      "columns_mapped": 10,
+      "final_dimensions": {
+        "rows": 6516,
+        "columns": 10
+      },
+      "data_completeness": 99.91405770411296,
+      "output_files": [
+        "/home/user/output/stock_data_structured.csv",
+        "/home/user/output/stock_data_structured.xlsx",
+        "/home/user/output/stock_extraction_report.json"
+      ]
+    }
+  ]
+}

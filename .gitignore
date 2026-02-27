@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Credenciais e secrets Google Cloud
+*-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.json
+Codgos/DEPRECATED/incremental-409513-4eabd58e1b18.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

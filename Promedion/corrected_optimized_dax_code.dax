@@ -1,0 +1,66 @@
+```dax
+Saldo Projetado Otimizado Corrigido = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// Determinar o último dia com transações realizadas (calculado uma vez fora do contexto da data atual do visual)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ),
+        'Base de Dados'[STATUS] = "Pago",
+        REMOVEFILTERS ( 'dCalendário' ) // Garante que pegamos a última data paga geral
+    )
+
+// Calcula variáveis auxiliares necessárias *apenas* se a data atual for posterior à última data real.
+// Estas variáveis são calculadas ANTES do RETURN principal.
+
+VAR _UltimoSaldoReal = 
+    IF( _DataContexto > _UltimoDiaRealizado, // Só calcula se for data futura
+        CALCULATE (
+            [Saldo Real Acumulado], // Depende da otimização desta medida também
+            'dCalendário'[Date] = _UltimoDiaRealizado
+            // Pode precisar de REMOVEFILTERS/ALL aqui dependendo de como [Saldo Real Acumulado] é definida
+        )
+    )
+
+VAR _NetProjetadoAcumulado = 
+    IF( _DataContexto > _UltimoDiaRealizado, // Só calcula se for data futura
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), // Assume que SAÍDAS têm valor negativo em [REAL]
+            FILTER (
+                ALL ( 'dCalendário'[Date] ), // Itera sobre todas as datas para aplicar o filtro de período
+                'dCalendário'[Date] > _UltimoDiaRealizado &&
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS ( 'Base de Dados'[STATUS] = "Em aberto" ) // Mantém outros filtros e adiciona o de status
+            // Assume-se que existe uma relação entre 'dCalendário'[Date] e 'Base de Dados'[VENCIMENTO]
+        )
+    )
+
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( _DataContexto > _UltimoDiaRealizado, // Só verifica se for data futura
+        CALCULATE (
+            COUNTROWS ( 'Base de Dados' ),
+            FILTER (
+                ALL ( 'dCalendário'[Date] ),
+                'dCalendário'[Date] > _UltimoDiaRealizado &&
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS ( 'Base de Dados'[STATUS] = "Em aberto" )
+        ) > 0,
+        FALSE() // Se não for data futura, não há transações projetadas relevantes
+    )
+
+// Retorna o resultado final
+RETURN
+    IF (
+        _TemTransacaoProjetadaNoPeriodo, // A condição _DataContexto > _UltimoDiaRealizado já está implícita aqui
+        _UltimoSaldoReal + COALESCE(_NetProjetadoAcumulado, 0), // Usa COALESCE para tratar possível BLANK na soma
+        BLANK()
+    )
+```
+
+**Explicação da Correção:**
+
+The original error "A sintaxe de 'IF' está incorreta" occurred because variables (`VAR`) were being declared inside the `ResultIfFalse` part of the main `IF` statement. In DAX, all `VAR` declarations for a specific scope must be made before the `RETURN` statement of that scope.
+
+This corrected version moves the calculation of `_UltimoSaldoReal`, `_NetProjetadoAcumulado`, and `_TemTransacaoProjetadaNoPeriodo` *before* the final `RETURN`. It uses `IF` conditions within these variable definitions to ensure they are only calculated when necessary (when `_DataContexto > _UltimoDiaRealizado`). The final `RETURN` statement then simply uses these pre-calculated variables in its logic, resolving the syntax error.

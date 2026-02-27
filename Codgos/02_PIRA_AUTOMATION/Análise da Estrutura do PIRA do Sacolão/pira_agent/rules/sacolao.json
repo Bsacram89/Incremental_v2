@@ -1,0 +1,424 @@
+{
+  "client": "sacolao",
+  "rules": [
+    {
+      "sheet": "R2_Análise Resul Acumulado",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R3_QGA Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R3.1_QGA Seção Análise",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R5_Vendas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R6_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R7_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R8_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R9_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R10_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R11_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R12_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R13_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R14_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R15_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R16_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R17_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R18_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R19_Vendas por Seção",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "Resul Acum Tudo da Santa",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R26_Despesas Fixas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R27_ Evolução das Despesas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R28_ Evolução das Despesas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R29_ Evolução das Despesas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "R32_ Evolução das Despesas",
+      "operations": [
+        {
+          "type": "process_r2_analise",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "sheet": "Despesa Caixa",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "A2:S4000"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E1_BDT_Original I",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D4:D14"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "G4:G14"
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "D72:E72",
+            "destination": "D70:E70",
+            "clear_source": true
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E2_CR_Estoques_CP",
+      "operations": [
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E7:F7",
+            "destination": "E36:F36",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E10:F24",
+            "destination": "E39:F52",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "J10:J24",
+            "destination": "J39:J53",
+            "clear_source": true
+          }
+        },
+        {
+          "type": "copy_range",
+          "params": {
+            "source": "E28:F29",
+            "destination": "E55:F56",
+            "clear_source": true
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E3_Salarios",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D5:D24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "G5:I24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K5:N24"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "P5:S24"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E4_Entradas e Saídas de Estoque",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "E6"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "F13:G27"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E5_Impostos",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D5:D6"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": " E6_Fat Por Seção",
+      "operations": [
+        {
+          "type": "clear_range_except",
+          "params": {
+            "range": "D4:G19",
+            "exceptions": ["F10", "F18"]
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D28:G35"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K8:K9"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": " E7_Fat Estação da Santa",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "B4:G67"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K4:K6"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": " E6_Faturamento Da Chef",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D4:G19"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "D28:G35"
+          }
+        },
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "K8:K9"
+          }
+        }
+      ]
+    },
+    {
+      "sheet": "E16_Inf.Gerais",
+      "operations": [
+        {
+          "type": "update_inf_gerais",
+          "params": {}
+        }
+      ]
+    }
+  ]
+}

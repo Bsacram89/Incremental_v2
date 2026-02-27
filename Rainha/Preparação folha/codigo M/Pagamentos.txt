@@ -1,0 +1,36 @@
+let
+    Fonte = Folder.Files("G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2025\Maio\folha"),
+    Personalizar1 = Table.SelectRows(Fonte, each ([Attributes]?[Hidden]? <> true)),
+    #"Linhas Filtradas" = Table.SelectRows(Personalizar1, each Text.Contains([Name], "não")),
+    #"Personalização Adicionada" = Table.AddColumn(#"Linhas Filtradas", "Personalizar", each Excel.Workbook([Content])),
+    #"Outras Colunas Removidas" = Table.SelectColumns(#"Personalização Adicionada",{"Personalizar"}),
+    #"Personalizar Expandido1" = Table.ExpandTableColumn(#"Outras Colunas Removidas", "Personalizar", {"Data", "Item", "Kind"}, {"Data", "Item", "Kind"}),
+    #"Personalização Adicionada1" = Table.AddColumn(#"Personalizar Expandido1", "Personalizar.1", each let 
+
+dados =
+
+(Tabela)=>
+
+let  
+
+    Removerlinhas = Table.Skip(Tabela,1),
+    
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Removerlinhas, [PromoteAllScalars=true])
+
+in  
+
+#"Cabeçalhos Promovidos"
+
+in  
+
+dados([Data])),
+    #"Linhas Filtradas2" = Table.SelectRows(#"Personalização Adicionada1", each ([Kind] = "Sheet"))[[Personalizar.1]],
+    #"Personalizar.1 Expandido" = Table.ExpandTableColumn(#"Linhas Filtradas2", "Personalizar.1", {"Nome", "Função", "Razão Social", "Alocação", "TOTAL"}, {"Nome", "Função", "Razão Social", "Alocação", "TOTAL"}),
+    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalizar.1 Expandido",{{"TOTAL", "LIQUIDO A RECEBER"}}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Nome", type text}, {"Função", type text}, {"Razão Social", type text}, {"Alocação", type text},  {"LIQUIDO A RECEBER", type number}}),
+    #"Texto Aparado" = Table.TransformColumns(#"Tipo Alterado",{{"Nome", Text.Trim, type text}}),
+    #"Linhas Agrupadas" = Table.Group(#"Texto Aparado", {"Nome", "Função", "Razão Social", "Alocação"}, {{"Valor Pago", each List.Sum([LIQUIDO A RECEBER]), type nullable number}}),
+    #"Linhas Classificadas" = Table.Sort(#"Linhas Agrupadas",{{"Nome", Order.Ascending}}),
+    #"Linhas Filtradas1" = Table.SelectRows(#"Linhas Classificadas", each ([Nome] <> null and [Nome] <> "TOTAL" and [Nome] <> "VALOR TOTAL"))
+in
+    #"Linhas Filtradas1"

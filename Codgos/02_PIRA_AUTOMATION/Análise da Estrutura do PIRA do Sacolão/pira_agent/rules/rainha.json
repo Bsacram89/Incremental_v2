@@ -1,0 +1,17 @@
+{
+  "client": "rainha",
+  "rules": [
+    {
+      "sheet": "E1_EntradaDadosRainha",
+      "operations": [
+        {
+          "type": "clear_range",
+          "params": {
+            "range": "A1:Z100" 
+          }
+        }
+      ]
+    }
+    
+  ]
+}

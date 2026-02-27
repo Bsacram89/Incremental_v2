@@ -1,0 +1,88 @@
+```dax
+Saldo Projetado Final V3 = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            FILTER(
+                ALL('dCalendário'), // Corrigido: Usar nome da tabela
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            )
+        )
+    )
+
+// 4. Calcular o *ACUMULADO LÍQUIDO* de todas as transações PROJETADAS (NOVA ABORDAGEM)
+//    desde o dia SEGUINTE a _UltimoDiaRealizado ATÉ a data atual (_DataContexto).
+//    Filtra a tabela 'Base de Dados' diretamente pelo intervalo de VENCIMENTO.
+VAR _NetProjetadoAcumulado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ), // Assume SAÍDAS já são negativas
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, // Filtro direto na data de vencimento
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,     // Filtro direto na data de vencimento
+            'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }, // Filtro direto no status
+            REMOVEFILTERS('dCalendário') // Remove filtros da tabela de calendário para evitar conflitos
+        )
+    )
+
+// 5. Calcular o saldo projetado bruto (será BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_NetProjetadoAcumulado, 0)
+    )
+
+// 6. Verificar se houve transações projetadas NO PERÍODO TOTAL até a data atual
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_NetProjetadoAcumulado)),
+        FALSE()
+    )
+
+// 7. RETURN final baseado nas variáveis pré-calculadas
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, 
+        BLANK(),
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, 
+            _SaldoProjetadoCalculado, 
+            _UltimoSaldoReal // Ou BLANK() se preferir não mostrar nada até a primeira projeção
+        )
+    )
+```
+
+**Explicação da Nova Abordagem (V3):**
+
+O problema de acumulação que você identificou com a medida de diagnóstico indica que a forma anterior de calcular o `_NetProjetadoAcumulado` usando `FILTER(ALL('dCalendário'[Date]), ...)` não estava funcionando como esperado no contexto linha a linha.
+
+Nesta nova versão (`Saldo Projetado Final V3`), a principal mudança está na variável `_NetProjetadoAcumulado`:
+
+*   **Filtro Direto na Tabela Fato:** Em vez de filtrar a tabela de calendário e esperar que o filtro se propague, agora filtramos a tabela `Base de Dados` diretamente usando as condições:
+    *   `'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado`
+    *   `'Base de Dados'[VENCIMENTO] <= _DataContexto`
+    *   `'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }`
+*   **`REMOVEFILTERS('dCalendário')`:** Adicionamos isso para garantir que qualquer filtro de data vindo do contexto do visual seja removido, permitindo que nosso filtro direto pelo intervalo de `[VENCIMENTO]` funcione corretamente para calcular o acumulado.
+
+Essa abordagem de filtrar diretamente a tabela fato pelo intervalo de datas desejado costuma ser mais robusta para cálculos de acumulado.
+
+Mantive a estrutura linear para evitar os erros de sintaxe.
+
+Por favor, teste esta versão `Saldo Projetado Final V3`. Espero que ela finalmente resolva o problema de acumulação e calcule os saldos projetados corretamente.

@@ -1,0 +1,66 @@
+```dax
+Saldo Projetado Final V8 = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Último dia realizado (mesma lógica)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Condição de saída
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Último Saldo Real TOTAL (ignora FORN/CLIENTE, etc.)
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            'dCalendário'[Date] = _UltimoDiaRealizado,
+            REMOVEFILTERS('Base de Dados'[FORN/CLIENTE]),
+            REMOVEFILTERS('Base de Dados'[EMPRESA]) // Adicione outros REMOVEFILTERS se necessário
+        )
+    )
+
+// 4. Calcular o ACUMULADO usando a tabela Resumo Projecao Diaria
+VAR _NetProjetadoAcumulado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE(
+            SUM('Resumo Projecao Diaria'[Valor Liquido Projetado Dia]),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado &&
+                'dCalendário'[Date] <= _DataContexto
+            )
+            // Não precisa mais de REMOVEFILTERS aqui, pois a tabela resumo já é agregada
+        )
+    )
+
+// 5. Saldo Projetado Bruto
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_NetProjetadoAcumulado, 0)
+    )
+
+// 6. Tem transação no período?
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_NetProjetadoAcumulado)),
+        FALSE()
+    )
+
+// 7. RETURN final
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, 
+        BLANK(),
+        IF(
+            _TemTransacaoProjetadaNoPeriodo, 
+            _SaldoProjetadoCalculado, 
+            _UltimoSaldoReal 
+        )
+    )
+```

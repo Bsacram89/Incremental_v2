@@ -1,0 +1,81 @@
+{
+  "arquivos_obrigatorios": {
+    "fenix": {
+      "pattern": "*FENIX*.xlsx",
+      "alias": "FOLHA_FENIX",
+      "sheets_esperadas": ["Report"],
+      "colunas_criticas": ["Column1", "Column2", "Column3"],
+      "descricao": "Folha de pagamento da empresa Fenix"
+    },
+    "genesis": {
+      "pattern": "*GENESIS*.xlsx", 
+      "alias": "FOLHA_GENESIS",
+      "sheets_esperadas": ["Report"],
+      "colunas_criticas": ["Column1", "Column2", "Column3"],
+      "descricao": "Folha de pagamento da empresa Genesis"
+    },
+    "alocacoes": {
+      "pattern": "*Alocações*.xlsx",
+      "alias": "ALOCACOES",
+      "sheets_esperadas": ["ALOCAÇÃO MAIO"],
+      "colunas_criticas": ["NOME", "FUNÇÃO", "ALOCAÇAO"],
+      "descricao": "Dados de alocação de funcionários por projeto"
+    },
+    "extrato": {
+      "pattern": "*Extrato*.xlsx",
+      "alias": "EXTRATO_MENSAL",
+      "sheets_esperadas": ["Extrato Mensal"],
+      "colunas_criticas": ["Column1", "Column2"],
+      "descricao": "Extratos mensais individuais dos funcionários"
+    },
+    "gratificacao": {
+      "pattern": "*Gratificação*.xlsx",
+      "alias": "GRATIFICACAO",
+      "sheets_esperadas": [],
+      "colunas_criticas": ["COLABORADOR", "Gratificação"],
+      "descricao": "Dados de gratificações e bonificações"
+    },
+    "nao_contabil": {
+      "pattern": "*não contábil*.xlsx",
+      "alias": "NAO_CONTABIL",
+      "sheets_esperadas": [],
+      "colunas_criticas": [],
+      "descricao": "Dados complementares não contábeis"
+    }
+  },
+  "validacoes": {
+    "tamanho_minimo_kb": 10,
+    "linhas_minimas": 5,
+    "encoding_aceitos": ["utf-8", "latin-1", "cp1252"],
+    "extensoes_permitidas": [".xlsx", ".xls"],
+    "max_idade_arquivo_dias": 30
+  },
+  "mapeamento_funcionarios": {
+    "comentario": "Mapeamento CPF -> Código de funcionário",
+    "mapeamentos": {
+      "12728617769": "000160",
+      "10897706606": "000161", 
+      "12666986766": "000170"
+    },
+    "codigos_especiais": {
+      "000001": "Funcionário teste 1",
+      "000002": "Funcionário teste 2",
+      "000008": "Funcionário desligado",
+      "000009": "Funcionário afastado"
+    }
+  },
+  "pastas": {
+    "entrada": "Base de Dados",
+    "saida": "Base pronta",
+    "backup": "backup",
+    "logs": "logs",
+    "temp": "temp",
+    "resultados": "resultados"
+  },
+  "processamento": {
+    "criar_backup_automatico": true,
+    "validar_antes_processar": true,
+    "gerar_relatorios_detalhados": true,
+    "salvar_logs_completos": true
+  }
+}

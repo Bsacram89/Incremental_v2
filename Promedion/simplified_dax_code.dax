@@ -1,0 +1,90 @@
+```dax
+Saldo Projetado Simplificado = 
+VAR _DataContexto = MAX ( 'dCalendário'[Date] )
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido)
+VAR _UltimoDiaRealizado = 
+    CALCULATE (
+        MAX ( 'Base de Dados'[PAGTO] ), 
+        FILTER (
+            ALL ( 'Base de Dados'[STATUS] ), 
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" } 
+        ),
+        REMOVEFILTERS ( 'dCalendário' )
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK ( _UltimoDiaRealizado ) || ( _DataContexto <= _UltimoDiaRealizado )
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+VAR _UltimoSaldoReal = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            [Saldo Real Acumulado], 
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        )
+    )
+
+VAR _EntradasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ),
+            FILTER (
+                ALL ( 'dCalendário'[Date] ), 
+                'dCalendário'[Date] > _UltimoDiaRealizado && 'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS( 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" ),
+            KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } )
+        )
+    )
+
+VAR _SaidasProjetadasAcumuladas = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        CALCULATE (
+            SUM ( 'Base de Dados'[REAL] ),
+            FILTER (
+                ALL ( 'dCalendário'[Date] ), 
+                'dCalendário'[Date] > _UltimoDiaRealizado && 'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS( 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" ),
+            KEEPFILTERS( 'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" } )
+        )
+    )
+
+// 4. Calcular o saldo projetado bruto (pode ser BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        _UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0)
+    )
+
+// 5. Verificar se houve transações projetadas no período futuro
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF( NOT _IsDataRealOuAnteriorOuSemBase, 
+        NOT(ISBLANK(_EntradasProjetadasAcumuladas)) || NOT(ISBLANK(_SaidasProjetadasAcumuladas)),
+        FALSE() // Se não for período futuro, não há transações projetadas relevantes
+    )
+
+// 6. RETURN final baseado nas variáveis calculadas
+RETURN
+    IF (
+        _IsDataRealOuAnteriorOuSemBase, // Se for data real, anterior ou sem base, retorna BLANK
+        BLANK(),
+        IF( // Senão, verifica se houve projeção no período
+            _TemTransacaoProjetadaNoPeriodo,
+            _SaldoProjetadoCalculado, // Se houve, retorna o saldo calculado
+            BLANK() // Se não houve, retorna BLANK
+        )
+    )
+```
+
+**Explicação da Simplificação:**
+
+O erro de sintaxe recorrente provavelmente estava relacionado à forma como as funções `IF` estavam aninhadas e como as variáveis eram declaradas dentro dessas estruturas. Esta nova versão tenta resolver isso da seguinte forma:
+
+1.  **Estrutura Linear:** Todas as variáveis (`VAR`) são declaradas uma após a outra, antes do `RETURN` final. Não há declarações de `VAR` dentro de blocos `IF`.
+2.  **Condição de Saída Clara:** Uma variável `_IsDataRealOuAnteriorOuSemBase` é criada para verificar logo no início se a medida deve retornar `BLANK` (porque a data atual é no passado/presente ou não há dados realizados).
+3.  **Cálculo Condicional:** As variáveis de projeção (`_UltimoSaldoReal`, `_EntradasProjetadasAcumuladas`, etc.) ainda são calculadas condicionalmente usando `IF( NOT _IsDataRealOuAnteriorOuSemBase, ... )`, mas isso acontece na própria definição da variável, não em blocos `IF` aninhados.
+4.  **RETURN Simplificado:** O `RETURN` final usa um `IF` principal para checar a condição de saída e um `IF` secundário (não profundamente aninhado) para verificar se houve transações projetadas antes de retornar o saldo calculado.
+
+Essa estrutura é menos aninhada e separa mais claramente a definição das variáveis da lógica de retorno final, o que geralmente é mais robusto em DAX e menos propenso a erros de sintaxe. Espero que esta versão funcione corretamente.

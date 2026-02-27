@@ -1,0 +1,111 @@
+{
+  "timestamp": "2025-06-21T18:00:09.565642",
+  "total_arquivos": 6,
+  "arquivos_validos": 6,
+  "arquivos_com_warnings": 0,
+  "arquivos_invalidos": 0,
+  "resumo_por_tipo": {
+    "fenix": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "FOLHA DE PAGAMENTO 052025 EXCEL fenix.xlsx"
+    },
+    "genesis": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "FOLHA GENESIS EXCEL 052025.xlsx"
+    },
+    "alocacoes": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "Alocações 052025.xlsx"
+    },
+    "extrato": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "Extrato Mensal.xlsx"
+    },
+    "gratificacao": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "Gratificação.xlsx"
+    },
+    "nao_contabil": {
+      "status": "válido",
+      "erros": 0,
+      "warnings": 0,
+      "arquivo": "Folha não contábil.xlsx"
+    }
+  },
+  "proximos_passos": [
+    "Todos os arquivos válidos - Pronto para processamento"
+  ],
+  "backup_criado": true,
+  "detalhes": {
+    "fenix": {
+      "arquivo": "FOLHA DE PAGAMENTO 052025 EXCEL fenix.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\FOLHA DE PAGAMENTO 052025 EXCEL fenix.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 13.03
+      }
+    },
+    "genesis": {
+      "arquivo": "FOLHA GENESIS EXCEL 052025.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\FOLHA GENESIS EXCEL 052025.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 31.84
+      }
+    },
+    "alocacoes": {
+      "arquivo": "Alocações 052025.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Alocações 052025.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 17.44
+      }
+    },
+    "extrato": {
+      "arquivo": "Extrato Mensal.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Extrato Mensal.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 667.12
+      }
+    },
+    "gratificacao": {
+      "arquivo": "Gratificação.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Gratificação.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 15.98
+      }
+    },
+    "nao_contabil": {
+      "arquivo": "Folha não contábil.xlsx",
+      "caminho": "C:\\Users\\bsacr\\OneDrive\\Área de Trabalho\\Claude Resumos\\Rainha\\Base de Dados\\Folha não contábil.xlsx",
+      "valido": true,
+      "erros": [],
+      "warnings": [],
+      "info": {
+        "tamanho_kb": 12.36
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+let
+    Fonte = Excel.Workbook(File.Contents("G:\Meu Drive\Incremental\Clientes Atuais\Rainha\2025\Março\Folha\FOLHA GERAL 032025 EXCEL - FENIX.xlsx"), null, true),
+    Report_Sheet = Fonte{[Item="Report",Kind="Sheet"]}[Data],
+    #"Índice Adicionado" = Table.AddIndexColumn(Report_Sheet, "Índice", 0, 1, Int64.Type),
+    #"Valor Substituído" = Table.ReplaceValue(#"Índice Adicionado","12666986766","000160",Replacer.ReplaceText,{"Column1"}),
+    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","10897706606","000161",Replacer.ReplaceText,{"Column1"}),
+    Linhas = Table.AddColumn(#"Valor Substituído1", "Linhas", each 
+      let 
+      ToRecord = Record.RemoveFields( _, "Índice" ),
+      ToList = Record.ToList( ToRecord ),
+      Removenulls = List.RemoveNulls( ToList)
+in 
+     Removenulls
+),
+    Dados = Table.AddColumn(Linhas, "Dados", each
+		let 
+			ToTable = Table.FromColumns( {[Linhas]} ),
+			TempIndex = Table.AddIndexColumn( ToTable, "Index", 0, 1),
+			NewIndex = Table.AddColumn( TempIndex, "Group", each if Text.EndsWith( Text.From([Column1]), ":" ) then [Index] else null ),
+			NewGroup = Table.FillDown( NewIndex, { "Group" }),
+			DelTemp = Table.RemoveColumns( NewGroup, { "Index"}),
+			Group = Table.Group( DelTemp, {"Group"}, {{"AllRows", each _, type table [Column1=text, Group=nullable number]}}),
+			AddCustom = Table.AddColumn( Group, "Custom", each Table.Transpose( Table.RemoveColumns([AllRows], "Group" )))[[Custom]],
+			Expand = Table.ExpandTableColumn( AddCustom, "Custom", {"Column1", "Column2", "Column3","Column4","Column5","Column6","Column7","Column8","Column9"}, {"Column1", "Column2", "Column3","Column4","Column5","Column6","Column7","Column8","Column9"})
+		in 
+			Expand
+	)[[Índice], [Dados]],
+    #"Dados Expandido" = Table.ExpandTableColumn(Dados, "Dados", {"Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9"}, {"Column1", "Column2", "Column3", "Column4", "Column5", "Column6", "Column7", "Column8", "Column9"}),
+    #"Preenchido Abaixo" = Table.FillDown(
+    Table.AddColumn(#"Dados Expandido", "Index", each 
+        if [Column1] = "12666986766" then 0 
+        else if [Column1] = "Função :" then 1 
+        else if [Column1] = "Resumo da Folha" then 2 
+        else if [Column1] = "Página :" then 2 
+        else if [Column1] = null then null 
+        else if Text.StartsWith([Column1], "000") then 1 
+        else if [Column1] = "Empresa :" then 1 
+        else null
+    ),
+{"Index"}
+),
+    #"Valor Substituído4" = Table.ReplaceValue(#"Preenchido Abaixo","12728617769","000109",Replacer.ReplaceText,{"Column1"}),
+    SelecionarLinhas = let
+    Filtradas = Table.SelectRows(#"Valor Substituído4", each ([Index] = 0 or [Index] = 1) and [Index] <> null),
+    RemovidoIndex = Table.RemoveColumns(Filtradas, {"Index"}),
+    AdicionaColunaTemp = Table.AddIndexColumn(RemovidoIndex, "Temp", 0, 1),
+    ColunaIndex = Table.AddColumn(AdicionaColunaTemp, "Index", each if [Column1] <> null and Text.StartsWith([Column1], "000") then [Temp] else null),
+    PreenchidoIndex = Table.FillDown(ColunaIndex, {"Index"}),
+    ResultadoFinal = Table.RemoveColumns(PreenchidoIndex, {"Temp"})
+in
+    ResultadoFinal,
+    Funcao = Table.SelectRows(SelecionarLinhas, each ([Column1] = "Função :"))[[Index],[Column1],[Column2]],
+    Pagamentos = Table.RenameColumns(Table.SelectRows(SelecionarLinhas, each ([Column3] <> null) and ([Column4] = null) and ([Column1] <> "(-) Resilição  ...............................:" and [Column1] <> "(=) Total Líqüido ..........................:") and ([Column2] = "1/3 de Férias (Rescisão)" or [Column2] = "1/3 Férias" or [Column2] = "Adiantamento" or [Column2] = "Adiantamento Salarial" or [Column2] = "Férias" or [Column2] = "INSS" or [Column2] = "INSS  Rescisão" or [Column2] = "INSS 13o. Rescisão" or [Column2] = "INSS Folha" or [Column2] = "INSS Férias" or [Column2] = "IRRF Folha" or [Column2] = "IRRF Férias" or [Column2] = "Plano Odontologico + Dependentes" or [Column2] = "Quebra de Caixa" or [Column2] = "Quebra de Caixa   5%" or [Column2] = "Trienio  5%" or [Column2] = "Vale transporte" or [Column2] = "Vale Transporte"))[[Index],[Column2],[Column3]],{{"Column2", "Column1"}, {"Column3", "Column2"}}),
+    Salario = Table.RenameColumns(Table.SelectRows(SelecionarLinhas, each ([Column3] <> null) and ([Column1] = "000007" or [Column1] = "000070" or [Column1] = "000093" or [Column1] = "000094" or [Column1] = "000100" or [Column1] = "000103" or [Column1] = "000108" or [Column1] = "000106" or [Column1] = "000109" or [Column1] = "000142" or [Column1] = "000152" or [Column1] = "000155" or [Column1] = "000156" or [Column1] = "000157" or [Column1] = "000158" or [Column1] = "000159"))[[Index],[Índice],[Column3]],{{"Índice", "Column1"},{"Column3", "Column2"}}),
+    Admissao = Table.SelectRows(SelecionarLinhas, each ([Column1] = "Admissão :"))[[Index],[Column1],[Column2]],
+    Nomes = Table.SelectRows(SelecionarLinhas, each Text.StartsWith([Column1], "000"))[[Index],[Column1],[Column2]],
+    SalarioBase = Table.RenameColumns(Table.SelectRows(SelecionarLinhas, each ([Column4] <> null and [Column4] <> 0) and ([Column1] <> "Base INSS" and [Column1] <> "Empresa :" and [Column1] <> "Resumo do Líquido"))[[Index],[Column2],[Column4]],{{"Column2", "Column1"},{"Column4", "Column2"}}),
+    Empresa = Table.SelectRows(SelecionarLinhas, each ([Column1] = "Empresa :"))[[Index],[Column1],[Column2]],
+    Personalizar2 = Table.Combine( {  Funcao,Pagamentos,Salario,Admissao,Nomes,SalarioBase,Empresa } ),
+    #"Linhas Agrupadas" = Table.Group(Personalizar2, {"Index"}, {{"AllRows", each _, type table [Index=number, Column1=text, Column2=nullable text]}}),
+    Personalizar3 = let
+    // Adiciona a coluna "Nome Funcionário"
+    AdicionaColunaNomes = Table.AddColumn(
+        #"Linhas Agrupadas", 
+        "Nome Funcionário", 
+        each Text.Combine(
+            Table.SelectRows([AllRows], each 
+                (Type.Is(Value.Type([Column1]), type text) and Text.StartsWith([Column1], "000"))
+            )[Column2], 
+            " "
+        )
+    ),
+
+    // Adiciona a coluna "Função"
+    AdicionaColunaFunção = Table.AddColumn(
+        AdicionaColunaNomes, 
+        "Função", 
+        each Text.Combine(
+            Table.SelectRows([AllRows], each 
+                (Type.Is(Value.Type([Column1]), type text) and Text.StartsWith([Column1], "Função :"))
+            )[Column2], 
+            " "
+        )
+    ),
+
+    // Adiciona a coluna "Data Admissão" e converte os valores para texto
+    AdicionaColunaAdmissao = Table.AddColumn(
+        AdicionaColunaFunção, 
+        "Data Admissão", 
+        each Text.Combine(
+            List.Transform(
+                Table.SelectRows([AllRows], each 
+                    (Type.Is(Value.Type([Column1]), type text) and Text.StartsWith([Column1], "Admissão :"))
+                )[Column2],
+                each Text.From(_)
+            ), 
+            " "
+        )
+    ),
+
+    // Adiciona a nova coluna "Empresa" com base no valor de "Column1" que corresponde a "Empresa :"
+    AdicionaColunaEmpresa = Table.AddColumn(
+        AdicionaColunaAdmissao, 
+        "LOJAS", 
+        each Text.Combine(
+            Table.SelectRows([AllRows], each 
+                (Type.Is(Value.Type([Column1]), type text) and Text.StartsWith([Column1], "Empresa :"))
+            )[Column2], 
+            " "
+        )
+    )
+in
+    AdicionaColunaEmpresa,
+    #"AllRows Expandido" = Table.ExpandTableColumn(Personalizar3, "AllRows", {"Column1", "Column2"}, {"Column1", "Column2"}),
+    #"Linhas Filtradas1" = Table.SelectRows(#"AllRows Expandido", each ([Column1] <> "000007" and [Column1] <> "000070" and [Column1] <> "000093" and [Column1] <> "000094" and [Column1] <> "000100" and [Column1] <> "000103" and [Column1] <> "000108" and [Column1] <> "000109" and [Column1] <> "000161" and [Column1] <> "Admissão :" and [Column1] <> "Empresa :" and [Column1] <> "Função :")),
+    #"Valor Substituído2" = let
+    // Passo 1: Converter a coluna "Column1" para texto
+    #"Coluna Convertida para Texto" = Table.TransformColumnTypes(#"Linhas Filtradas1", {{"Column1", type text}}),
+
+    // Passo 2: Aplicar a substituição usando List.Accumulate
+    #"Valor Substituído" = List.Accumulate(
+        {
+            {"7", "Salario Total"},
+            {"32", "Salario Total"},
+            {"60", "Salario Total" },
+            {"76", "Salario Total"}, 
+            {"92", "Salario Total"},
+            {"157", "Salario Total"},
+            {"183", "Salario Total"},
+            {"202", "Salario Total"},
+            {"213", "Salario Total"},
+            {"Salario Total4", "Salario Total"},
+{"Salario Total5", "Salario Total"},
+
+
+
+
+
+
+
+
+
+
+            {"Salario Total6", "Salario Total"}
+        },
+        #"Coluna Convertida para Texto",
+        (state, current) => Table.ReplaceValue(state, current{0}, current{1}, Replacer.ReplaceText, {"Column1"})
+    )
+in
+    #"Valor Substituído",
+    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","","FENIX COML DE CAMA MESA E BANHO LTDA",Replacer.ReplaceValue,{"LOJAS"}),
+    #"Colunas Renomeadas" = Table.RenameColumns(#"Valor Substituído3",{{"Nome Funcionário", "Nome"}, {"Data Admissão", "Adm:"}, {"Column1", "Atributo"}, {"Column2", "Valor"}, {"Index", "Nº"}, {"Função", "Cargo"}}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Valor", type number}, {"Nome", type text}, {"Cargo", type text}, {"Adm:", type date}, {"Nº", type number}, {"LOJAS", type text}})
+in
+    #"Tipo Alterado"

@@ -1,0 +1,103 @@
+{
+  "extraction_info": {
+    "source_file": "/home/user/output/Relatorio_estoque.xlsx",
+    "source_sheet": "report",
+    "header_row": 23,
+    "extraction_date": "2025-06-26T16:38:27.399698"
+  },
+  "data_structure": {
+    "total_rows": 6516,
+    "total_columns": 10,
+    "completeness_percentage": 99.91405770411296
+  },
+  "column_mapping": {
+    "Produto": "Produto",
+    "Código Interno": "Código_Interno",
+    "GTINPLU": "GTIN_PLU",
+    "Fornecedor": "Fornecedor",
+    "NCM": "NCM",
+    "Quantidade de Estoque": "Quantidade_Estoque",
+    "Custo Bruto (R)": "Custo_Bruto",
+    "Custo Líquido (R)": "Custo_Líquido_R",
+    "Custo Total Bruto (R)": "Custo_Bruto",
+    "Custo Total Líquido (R)": "Custo_Bruto"
+  },
+  "header_analysis": {
+    "potential_headers_found": 1,
+    "best_header_row": 23,
+    "keywords_in_header": [
+      "produto",
+      "gtin",
+      "plu",
+      "fornecedor",
+      "ncm",
+      "quantidade",
+      "estoque",
+      "custo",
+      "bruto"
+    ],
+    "confidence_score": 9
+  },
+  "data_quality": {
+    "numeric_fields_converted": [
+      "Quantidade_Estoque",
+      "Custo_Bruto"
+    ],
+    "key_columns_available": [
+      "Produto",
+      "Quantidade_Estoque"
+    ]
+  },
+  "sample_data": [
+    {
+      "Produto": "SAC BANANA PRATA KG",
+      "Código_Interno": 116.0,
+      "GTIN_PLU": 4.0,
+      "Fornecedor": "ELS",
+      "NCM": "0803.90.00",
+      "Quantidade_Estoque": 753.21,
+      "Custo_Bruto": 4786.87777263,
+      "Custo_Líquido_R": 6.355303
+    },
+    {
+      "Produto": "ESPETO CHURRASCO KIREY C/40UN BAMBU",
+      "Código_Interno": 85.0,
+      "GTIN_PLU": 7898177790892.0,
+      "Fornecedor": "KIREY FESTA IND.COM.DE ARTIGOS",
+      "NCM": "1401.10.00",
+      "Quantidade_Estoque": 50.0,
+      "Custo_Bruto": 151.06205,
+      "Custo_Líquido_R": 3.021241
+    },
+    {
+      "Produto": "FN LIMAO TAHITI kg",
+      "Código_Interno": 108.0,
+      "GTIN_PLU": 8.0,
+      "Fornecedor": "COSTA MELLO & FILHOS",
+      "NCM": "0805.50.00",
+      "Quantidade_Estoque": 118246.0,
+      "Custo_Bruto": 306.257849476,
+      "Custo_Líquido_R": 2.590006
+    },
+    {
+      "Produto": "FIGO TURCO SECO KG",
+      "Código_Interno": 197.0,
+      "GTIN_PLU": 4212.0,
+      "Fornecedor": "GARDEN FRUIT - FRUTA SECA",
+      "NCM": "0804.20.20",
+      "Quantidade_Estoque": 0.43,
+      "Custo_Bruto": 24.5958323,
+      "Custo_Líquido_R": 57.19961
+    },
+    {
+      "Produto": "FN PERA PORTUGUESA kg",
+      "Código_Interno": 541.0,
+      "GTIN_PLU": 1026.0,
+      "Fornecedor": "DA FEIRA DSCD - FRUTAS",
+      "NCM": "0808.30.00",
+      "Quantidade_Estoque": 85643.0,
+      "Custo_Bruto": 1659.890489644,
+      "Custo_Líquido_R": 19.381508
+    }
+  ]
+}

@@ -1,0 +1,3540 @@
+
+
+ClaudeFinancial Flow Model JSON Structure PromediolCompartilhado por bruno alves doEsta é uma cópia de um chat entre Claude e bruno alves do. O conteúdo pode incluir material não verificado ou inseguro que não representa as posições da Anthropic. O instantâneo compartilhado pode conter anexos e dados não exibidos aqui.DenunciarFiles hidden in shared chatsBAfaça um resumo do arquivoAnalisando o arquivo fornecido, trata-se de um documento JSON que contém a estrutura de um modelo de dados para um sistema de fluxo de caixa financeiro. Aqui está um resumo do seu conteúdo:
+Estrutura Geral
+
+O arquivo define uma cultura de referência com ID "3108ef21-eeee-4203-91e9-3f6baf854dcf"
+O modelo contém várias tabelas para gerenciamento financeiro
+
+Principais Tabelas
+
+Base de Dados - Tabela central com informações financeiras contendo:
+
+Dados básicos como EMPRESA, EMISSAO, VENCIMENTO, PAGTO
+Valores monetários (REAL, MOEDA ESTRANGEIRA)
+Identificação de transações (TIPO, NºDOCTO, STATUS)
+Entidades relacionadas (FORN/CLIENTE, PAGADOR/RECEBEDOR)
+Classificação (GRUPO FINANCEIRO, PLANO DE CONTA)
+
+
+dCalendário - Tabela de dimensão temporal com:
+
+Hierarquia de datas (Ano, Trimestre, Mês, Semana, Dia)
+Formatos variados de data (Ano Mês, MêsAno)
+
+
+Tabelas Auxiliares:
+
+Grupo
+Grupo de Medidas
+Tabela de Inadimplência
+Campo Data
+Medidas Campos Receitas
+Saldos
+
+
+
+Principais Medidas (KPIs)
+O modelo inclui numerosas medidas financeiras organizadas em pastas:
+
+Valores Principais:
+
+Total Receitas Realizadas
+Total Despesas Realizadas
+Receitas Previstas
+Despesas Previstas
+Saldo Atual
+Saldo Projetado
+
+
+Indicadores:
+
+Índice Realização Despesas
+% Contas Pagas
+Indicador de Liquidez
+Índice de Cobertura
+
+
+Análise de Atraso:
+
+Contas em Atraso
+Qtd Contas em Atraso
+Contas em Atraso Receitas
+
+
+Projeções:
+
+Previsão Próximos 30 dias
+Previsão 30-60 dias
+Previsão 60-90 dias
+
+
+Fluxos:
+
+Fluxo por Data de Emissão/Vencimento/Pagamento
+Fluxo - Entradas/Saídas do Período
+Fluxo - Saldo do Período/Acumulado
+Fluxo Completo - Entradas/Saídas/Saldo
+
+
+Inadimplência:
+
+Taxa de Inadimplência (Valor e Qtd)
+Valor Total Atrasado
+Valor Atrasado por faixas (1-30 dias, 31-60 dias, >60 dias)
+Idade Média de Atraso
+
+
+
+Este modelo parece ter sido desenvolvido para Power BI, conforme indicado por referências como "PowerBI.VisualColumnRename" e a estrutura de metadata linguística que sugere recursos de linguagem natural e consultas em português brasileiro (pt-BR).BAas medidas de Saldo . pode explicar ?As medidas de Saldo no modelo de dados representam diferentes perspectivas sobre a posição financeira. Vamos analisar as principais medidas relacionadas a saldos encontradas no arquivo:
+Medidas de Saldo Básicas
+
+Saldo Atual
+
+Parece representar a posição financeira atual da empresa
+Provavelmente calculada como a diferença entre o "Total Receitas Realizadas" e "Total Despesas Realizadas"
+Mostra a situação financeira no momento presente
+
+
+Saldo Projetado
+
+Representa a projeção futura da posição financeira
+Deve incluir tanto valores já realizados quanto valores previstos para o futuro
+Possivelmente calculado como "Saldo Atual" + ("Receitas Previstas" - "Despesas Previstas")
+Ajuda no planejamento financeiro futuro
+
+
+Saldo Líquido
+
+Encontrado na pasta "Análise Financeira"
+Provavelmente representa a diferença entre "Receitas Totais" e "Despesas Totais" em um período específico
+
+
+
+Medidas de Saldo em Fluxos
+
+Fluxo - Saldo do Período
+
+Representa o saldo em um período específico de análise
+Calculado como "Fluxo - Entradas do Período" menos "Fluxo - Saídas do Período"
+
+
+Fluxo - Saldo Acumulado
+
+Representa a acumulação progressiva dos saldos de períodos anteriores
+Mostra a evolução do saldo ao longo do tempo
+
+
+Fluxo - Saldo Projetado
+
+Similar ao Saldo Projetado, mas específico para a análise de fluxo
+Calculado como "Fluxo - Entradas Previstas" menos "Fluxo - Saídas Previstas"
+
+
+Fluxo Completo - Saldo
+
+Parte da análise completa do fluxo financeiro
+Calculado como "Fluxo Completo - Entradas" menos "Fluxo Completo - Saídas"
+
+
+Fluxo Completo - Saldo Acumulado
+
+Acumulação progressiva dos saldos do fluxo completo
+Fornece uma visão de longo prazo da evolução financeira
+
+
+
+Estas medidas são fundamentais para o gerenciamento financeiro pois permitem:
+
+Acompanhar a saúde financeira atual
+Planejar necessidades futuras de capital
+Analisar tendências de fluxo de caixa
+Tomar decisões baseadas em projeções confiáveis
+Monitorar o desempenho financeiro ao longo do tempo
+
+As diferentes perspectivas de saldo (atual, projetado, do período, acumulado) oferecem uma visão completa para os gestores financeiros tomarem decisões informadas sobre o caixa da empresa.BAessas medidas não traz o saldo real . que esta na Tabela "Saldo" .Você tem razão. Realmente não mencionei a tabela "Saldos" que está explicitamente definida no modelo de dados. Vamos analisar essa tabela específica:
+Tabela "Saldos" no Modelo
+Conforme o arquivo JSON, a tabela "Saldos" contém as seguintes colunas:
+
+EMPRESAS - Identifica a empresa à qual o saldo pertence
+Data - Indica a data do registro do saldo
+Valor - Representa o valor do saldo real
+
+Esta tabela parece armazenar os saldos reais/efetivos das empresas em datas específicas, diferente das medidas calculadas que mencionei anteriormente.
+As medidas que listei anteriormente (Saldo Atual, Saldo Projetado, etc.) são provavelmente cálculos baseados em transações da tabela "Base de Dados", enquanto a tabela "Saldos" parece conter registros diretos dos saldos reais em conta.
+Esta distinção é importante porque:
+
+A tabela "Saldos" provavelmente contém os valores oficiais/registrados das contas
+Pode representar saldos bancários reais ou posições de caixa efetivas
+Serve como ponto de verificação ou referência para reconciliar os valores calculados através das medidas
+
+Os registros na tabela "Saldos" podem ser usados para:
+
+Iniciar cálculos de fluxo de caixa a partir de um ponto conhecido
+Verificar a precisão das projeções ao comparar com os saldos reais
+Fornecer um histórico de posições financeiras ao longo do tempo
+Servir como base para relatórios financeiros oficiais
+
+É uma distinção significativa, pois as medidas calculadas representam análises derivadas, enquanto a tabela "Saldos" pode conter os registros reais diretos do sistema financeiro ou bancário.BAessa tabela do contem o saldo inicial de cada mês , preciso criar medida que vincule o fluxo do saldo para cada empresa . entendeu ?Entendi o que você precisa. Você quer criar uma medida que vincule o saldo inicial de cada mês (que está na tabela "Saldos") com o fluxo de caixa para cada empresa, criando assim um saldo contínuo e atualizado ao longo do tempo.
+Vou propor uma abordagem para criar essa medida em DAX (linguagem de fórmulas do Power BI):
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _PrimeirodiaMes = STARTOFMONTH(_DataAtual)
+
+// Pega o saldo inicial do mês atual
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeirodiaMes
+    )
+
+// Calcula o fluxo do mês até a data atual
+VAR _FluxoAteHoje = 
+    CALCULATE(
+        [Fluxo - Saldo do Período],
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'dCalendário'[Date] >= _PrimeirodiaMes && 'dCalendário'[Date] <= _DataAtual
+    )
+
+// Retorna o saldo inicial + fluxo do período
+RETURN
+    _SaldoInicialMes + _FluxoAteHoje
+Esta medida faz o seguinte:
+
+Identifica a empresa selecionada
+Determina a data atual no contexto
+Encontra o primeiro dia do mês atual
+Busca o saldo inicial do mês para a empresa na tabela "Saldos"
+Calcula o fluxo acumulado desde o início do mês até a data atual
+Retorna o saldo inicial + o fluxo acumulado
+
+Para que funcione corretamente:
+
+A tabela "Saldos" deve conter um registro para cada empresa no primeiro dia de cada mês
+A tabela "dCalendário" precisa estar relacionada corretamente com a tabela "Base de Dados"
+A medida [Fluxo - Saldo do Período] deve estar calculando corretamente o saldo líquido (entradas - saídas)
+
+Você também pode criar uma versão mais completa que funcione para qualquer data selecionada:
+Saldo Real Dinâmico = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _PrimeirodiaMes = STARTOFMONTH(_DataAtual)
+
+// Pega o saldo inicial do mês selecionado
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeirodiaMes
+    )
+
+// Calcula o fluxo do mês até a data selecionada
+VAR _FluxoAteData = 
+    CALCULATE(
+        [Fluxo - Saldo do Período],
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'dCalendário'[Date] >= _PrimeirodiaMes && 'dCalendário'[Date] <= _DataAtual
+    )
+
+// Retorna o saldo inicial + fluxo do período
+RETURN
+    IF(
+        NOT(ISBLANK(_SaldoInicialMes)),
+        _SaldoInicialMes + _FluxoAteData,
+        "Saldo inicial não encontrado"
+    )
+Esta versão adiciona uma verificação para caso o saldo inicial não seja encontrado para o mês.Files hidden in shared chatsBAdeu esse erro O primeiro argumento para 'STARTOFMONTH' deve especificar uma coluna.Entendo o problema agora. O erro ocorre porque a função STARTOFMONTH() no Power BI precisa de uma referência a uma coluna de data, e não a uma variável.
+No seu código, você está tentando usar:
+VAR _PrimeiroDiaMes = STARTOFMONTH(_DataAtual)
+Mas _DataAtual é uma variável, não uma coluna. Para corrigir isso, você precisa usar a função STARTOFMONTH() com uma referência direta à coluna de data. Vamos corrigir a medida:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+
+// Pega o saldo inicial do mês atual
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = STARTOFMONTH('dCalendário'[Date])  // Referência direta à coluna
+    )
+
+// Calcula o fluxo do mês até a data atual
+VAR _FluxoAteDia = 
+    CALCULATE(
+        [Fluxo - Saldo do Período],
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'dCalendário'[Date] >= STARTOFMONTH('dCalendário'[Date]) && 'dCalendário'[Date] <= _DataAtual
+    )
+
+// Retorna o saldo inicial + fluxo do período
+RETURN
+    _SaldoInicialMes + _FluxoAteDia
+Esta versão corrigida faz referência direta à coluna 'dCalendário'[Date] na função STARTOFMONTH(), o que resolve o erro.
+Alternativamente, você poderia definir o primeiro dia do mês usando o método de data literal do DAX:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês atual
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeiroDiaMes
+    )
+
+// Calcula o fluxo do mês até a data atual
+VAR _FluxoAteDia = 
+    CALCULATE(
+        [Fluxo - Saldo do Período],
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'dCalendário'[Date] >= _PrimeiroDiaMes && 'dCalendário'[Date] <= _DataAtual
+    )
+
+// Retorna o saldo inicial + fluxo do período
+RETURN
+    _SaldoInicialMes + _FluxoAteDia
+Esta segunda abordagem evita o uso de STARTOFMONTH() e constrói a data do primeiro dia do mês diretamente com a função DATE().BAUma função 'STARTOFMONTH' foi utilizada em uma expressão True/False usada como expressão de filtro de tabela. Isso não é permitido.Agora entendo o problema principal. O erro ocorre porque você está tentando usar STARTOFMONTH diretamente em uma expressão de filtro, o que não é permitido em DAX. Vamos reescrever a medida para evitar esse problema específico:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês atual
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeiroDiaMes
+    )
+
+// Calcula o fluxo do mês até a data atual
+VAR _FluxoAteDia = 
+    CALCULATE(
+        [Fluxo - Saldo do Período],
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual
+    )
+
+// Retorna o saldo inicial + fluxo do período
+RETURN
+    _SaldoInicialMes + _FluxoAteDia
+A modificação principal aqui é:
+
+Evitei totalmente o uso de STARTOFMONTH e em vez disso, calculei o primeiro dia do mês com DATE(_Ano, _Mes, 1)
+Separei as condições de filtro de data em expressões separadas (usando vírgulas entre os filtros), em vez de uma única expressão booleana com &&
+
+Esta abordagem deve resolver o erro porque:
+
+Utiliza apenas funções permitidas no contexto de filtro
+Separa as condições de filtro em cláusulas individuais
+Evita operadores lógicos complexos no filtro
+
+Esta é a forma correta de criar filtros de data em DAX para o contexto que você precisa.BAeu não entendi pq você  usou esse medida "Fluxo - Saldo do Período" ela so traz os valores de saída no mês Fluxo - Saídas do Período = CALCULATE(ABS(SUM('Base de Dados'[REAL])), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS", 'Base de Dados'[STATUS] = "Pago", USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date]))Você está certo em questionar o uso da medida "Fluxo - Saldo do Período". Com base na definição que você compartilhou para "Fluxo - Saídas do Período", eu entendo agora que precisamos levar em consideração tanto entradas quanto saídas corretamente.
+Vamos reformular a medida para usar as entradas e saídas de forma apropriada:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês atual
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeiroDiaMes
+    )
+
+// Calcula as entradas do mês até a data atual
+VAR _EntradasAteDia = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula as saídas do mês até a data atual
+VAR _SaidasAteDia = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula o fluxo líquido (entradas - saídas)
+VAR _FluxoLiquido = _EntradasAteDia - ABS(_SaidasAteDia)
+
+// Retorna o saldo inicial + fluxo líquido do período
+RETURN
+    _SaldoInicialMes + _FluxoLiquido
+Nesta versão:
+
+Calculamos separadamente as entradas e saídas do mês atual até a data selecionada
+Para as entradas, somamos diretamente o valor em REAL onde o GRUPO | DÉB CRÉD = "ENTRADAS"
+Para as saídas, somamos o valor em REAL onde o GRUPO | DÉB CRÉD = "SAÍDAS" e aplicamos ABS() porque suponho que os valores de saída sejam negativos
+Calculamos o fluxo líquido como entradas - saídas
+Somamos o fluxo líquido ao saldo inicial do mês
+
+Esta abordagem deve fornecer um cálculo mais preciso do saldo real acumulado, considerando corretamente tanto as entradas quanto as saídas.BAquero uma medida que busque o saldo inicial do mês  na tabela "Saldo" e calcule as entrada e saídas da tabela Base de Dados e traga o saldo final .Vou criar uma medida que busca o saldo inicial do mês na tabela "Saldos", calcula as entradas e saídas da tabela "Base de Dados" e retorna o saldo final. Aqui está a fórmula DAX que você precisa:
+Saldo Real Completo = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês atual na tabela Saldos
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeiroDiaMes
+    )
+
+// Calcula as entradas do mês até a data atual
+VAR _EntradasAteDia = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula as saídas do mês até a data atual
+VAR _SaidasAteDia = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula o saldo final (inicial + entradas - saídas)
+VAR _SaldoFinal = _SaldoInicialMes + _EntradasAteDia - _SaidasAteDia
+
+// Retorna o resultado formatado
+RETURN
+    IF(
+        ISBLANK(_SaldoInicialMes),
+        BLANK(),  // Se não houver saldo inicial, retorna em branco
+        _SaldoFinal
+    )
+Esta medida:
+
+Identifica a empresa e a data atual no contexto
+Calcula o primeiro dia do mês atual
+Busca o saldo inicial do mês para a empresa na tabela "Saldos"
+Calcula todas as entradas pagas desde o início do mês até a data atual
+Calcula todas as saídas pagas desde o início do mês até a data atual
+Computa o saldo final como: saldo inicial + entradas - saídas
+Retorna em branco se não houver saldo inicial, caso contrário retorna o saldo final calculado
+
+Você pode usar esta medida em visuais para mostrar o saldo atual acumulado para cada empresa, que será atualizado com base na data selecionada no seu relatório.Files hidden in shared chatsBAparece que bateu ! saldo inicial da empresa PMD BR 29.976,05 . 
+entradas R$ 173.047,71
+Saídas R$ 45.751,89 
+Saldo Final R$ 157.451,87 
+do dia primeiro mais não esta preenchendo o saldo dos dias pra frente . entendeu ?Entendi o problema. Seu cálculo está correto para o primeiro dia (saldo inicial + entradas - saídas = saldo final), mas a medida não está calculando o saldo para os demais dias corretamente.
+O problema provavelmente está relacionado à forma como a medida está calculando o saldo para cada dia. Atualmente, ela parece estar sempre usando o saldo inicial do mês (fixo para o dia 1) e depois somando apenas as transações do dia 1. Para resolver isso, precisamos acumular as transações progressivamente para cada dia do mês.
+Vamos modificar a medida para calcular o saldo acumulado dia a dia:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        Saldos[EMPRESAS] = _Empresa,
+        Saldos[Data] = _PrimeiroDiaMes
+    )
+
+// Calcula as entradas desde o início do mês até a data atual
+VAR _EntradasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula as saídas desde o início do mês até a data atual
+VAR _SaidasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula o saldo final (inicial + entradas - saídas)
+RETURN
+    IF(
+        ISBLANK(_SaldoInicialMes),
+        BLANK(),  // Se não houver saldo inicial, retorna em branco
+        _SaldoInicialMes + _EntradasAcumuladas - _SaidasAcumuladas
+    )
+A principal diferença desta versão é garantir que estamos acumulando todas as transações desde o primeiro dia do mês até a data atual em contexto, seja qual for essa data.
+Se você estiver usando esta medida em uma tabela com várias datas, a medida será calculada para cada linha individualmente, considerando a data específica de cada linha, o que deverá resultar no saldo progressivo ao longo do mês.
+Se ainda assim não estiver funcionando corretamente, talvez seja necessário verificar:
+
+Se o relacionamento entre a tabela 'Base de Dados' e 'dCalendário' está configurado corretamente
+Se a função USERELATIONSHIP está sendo aplicada de forma adequada
+Se há filtros de contexto que possam estar afetando o cálculo
+
+Você pode testar isso criando medidas intermediárias para verificar cada parte da fórmula, como o saldo inicial, as entradas acumuladas e as saídas acumuladas.Files hidden in shared chatsBAcontinua a mesma coisa sem preencher o saldoEstou vendo que o problema persiste mesmo com a medida atualizada. O saldo está sendo preenchido apenas para a primeira linha (dia 1), mas não para as demais datas.
+Vamos tentar uma abordagem diferente. O problema pode estar relacionado ao contexto de filtro na tabela de visualização. Quando você mostra várias linhas de datas diferentes, o Power BI pode estar filtrando os dados para cada dia específico, em vez de acumular de forma progressiva.
+Tente esta nova versão que usa a função CALCULATE com contexto modificado:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes
+        )
+    )
+
+// Calcula as entradas desde o início do mês até a data atual
+VAR _EntradasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('Base de Dados', 'dCalendário'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" &&
+            'Base de Dados'[STATUS] = "Pago" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        )
+    )
+
+// Calcula as saídas desde o início do mês até a data atual
+VAR _SaidasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        FILTER(
+            ALL('Base de Dados', 'dCalendário'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" &&
+            'Base de Dados'[STATUS] = "Pago" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        )
+    )
+
+// Calcula o saldo final (inicial + entradas - saídas)
+RETURN
+    IF(
+        ISBLANK(_SaldoInicialMes),
+        BLANK(),  // Se não houver saldo inicial, retorna em branco
+        _SaldoInicialMes + _EntradasAcumuladas - _SaidasAcumuladas
+    )
+As principais diferenças nesta versão:
+
+Uso a função FILTER com ALL para ignorar explicitamente os filtros de contexto existentes
+Em vez de usar USERELATIONSHIP, faço a correspondência direta entre as datas no filtro
+Garantimos que estamos considerando apenas as transações relevantes entre o primeiro dia do mês e a data atual
+
+Se ainda assim não funcionar, verifique se o campo 'Base de Dados'[PAGTO] realmente contém datas e não texto ou outro formato. É importante que este campo seja do tipo data para que as comparações ">=" e "<=" funcionem corretamente.
+Outra possibilidade para o problema é que sua tabela esteja mostrando os dados de forma diferente do que esperamos. Você está exibindo os resultados por dia, mas talvez esteja vendo diferentes dias do mesmo mês? Ou está vendo dias de meses diferentes? Isso pode afetar como o cálculo deve ser feito.
+Se essa abordagem ainda não resolver, pode ser necessário criar uma medida de tabela calculada que armazene os valores diários acumulados, ou uma medida que use a função DATESBETWEEN para considerar todos os dias entre o início do mês e a data atual.Files hidden in shared chatsBAO uso de vários argumentos de tabela na função ALL/ALLNOBLANKROW/REMOVEFILTERS não é permitido.Entendi o erro. O problema é que você está tentando passar múltiplas tabelas em uma única chamada de função ALL(), o que não é permitido no DAX. Vamos corrigir isso dividindo as chamadas ALL() para que cada uma receba apenas um argumento.
+Aqui está a versão corrigida:
+Saldo Real Acumulado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes
+        )
+    )
+
+// Calcula as entradas desde o início do mês até a data atual
+VAR _EntradasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS" &&
+            'Base de Dados'[STATUS] = "Recebido" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        ),
+        ALL('dCalendário')
+    )
+
+// Calcula as saídas desde o início do mês até a data atual
+VAR _SaidasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        FILTER(
+            ALL('Base de Dados'),
+            'Base de Dados'[EMPRESA] = _Empresa &&
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS" &&
+            'Base de Dados'[STATUS] = "Pago" &&
+            'Base de Dados'[PAGTO] >= _PrimeiroDiaMes &&
+            'Base de Dados'[PAGTO] <= _DataAtual
+        ),
+        ALL('dCalendário')
+    )
+
+// Calcula o saldo final (inicial + entradas - saídas)
+RETURN
+    IF(
+        ISBLANK(_SaldoInicialMes),
+        BLANK(),  // Se não houver saldo inicial, retorna em branco
+        _SaldoInicialMes + _EntradasAcumuladas - _SaidasAcumuladas
+    )
+As principais alterações são:
+
+Em vez de ALL('Base de Dados', 'dCalendário'), usei ALL('Base de Dados') dentro do FILTER e adicionei ALL('dCalendário') como um filtro adicional do CALCULATE
+Observei que para entradas você usa o status "Recebido" em vez de "Pago", então ajustei isso na fórmula
+Mantive toda a lógica restante igual
+
+Esta abordagem deve resolver o erro "O uso de vários argumentos de tabela na função ALL/ALLNOBLANKROW/REMOVEFILTERS não é permitido" e permitir que a medida calcule os saldos para cada dia de forma acumulativa.Files hidden in shared chatsBAquero criar essa tabela de resumo geral para Power bi com medidas que já tenho .Entendo que você quer criar no Power BI um visual semelhante ao resumo geral que aparece no Excel. Essa tabela de resumo mostra informações como "Saldo do Ano Anterior", "Total de Receitas", "Total de Despesas", "Resultado do Mês" e "Acumulado".
+Vamos implementar isso no Power BI usando as medidas que você já tem:
+
+Primeiro, crie um visual do tipo "Cartão de Múltiplas Linhas" ou um visual de "Matriz".
+Para criar o resumo, você pode usar as seguintes medidas (algumas das quais você já mostrou que possui):
+
+// Medida para o Saldo do Ano Anterior (pode ser usada diretamente da tabela Saldos)
+Saldo do Ano Anterior = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Ano = YEAR(MAX('dCalendário'[Date]))
+VAR _PrimeiroDiaAnoAtual = DATE(_Ano, 1, 1)
+RETURN
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaAnoAtual
+        )
+    )
+
+// Total de Receitas (você já deve ter essa medida)
+Total Receitas = 
+CALCULATE(
+    SUM('Base de Dados'[REAL]), 
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+    'Base de Dados'[STATUS] = "Recebido"
+)
+
+// Total de Despesas (você já deve ter essa medida)
+Total Despesas = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[REAL])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Pago"
+)
+
+// Resultado do Mês
+Resultado do Mês = 
+[Total Receitas] - [Total Despesas]
+
+// Acumulado do Ano (semelhante ao seu Saldo Real Acumulado)
+Acumulado = 
+[Saldo do Ano Anterior] + [Resultado do Mês]
+
+Para criar o visual:
+
+Adicione um visual de "Cartão de Múltiplas Linhas" à sua página
+Adicione cada uma das medidas acima ao visual
+Formate o visual para ter cores semelhantes ao seu Excel (verde para valores positivos, vermelho para valores negativos)
+
+
+
+Alternativa com Matriz:
+
+Adicione um visual de Matriz
+Adicione uma coluna calculada ou medida que crie os rótulos (como "Saldo do Ano Anterior", "Total de Receitas", etc.)
+Adicione suas medidas como valores
+Formate as células para mostrar cores condicionais
+
+Se você já tem as medidas "Total Receitas Realizadas" e "Total Despesas Realizadas" que aparecem no seu relatório atual, pode usá-las diretamente em vez de criar novas.
+O resultado final deve ser um visual que mostre as mesmas informações que você tem no seu resumo do Excel.BAquero uma matriz vertical igual a tabela resumo geralPara criar uma matriz vertical no Power BI que se pareça com o Resumo Geral na sua planilha do Excel, siga estas etapas:
+
+Crie uma tabela auxiliar para os rótulos das linhas:
+
+Resumo Geral = 
+DATATABLE(
+    "Descrição", STRING,
+    "Ordem", INTEGER,
+    {
+        {"Saldo do Ano Anterior", 1},
+        {"Total de Receitas", 2},
+        {"Total de Despesas", 3},
+        {"Resultado do Mês", 4},
+        {"Acumulado", 5}
+    }
+)
+
+Crie uma medida para os valores:
+
+Valores Resumo = 
+VAR _Descrição = SELECTEDVALUE('Resumo Geral'[Descrição])
+RETURN
+    SWITCH(
+        _Descrição,
+        "Saldo do Ano Anterior", [Saldo do Ano Anterior],
+        "Total de Receitas", [Total Receitas Realizadas],
+        "Total de Despesas", [Total Despesas Realizadas],
+        "Resultado do Mês", [Total Receitas Realizadas] - [Total Despesas Realizadas],
+        "Acumulado", [Saldo do Ano Anterior] + [Total Receitas Realizadas] - [Total Despesas Realizadas]
+    )
+
+Crie um visual de matriz:
+
+Adicione um visual de matriz à sua página
+Arraste "Descrição" da tabela "Resumo Geral" para as linhas
+Arraste a medida "Valores Resumo" para os valores
+Ordene a matriz pelo campo "Ordem" para manter a sequência correta
+
+
+Formate a matriz:
+
+Para o cabeçalho: Use um tom de azul como no seu Excel
+Para os valores: Use formatação condicional para mostrar valores positivos em verde e negativos em vermelho
+Ajuste a largura das colunas e a altura das linhas para corresponder ao estilo do Excel
+Remova totais e subtotais se aparecerem
+Formate o visual com bordas semelhantes ao Excel
+
+
+Adicione formatação condicional:
+
+Selecione o visual de matriz
+Vá para o painel de formatação > Células de dados > Formatação condicional
+Configure regras para mostrar valores positivos em verde e negativos em vermelho
+
+
+
+O resultado será um visual de matriz exatamente como seu resumo geral no Excel, mostrando os valores na ordem correta e com a formatação apropriada.
+Se precisar que esse resumo filtre com base em seleções de data ou empresa, certifique-se de que suas medidas de valores (como [Total Receitas Realizadas]) respondam a esses filtros corretamente.BAno lugar do saldo anterior eu quero o saldo inicial do mêsPara adaptar o resumo geral e utilizar o saldo inicial do mês em vez do saldo do ano anterior, vamos modificar a tabela auxiliar e a medida de valores:
+
+Modifique a tabela auxiliar para os rótulos das linhas:
+
+Resumo Geral = 
+DATATABLE(
+    "Descrição", STRING,
+    "Ordem", INTEGER,
+    {
+        {"Saldo Inicial do Mês", 1},
+        {"Total de Receitas", 2},
+        {"Total de Despesas", 3},
+        {"Resultado do Mês", 4},
+        {"Acumulado", 5}
+    }
+)
+
+Modifique a medida para os valores:
+
+Valores Resumo = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes
+        )
+    )
+
+VAR _TotalReceitas = [Total Receitas Realizadas]
+VAR _TotalDespesas = [Total Despesas Realizadas]
+VAR _ResultadoMes = _TotalReceitas - _TotalDespesas
+VAR _Acumulado = _SaldoInicialMes + _ResultadoMes
+
+VAR _Descrição = SELECTEDVALUE('Resumo Geral'[Descrição])
+RETURN
+    SWITCH(
+        _Descrição,
+        "Saldo Inicial do Mês", _SaldoInicialMes,
+        "Total de Receitas", _TotalReceitas,
+        "Total de Despesas", _TotalDespesas,
+        "Resultado do Mês", _ResultadoMes,
+        "Acumulado", _Acumulado
+    )
+Essa medida agora:
+
+Calcula o saldo inicial do mês em vez do saldo do ano anterior
+Usa suas medidas existentes para receitas e despesas
+Calcula o resultado do mês (receitas - despesas)
+Calcula o acumulado como saldo inicial + resultado do mês
+Retorna o valor apropriado dependendo da linha selecionada na matriz
+
+O restante da configuração é igual:
+
+Use a mesma matriz vertical
+Arraste o campo "Descrição" para as linhas
+Adicione a medida "Valores Resumo" para os valores
+Aplique a formatação condicional e os estilos visuais conforme necessário
+
+Com essas alterações, sua matriz no Power BI será muito similar ao resumo geral que você mostrou no Excel, mas usando o saldo inicial do mês em vez do saldo do ano anterior.BAcriar a medida do saldo inicial por fora do resumo só a medidaVou criar uma medida separada para o Saldo Inicial do Mês, que poderá ser usada tanto no resumo quanto em outros lugares do seu relatório:
+Saldo Inicial do Mês = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+RETURN
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes
+        )
+    )
+Esta medida:
+
+Identifica a empresa selecionada no contexto atual
+Determina a data atual do contexto
+Calcula o primeiro dia do mês da data atual
+Busca na tabela Saldos o valor correspondente à empresa e ao primeiro dia do mês
+Retorna esse valor como o saldo inicial do mês
+
+Você pode usar esta medida individualmente em cartões, gráficos ou como parte de outras medidas compostas como o resumo geral.BAeu criei duas medidas para prever o que devo pagar e receber . que são "Despesas Previstas" e "Receitas Previstas" e agora quero criar saldo previsto . para acompanhar meu fluxo de caixa . então quero um medida que traga a data que meu saldo previsto  ficar negativoVou criar uma medida no DAX que calcule o saldo previsto diário e determine a primeira data em que seu saldo ficará negativo. Esta medida será útil para você monitorar seu fluxo de caixa futuro.
+Primeira Data com Saldo Negativo = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = TODAY()
+VAR _DataFimProjeção = DATE(YEAR(_DataAtual), MONTH(_DataAtual) + 3, 1) // Projeção para 3 meses à frente
+
+// Saldo inicial (atual)
+VAR _SaldoAtual = [Saldo Real Acumulado]
+
+// Tabela de datas futuras para projeção
+VAR _DiasProjeção = 
+    CALENDAR(_DataAtual, _DataFimProjeção)
+
+// Adiciona saldo projetado para cada dia futuro
+VAR _ProjeçãoDiária = 
+    ADDCOLUMNS(
+        _DiasProjeção,
+        "Data", [Date],
+        "SaldoProjetado", 
+            VAR _DataCalc = [Date]
+            VAR _ReceitasFuturas = 
+                CALCULATE(
+                    [Receitas Previstas],
+                    'dCalendário'[Date] <= _DataCalc,
+                    'dCalendário'[Date] > _DataAtual
+                )
+            VAR _DespesasFuturas = 
+                CALCULATE(
+                    [Despesas Previstas],
+                    'dCalendário'[Date] <= _DataCalc,
+                    'dCalendário'[Date] > _DataAtual
+                )
+            RETURN
+                _SaldoAtual + _ReceitasFuturas - _DespesasFuturas
+    )
+
+// Filtra para encontrar o primeiro dia com saldo negativo
+VAR _DiasSaldoNegativo = 
+    FILTER(
+        _ProjeçãoDiária,
+        [SaldoProjetado] < 0
+    )
+
+// Extrai a primeira data com saldo negativo
+VAR _PrimeiraDataNegativa = 
+    MINX(
+        _DiasSaldoNegativo,
+        [Data]
+    )
+
+RETURN
+    IF(
+        ISBLANK(_PrimeiraDataNegativa),
+        "Não há previsão de saldo negativo no período analisado",
+        _PrimeiraDataNegativa
+    )
+Essa medida:
+
+Calcula seu saldo atual usando a medida [Saldo Real Acumulado] que você já tem
+Cria uma tabela de datas para projeção (nos próximos 3 meses)
+Para cada data futura, calcula o saldo projetado acumulando as receitas e despesas previstas
+Identifica a primeira data em que o saldo projetado fica negativo
+Retorna essa data ou uma mensagem indicando que não há previsão de saldo negativo no período analisado
+
+Além disso, você pode criar uma medida complementar para calcular o saldo projetado para qualquer data:
+Saldo Projetado = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _DataAtual = TODAY()
+VAR _SaldoAtual = [Saldo Real Acumulado]
+
+// Se a data do contexto for no passado ou hoje, retorna o saldo real
+VAR _SaldoPassado = 
+    IF(
+        _DataContexto <= _DataAtual,
+        _SaldoAtual,
+        
+        // Caso contrário, projeta o saldo futuro
+        VAR _ReceitasFuturas = 
+            CALCULATE(
+                [Receitas Previstas],
+                'dCalendário'[Date] <= _DataContexto,
+                'dCalendário'[Date] > _DataAtual
+            )
+        VAR _DespesasFuturas = 
+            CALCULATE(
+                [Despesas Previstas],
+                'dCalendário'[Date] <= _DataContexto,
+                'dCalendário'[Date] > _DataAtual
+            )
+        RETURN
+            _SaldoAtual + _ReceitasFuturas - _DespesasFuturas
+    )
+
+RETURN
+    _SaldoPassado
+Essa segunda medida permite criar um gráfico de linha mostrando a evolução do saldo projetado ao longo do tempo, o que é muito útil para visualizar quando o saldo começará a ficar negativo e como ele se comportará no futuro.Files hidden in shared chatsBAfiz essa Tabela pra trazer as informações projetadas . quando eu coloco o saldo projetado vira uma bagunça, conforme a imagem 1 , quero saldo projetado comece  a partir data projetada . entendeu . e só preencher as data que tiverem valores  , pra não ficar uma bagunça .Entendi seu problema. O saldo projetado está sendo exibido em todas as linhas, criando uma visualização confusa quando você tem muitos itens. Você quer que o saldo projetado apareça apenas nas datas relevantes, onde existem valores de entrada ou saída projetados.
+Para resolver isso, precisamos modificar a medida de Saldo Projetado para que ela retorne valores apenas quando houver transações projetadas naquela data. Aqui está uma abordagem para melhorar isso:
+Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _DiaCorrente = SELECTEDVALUE('Base de Dados'[Dia])
+
+// Verifica se existem entradas ou saídas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(SUM('Base de Dados'[ENTRADA]))),
+        NOT(ISBLANK(SUM('Base de Dados'[SAÍDA])))
+    )
+
+// Calcula saldo acumulado até a data anterior
+VAR _SaldoAnterior = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        ALLEXCEPT('Base de Dados', 'Base de Dados'[EMPRESA]),
+        'Base de Dados'[Dia] < _DiaCorrente
+    )
+
+// Calcula transações do dia atual
+VAR _EntradasDoDia = SUM('Base de Dados'[ENTRADA])
+VAR _SaidasDoDia = SUM('Base de Dados'[SAÍDA])
+
+// Calcula saldo final do dia
+VAR _SaldoDia = _SaldoAnterior + _EntradasDoDia - _SaidasDoDia
+
+RETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoDia,
+        BLANK()
+    )
+Esta medida faz o seguinte:
+
+Verifica se existem entradas ou saídas no dia corrente
+Calcula o saldo acumulado até o dia anterior
+Adiciona as entradas e subtrai as saídas do dia atual
+Retorna o saldo projetado apenas se houver transações no dia, caso contrário retorna em branco
+
+Para implementar isso no Power BI:
+
+Crie essa medida
+Na sua tabela, adicione-a na coluna "Saldo Projetado"
+Garanta que suas colunas de ENTRADA e SAÍDA estão corretamente configuradas
+
+Isso resultará em uma visualização mais limpa, onde o saldo projetado aparecerá apenas nas linhas com transações, evitando a repetição dos mesmos valores em todas as linhas como mostrado na sua imagem 1.
+Se você quiser uma visualização ainda mais especializada, pode considerar criar uma medida adicional para calcular o saldo apenas nos dias com projeções futuras (depois da data atual), mantendo em branco os valores para transações passadas.Files hidden in shared chatsBAdeu erroVejo que encontrou um erro na medida: "A coluna 'ENTRADA' na tabela 'Base de Dados' não pode ser encontrada ou não pode ser usada nesta expressão."
+O problema é que você está tentando acessar colunas chamadas 'ENTRADA' e 'SAÍDA' diretamente da tabela 'Base de Dados', mas parece que essas colunas não existem nessa tabela exatamente com esses nomes ou não estão acessíveis no contexto atual.
+Vamos ajustar a medida com base na estrutura que você mostrou nas imagens:
+Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _DiaCorrente = SELECTEDVALUE('Base de Dados'[Dia])
+
+// Verifica se existem entradas ou saídas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS")))
+    )
+
+// Calcula saldo acumulado até a data anterior
+VAR _SaldoAnterior = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        ALLEXCEPT('Base de Dados', 'Base de Dados'[EMPRESA]),
+        'Base de Dados'[Dia] < _DiaCorrente
+    )
+
+// Calcula transações do dia atual
+VAR _EntradasDoDia = CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS")
+VAR _SaidasDoDia = CALCULATE(ABS(SUM('Base de Dados'[REAL])), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS")
+
+// Calcula saldo final do dia
+VAR _SaldoDia = _SaldoAnterior + _EntradasDoDia - _SaidasDoDia
+
+RETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoDia,
+        BLANK()
+    )
+A principal diferença é que agora, em vez de referenciar diretamente colunas ENTRADA e SAÍDA, estamos:
+
+Calculando as entradas como a soma da coluna REAL onde GRUPO | DÉB CRÉD = "ENTRADAS"
+Calculando as saídas como a soma da coluna REAL onde GRUPO | DÉB CRÉD = "SAÍDAS"
+
+Este é o padrão que você mostrou em suas imagens, onde as entradas e saídas são classificadas pela coluna "GRUPO | DÉB CRÉD".
+Esta alteração deve resolver o erro, mas certifique-se de que os nomes das colunas estejam exatamente como aparecem no seu modelo de dados (com maiúsculas, minúsculas e espaços corretos).BABase de Dados'[Dia] não tem essa coluna na base de dados e sim na DcalendarioVocê está certo. O erro está na referência à coluna [Dia], que deve estar na tabela dCalendário, não na Base de Dados. Vamos corrigir a medida:
+Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _DiaCorrente = SELECTEDVALUE('dCalendário'[Dia])
+
+// Verifica se existem entradas ou saídas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS")))
+    )
+
+// Calcula saldo acumulado até a data anterior
+VAR _SaldoAnterior = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        ALLEXCEPT('dCalendário', 'dCalendário'[Date]),
+        'dCalendário'[Dia] < _DiaCorrente
+    )
+
+// Calcula transações do dia atual
+VAR _EntradasDoDia = CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS")
+VAR _SaidasDoDia = CALCULATE(ABS(SUM('Base de Dados'[REAL])), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS")
+
+// Calcula saldo final do dia
+VAR _SaldoDia = _SaldoAnterior + _EntradasDoDia - _SaidasDoDia
+
+RETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoDia,
+        BLANK()
+    )
+As principais correções são:
+
+Alterei SELECTEDVALUE('Base de Dados'[Dia]) para SELECTEDVALUE('dCalendário'[Dia])
+Modifiquei a função ALLEXCEPT para usar a tabela dCalendário, não Base de Dados
+Alterados os filtros para usar 'dCalendário'[Dia] em vez de 'Base de Dados'[Dia]
+
+Esta versão deve funcionar melhor com a estrutura do seu modelo de dados. Observe também que, dependendo de como seu modelo está estruturado, você pode precisar ajustar as relações entre as tabelas para garantir que os filtros sejam propagados corretamente.Files hidden in shared chatsBAeu fiz umas modificações na medida para adiantar , se você reparar na imagem a medida esta trazendo saldo anterior da data projetada . e também o saldo esta errado o saldo final via ate dia 14. 47.337,66 do dia 15 em diante de começar o saldo projetado . entendeu ? o saldo deve acompanhar as medidas projetadas !  Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _DiaCorrente = SELECTEDVALUE('dCalendário'[ Dia])// Verifica se existem entradas ou saídas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",'Base de Dados'[STATUS] = "Em aberto"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",'Base de Dados'[STATUS] = "Em aberto")))
+    )// Calcula saldo acumulado até a data anterior
+VAR _SaldoAnterior = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        ALLEXCEPT('dCalendário', 'dCalendário'[Date]),
+        'dCalendário'[ Dia] < _DiaCorrente
+    )// Calcula transações do dia atual
+VAR _EntradasDoDia = CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",'Base de Dados'[STATUS] = "Em aberto")
+VAR _SaidasDoDia = CALCULATE(ABS(SUM('Base de Dados'[REAL])), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",'Base de Dados'[STATUS] = "Em aberto")// Calcula saldo final do dia
+VAR _SaldoDia = _SaldoAnterior + _EntradasDoDia - _SaidasDoDiaRETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoDia,
+        BLANK()
+    )// Calcula transações do dia atual
+VAR _EntradasDoDia = CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",'Base de Dados'[STATUS] = "Em aberto")
+VAR _SaidasDoDia = CALCULATE(ABS(SUM('Base de Dados'[REAL])), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",'Base de Dados'[STATUS] = "Em aberto")// Calcula saldo final do dia
+VAR _SaldoDia = _SaldoAnterior + _EntradasDoDia - _SaidasDoDiaRETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoDia,
+        BLANK()
+    )Entendi o problema. A medida está trazendo o saldo anterior para todas as datas, quando deveria mostrar apenas o saldo projetado para datas futuras a partir do dia 15. Vamos ajustar a medida para:
+
+Mostrar valores apenas para transações "Em aberto" (como você já implementou)
+Usar o saldo real acumulado como ponto de partida (47.377,66 conforme você mencionou)
+Calcular o saldo projetado apenas para datas futuras
+
+Aqui está a medida corrigida:
+Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = TODAY()
+VAR _DiaCorrente = SELECTEDVALUE('dCalendário'[ Dia])
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Pegar o último saldo real conhecido (47.377,66 no seu caso)
+VAR _UltimoSaldoReal = 47377.66 // Substitua pelo valor correto ou por uma medida que retorne este valor
+
+// Verifica se existem entradas ou saídas projetadas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS", 'Base de Dados'[STATUS] = "Em aberto"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS", 'Base de Dados'[STATUS] = "Em aberto")))
+    )
+
+// Calcula todas as entradas projetadas até a data atual do contexto
+VAR _EntradasProjetadasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula todas as saídas projetadas até a data atual do contexto
+VAR _SaidasProjetadasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula o saldo projetado acumulado
+VAR _SaldoProjetadoAcumulado = _UltimoSaldoReal + _EntradasProjetadasAcumuladas - _SaidasProjetadasAcumuladas
+
+RETURN
+    IF(
+        _TemTransacaoNoDia && _DiaCorrente >= 15, // Mostra saldo apenas se houver transação no dia e for após o dia 15
+        _SaldoProjetadoAcumulado,
+        BLANK()
+    )
+Principais alterações:
+
+Defini o valor fixo do último saldo real conhecido (47.377,66) - você pode substituir isso por uma medida dinâmica
+Calculei as entradas e saídas projetadas acumuladas até a data atual do contexto
+Adicionei uma condição para mostrar o saldo apenas se a data for >= 15 (conforme você mencionou)
+Simplifiquei o cálculo para garantir que o saldo projetado seja consistente
+
+Esta medida deve resolver seu problema, mostrando o saldo projetado apenas nas datas relevantes a partir do dia 15, com base no último saldo real conhecido.Files hidden in shared chatsBAagora preciso criar um saldo para moeda estrangeira, a empresa PMD S.A , ela tem três tipo de moedas  , Dolar , Franco suiço e euro . a moeda estrangeira diferente do real  os saldos são divididos ,  acho todas as medidas criadas para real . vai precisa criar para moeda estrangeira . entendeu ?Entendi perfeitamente. Você precisa criar medidas específicas para calcular o saldo em moedas estrangeiras (Dólar, Franco Suíço e Euro), já que os saldos de moedas diferentes são calculados separadamente.
+Baseado nas suas imagens, vejo que você tem uma tabela "Saldos" (imagem 1) que mantém os saldos iniciais por data e empresa, e uma tabela "Base de Dados" (imagens 2 e 3) com as transações, incluindo uma coluna "MOEDA ESTRANGEIRA" para identificar a moeda.
+Vou criar as medidas necessárias para calcular o saldo por moeda estrangeira:
+Saldo Moeda Estrangeira = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Pega o saldo inicial do mês para a moeda específica
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes &&
+            Saldos[Nome Moedas] = _Moeda
+        )
+    )
+
+// Calcula entradas e saídas em moeda estrangeira
+VAR _EntradasRealizadas = 
+    CALCULATE(
+        SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+VAR _SaidasRealizadas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[STATUS] = "Pago",
+        'dCalendário'[Date] >= _PrimeiroDiaMes,
+        'dCalendário'[Date] <= _DataAtual,
+        USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+    )
+
+// Calcula o saldo atual da moeda estrangeira
+RETURN
+    _SaldoInicialMes + _EntradasRealizadas - _SaidasRealizadas
+Esta medida calcula o saldo em moeda estrangeira levando em consideração:
+
+O saldo inicial do mês para a empresa e moeda específica
+As entradas realizadas na mesma moeda no período
+As saídas realizadas na mesma moeda no período
+
+Da mesma forma, você pode criar uma medida para o saldo projetado em moeda estrangeira:
+Saldo Projetado Moeda Estrangeira = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataAtual = TODAY()
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Calcular o saldo atual em moeda estrangeira
+VAR _SaldoAtualMoeda = [Saldo Moeda Estrangeira]
+
+// Calcular entradas projetadas (com status "Em aberto")
+VAR _EntradasProjetadas = 
+    CALCULATE(
+        SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto,
+        USERELATIONSHIP('Base de Dados'[VENCIMENTO], 'dCalendário'[Date])
+    )
+
+// Calcular saídas projetadas (com status "Em aberto")
+VAR _SaidasProjetadas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto,
+        USERELATIONSHIP('Base de Dados'[VENCIMENTO], 'dCalendário'[Date])
+    )
+
+// Calcular o saldo projetado
+RETURN
+    _SaldoAtualMoeda + _EntradasProjetadas - _SaidasProjetadas
+Algumas observações importantes:
+
+Essas medidas dependem de uma coluna "Nome Moedas" na tabela Base de Dados (que vi na imagem 3)
+A tabela Saldos precisa ter uma coluna para identificar a moeda também
+Para o saldo projetado, estou usando a coluna VENCIMENTO para filtrar as datas futuras
+Você pode usar estas medidas em visuais com um segmentador de dados para selecionar a moeda específica
+
+Com estas medidas, você poderá acompanhar separadamente os saldos para cada moeda estrangeira (Dólar, Franco Suíço e Euro), tanto para valores realizados quanto para projeções futuras.BAvamos todas medidas criadas para Real , preciso que crie também para moedas estrangeiras .Entendi que você precisa criar um conjunto completo de medidas para moedas estrangeiras, equivalentes às que você já tem para o Real. Vou criar as principais medidas para gerenciamento de fluxo de caixa em moedas estrangeiras.
+1. Total Receitas Realizadas (Moeda Estrangeira)
+Total Receitas Realizadas ME = 
+CALCULATE(
+    SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+    'Base de Dados'[STATUS] = "Pago",
+    USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+)
+2. Total Despesas Realizadas (Moeda Estrangeira)
+Total Despesas Realizadas ME = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Pago",
+    USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+)
+3. Receitas Previstas (Moeda Estrangeira)
+Receitas Previstas ME = 
+CALCULATE(
+    SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+    'Base de Dados'[STATUS] = "Em aberto",
+    USERELATIONSHIP('Base de Dados'[VENCIMENTO], 'dCalendário'[Date])
+)
+4. Despesas Previstas (Moeda Estrangeira)
+Despesas Previstas ME = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Em aberto",
+    USERELATIONSHIP('Base de Dados'[VENCIMENTO], 'dCalendário'[Date])
+)
+5. Saldo Atual (Moeda Estrangeira)
+Saldo Atual ME = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _Ano = YEAR(_DataAtual)
+VAR _Mes = MONTH(_DataAtual)
+VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1)
+
+// Saldo inicial do mês para moeda específica
+VAR _SaldoInicialMes = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _PrimeiroDiaMes &&
+            Saldos[Nome Moedas] = _Moeda
+        )
+    )
+
+RETURN
+    _SaldoInicialMes + [Total Receitas Realizadas ME] - [Total Despesas Realizadas ME]
+6. Saldo Projetado (Moeda Estrangeira)
+Saldo Projetado ME = 
+[Saldo Atual ME] + [Receitas Previstas ME] - [Despesas Previstas ME]
+7. Índice Realização Despesas (Moeda Estrangeira)
+Índice Realização Despesas ME = 
+VAR _DespesasRealizadas = [Total Despesas Realizadas ME]
+VAR _DespesasPrevistas = [Despesas Previstas ME]
+
+RETURN
+    IF(
+        _DespesasPrevistas = 0,
+        BLANK(),
+        DIVIDE(_DespesasRealizadas, _DespesasRealizadas + _DespesasPrevistas)
+    )
+8. % Contas Pagas (Moeda Estrangeira)
+% Contas Pagas ME = 
+VAR _QtdContasPagas = 
+    CALCULATE(
+        COUNTROWS('Base de Dados'),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Pago",
+        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+    )
+
+VAR _QtdContasTotal = 
+    CALCULATE(
+        COUNTROWS('Base de Dados'),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+    )
+
+RETURN
+    IF(
+        _QtdContasTotal = 0,
+        BLANK(),
+        DIVIDE(_QtdContasPagas, _QtdContasTotal)
+    )
+9. Contas em Atraso (Moeda Estrangeira)
+Contas em Atraso ME = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Em aberto",
+    'Base de Dados'[VENCIMENTO] < TODAY(),
+    NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+)
+10. Qtd Contas em Atraso (Moeda Estrangeira)
+Qtd Contas em Atraso ME = 
+CALCULATE(
+    COUNTROWS('Base de Dados'),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Em aberto",
+    'Base de Dados'[VENCIMENTO] < TODAY(),
+    NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+)
+11. Saldo Projetado Detalhado (por data - Moeda Estrangeira)
+Saldo Projetado por Data ME = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _DiaCorrente = SELECTEDVALUE('dCalendário'[ Dia])
+
+// Verifica se existem entradas ou saídas na data atual na moeda selecionada
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS", 'Base de Dados'[STATUS] = "Em aberto"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS", 'Base de Dados'[STATUS] = "Em aberto")))
+    )
+
+// Saldo atual da moeda estrangeira
+VAR _SaldoAtualME = [Saldo Atual ME]
+
+// Calcula entradas projetadas acumuladas até a data do contexto
+VAR _EntradasProjetadasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula saídas projetadas acumuladas até a data do contexto
+VAR _SaidasProjetadasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula o saldo projetado
+VAR _SaldoProjetadoME = _SaldoAtualME + _EntradasProjetadasAcumuladas - _SaidasProjetadasAcumuladas
+
+RETURN
+    IF(
+        _TemTransacaoNoDia,  // Mostra saldo apenas se houver transação no dia
+        _SaldoProjetadoME,
+        BLANK()
+    )
+12. Fluxo - Entradas do Período (Moeda Estrangeira)
+Fluxo - Entradas do Período ME = 
+CALCULATE(
+    SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+    'Base de Dados'[STATUS] = "Pago",
+    USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+)
+13. Fluxo - Saídas do Período (Moeda Estrangeira)
+Fluxo - Saídas do Período ME = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Pago",
+    USERELATIONSHIP('Base de Dados'[PAGTO], 'dCalendário'[Date])
+)
+14. Fluxo - Saldo do Período (Moeda Estrangeira)
+Fluxo - Saldo do Período ME = 
+[Fluxo - Entradas do Período ME] - [Fluxo - Saídas do Período ME]
+15. Fluxo - Saldo Acumulado (Moeda Estrangeira)
+Fluxo - Saldo Acumulado ME = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataInicial = MIN('dCalendário'[Date])
+VAR _DataFinal = MAX('dCalendário'[Date])
+
+// Saldo inicial do primeiro dia do período
+VAR _SaldoInicial = 
+    CALCULATE(
+        SUM(Saldos[Valor]),
+        FILTER(
+            ALL(Saldos),
+            Saldos[EMPRESAS] = _Empresa &&
+            Saldos[Data] = _DataInicial &&
+            Saldos[Nome Moedas] = _Moeda
+        )
+    )
+
+// Fluxo acumulado do período
+VAR _FluxoAcumulado = 
+    CALCULATE(
+        [Fluxo - Saldo do Período ME],
+        FILTER(
+            ALL('dCalendário'),
+            'dCalendário'[Date] >= _DataInicial &&
+            'dCalendário'[Date] <= _DataFinal
+        )
+    )
+
+RETURN
+    _SaldoInicial + _FluxoAcumulado
+Estas 15 medidas fornecem uma base completa para análise de fluxo de caixa em moedas estrangeiras, abrangendo receitas, despesas, saldos e projeções. Você pode usar estas medidas como base e criar outras mais específicas conforme necessário para sua análise.
+Para usar estas medidas em seus relatórios, recomendo:
+
+Criar uma matriz ou tabela que mostre os resultados por moeda
+Adicionar segmentadores para filtrar por moeda específica
+Criar visuais separados para cada moeda principal (Dólar, Franco e Euro)
+Comparar o saldo projetado por moeda em um visual de linhas
+
+Lembre-se que estas medidas assumem que você tem uma coluna "Nome Moedas" na sua tabela de dados. Se o nome da coluna for diferente, ajuste as medidas conforme necessário.BAmuito bom mais preciso que faça o script do tabula edito se possívelVou criar um script para criar a tabela "Saldos" que funcionará com as medidas que desenvolvemos para controle de fluxo de caixa em moedas estrangeiras. Esta tabela é essencial para armazenar os saldos iniciais por empresa, data e tipo de moeda.
+Aqui está o script SQL para criar a tabela:
+sql-- Criação da tabela Saldos para controle de fluxo de caixa em múltiplas moedas
+CREATE TABLE Saldos (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    EMPRESAS NVARCHAR(100) NOT NULL,
+    Data DATE NOT NULL,
+    Nome_Moedas NVARCHAR(50) NOT NULL,
+    Valor DECIMAL(18,2) NOT NULL,
+    DataCriacao DATETIME DEFAULT GETDATE(),
+    UsuarioCriacao NVARCHAR(50),
+    DataAtualizacao DATETIME,
+    UsuarioAtualizacao NVARCHAR(50)
+);
+
+-- Criação de índice composto para otimizar consultas por empresa, data e moeda
+CREATE INDEX IX_Saldos_EmpresaDataMoeda ON Saldos (EMPRESAS, Data, Nome_Moedas);
+
+-- Inserção de dados de exemplo (saldos iniciais)
+-- PMD BR - Real
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES ('PMD BR', '2023-01-01', 'REAL', 29976.05, 'SISTEMA');
+
+-- PMD BR - Saldos mensais de 2023 (Real)
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES 
+('PMD BR', '2023-02-01', 'REAL', 45328.70, 'SISTEMA'),
+('PMD BR', '2023-03-01', 'REAL', 8664.20, 'SISTEMA'),
+('PMD BR', '2023-04-01', 'REAL', 29348.86, 'SISTEMA');
+
+-- PMD S.A - Dólar
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES 
+('PMD S.A', '2023-01-01', 'DOLAR', 23919.27, 'SISTEMA'),
+('PMD S.A', '2023-02-01', 'DOLAR', 27041.99, 'SISTEMA'),
+('PMD S.A', '2023-03-01', 'DOLAR', 21262.95, 'SISTEMA'),
+('PMD S.A', '2023-04-01', 'DOLAR', 36235.77, 'SISTEMA');
+
+-- PMD S.A - Franco
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES 
+('PMD S.A', '2023-01-01', 'FRANCO', 5874.62, 'SISTEMA'),
+('PMD S.A', '2023-02-01', 'FRANCO', 7689.18, 'SISTEMA'),
+('PMD S.A', '2023-03-01', 'FRANCO', 9256.45, 'SISTEMA');
+
+-- PMD S.A - Euro
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES 
+('PMD S.A', '2023-01-01', 'EURO', 67.62, 'SISTEMA');
+
+-- SCP - Real
+INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+VALUES 
+('SCP', '2023-01-01', 'REAL', 740.09, 'SISTEMA'),
+('SCP', '2023-02-01', 'REAL', 20103.66, 'SISTEMA'),
+('SCP', '2023-03-01', 'REAL', 13425.69, 'SISTEMA'),
+('SCP', '2023-04-01', 'REAL', 22009.06, 'SISTEMA');
+
+-- Procedimento armazenado para adicionar um novo saldo mensal
+CREATE PROCEDURE sp_AdicionarSaldoMensal
+    @Empresa NVARCHAR(100),
+    @Data DATE,
+    @Moeda NVARCHAR(50),
+    @Valor DECIMAL(18,2),
+    @Usuario NVARCHAR(50)
+AS
+BEGIN
+    -- Verificar se já existe um saldo para esta combinação
+    IF EXISTS (SELECT 1 FROM Saldos WHERE EMPRESAS = @Empresa AND Data = @Data AND Nome_Moedas = @Moeda)
+    BEGIN
+        -- Atualizar o saldo existente
+        UPDATE Saldos
+        SET Valor = @Valor,
+            DataAtualizacao = GETDATE(),
+            UsuarioAtualizacao = @Usuario
+        WHERE EMPRESAS = @Empresa AND Data = @Data AND Nome_Moedas = @Moeda;
+    END
+    ELSE
+    BEGIN
+        -- Inserir novo saldo
+        INSERT INTO Saldos (EMPRESAS, Data, Nome_Moedas, Valor, UsuarioCriacao)
+        VALUES (@Empresa, @Data, @Moeda, @Valor, @Usuario);
+    END
+END;
+
+-- Função para obter saldo de uma empresa em uma data específica
+CREATE FUNCTION fn_ObterSaldoData
+(
+    @Empresa NVARCHAR(100),
+    @Data DATE,
+    @Moeda NVARCHAR(50)
+)
+RETURNS DECIMAL(18,2)
+AS
+BEGIN
+    DECLARE @Saldo DECIMAL(18,2);
+    
+    -- Encontrar o saldo mais recente antes da data especificada
+    SELECT TOP 1 @Saldo = Valor
+    FROM Saldos
+    WHERE EMPRESAS = @Empresa 
+      AND Nome_Moedas = @Moeda
+      AND Data <= @Data
+    ORDER BY Data DESC;
+    
+    -- Retornar 0 se não houver saldo anterior
+    RETURN ISNULL(@Saldo, 0);
+END;
+
+-- View para visualizar os saldos mais recentes por empresa e moeda
+CREATE VIEW vw_SaldosRecentes AS
+WITH UltimasDatasPorEmpresaMoeda AS (
+    SELECT 
+        EMPRESAS,
+        Nome_Moedas,
+        MAX(Data) AS UltimaData
+    FROM 
+        Saldos
+    GROUP BY 
+        EMPRESAS, Nome_Moedas
+)
+SELECT 
+    s.EMPRESAS,
+    s.Data,
+    s.Nome_Moedas,
+    s.Valor AS SaldoAtual
+FROM 
+    Saldos s
+    INNER JOIN UltimasDatasPorEmpresaMoeda u
+        ON s.EMPRESAS = u.EMPRESAS
+        AND s.Nome_Moedas = u.Nome_Moedas
+        AND s.Data = u.UltimaData;
+Este script SQL:
+
+Cria a tabela Saldos com campos para empresa, data, moeda e valor
+Adiciona campos de auditoria (criação e atualização)
+Cria um índice para otimizar consultas
+Insere dados de exemplo baseados nas suas imagens
+Inclui um procedimento armazenado para adicionar ou atualizar saldos mensais
+Cria uma função para obter o saldo de uma empresa em uma data específica
+Adiciona uma view para visualizar os saldos mais recentes por empresa e moeda
+
+Para adaptar este script ao seu ambiente específico:
+
+Ajuste os tipos de dados conforme necessário (NVARCHAR, DECIMAL, etc.)
+Modifique os tamanhos dos campos com base nos seus requisitos
+Atualize os dados de exemplo com os valores reais do seu negócio
+Adapte os nomes das moedas conforme aparecem no seu sistema (DOLAR, FRANCO, EURO)
+
+Este script fornece uma base sólida para armazenar e gerenciar os saldos por moeda que você precisa para as medidas DAX que criamos anteriormente.Files hidden in shared chatsBAnão é essa script e sim um script igual da medidas inadimplência financeiras .Entendi, você quer um script similar ao "medidas-inadimplencia-financeiras.cs" para criar medidas específicas para moedas estrangeiras. Vou criar esse script para o Tabular Editor, adaptando o conteúdo do documento que você compartilhou, mas focando em moedas estrangeiras.
+csharp// Script para Tabular Editor
+// Adiciona medidas de fluxo de caixa para Moedas Estrangeiras
+// Usa os mesmos padrões do script de inadimplência financeira
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["Base de Dados"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'Base de Dados' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== MEDIDAS BÁSICAS PARA MOEDA ESTRANGEIRA ==========
+
+// Total Receitas Realizadas ME
+var m1 = table.AddMeasure(
+    "Total Receitas Realizadas ME",
+    "CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Pago\", USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m1.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m1.FormatString = "#,##0.00";
+
+// Total Despesas Realizadas ME
+var m2 = table.AddMeasure(
+    "Total Despesas Realizadas ME",
+    "CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Pago\", USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m2.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m2.FormatString = "#,##0.00";
+
+// Receitas Previstas ME
+var m3 = table.AddMeasure(
+    "Receitas Previstas ME",
+    "CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Em aberto\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m3.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m3.FormatString = "#,##0.00";
+
+// Despesas Previstas ME
+var m4 = table.AddMeasure(
+    "Despesas Previstas ME",
+    "CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Em aberto\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m4.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m4.FormatString = "#,##0.00";
+
+// Saldo Atual ME
+var m5 = table.AddMeasure(
+    "Saldo Atual ME",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataAtual = MAX(dCalendario[Date]) " +
+    "VAR _Ano = YEAR(_DataAtual) " +
+    "VAR _Mes = MONTH(_DataAtual) " +
+    "VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1) " +
+    "VAR _SaldoInicialMes = CALCULATE(SUM(Saldos[Valor]), FILTER(ALL(Saldos), Saldos[EMPRESAS] = _Empresa && Saldos[Data] = _PrimeiroDiaMes && Saldos[Nome Moedas] = _Moeda)) " +
+    "RETURN _SaldoInicialMes + [Total Receitas Realizadas ME] - [Total Despesas Realizadas ME]",
+    "Fluxo de Caixa"
+);
+m5.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m5.FormatString = "#,##0.00";
+
+// Saldo Projetado ME
+var m6 = table.AddMeasure(
+    "Saldo Projetado ME",
+    "[Saldo Atual ME] + [Receitas Previstas ME] - [Despesas Previstas ME]",
+    "Fluxo de Caixa"
+);
+m6.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m6.FormatString = "#,##0.00";
+
+// ========== MEDIDAS DE FLUXO PARA MOEDA ESTRANGEIRA ==========
+
+// Fluxo ME - Entradas do Período
+var m7 = table.AddMeasure(
+    "Fluxo ME - Entradas do Período",
+    "CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Pago\", USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m7.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Consolidado";
+m7.FormatString = "#,##0.00";
+
+// Fluxo ME - Saídas do Período
+var m8 = table.AddMeasure(
+    "Fluxo ME - Saídas do Período",
+    "CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Pago\", USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m8.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Consolidado";
+m8.FormatString = "#,##0.00";
+
+// Fluxo ME - Saldo do Período
+var m9 = table.AddMeasure(
+    "Fluxo ME - Saldo do Período",
+    "[Fluxo ME - Entradas do Período] - [Fluxo ME - Saídas do Período]",
+    "Fluxo de Caixa"
+);
+m9.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Consolidado";
+m9.FormatString = "#,##0.00";
+
+// Fluxo ME - Saldo Acumulado
+var m10 = table.AddMeasure(
+    "Fluxo ME - Saldo Acumulado",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataInicial = MIN(dCalendario[Date]) " +
+    "VAR _DataFinal = MAX(dCalendario[Date]) " +
+    "VAR _SaldoInicial = CALCULATE(SUM(Saldos[Valor]), FILTER(ALL(Saldos), Saldos[EMPRESAS] = _Empresa && Saldos[Data] = _DataInicial && Saldos[Nome Moedas] = _Moeda)) " +
+    "VAR _FluxoAcumulado = CALCULATE([Fluxo ME - Saldo do Período], FILTER(ALL(dCalendario), dCalendario[Date] >= _DataInicial && dCalendario[Date] <= _DataFinal)) " +
+    "RETURN _SaldoInicial + _FluxoAcumulado",
+    "Fluxo de Caixa"
+);
+m10.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Consolidado";
+m10.FormatString = "#,##0.00";
+
+// ========== MEDIDAS DE PROJEÇÃO PARA MOEDA ESTRANGEIRA ==========
+
+// Fluxo ME - Entradas Previstas
+var m11 = table.AddMeasure(
+    "Fluxo ME - Entradas Previstas",
+    "CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Em aberto\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m11.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Projetado";
+m11.FormatString = "#,##0.00";
+
+// Fluxo ME - Saídas Previstas
+var m12 = table.AddMeasure(
+    "Fluxo ME - Saídas Previstas",
+    "CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Em aberto\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m12.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Projetado";
+m12.FormatString = "#,##0.00";
+
+// Fluxo ME - Saldo Projetado
+var m13 = table.AddMeasure(
+    "Fluxo ME - Saldo Projetado",
+    "[Fluxo ME - Entradas Previstas] - [Fluxo ME - Saídas Previstas]",
+    "Fluxo de Caixa"
+);
+m13.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Fluxo Projetado";
+m13.FormatString = "#,##0.00";
+
+// ========== MEDIDAS POR FAIXAS DE TEMPO PARA MOEDA ESTRANGEIRA ==========
+
+// Previsão ME Próximos 30 dias
+var m14 = table.AddMeasure(
+    "Previsão ME Próximos 30 dias",
+    "CALCULATE([Fluxo ME - Saldo Projetado], 'dCalendario'[Date] <= TODAY() + 30, 'dCalendario'[Date] > TODAY())",
+    "Fluxo de Caixa"
+);
+m14.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Projeções";
+m14.FormatString = "#,##0.00";
+
+// Previsão ME 30-60 dias
+var m15 = table.AddMeasure(
+    "Previsão ME 30-60 dias",
+    "CALCULATE([Fluxo ME - Saldo Projetado], 'dCalendario'[Date] <= TODAY() + 60, 'dCalendario'[Date] > TODAY() + 30)",
+    "Fluxo de Caixa"
+);
+m15.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Projeções";
+m15.FormatString = "#,##0.00";
+
+// Previsão ME 60-90 dias
+var m16 = table.AddMeasure(
+    "Previsão ME 60-90 dias",
+    "CALCULATE([Fluxo ME - Saldo Projetado], 'dCalendario'[Date] <= TODAY() + 90, 'dCalendario'[Date] > TODAY() + 60)",
+    "Fluxo de Caixa"
+);
+m16.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Projeções";
+m16.FormatString = "#,##0.00";
+
+// ========== MEDIDAS DE INADIMPLÊNCIA PARA MOEDA ESTRANGEIRA ==========
+
+// Contas ME em Atraso
+var m17 = table.AddMeasure(
+    "Contas ME em Atraso",
+    "CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[STATUS] = \"Em aberto\", 'Base de Dados'[VENCIMENTO] < TODAY(), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m17.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Análise de Atraso";
+m17.FormatString = "#,##0.00";
+
+// Qtd Contas ME em Atraso
+var m18 = table.AddMeasure(
+    "Qtd Contas ME em Atraso",
+    "CALCULATE(COUNTROWS('Base de Dados'), 'Base de Dados'[STATUS] = \"Em aberto\", 'Base de Dados'[VENCIMENTO] < TODAY(), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])), USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m18.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Análise de Atraso";
+m18.FormatString = "#,##0";
+
+// Contas ME em Atraso Receitas
+var m19 = table.AddMeasure(
+    "Contas ME em Atraso Receitas",
+    "CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[STATUS] = \"Em aberto\", 'Base de Dados'[VENCIMENTO] < TODAY(), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", USERELATIONSHIP('Base de Dados'[VENCIMENTO], dCalendario[Date]))",
+    "Fluxo de Caixa"
+);
+m19.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Análise de Atraso";
+m19.FormatString = "#,##0.00";
+
+// Saldo Projetado por Data ME
+var m20 = table.AddMeasure(
+    "Saldo Projetado por Data ME",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataContexto = MAX(dCalendario[Date]) " +
+    "VAR _DiaCorrente = SELECTEDVALUE(dCalendario[ Dia]) " +
+    "VAR _TemTransacaoNoDia = OR(NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Em aberto\"))), NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Em aberto\")))) " +
+    "VAR _SaldoAtualME = [Saldo Atual ME] " +
+    "VAR _EntradasProjetadasAcumuladas = CALCULATE(SUM('Base de Dados'[MOEDA ESTRANGEIRA]), 'Base de Dados'[EMPRESA] = _Empresa, 'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", 'Base de Dados'[STATUS] = \"Em aberto\", 'Base de Dados'[Nome Moedas] = _Moeda, dCalendario[Date] <= _DataContexto) " +
+    "VAR _SaidasProjetadasAcumuladas = CALCULATE(ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), 'Base de Dados'[EMPRESA] = _Empresa, 'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", 'Base de Dados'[STATUS] = \"Em aberto\", 'Base de Dados'[Nome Moedas] = _Moeda, dCalendario[Date] <= _DataContexto) " +
+    "VAR _SaldoProjetadoME = _SaldoAtualME + _EntradasProjetadasAcumuladas - _SaidasProjetadasAcumuladas " +
+    "RETURN IF(_TemTransacaoNoDia, _SaldoProjetadoME, BLANK())",
+    "Fluxo de Caixa"
+);
+m20.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Projeções";
+m20.FormatString = "#,##0.00";
+
+// Notificação após conclusão
+Info("20 medidas de Fluxo de Caixa em Moedas Estrangeiras foram adicionadas com sucesso!");
+Este script cria 20 medidas específicas para acompanhamento de fluxo de caixa em moedas estrangeiras, seguindo o mesmo formato do seu script original de inadimplência. As medidas são organizadas em pastas para facilitar a navegação:
+
+Valores Principais: Medidas básicas de receitas, despesas e saldos
+Fluxo Consolidado: Entradas, saídas e saldos do período
+Fluxo Projetado: Projeções de entradas e saídas
+Projeções: Previsões para diferentes períodos de tempo
+Análise de Atraso: Medidas relacionadas a contas em atraso
+
+Todas as medidas consideram a coluna "MOEDA ESTRANGEIRA" em vez de "REAL" e levam em conta a seleção da moeda específica através da coluna "Nome Moedas". O script utiliza o USERELATIONSHIP para garantir a conexão correta entre as datas (PAGTO, VENCIMENTO) e a tabela dCalendario.Files hidden in shared chatsBApreciso dessas medidas da moeda estrangeira :
+Saldo Inicial do MêsVou adicionar a medida "Saldo Inicial do Mês ME" para moeda estrangeira ao script do Tabular Editor. Esta medida será específica para buscar o saldo inicial de cada mês para cada tipo de moeda estrangeira.
+Aqui está o script atualizado com a medida que você precisa:
+csharp// Script para Tabular Editor
+// Adiciona medidas de fluxo de caixa para Moedas Estrangeiras
+// Usa os mesmos padrões do script de inadimplência financeira
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["Base de Dados"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'Base de Dados' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== SALDO INICIAL PARA MOEDA ESTRANGEIRA ==========
+
+// Saldo Inicial do Mês ME
+var m1 = table.AddMeasure(
+    "Saldo Inicial do Mês ME",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataAtual = MAX(dCalendario[Date]) " +
+    "VAR _Ano = YEAR(_DataAtual) " +
+    "VAR _Mes = MONTH(_DataAtual) " +
+    "VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1) " +
+    "RETURN " +
+    "CALCULATE(SUM(Saldos[Valor]), " +
+    "  FILTER(ALL(Saldos), " +
+    "    Saldos[EMPRESAS] = _Empresa && " +
+    "    Saldos[Data] = _PrimeiroDiaMes && " +
+    "    Saldos[Nome Moedas] = _Moeda))",
+    "Fluxo de Caixa"
+);
+m1.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m1.FormatString = "#,##0.00";
+
+// Notificação após conclusão
+Info("1 medida de Saldo Inicial do Mês para Moedas Estrangeiras foi adicionada com sucesso!");
+Esta medida:
+
+Identifica a empresa selecionada no contexto atual
+Identifica a moeda estrangeira selecionada (Dólar, Franco, Euro, etc.)
+Determina o primeiro dia do mês atual
+Busca na tabela Saldos o valor do saldo inicial para aquela empresa, moeda e data específica
+
+Você pode usar esta medida no seu relatório para mostrar o saldo inicial do mês para cada tipo de moeda estrangeira. É uma medida fundamental para o cálculo do fluxo de caixa por moeda.
+Se você precisar de mais alguma medida específica para moedas estrangeiras, me avise.BAeu não sei essas medidas já foram feitas para ME Total Receitas Realizadas
+Total Despesas Realizadas
+Saldo Inicial do Mês
+Lucratividade
+Despesas Previstas
+Receitas Previstas
+Saldo Projetado
+Saldo Real Acumuladose sim okVou verificar quais dessas medidas já estão presentes no script de moedas estrangeiras que criamos e adicionar as que estão faltando.
+Medidas já incluídas no script:
+
+Total Receitas Realizadas ME
+Total Despesas Realizadas ME
+Saldo Inicial do Mês ME
+Receitas Previstas ME
+Despesas Previstas ME
+Saldo Projetado ME
+
+Medidas que precisam ser adicionadas:
+
+Lucratividade ME
+Saldo Real Acumulado ME
+
+Aqui está o script complementar para as medidas que estão faltando:
+csharp// Script para Tabular Editor - Complemento de medidas ME
+
+// Identifique a tabela onde as medidas serão adicionadas
+var table = Model.Tables["Base de Dados"];
+
+// Se a tabela não existir, mostra mensagem de erro
+if (table == null) {
+    Error("Tabela 'Base de Dados' não encontrada. Ajuste o nome da tabela no início do script.");
+    return;
+}
+
+// ========== MEDIDAS COMPLEMENTARES PARA MOEDA ESTRANGEIRA ==========
+
+// Lucratividade ME
+var m1 = table.AddMeasure(
+    "Lucratividade ME",
+    "VAR _Receitas = [Total Receitas Realizadas ME] " +
+    "VAR _Despesas = [Total Despesas Realizadas ME] " +
+    "RETURN " +
+    "DIVIDE(_Receitas - _Despesas, _Receitas, 0)",
+    "Fluxo de Caixa"
+);
+m1.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Indicadores";
+m1.FormatString = "0.0%";
+
+// Saldo Real Acumulado ME
+var m2 = table.AddMeasure(
+    "Saldo Real Acumulado ME",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataAtual = MAX(dCalendario[Date]) " +
+    "VAR _Ano = YEAR(_DataAtual) " +
+    "VAR _Mes = MONTH(_DataAtual) " +
+    "VAR _PrimeiroDiaMes = DATE(_Ano, _Mes, 1) " +
+    "VAR _SaldoInicialMes = [Saldo Inicial do Mês ME] " +
+    "VAR _EntradasRealizadas = CALCULATE( " +
+    "    SUM('Base de Dados'[MOEDA ESTRANGEIRA]), " +
+    "    'Base de Dados'[EMPRESA] = _Empresa, " +
+    "    'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", " +
+    "    'Base de Dados'[STATUS] = \"Pago\", " +
+    "    'Base de Dados'[Nome Moedas] = _Moeda, " +
+    "    dCalendario[Date] >= _PrimeiroDiaMes, " +
+    "    dCalendario[Date] <= _DataAtual, " +
+    "    USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]) " +
+    ") " +
+    "VAR _SaidasRealizadas = CALCULATE( " +
+    "    ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), " +
+    "    'Base de Dados'[EMPRESA] = _Empresa, " +
+    "    'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", " +
+    "    'Base de Dados'[STATUS] = \"Pago\", " +
+    "    'Base de Dados'[Nome Moedas] = _Moeda, " +
+    "    dCalendario[Date] >= _PrimeiroDiaMes, " +
+    "    dCalendario[Date] <= _DataAtual, " +
+    "    USERELATIONSHIP('Base de Dados'[PAGTO], dCalendario[Date]) " +
+    ") " +
+    "RETURN " +
+    "_SaldoInicialMes + _EntradasRealizadas - _SaidasRealizadas",
+    "Fluxo de Caixa"
+);
+m2.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+m2.FormatString = "#,##0.00";
+
+// Notificação após conclusão
+Info("2 medidas complementares para Moedas Estrangeiras foram adicionadas com sucesso!");
+Com estas adições, você terá todas as oito medidas fundamentais para análise de fluxo de caixa em moedas estrangeiras:
+
+Total Receitas Realizadas ME
+Total Despesas Realizadas ME
+Saldo Inicial do Mês ME
+Lucratividade ME
+Despesas Previstas ME
+Receitas Previstas ME
+Saldo Projetado ME
+Saldo Real Acumulado ME
+
+Estas medidas permitirão uma análise completa do fluxo de caixa para cada moeda estrangeira, de forma similar ao que você já tem para o Real.Files hidden in shared chatsBAo Saldo Projetado , ainda consta erro , como vemos na imagem . o saldo projetado precisa começar do ultimo dia do saldo real acumulado apurado , se olhar o saldo projetado por data em alguma data tem as informações de valores em outros dias esta em branco . preciso corrigir isso também . entendeu ? na sua imagem podemos ver os valores do saldos .Entendo o problema com o Saldo Projetado. O que está acontecendo é que a medida está sendo calculada para todas as datas, quando na verdade ela deveria:
+
+Mostrar valores apenas para as datas que possuem transações projetadas
+Começar a partir do último dia do saldo real acumulado
+Preencher os espaços em branco entre datas que têm valores projetados
+
+Vou criar uma versão atualizada da medida "Saldo Projetado" que corrige esses problemas:
+csharp// Saldo Projetado Corrigido
+var saldoProjetado = table.AddMeasure(
+    "Saldo Projetado Corrigido",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _DataAtual = TODAY() " +
+    "VAR _DataContexto = MAX(dCalendario[Date]) " +
+    
+    "// Determinar o último dia com saldo real " +
+    "VAR _UltimoDiaRealizado = CALCULATE(MAX('Base de Dados'[PAGTO]), 'Base de Dados'[STATUS] = \"Pago\") " +
+    
+    "// Obter o último saldo realizado " +
+    "VAR _UltimoSaldoRealizado = CALCULATE([Saldo Real Acumulado], dCalendario[Date] = _UltimoDiaRealizado) " +
+    
+    "// Verificar se a data do contexto é depois do último dia realizado " +
+    "VAR _DataEhFutura = _DataContexto > _UltimoDiaRealizado " +
+    
+    "// Calcular entradas projetadas desde o último dia realizado até a data do contexto " +
+    "VAR _EntradasProjetadas = " +
+    "    CALCULATE( " +
+    "        SUM('Base de Dados'[REAL]), " +
+    "        'Base de Dados'[EMPRESA] = _Empresa, " +
+    "        'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, " +
+    "        'Base de Dados'[VENCIMENTO] <= _DataContexto " +
+    "    ) " +
+    
+    "// Calcular saídas projetadas desde o último dia realizado até a data do contexto " +
+    "VAR _SaidasProjetadas = " +
+    "    CALCULATE( " +
+    "        ABS(SUM('Base de Dados'[REAL])), " +
+    "        'Base de Dados'[EMPRESA] = _Empresa, " +
+    "        'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, " +
+    "        'Base de Dados'[VENCIMENTO] <= _DataContexto " +
+    "    ) " +
+    
+    "// Verificar se a data tem alguma transação ou está entre datas com transações " +
+    "VAR _PrimeiroDiaProjetado = " +
+    "    CALCULATE( " +
+    "        MIN('Base de Dados'[VENCIMENTO]), " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado " +
+    "    ) " +
+    
+    "VAR _UltimoDiaProjetado = " +
+    "    CALCULATE( " +
+    "        MAX('Base de Dados'[VENCIMENTO]), " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\" " +
+    "    ) " +
+    
+    "VAR _DataEstaNoPeriodoProjetado = " +
+    "    _DataContexto >= _UltimoDiaRealizado && " +
+    "    _DataContexto <= _UltimoDiaProjetado " +
+    
+    "// Calcular o saldo projetado " +
+    "VAR _SaldoProjetado = _UltimoSaldoRealizado + _EntradasProjetadas - _SaidasProjetadas " +
+    
+    "RETURN " +
+    "    IF( " +
+    "        _DataEhFutura && _DataEstaNoPeriodoProjetado, " +
+    "        _SaldoProjetado, " +
+    "        BLANK() " +
+    "    )",
+    "Fluxo de Caixa"
+);
+saldoProjetado.DisplayFolder = "Medidas Fluxo de Caixa\\Valores Principais";
+saldoProjetado.FormatString = "R$ #,##0.00";
+Esta medida corrigida:
+
+Identifica o último dia com transações realizadas (status "Pago")
+Obtém o saldo real acumulado nesse último dia
+Verifica se a data atual do contexto é posterior ao último dia com saldo realizado
+Calcula as entradas e saídas projetadas entre o último dia realizado e a data do contexto
+Determina se a data atual está dentro do período de projeção
+Mostra o saldo projetado apenas para as datas posteriores ao último dia com saldo realizado e se a data estiver dentro do período de projeção
+
+Isso deve garantir que:
+
+O saldo projetado comece exatamente após o último saldo real acumulado
+Apenas as datas relevantes para a projeção mostrem valores
+O cálculo considere todas as transações projetadas acumuladas até a data em questão
+
+Para moedas estrangeiras, você pode adaptar a mesma lógica com pequenas alterações:
+csharp// Saldo Projetado ME Corrigido
+var saldoProjetadoME = table.AddMeasure(
+    "Saldo Projetado ME Corrigido",
+    "VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA]) " +
+    "VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas]) " +
+    "VAR _DataAtual = TODAY() " +
+    "VAR _DataContexto = MAX(dCalendario[Date]) " +
+    
+    "// Determinar o último dia com saldo real " +
+    "VAR _UltimoDiaRealizado = CALCULATE(MAX('Base de Dados'[PAGTO]), 'Base de Dados'[STATUS] = \"Pago\", NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))) " +
+    
+    "// Obter o último saldo realizado " +
+    "VAR _UltimoSaldoRealizado = CALCULATE([Saldo Real Acumulado ME], dCalendario[Date] = _UltimoDiaRealizado) " +
+    
+    "// Verificar se a data do contexto é depois do último dia realizado " +
+    "VAR _DataEhFutura = _DataContexto > _UltimoDiaRealizado " +
+    
+    "// Calcular entradas projetadas desde o último dia realizado até a data do contexto " +
+    "VAR _EntradasProjetadas = " +
+    "    CALCULATE( " +
+    "        SUM('Base de Dados'[MOEDA ESTRANGEIRA]), " +
+    "        'Base de Dados'[EMPRESA] = _Empresa, " +
+    "        'Base de Dados'[Nome Moedas] = _Moeda, " +
+    "        'Base de Dados'[GRUPO | DÉB CRÉD] = \"ENTRADAS\", " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, " +
+    "        'Base de Dados'[VENCIMENTO] <= _DataContexto " +
+    "    ) " +
+    
+    "// Calcular saídas projetadas desde o último dia realizado até a data do contexto " +
+    "VAR _SaidasProjetadas = " +
+    "    CALCULATE( " +
+    "        ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])), " +
+    "        'Base de Dados'[EMPRESA] = _Empresa, " +
+    "        'Base de Dados'[Nome Moedas] = _Moeda, " +
+    "        'Base de Dados'[GRUPO | DÉB CRÉD] = \"SAÍDAS\", " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, " +
+    "        'Base de Dados'[VENCIMENTO] <= _DataContexto " +
+    "    ) " +
+    
+    "// Verificar se a data tem alguma transação ou está entre datas com transações " +
+    "VAR _PrimeiroDiaProjetado = " +
+    "    CALCULATE( " +
+    "        MIN('Base de Dados'[VENCIMENTO]), " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado, " +
+    "        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])) " +
+    "    ) " +
+    
+    "VAR _UltimoDiaProjetado = " +
+    "    CALCULATE( " +
+    "        MAX('Base de Dados'[VENCIMENTO]), " +
+    "        'Base de Dados'[STATUS] = \"Em aberto\", " +
+    "        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])) " +
+    "    ) " +
+    
+    "VAR _DataEstaNoPeriodoProjetado = " +
+    "    _DataContexto >= _UltimoDiaRealizado && " +
+    "    _DataContexto <= _UltimoDiaProjetado " +
+    
+    "// Calcular o saldo projetado " +
+    "VAR _SaldoProjetado = _UltimoSaldoRealizado + _EntradasProjetadas - _SaidasProjetadas " +
+    
+    "RETURN " +
+    "    IF( " +
+    "        _DataEhFutura && _DataEstaNoPeriodoProjetado, " +
+    "        _SaldoProjetado, " +
+    "        BLANK() " +
+    "    )",
+    "Fluxo de Caixa"
+);
+saldoProjetadoME.DisplayFolder = "Medidas Fluxo de Caixa\\Moeda Estrangeira\\Valores Principais";
+saldoProjetadoME.FormatString = "#,##0.00";
+Com estas medidas corrigidas, seu relatório deve mostrar corretamente o saldo projetado apenas nas datas relevantes, começando imediatamente após o último saldo real acumulado.Files hidden in shared chatsBAdeu erroEntendo que você está enfrentando um erro no Tabular Editor ao tentar implementar a medida de Saldo Projetado Corrigido. O erro mostrado é "CS0103 - O nome 'table' não existe no contexto atual".
+Esse erro ocorre porque estamos usando a sintaxe errada para o Tabular Editor. No código que enviei anteriormente, usei a variável table para referenciar a tabela onde as medidas seriam adicionadas, mas parece que você está tentando adicionar a medida diretamente no editor de expressão.
+Vou corrigir isso fornecendo apenas a expressão DAX que você pode colar diretamente no campo de expressão do Tabular Editor:
+// Saldo Projetado Corrigido
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = TODAY()
+VAR _DataContexto = MAX(dCalendario[Date])
+
+// Determinar o último dia com saldo real
+VAR _UltimoDiaRealizado = CALCULATE(MAX('Base de Dados'[PAGTO]), 'Base de Dados'[STATUS] = "Pago")
+
+// Obter o último saldo realizado
+VAR _UltimoSaldoRealizado = CALCULATE([Saldo Real Acumulado], dCalendario[Date] = _UltimoDiaRealizado)
+
+// Verificar se a data do contexto é depois do último dia realizado
+VAR _DataEhFutura = _DataContexto > _UltimoDiaRealizado
+
+// Calcular entradas projetadas desde o último dia realizado até a data do contexto
+VAR _EntradasProjetadas =
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= _DataContexto
+    )
+
+// Calcular saídas projetadas desde o último dia realizado até a data do contexto
+VAR _SaidasProjetadas =
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= _DataContexto
+    )
+
+// Verificar se a data tem alguma transação ou está entre datas com transações
+VAR _PrimeiroDiaProjetado =
+    CALCULATE(
+        MIN('Base de Dados'[VENCIMENTO]),
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado
+    )
+
+VAR _UltimoDiaProjetado =
+    CALCULATE(
+        MAX('Base de Dados'[VENCIMENTO]),
+        'Base de Dados'[STATUS] = "Em aberto"
+    )
+
+VAR _DataEstaNoPeriodoProjetado =
+    _DataContexto >= _UltimoDiaRealizado &&
+    _DataContexto <= _UltimoDiaProjetado
+
+// Calcular o saldo projetado
+VAR _SaldoProjetado = _UltimoSaldoRealizado + _EntradasProjetadas - _SaidasProjetadas
+
+RETURN
+    IF(
+        _DataEhFutura && _DataEstaNoPeriodoProjetado,
+        _SaldoProjetado,
+        BLANK()
+    )
+E para a versão de moeda estrangeira:
+// Saldo Projetado ME Corrigido
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+VAR _DataAtual = TODAY()
+VAR _DataContexto = MAX(dCalendario[Date])
+
+// Determinar o último dia com saldo real
+VAR _UltimoDiaRealizado = CALCULATE(MAX('Base de Dados'[PAGTO]), 'Base de Dados'[STATUS] = "Pago", NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])))
+
+// Obter o último saldo realizado
+VAR _UltimoSaldoRealizado = CALCULATE([Saldo Real Acumulado ME], dCalendario[Date] = _UltimoDiaRealizado)
+
+// Verificar se a data do contexto é depois do último dia realizado
+VAR _DataEhFutura = _DataContexto > _UltimoDiaRealizado
+
+// Calcular entradas projetadas desde o último dia realizado até a data do contexto
+VAR _EntradasProjetadas =
+    CALCULATE(
+        SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= _DataContexto
+    )
+
+// Calcular saídas projetadas desde o último dia realizado até a data do contexto
+VAR _SaidasProjetadas =
+    CALCULATE(
+        ABS(SUM('Base de Dados'[MOEDA ESTRANGEIRA])),
+        'Base de Dados'[EMPRESA] = _Empresa,
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= _DataContexto
+    )
+
+// Verificar se a data tem alguma transação ou está entre datas com transações
+VAR _PrimeiroDiaProjetado =
+    CALCULATE(
+        MIN('Base de Dados'[VENCIMENTO]),
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+    )
+
+VAR _UltimoDiaProjetado =
+    CALCULATE(
+        MAX('Base de Dados'[VENCIMENTO]),
+        'Base de Dados'[STATUS] = "Em aberto",
+        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA]))
+    )
+
+VAR _DataEstaNoPeriodoProjetado =
+    _DataContexto >= _UltimoDiaRealizado &&
+    _DataContexto <= _UltimoDiaProjetado
+
+// Calcular o saldo projetado
+VAR _SaldoProjetado = _UltimoSaldoRealizado + _EntradasProjetadas - _SaidasProjetadas
+
+RETURN
+    IF(
+        _DataEhFutura && _DataEstaNoPeriodoProjetado,
+        _SaldoProjetado,
+        BLANK()
+    )
+Você pode copiar estas expressões DAX diretamente no editor de expressão do Tabular Editor, sem a necessidade de usar a variável table que causou o erro.Files hidden in shared chatsBAocorreu esse erroEstou vendo que você está enfrentando um erro de "Recursos Excedidos" no Power BI quando tenta executar a consulta. Esse erro geralmente ocorre quando:
+
+A medida DAX que você está usando é muito complexa ou ineficiente
+O conjunto de dados é muito grande
+Há muitos cálculos sendo executados simultaneamente
+
+Para resolver este problema, podemos simplificar a medida de Saldo Projetado para torná-la mais eficiente. Aqui está uma versão otimizada:
+Saldo Projetado Simplificado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataContexto = MAX(dCalendario[Date])
+
+// Pegar o último dia com saldo real acumulado
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]), 
+        'Base de Dados'[STATUS] = "Pago"
+    )
+
+// Saldo real no último dia
+VAR _UltimoSaldoRealizado = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        REMOVEFILTERS(dCalendario),
+        dCalendario[Date] = _UltimoDiaRealizado
+    )
+
+// Verificar se estamos em uma data futura
+VAR _DataFutura = _DataContexto > _UltimoDiaRealizado
+
+// Calcular fluxo de caixa projetado desde o último dia até a data atual
+VAR _FluxoProjetado = 
+    IF(
+        _DataFutura,
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            'Base de Dados'[EMPRESA] = _Empresa,
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+            'Base de Dados'[STATUS] = "Em aberto",
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto
+        ) -
+        CALCULATE(
+            ABS(SUM('Base de Dados'[REAL])),
+            'Base de Dados'[EMPRESA] = _Empresa,
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+            'Base de Dados'[STATUS] = "Em aberto",
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto
+        ),
+        0
+    )
+
+// Simplificando a verificação de exibição
+VAR _MostrarValor = 
+    _DataFutura && 
+    CALCULATE(
+        COUNTROWS('Base de Dados'),
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] >= _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= _DataContexto
+    ) > 0
+
+RETURN
+    IF(
+        _MostrarValor,
+        _UltimoSaldoRealizado + _FluxoProjetado,
+        BLANK()
+    )
+Esta versão:
+
+Reduz o número de variáveis
+Combina cálculos para menor processamento
+Simplifica a condição de exibição
+Usa REMOVEFILTERS em vez de ALL para melhor desempenho
+
+Se você ainda encontrar o erro de recursos excedidos, outra abordagem é dividir o problema:
+
+Crie uma coluna calculada na tabela dCalendario que identifique as datas para as quais o saldo projetado deve ser exibido
+Crie uma medida mais simples que use essa coluna como filtro
+
+Ou então, experimente:
+
+Reduza o escopo de dados (filtre por um período menor)
+Use segmentação de dados para limitar o número de transações
+Atualize para uma versão mais recente do Power BI (se possível)
+
+Se a medida simplificada ainda apresentar problemas, podemos considerar outras abordagens para o cálculo.Files hidden in shared chatsBAdeu o mesmo problema !Vejo que o erro de "Recursos Excedidos" persiste mesmo com a otimização. Essa é uma limitação do Power BI quando há cálculos muito complexos ou grandes volumes de dados.
+Vamos abordar isso de uma maneira completamente diferente. Em vez de calcular o saldo projetado em tempo real, podemos criar uma tabela calculada que pré-processe os saldos projetados. Isso é mais eficiente porque o cálculo é feito durante a atualização dos dados, não durante a visualização.
+Aqui está uma estratégia alternativa:
+1. Criar uma Tabela Calculada para Projeções
+Projeções = 
+CALCULATETABLE(
+    SUMMARIZE(
+        CALENDAR(
+            MIN('Base de Dados'[VENCIMENTO]),
+            MAX('Base de Dados'[VENCIMENTO])
+        ),
+        [Date],
+        "Data", [Date],
+        "Empresa", SELECTEDVALUE('Base de Dados'[EMPRESA])
+    ),
+    'Base de Dados'[STATUS] = "Em aberto"
+)
+2. Adicionar Colunas Calculadas a esta Tabela
+// Coluna para identificar se a data tem transações projetadas
+TemProjeção = 
+CALCULATE(
+    COUNTROWS('Base de Dados'),
+    'Base de Dados'[STATUS] = "Em aberto",
+    'Base de Dados'[VENCIMENTO] = [Data]
+) > 0
+// Coluna para o Último Saldo Realizado
+UltimoSaldoRealizado = 
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago"
+    )
+RETURN
+    CALCULATE(
+        [Saldo Real Acumulado],
+        dCalendario[Date] = _UltimoDiaRealizado
+    )
+// Coluna para Entradas Projetadas Acumuladas
+EntradasProjetadasAcum = 
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago"
+    )
+RETURN
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= [Data]
+    )
+// Coluna para Saídas Projetadas Acumuladas
+SaidasProjetadasAcum = 
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago"
+    )
+RETURN
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+        'Base de Dados'[VENCIMENTO] <= [Data]
+    )
+// Coluna para Saldo Projetado Final
+SaldoProjetadoFinal = 
+[UltimoSaldoRealizado] + [EntradasProjetadasAcum] - [SaidasProjetadasAcum]
+3. Criar uma Medida Simples que Referencia a Tabela Calculada
+Saldo Projetado = 
+VAR _Data = MAX(dCalendario[Date])
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+
+RETURN
+    CALCULATE(
+        MAX(Projeções[SaldoProjetadoFinal]),
+        Projeções[Data] = _Data,
+        Projeções[Empresa] = _Empresa,
+        Projeções[TemProjeção] = TRUE
+    )
+Esta abordagem tem várias vantagens:
+
+Os cálculos pesados são feitos durante a atualização do modelo, não em tempo real
+As consultas se tornam muito mais simples e eficientes
+O relatório será mais responsivo
+
+Para implementar isso:
+
+Vá para "Modelagem" → "Nova Tabela" e crie a tabela Projeções
+Adicione as colunas calculadas à tabela
+Crie a medida simples para usar nos seus visuais
+
+Se quiser continuar com a abordagem de medida única, uma última alternativa seria criar uma medida extremamente simplificada que sacrifica algumas funcionalidades por desempenho:
+Saldo Projetado Ultra Simplificado = 
+VAR _UltimoSaldoRealizado = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        LASTDATE('Base de Dados'[PAGTO])
+    )
+
+VAR _FluxoAcumulado = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]) * 
+        IF('Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS", 1, -1),
+        'Base de Dados'[STATUS] = "Em aberto"
+    )
+
+RETURN
+    _UltimoSaldoRealizado + _FluxoAcumulado
+Esta medida ultra simplificada mostra apenas um único valor (saldo final projetado) e não faz a distinção por data, mas pode ser um compromisso aceitável se você estiver enfrentando limitações de recursos.BAacabei reparando a primeira medida de Saldo projetado e vi algo que não esta certo : Ela só retorna valor se houver transação no dia E se o dia for ≥ 15, senão retorna BLANK. esse parte esta errada . O Saldo Projetado só começa a partir se tem transação projetada não a partir do dia 15. entendeu ? VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataAtual = TODAY()
+VAR _DiaCorrente = SELECTEDVALUE('dCalendário'[ Dia])
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Pegar o último saldo real conhecido (47.377,66 no seu caso)
+VAR _UltimoSaldoReal = [Saldo Real Acumulado] // Substitua pelo valor correto ou por uma medida que retorne este valor
+
+// Verifica se existem entradas ou saídas projetadas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS", 'Base de Dados'[STATUS] = "Em aberto"))),
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS", 'Base de Dados'[STATUS] = "Em aberto")))
+    )
+
+// Calcula todas as entradas projetadas até a data atual do contexto
+VAR _EntradasProjetadasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula todas as saídas projetadas até a data atual do contexto
+VAR _SaidasProjetadasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'dCalendário'[Date] <= _DataContexto
+    )
+
+// Calcula o saldo projetado acumulado
+VAR _SaldoProjetadoAcumulado = _UltimoSaldoReal + _EntradasProjetadasAcumuladas - _SaidasProjetadasAcumuladas
+
+RETURN
+    IF(
+        _TemTransacaoNoDia && _DiaCorrente >= 15, // Mostra saldo apenas se houver transação no dia e for após o dia 15
+        _SaldoProjetadoAcumulado,
+        BLANK()
+    )Você está absolutamente correto. O problema nessa medida é a condição && _DiaCorrente >= 15 que restringe o saldo projetado para aparecer apenas após o dia 15, o que não é o que você quer. Você quer que o saldo projetado apareça sempre que houver transações projetadas, independentemente do dia.
+Vamos corrigir isso e simplificar a medida para evitar o erro de recursos excedidos:
+Saldo Projetado = 
+VAR _Empresa = SELECTEDVALUE('Base de Dados'[EMPRESA])
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Determinar o último dia com transações realizadas
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago"
+    )
+
+// Obter o último saldo real acumulado
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        'dCalendário'[Date] = _UltimoDiaRealizado
+    )
+
+// Verificar se a data atual é posterior ao último dia realizado
+VAR _DataPosterior = _DataContexto > _UltimoDiaRealizado
+
+// Verificar se existem entradas ou saídas projetadas na data atual
+VAR _TemTransacaoNoDia = 
+    OR(
+        NOT(ISBLANK(CALCULATE(SUM('Base de Dados'[REAL]), 'Base de Dados'[STATUS] = "Em aberto", 'Base de Dados'[VENCIMENTO] = _DataContexto))),
+        CALCULATE(
+            COUNTROWS('Base de Dados'),
+            'Base de Dados'[STATUS] = "Em aberto",
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado
+        ) > 0
+    )
+
+// Calcula transações projetadas acumuladas
+VAR _EntradasProjetadas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] <= _DataContexto,
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado
+    )
+
+VAR _SaidasProjetadas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] <= _DataContexto,
+        'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado
+    )
+
+// Calcular o saldo projetado
+VAR _SaldoProjetado = _UltimoSaldoReal + _EntradasProjetadas - _SaidasProjetadas
+
+RETURN
+    IF(
+        _DataPosterior && _TemTransacaoNoDia,  // Mostra saldo apenas se for data futura e houver transações
+        _SaldoProjetado,
+        BLANK()
+    )
+As principais modificações são:
+
+Removida a condição _DiaCorrente >= 15 para que o saldo apareça em qualquer data com transações projetadas
+Simplificada a verificação de transação no dia para incluir também datas intermediárias entre transações
+Modificados os filtros para calcular apenas transações entre o último dia realizado e a data atual
+Adicionada uma verificação de data posterior para garantir que só mostramos projeções para datas futuras
+
+Esta medida deve mostrar o saldo projetado para todas as datas que têm transações projetadas ou estão entre datas com transações, começando imediatamente após o último dia com transações realizadas.
+Para a versão para moeda estrangeira, faça as mesmas alterações, substituindo as referências a [REAL] por [MOEDA ESTRANGEIRA] e adicionando filtros para a moeda específica.Files hidden in shared chatsBAcorrigiu mais apareceu o erro anteriorVocê está enfrentando persistentemente o erro de "Recursos Excedidos", o que é um problema comum no Power BI quando os cálculos são muito complexos para serem processados em tempo real.
+Vamos adotar uma abordagem mais radical e extremamente simplificada para contornar essa limitação. Em vez de tentar calcular tudo em uma única medida complexa, vamos dividir o problema em partes menores e mais gerenciáveis:
+Abordagem 1: Cálculo Incremental Simplificado
+// 1. Primeiro criar uma medida para o último saldo real
+Último Saldo Real = 
+VAR _UltimoDia = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago"
+    )
+RETURN
+    IF(
+        NOT(ISBLANK(_UltimoDia)),
+        CALCULATE(
+            [Saldo Real Acumulado],
+            'dCalendário'[Date] = _UltimoDia
+        ),
+        0
+    )
+// 2. Criar uma medida para entradas projetadas (simplificada)
+Entradas Projetadas = 
+CALCULATE(
+    SUM('Base de Dados'[REAL]),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+    'Base de Dados'[STATUS] = "Em aberto"
+)
+// 3. Criar uma medida para saídas projetadas (simplificada)
+Saídas Projetadas = 
+CALCULATE(
+    ABS(SUM('Base de Dados'[REAL])),
+    'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+    'Base de Dados'[STATUS] = "Em aberto"
+)
+// 4. Finalmente, uma medida simples para o saldo projetado
+Saldo Projetado Simples = 
+[Último Saldo Real] + [Entradas Projetadas] - [Saídas Projetadas]
+Abordagem 2: Usar uma Tabela de Datas Extrapequena
+Uma alternativa é criar uma tabela auxiliar muito pequena apenas com as datas que você precisa e depois relacioná-la com seus dados.
+
+Crie uma tabela calculada:
+
+Datas Projeção = 
+DISTINCT(
+    SELECTCOLUMNS(
+        UNION(
+            SELECTCOLUMNS(
+                FILTER(
+                    'Base de Dados',
+                    [STATUS] = "Em aberto"
+                ),
+                "Data", [VENCIMENTO]
+            ),
+            ROW("Data", MAX('Base de Dados'[PAGTO]))
+        ),
+        "Data", [Data]
+    )
+)
+
+Adicione uma coluna calculada:
+
+Saldo Projetado = 
+VAR _UltimoSaldo = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        'Base de Dados'[PAGTO] = MAX('Base de Dados'[PAGTO])
+    )
+VAR _EntradasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] <= [Data]
+    )
+VAR _SaidasAcumuladas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        'Base de Dados'[VENCIMENTO] <= [Data]
+    )
+RETURN
+    _UltimoSaldo + _EntradasAcumuladas - _SaidasAcumuladas
+
+Use esta nova tabela no seu visual em vez de calcular tudo na hora.
+
+Abordagem 3: Solução Mais Radical - Medida Estática
+Se nada funcionar, você pode optar por uma solução muito mais básica:
+Saldo Projetado Estático = 
+// Este valor será calculado apenas uma vez durante a atualização do modelo
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        LASTNONBLANK('dCalendário'[Date], [Saldo Real Acumulado])
+    )
+RETURN
+    _UltimoSaldoReal + [Receitas Previstas] - [Despesas Previstas]
+Esta medida extremamente simplificada só vai mostrar um único valor (o saldo final projetado), mas pelo menos deve funcionar sem erros de recursos.
+Dicas para Resolver o Erro de Recursos Excedidos:
+
+Reduza o volume de dados: Filtre apenas o período necessário (ex: últimos 3 meses).
+Desative a segmentação cruzada: Desabilite "Cross filtering" nas interações visuais.
+Atualize o Power BI: Versões mais recentes têm melhor desempenho.
+Otimize o modelo de dados: Remova colunas desnecessárias, compacte o modelo.
+Use computação em Direct Query: Considere converter algumas tabelas para Direct Query.
+
+Tente a Abordagem 1 primeiro, que é a mais simples e tem maior chance de funcionar sem erros de recursos. Se mesmo assim não funcionar, você precisará adotar uma das soluções mais radicais.Files hidden in shared chatsBAfui atrás de outra Ia pra ver se ela conseguia resolver ela trouxe essas soluçõesAnalisando a documentação fornecida, vejo um conjunto abrangente de estratégias para resolver o problema de "Recursos Excedidos" com a medida de Saldo Projetado. A outra IA ofereceu uma análise detalhada e várias abordagens promissoras.
+Vou sintetizar as estratégias mais viáveis para seu caso específico:
+1. Implementar a versão DAX otimizada
+O código no documento optimized_dax_code.dax contém uma abordagem significativamente mais eficiente:
+daxSaldo Projetado Otimizado = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Determinar o último dia com transações realizadas (calculado uma vez)
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago",
+        REMOVEFILTERS('dCalendário')  // Importante para obter o valor global
+    )
+
+// Se a data atual for anterior ou igual à última data real, não há projeção
+IF(_DataContexto <= _UltimoDiaRealizado, BLANK(),
+    
+    // Obter o último saldo real acumulado
+    VAR _UltimoSaldoReal = 
+        CALCULATE(
+            [Saldo Real Acumulado],
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        )
+
+    // Calcular a soma líquida de todas as transações projetadas
+    VAR _NetProjetadoAcumulado = 
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),  // Assume que SAÍDAS são negativas
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado &&
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS('Base de Dados'[STATUS] = "Em aberto")
+        )
+
+    // Verificar se existe alguma transação projetada no período
+    VAR _TemTransacaoProjetadaNoPeriodo = 
+        CALCULATE(
+            COUNTROWS('Base de Dados'),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado &&
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS('Base de Dados'[STATUS] = "Em aberto")
+        ) > 0
+
+    // Retornar apenas se houver transações
+    RETURN
+        IF(
+            _TemTransacaoProjetadaNoPeriodo,
+            _UltimoSaldoReal + COALESCE(_NetProjetadoAcumulado, 0),
+            BLANK()
+        )
+)
+As principais otimizações aqui são:
+
+Uso de REMOVEFILTERS para calcular corretamente o último dia realizado
+Cálculo do valor líquido em vez de cálculos separados para entradas e saídas
+Lógica de filtro mais eficiente com FILTER(ALL('dCalendário'[Date]...))
+Uso de KEEPFILTERS para preservar o contexto de filtro
+
+2. Abordagem com tabela calculada (se a otimização da medida não for suficiente)
+daxProjeções = 
+SELECTCOLUMNS(
+    ADDCOLUMNS(
+        FILTER(
+            SUMMARIZE(
+                'Base de Dados',
+                'dCalendário'[Date]
+            ),
+            'dCalendário'[Date] >= 
+                CALCULATE(
+                    MAX('Base de Dados'[PAGTO]),
+                    'Base de Dados'[STATUS] = "Pago",
+                    REMOVEFILTERS('dCalendário')
+                )
+        ),
+        "SaldoInicial", 
+            CALCULATE(
+                [Saldo Real Acumulado],
+                FILTER(
+                    ALL('dCalendário'),
+                    'dCalendário'[Date] = 
+                        CALCULATE(
+                            MAX('Base de Dados'[PAGTO]),
+                            'Base de Dados'[STATUS] = "Pago",
+                            REMOVEFILTERS('dCalendário')
+                        )
+                )
+            ),
+        "EntradasProjetadas",
+            CALCULATE(
+                SUM('Base de Dados'[REAL]),
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[VENCIMENTO] <= 'dCalendário'[Date]
+            ),
+        "SaidasProjetadas",
+            CALCULATE(
+                ABS(SUM('Base de Dados'[REAL])),
+                'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[VENCIMENTO] <= 'dCalendário'[Date]
+            ),
+        "TemTransacao",
+            CALCULATE(
+                COUNTROWS('Base de Dados'),
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[VENCIMENTO] <= 'dCalendário'[Date]
+            ) > 0
+    ),
+    "Data", 'dCalendário'[Date],
+    "SaldoProjetado", [SaldoInicial] + [EntradasProjetadas] - [SaidasProjetadas],
+    "TemTransacao", [TemTransacao]
+)
+Com esta tabela, você pode criar uma medida muito mais simples:
+daxSaldo Projetado da Tabela = 
+VAR _Data = MAX('dCalendário'[Date])
+RETURN
+    CALCULATE(
+        MAX(Projeções[SaldoProjetado]),
+        Projeções[Data] = _Data,
+        Projeções[TemTransacao] = TRUE
+    )
+3. Solução ultra-simplificada (último recurso)
+Se ainda enfrentar problemas de recursos, esta é uma medida extremamente simplificada:
+daxSaldo Projetado Ultra Simples = 
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] = "Pago",
+        REMOVEFILTERS()
+    )
+
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        'dCalendário'[Date] = _UltimoDiaRealizado,
+        REMOVEFILTERS('dCalendário')
+    )
+
+VAR _EntradasFuturas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        REMOVEFILTERS('dCalendário')
+    )
+
+VAR _SaidasFuturas = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] = "Em aberto",
+        REMOVEFILTERS('dCalendário')
+    )
+
+RETURN
+    _UltimoSaldoReal + _EntradasFuturas - _SaidasFuturas
+Esta medida calcula apenas um único valor global de saldo projetado final (sem detalhe por data), mas tem muito menos chance de estourar recursos.
+Recomendação final
+
+Tente primeiro a medida Saldo Projetado Otimizado - ela deve resolver seu problema mantendo a funcionalidade completa.
+Se isso não funcionar, minha sugestão é implementar a tabela calculada Projeções e a medida Saldo Projetado da Tabela - é uma abordagem robusta para casos com grandes volumes de dados.
+Como último recurso, use a versão ultra-simplificada, que pelo menos fornecerá um valor de saldo final projetado.
+
+Além disso, considere as recomendações de otimização de modelo sugeridas nos documentos, como revisar a medida base [Saldo Real Acumulado], que pode também estar contribuindo para o problema de performance.Files hidden in shared chatsBAesta indo ! o Saldo Real terminou com R$ 25.063,25 . eu não entendi pq o Saldo Projetado começou com - R$ 23.736,75 , ai em via ficando negativo mesmo com entradas projetadas .Estou vendo o progresso! Sua medida "Saldo Projetado Otimizado Corrigido" agora está funcionando e mostrando valores nas projeções, o que é ótimo. Vamos analisar por que o saldo projetado começou negativo.
+O que parece estar acontecendo é que:
+
+Seu saldo real terminou com R$ 25.063,25 (provavelmente em 29/04/2025 ou 30/04/2025)
+O primeiro saldo projetado começa em 30/04/2025 com valor de -R$ 23.736,75
+Os valores subsequentes continuam negativos
+
+Esta situação provavelmente se deve a um destes fatores:
+
+Efeito de novas saídas projetadas: Em 30/04/2025 ou logo depois, deve haver uma ou mais saídas projetadas significativas (com status "Em aberto") que estão sendo consideradas no cálculo do saldo projetado, mas que não aparecem na sua visualização atual. Isso faria com que o saldo projetado caísse bruscamente.
+Problema no cálculo: Também é possível que a fórmula esteja aplicando as saídas incorretamente, talvez somando-as ao invés de subtraí-las, ou considerando saídas duas vezes.
+
+Para investigar isso, recomendo:
+
+Verifique os valores de despesas projetadas para 30/04 e 01/05: Veja se há despesas significativas nesse período que justificariam a queda do saldo. A diferença é de aproximadamente R$ 48.800,00 (25.063,25 + 23.736,75), o que sugere uma despesa considerável prevista.
+Revise a lógica de acumulação na fórmula: Verifique se as entradas e saídas estão sendo acumuladas corretamente desde o último dia com saldo real.
+Crie medidas intermediárias de diagnóstico: Para entender melhor o que está acontecendo, crie medidas separadas que mostrem apenas:
+
+Último saldo real na data
+Total de entradas projetadas acumuladas na data
+Total de saídas projetadas acumuladas na data
+
+
+
+Por exemplo:
+daxÚltimo Saldo Real para Data = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN {"Pago", "Recebido"},
+        REMOVEFILTERS('dCalendário')
+    )
+RETURN
+    IF(
+        _DataContexto > _UltimoDiaRealizado,
+        CALCULATE(
+            [Saldo Real Acumulado],
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        ),
+        BLANK()
+    )
+daxEntradas Projetadas Acumuladas = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN {"Pago", "Recebido"},
+        REMOVEFILTERS('dCalendário')
+    )
+RETURN
+    IF(
+        _DataContexto > _UltimoDiaRealizado,
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado && 'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS('Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS"),
+            KEEPFILTERS('Base de Dados'[STATUS] IN {"Em aberto", "Atrasado"})
+        ),
+        BLANK()
+    )
+daxSaídas Projetadas Acumuladas = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN {"Pago", "Recebido"},
+        REMOVEFILTERS('dCalendário')
+    )
+RETURN
+    IF(
+        _DataContexto > _UltimoDiaRealizado,
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado && 'dCalendário'[Date] <= _DataContexto
+            ),
+            KEEPFILTERS('Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS"),
+            KEEPFILTERS('Base de Dados'[STATUS] IN {"Em aberto", "Atrasado"})
+        ),
+        BLANK()
+    )
+Adicionar essas três medidas ao seu visual ajudará a entender exatamente o que está acontecendo no momento em que o saldo projetado se torna negativo. Você poderá ver se há um pico súbito nas saídas ou um problema na forma como as entradas e saídas estão sendo consideradas.Files hidden in shared chatsBAele criou esse nova VersãoA nova versão do "Saldo Projetado Corrigido V2" parece uma abordagem ainda mais robusta para resolver os problemas que você está enfrentando. Vamos analisar as principais melhorias desta versão:
+
+Cálculo Líquido de Transações: Esta versão calcula a soma líquida de todas as transações projetadas em um único passo, em vez de separar entradas e saídas.
+Melhor tratamento do contexto de filtro: O uso de FILTER(ALL("dCalendário"), ...) para obter o último saldo real garante que o valor base seja correto, independentemente dos filtros de data no visual.
+Comportamento quando não há projeções: Um ajuste importante é que agora, quando não há transações projetadas no período, a medida retorna o último saldo real, em vez de BLANK(). Isso garante continuidade visual.
+
+Vejo que você já está usando esta medida e ela está exibindo valores, mas você ainda tem uma dúvida sobre por que o saldo projetado começa com um valor negativo (-R$ 23.736,75) em 30/04/2025.
+Há duas explicações prováveis:
+
+Possibilidade mais provável: Existe uma grande despesa prevista (com status "Em aberto") logo após o último saldo real que está causando a queda imediata. A fórmula está funcionando corretamente, mas você tem uma grande saída projetada que está tornando o saldo negativo de imediato.
+Problema na fórmula: A suposição sobre os valores de saída pode estar incorreta. A fórmula assume que saídas já têm valores negativos na coluna 'Base de Dados'[REAL]. Se esse não for o caso (se as saídas também forem armazenadas como valores positivos), a fórmula está somando as saídas quando deveria subtraí-las.
+
+Para identificar o problema exato, sugiro:
+Crie uma medida de diagnóstico:
+daxDiagnóstico Saldo Projetado = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Último dia realizado
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS('dCalendário')
+    )
+
+// Último saldo real
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        FILTER(ALL('dCalendário'),
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        )
+    )
+
+// Transações projetadas para a data
+VAR _TransacoesProjetadasNaData = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" },
+        'Base de Dados'[VENCIMENTO] = _DataContexto
+    )
+
+// Transações projetadas acumuladas
+VAR _TransacoesProjetadasAcumuladas = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('dCalendário'[Date]),
+            'dCalendário'[Date] > _UltimoDiaRealizado && 
+            'dCalendário'[Date] <= _DataContexto
+        ),
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }
+    )
+
+// Retornar detalhes em formato de texto
+RETURN
+    IF(
+        _DataContexto > _UltimoDiaRealizado,
+        "Último saldo real: " & FORMAT(_UltimoSaldoReal, "R$ #,##0.00") & 
+        UNICHAR(10) & "Transações no dia: " & FORMAT(_TransacoesProjetadasNaData, "R$ #,##0.00") &
+        UNICHAR(10) & "Acumulado projetado: " & FORMAT(_TransacoesProjetadasAcumuladas, "R$ #,##0.00") &
+        UNICHAR(10) & "Resultado projetado: " & FORMAT(_UltimoSaldoReal + _TransacoesProjetadasAcumuladas, "R$ #,##0.00"),
+        "Data não é projetada"
+    )
+Adicione esta medida ao seu visual na coluna de 30/04/2025 e ela mostrará os valores usados no cálculo. Isso vai ajudar a identificar se:
+
+O último saldo real está correto (R$ 25.063,25)
+O valor das transações projetadas acumuladas está correto
+Se as transações negativas (saídas) estão sendo consideradas corretamente
+
+Uma vez identificado o valor exato dessas variáveis, você poderá determinar se o problema está nos dados subjacentes (transações realmente negativas) ou se a fórmula precisa ser ajustada para tratar saídas corretamente.Files hidden in shared chatsBAa medida foi ajustada , mais ainda esta com problema nos saldos . e na medida diagnóstico não esta trazendo o  Transações Projetadas Na Data conforme a imagem .Vejo que você fez um progresso significativo! A medida de diagnóstico está mostrando informações importantes, mas ainda há algo estranho com os valores.
+Com base nos valores mostrados no diagnóstico:
+
+Último saldo real: Aparece corretamente como R$ 25.063,25
+Transações no dia: Está mostrando para alguns dias (como em 30/04/2025), mas não para todos
+Acumulado projetado: Está mostrando valores como R$ 140.300,00, que parece ser um valor acumulado de todas as projeções
+Resultados projetados: Parece que os cálculos somam esse acumulado ao saldo, resultando em R$ 165.363,25
+
+Há dois problemas principais que precisam ser corrigidos:
+
+Problema na soma líquida: Parece que a fórmula está interpretando todas as transações como positivas, mesmo as saídas. Isso explica porque o acumulado projetado está dando um valor tão alto (R$ 140.300,00) em vez de um valor negativo que causaria o saldo projetado final ser negativo.
+Problema no filtro de vencimento: A maneira como a medida está filtrando pelas datas de vencimento precisa ser corrigida para garantir que está pegando as transações corretas.
+
+Aqui está uma versão revisada da medida de diagnóstico para mostrar mais claramente o que está acontecendo:
+daxDiagnóstico Saldo Detalhado = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Último dia realizado
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS('dCalendário')
+    )
+
+// Último saldo real
+VAR _UltimoSaldoReal = 
+    CALCULATE(
+        [Saldo Real Acumulado],
+        FILTER(ALL('dCalendário'),
+            'dCalendário'[Date] = _UltimoDiaRealizado
+        )
+    )
+
+// Entradas projetadas no dia
+VAR _EntradasDia = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" },
+        'Base de Dados'[VENCIMENTO] = _DataContexto
+    )
+
+// Saídas projetadas no dia
+VAR _SaidasDia = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" },
+        'Base de Dados'[VENCIMENTO] = _DataContexto
+    )
+
+// Entradas projetadas acumuladas
+VAR _EntradasAcum = 
+    CALCULATE(
+        SUM('Base de Dados'[REAL]),
+        FILTER(
+            ALL('dCalendário'[Date]),
+            'dCalendário'[Date] > _UltimoDiaRealizado && 
+            'dCalendário'[Date] <= _DataContexto
+        ),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }
+    )
+
+// Saídas projetadas acumuladas
+VAR _SaidasAcum = 
+    CALCULATE(
+        ABS(SUM('Base de Dados'[REAL])),
+        FILTER(
+            ALL('dCalendário'[Date]),
+            'dCalendário'[Date] > _UltimoDiaRealizado && 
+            'dCalendário'[Date] <= _DataContexto
+        ),
+        'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+        'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }
+    )
+
+// Saldo projetado correto
+VAR _SaldoProjetadoCorreto = _UltimoSaldoReal + _EntradasAcum - _SaidasAcum
+
+// Retornar detalhes
+RETURN
+    IF(
+        _DataContexto > _UltimoDiaRealizado,
+        "Último saldo real: R$ " & FORMAT(_UltimoSaldoReal, "#,##0.00") & 
+        UNICHAR(10) & 
+        UNICHAR(10) & "Transações no dia:" & 
+        UNICHAR(10) & " - Entradas: R$ " & FORMAT(_EntradasDia, "#,##0.00") &
+        UNICHAR(10) & " - Saídas: R$ " & FORMAT(_SaidasDia, "#,##0.00") &
+        UNICHAR(10) & 
+        UNICHAR(10) & "Acumulado projetado:" &
+        UNICHAR(10) & " - Entradas acum: R$ " & FORMAT(_EntradasAcum, "#,##0.00") &
+        UNICHAR(10) & " - Saídas acum: R$ " & FORMAT(_SaidasAcum, "#,##0.00") &
+        UNICHAR(10) & " - Líquido acum: R$ " & FORMAT(_EntradasAcum - _SaidasAcum, "#,##0.00") &
+        UNICHAR(10) &
+        UNICHAR(10) & "Resultado final: R$ " & FORMAT(_SaldoProjetadoCorreto, "#,##0.00"),
+        "Data não é projetada"
+    )
+E aqui está uma versão corrigida da medida Saldo Projetado que deve funcionar corretamente:
+daxSaldo Projetado Corrigido Final = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// Último dia realizado
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS('dCalendário')
+    )
+
+// Verifica se é data futura
+VAR _IsDataFutura = _DataContexto > _UltimoDiaRealizado
+
+// Último saldo real
+VAR _UltimoSaldoReal = 
+    IF(_IsDataFutura,
+        CALCULATE(
+            [Saldo Real Acumulado],
+            FILTER(ALL('dCalendário'),
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            )
+        )
+    )
+
+// Entradas projetadas acumuladas
+VAR _EntradasAcum = 
+    IF(_IsDataFutura,
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado && 
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+            'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }
+        )
+    )
+
+// Saídas projetadas acumuladas
+VAR _SaidasAcum = 
+    IF(_IsDataFutura,
+        CALCULATE(
+            ABS(SUM('Base de Dados'[REAL])),
+            FILTER(
+                ALL('dCalendário'[Date]),
+                'dCalendário'[Date] > _UltimoDiaRealizado && 
+                'dCalendário'[Date] <= _DataContexto
+            ),
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+            'Base de Dados'[STATUS] IN { "Em aberto", "Atrasado" }
+        )
+    )
+
+// Verifica se tem transações projetadas
+VAR _TemTransacoes = 
+    IF(_IsDataFutura,
+        NOT(ISBLANK(_EntradasAcum)) || NOT(ISBLANK(_SaidasAcum)),
+        FALSE()
+    )
+
+// Saldo projetado correto
+VAR _SaldoProjetadoCorreto = 
+    IF(_IsDataFutura,
+        _UltimoSaldoReal + COALESCE(_EntradasAcum, 0) - COALESCE(_SaidasAcum, 0)
+    )
+
+RETURN
+    IF(
+        NOT(_IsDataFutura),
+        BLANK(),
+        IF(
+            _TemTransacoes,
+            _SaldoProjetadoCorreto,
+            _UltimoSaldoReal
+        )
+    )
+Essas modificações separam explicitamente as entradas e saídas, garantindo que as saídas sejam corretamente subtraídas do saldo. O diagnóstico detalhado deve ajudar a identificar os valores exatos e confirmar que a medida está calculando corretamente.Files hidden in shared chatsBAconseguir esse v5 . conseguiu calcular o saldo projetado corretamente .Excelente! Fico muito feliz que o "Saldo Projetado Final V5" tenha funcionado corretamente para você. Essa solução final fez ajustes cruciais que resolveram os problemas:
+
+Filtro refinado de status: Limitando apenas para "Em aberto" em vez de incluir "Atrasado", garantindo que apenas as transações corretas sejam incluídas
+Separação clara de entradas e saídas: Calculando entradas e saídas separadamente, em vez de tentar uma soma líquida única
+Uso de REMOVEFILTERS: Garantindo que os filtros de contexto não afetem o cálculo
+Tratamento de valores nulos: Com COALESCE para evitar problemas com valores BLANK
+Estrutura linear de código: Organizando todas as variáveis em uma sequência lógica antes do RETURN final
+
+O resultado é uma medida robusta que calcula corretamente o saldo projetado acumulando as transações futuras com base no último saldo real conhecido.
+Para sua referência futura, ao desenvolver medidas DAX complexas como esta, recomendo:
+
+Abordagem incremental: Comece com uma versão simples e adicione complexidade gradualmente
+Medidas de diagnóstico: Use-as para verificar os valores intermediários durante o desenvolvimento
+Técnica de linearização: Defina todas as variáveis antes do RETURN final
+Condicionais nas variáveis: Use IF dentro das definições de variáveis para cálculos condicionais
+REMOVEFILTERS estratégico: Para garantir que o contexto de filtro não afete inadvertidamente os cálculos
+
+Este caso foi um excelente exemplo do processo iterativo de refinamento de DAX para resolver problemas complexos de projeção financeira no Power BI. Se precisar adaptar esta medida para moedas estrangeiras ou outros cenários, você já tem uma base sólida para trabalhar.BAsó preciso que você faça o mesmo para saldo projetado da moeda estrangeira .Claro, vou adaptar o código final para criar uma versão para moedas estrangeiras. Aqui está o código DAX para o "Saldo Projetado ME Final":
+daxSaldo Projetado ME Final = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+VAR _Moeda = SELECTEDVALUE('Base de Dados'[Nome Moedas])
+
+// 1. Determinar o último dia com transações REALIZADAS (Pago ou Recebido) em moeda estrangeira
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        FILTER(
+            ALL('Base de Dados'[STATUS]),
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" }
+        ),
+        NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])),
+        'Base de Dados'[Nome Moedas] = _Moeda,
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 2. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK(_UltimoDiaRealizado) || (_DataContexto <= _UltimoDiaRealizado)
+
+// 3. Calcular variáveis de projeção APENAS se NÃO estivermos na condição de saída
+VAR _UltimoSaldoReal = 
+    IF(NOT _IsDataRealOuAnteriorOuSemBase,
+        CALCULATE(
+            [Saldo Real Acumulado ME],
+            FILTER(
+                ALL('dCalendário'),
+                'dCalendário'[Date] = _UltimoDiaRealizado
+            ),
+            'Base de Dados'[Nome Moedas] = _Moeda
+        )
+    )
+
+// 4. Calcular o ACUMULADO de ENTRADAS projetadas em moeda estrangeira (APENAS "Em aberto")
+VAR _EntradasProjetadasAcumuladas = 
+    IF(NOT _IsDataRealOuAnteriorOuSemBase,
+        CALCULATE(
+            SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,
+            'Base de Dados'[STATUS] = "Em aberto",
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "ENTRADAS",
+            'Base de Dados'[Nome Moedas] = _Moeda,
+            REMOVEFILTERS('dCalendário')
+        )
+    )
+
+// 5. Calcular o ACUMULADO de SAÍDAS projetadas em moeda estrangeira (APENAS "Em aberto")
+VAR _SaidasProjetadasAcumuladas = 
+    IF(NOT _IsDataRealOuAnteriorOuSemBase,
+        CALCULATE(
+            SUM('Base de Dados'[MOEDA ESTRANGEIRA]),
+            'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+            'Base de Dados'[VENCIMENTO] <= _DataContexto,
+            'Base de Dados'[STATUS] = "Em aberto",
+            'Base de Dados'[GRUPO | DÉB CRÉD] = "SAÍDAS",
+            'Base de Dados'[Nome Moedas] = _Moeda,
+            REMOVEFILTERS('dCalendário')
+        )
+    )
+
+// 6. Calcular o saldo projetado bruto em moeda estrangeira (será BLANK se não for data futura)
+VAR _SaldoProjetadoCalculado = 
+    IF(NOT _IsDataRealOuAnteriorOuSemBase,
+        _UltimoSaldoReal + COALESCE(_EntradasProjetadasAcumuladas, 0) - COALESCE(_SaidasProjetadasAcumuladas, 0)
+    )
+
+// 7. Verificar se houve transações projetadas ("Em aberto") NO PERÍODO TOTAL até a data atual
+VAR _TemTransacaoProjetadaNoPeriodo = 
+    IF(NOT _IsDataRealOuAnteriorOuSemBase,
+        NOT(ISBLANK(_EntradasProjetadasAcumuladas)) || NOT(ISBLANK(_SaidasProjetadasAcumuladas)),
+        FALSE()
+    )
+
+// 8. RETURN final baseado nas variáveis pré-calculadas
+RETURN
+    IF(
+        _IsDataRealOuAnteriorOuSemBase,
+        BLANK(),
+        IF(
+            _TemTransacaoProjetadaNoPeriodo,
+            _SaldoProjetadoCalculado,
+            _UltimoSaldoReal // Ou BLANK() se preferir não mostrar nada até a primeira projeção
+        )
+    )
+As principais adaptações para moeda estrangeira são:
+
+Filtro por moeda: Adicionei um filtro 'Base de Dados'[Nome Moedas] = _Moeda em todas as consultas para garantir que apenas transações na moeda selecionada sejam consideradas
+Coluna de valor: Substituí referências a 'Base de Dados'[REAL] por 'Base de Dados'[MOEDA ESTRANGEIRA]
+Medida base: Substituí a referência a [Saldo Real Acumulado] por [Saldo Real Acumulado ME] para usar sua medida específica para moedas estrangeiras
+Filtro de não-nulo: Adicionei NOT(ISBLANK('Base de Dados'[MOEDA ESTRANGEIRA])) ao calcular o último dia realizado para garantir que considere apenas transações com valor de moeda estrangeira
+
+Esta medida funcionará da mesma forma que a versão para a moeda nacional (REAL), mas considerando apenas as transações da moeda estrangeira específica que estiver no contexto de filtro atual.
+Se você tiver várias moedas estrangeiras (Dólar, Euro, Franco, etc.), esta medida responderá dinamicamente à moeda selecionada em segmentadores ou filtros de página, calculando o saldo projetado apenas para a moeda em questão.Files hidden in shared chatsBAestou com problema , colocar um nova coluna de Forn/Cliente , muda a estrutura da Tabela .Vejo que você conseguiu implementar com sucesso o "Saldo Projetado Final V5" e ele está funcionando corretamente. Quando você adicionou a coluna FORN/CLIENTE na primeira visualização, a estrutura da tabela mudou porque ela passou a mostrar os dados agrupados por fornecedor/cliente, o que é normal e esperado.
+Para resolver esse problema e manter a consistência nas suas visualizações, você tem algumas opções:
+Opção 1: Criar visualizações diferentes para diferentes propósitos
+
+Visão por Data (como na imagem 2): Esta visualização mostra a evolução do saldo projetado ao longo do tempo, sem agrupar por fornecedor/cliente.
+Visão por Fornecedor/Cliente (como na imagem 1): Esta visualização mostra os saldos por fornecedor/cliente para análise detalhada.
+
+Mantenha ambas as visualizações em páginas ou áreas diferentes do seu relatório.
+Opção 2: Usar uma hierarquia de visualização
+Crie uma hierarquia na sua tabela de datas:
+
+Primeiro nível: Data
+Segundo nível: FORN/CLIENTE
+
+Assim, você poderia expandir cada data para ver os detalhes por fornecedor.
+Opção 3: Modificar a medida para funcionar em ambos os contextos
+Crie uma versão modificada do Saldo Projetado que funcione corretamente mesmo quando agrupado por FORN/CLIENTE:
+daxSaldo Projetado Multi-Contexto = 
+VAR _DataAtual = MAX('dCalendário'[Date])
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        'Base de Dados'[STATUS] IN { "Pago", "Recebido" },
+        REMOVEFILTERS('dCalendário')
+    )
+
+// Verifica se estamos em um contexto de FORN/CLIENTE ou só de Data
+VAR _ContextoFornecedor = NOT(ISBLANK(SELECTEDVALUE('Base de Dados'[FORN/CLIENTE])))
+
+// Se estamos no contexto de FORN/CLIENTE, usa a versão simplificada da medida
+RETURN
+    IF(
+        _ContextoFornecedor,
+        // Versão para contexto de FORN/CLIENTE - mostra valores individuais
+        CALCULATE(
+            SUM('Base de Dados'[REAL]),
+            'Base de Dados'[STATUS] IN { "Pago", "Em aberto" }
+        ),
+        // Versão para contexto de Data - usa o Saldo Projetado V5 normal
+        [Saldo Projetado Final V5]
+    )
+Opção 4: Use matrizes ou visuais diferentes
+
+Para análise por data: Use um gráfico de linha para mostrar a evolução do saldo projetado ao longo do tempo.
+Para análise por fornecedor: Use uma matriz ou tabela com agrupamento por FORN/CLIENTE.
+
+Para Moeda Estrangeira
+O código que forneci para "Saldo Projetado ME Final" deve funcionar corretamente independentemente de como você visualize os dados. No entanto, se precisar da mesma flexibilidade para moeda estrangeira, você pode adaptar a Opção 3 acima para criar uma versão de multi-contexto também para moeda estrangeira.
+Recomendação
+A Opção 1 é a mais simples e direta. Mantenha duas visualizações separadas:
+
+Uma que mostra a evolução do saldo por data (como na imagem 2)
+Outra que mostra os detalhes por fornecedor/cliente (como na imagem 1)
+
+Isso proporcionará a melhor experiência de usuário e evitará problemas de cálculo em diferentes contextos.Files hidden in shared chatsBAdeu erro nessa medida ela trazendo saldo anteriores conforme a fotoEstou vendo o problema. A medida "Saldo Projetado Multi-Contexto" está calculando valores diferentes do "Saldo Projetado V5" original, e em alguns casos está retornando valores quando não deveria (como para as datas anteriores a 30/04).
+Vamos corrigir a medida "Saldo Projetado Multi-Contexto" para garantir que ela seja consistente com o "Saldo Projetado V5" e mantenha os mesmos critérios de exibição:
+daxSaldo Projetado Multi-Contexto Corrigido = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// 1. Determinar o último dia com transações REALIZADAS
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        FILTER(
+            ALL('Base de Dados'[STATUS]),
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" }
+        ),
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 2. Verificar se estamos em um contexto de FORN/CLIENTE
+VAR _ContextoFornecedor = NOT(ISBLANK(SELECTEDVALUE('Base de Dados'[FORN/CLIENTE])))
+
+// 3. Definir condição de saída: Se não há dia realizado ou a data atual é no passado/presente
+VAR _IsDataRealOuAnteriorOuSemBase = 
+    ISBLANK(_UltimoDiaRealizado) || (_DataContexto <= _UltimoDiaRealizado)
+
+// 4. Se estivermos na condição de saída, retorna BLANK()
+VAR _DeveRetornarBLANK = 
+    IF(
+        _IsDataRealOuAnteriorOuSemBase,
+        TRUE(),
+        FALSE()
+    )
+
+// 5. Se não estiver na condição de saída, escolhe entre os dois métodos de cálculo
+RETURN
+    IF(
+        _DeveRetornarBLANK,
+        BLANK(),  // Para datas não futuras, sempre retorna BLANK
+        
+        // Para datas futuras, escolhe entre os métodos baseado no contexto
+        IF(
+            _ContextoFornecedor,
+            // Contexto de FORN/CLIENTE
+            CALCULATE(
+                SUM('Base de Dados'[REAL]),
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                REMOVEFILTERS('dCalendário')
+            ),
+            
+            // Contexto de Data apenas
+            [Saldo Projetado Final V5]  // Usa a medida original
+        )
+    )
+Esta versão corrigida:
+
+Usa a mesma lógica de _IsDataRealOuAnteriorOuSemBase da medida original para garantir que valores não sejam exibidos para datas não futuras
+Retorna BLANK() para todas as datas anteriores ou iguais ao _UltimoDiaRealizado
+Para datas futuras:
+
+Se estiver no contexto de FORN/CLIENTE, calcula apenas o total das transações projetadas para aquele fornecedor
+Caso contrário, usa a medida original Saldo Projetado Final V5
+
+
+
+Isso garantirá que:
+
+Nenhum valor seja exibido para datas não futuras (antes ou igual a 30/04/2025)
+Os valores exibidos para datas futuras sejam consistentes com a lógica da projeção original
+No contexto de FORN/CLIENTE, apenas valores relevantes para o fornecedor específico sejam exibidos
+
+Note que esta correção para o contexto de FORN/CLIENTE simplesmente soma os valores "Em aberto" para cada fornecedor, sem acumular um saldo. Se você precisar de um cálculo de saldo acumulado por fornecedor, será necessária uma lógica mais complexa.Files hidden in shared chatsBAnão revolveuVejo que ainda temos um problema com a exibição dos dados. Parece que a medida está sendo aplicada incorretamente no contexto da visualização por FORN/CLIENTE. Vamos criar uma abordagem diferente que deverá resolver definitivamente o problema:
+daxSaldo Projetado Multi-Contexto Corrigido = 
+VAR _DataContexto = MAX('dCalendário'[Date])
+
+// 1. Determinar o último dia com transações REALIZADAS
+VAR _UltimoDiaRealizado = 
+    CALCULATE(
+        MAX('Base de Dados'[PAGTO]),
+        FILTER(
+            ALL('Base de Dados'[STATUS]),
+            'Base de Dados'[STATUS] IN { "Pago", "Recebido" }
+        ),
+        REMOVEFILTERS('dCalendário')
+    )
+
+// 2. Verificar se é data futura
+VAR _IsDataFutura = _DataContexto > _UltimoDiaRealizado
+
+// 3. Verificar se estamos em uma linha específica da tabela, agrupada por fornecedor
+// (Só calcular valor específico do fornecedor se AMBOS Data e FORN/CLIENTE estiverem no contexto)
+VAR _FornclienteEspecifico = NOT(ISBLANK(SELECTEDVALUE('Base de Dados'[FORN/CLIENTE])))
+
+// 4. Obter os valores de Saldo Projetado original (para referência)
+VAR _SaldoProjetadoOriginal = [Saldo Projetado Final V5]
+
+// 5. Lógica de decisão final
+RETURN
+    IF(
+        NOT(_IsDataFutura),
+        // Datas não futuras sempre recebem BLANK()
+        BLANK(),
+        
+        IF(
+            _FornclienteEspecifico,
+            // Se temos um fornecedor específico na linha, calcular apenas seus valores
+            CALCULATE(
+                SUM('Base de Dados'[REAL]),
+                'Base de Dados'[FORN/CLIENTE] = SELECTEDVALUE('Base de Dados'[FORN/CLIENTE]),
+                'Base de Dados'[STATUS] = "Em aberto",
+                'Base de Dados'[VENCIMENTO] > _UltimoDiaRealizado,
+                'Base de Dados'[VENCIMENTO] <= _DataContexto,
+                REMOVEFILTERS('dCalendário')
+            ),
+            
+            // Se não temos fornecedor específico, usar o valor do Saldo Projetado original
+            _SaldoProjetadoOriginal
+        )
+    )
+Esta abordagem deve garantir que:
+
+Nenhum valor seja mostrado para datas não futuras (≤ _UltimoDiaRealizado)
+Para datas futuras:
+
+Se a linha tiver um FORN/CLIENTE específico, mostra apenas o valor das transações desse fornecedor
+Se a linha não tiver um FORN/CLIENTE específico (como os totais), usa o valor do Saldo Projetado original
+
+
+
+Esta medida deve funcionar bem em relatórios como o que você mostrou, onde há uma mistura de elementos:
+
+Valores por data
+Valores por data E fornecedor
+Valores agrupados
+
+Importante - Instruções de Uso:
+
+Esta medida é uma solução especializada para seu caso específico
+Funciona melhor quando você tem uma tabela mostrando AMBOS Date e FORN/CLIENTE
+Para tabelas que mostram apenas Date, continue usando a medida original Saldo Projetado Final V5
+
+Se ainda houver problemas com esta abordagem, pode ser necessário ajustar o modelo de dados ou a estrutura do relatório para lidar com este caso específico de uso.Inicie sua própria conversa

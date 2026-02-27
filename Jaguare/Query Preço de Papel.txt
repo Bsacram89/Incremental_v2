@@ -1,0 +1,11 @@
+let
+    Fonte = Excel.Workbook(File.Contents("G:\Drives compartilhados\Incremental\Clientes Atuais\Jaguare\Preço Papel\Papel Realizado Incremental.xlsx"), null, true),
+    #"Linhas Filtradas" = Table.SelectRows(Fonte, each ([Kind] = "Sheet"))[[Name],[Data]],
+    #"Linhas Filtradas2" = Table.SelectRows(#"Linhas Filtradas", each ([Name] <> "Planilha2")),
+    #"Data Expandido" = Table.ExpandTableColumn(#"Linhas Filtradas2", "Data", {"Column1", "Column5"}, {"Column1", "Column5"}),
+    #"Linhas Filtradas1" = Table.SelectRows(#"Data Expandido", each ([Column1] <> null and [Column1] <> 0 and [Column1] <> "Papel") and ([Column5] <> 0)),
+    #"Colunas Renomeadas" = Table.RenameColumns(#"Linhas Filtradas1",{{"Column1", "Papel"}, {"Column5", "Custo"}}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Name", type date}, {"Papel", type text}, {"Custo", type number}}),
+    #"Coluna dividida" = Table.TransformColumns(#"Tipo Alterado", {{"Custo", each _ / 1000, type number}})
+in
+    #"Coluna dividida"

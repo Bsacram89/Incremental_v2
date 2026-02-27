@@ -1,0 +1,235 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "triggers": {
+    "Recurrence": {
+      "recurrence": {
+        "frequency": "Month",
+        "interval": 1,
+        "startTime": "2025-07-01T09:00:00Z",
+        "timeZone": "E. South America Standard Time",
+        "schedule": {
+          "monthlyOccurrences": [
+            {
+              "day": "Monday",
+              "occurrence": 1
+            }
+          ]
+        }
+      },
+      "type": "Recurrence"
+    }
+  },
+  "actions": {
+    "Inicializar_Variaveis": {
+      "runAfter": {},
+      "type": "InitializeVariable",
+      "inputs": {
+        "variables": [
+          {
+            "name": "Cliente",
+            "type": "string",
+            "value": "BS"
+          },
+          {
+            "name": "AnoAtual",
+            "type": "integer",
+            "value": "@year(utcNow())"
+          },
+          {
+            "name": "MesAtual",
+            "type": "integer",
+            "value": "@month(utcNow())"
+          },
+          {
+            "name": "PastaPira",
+            "type": "string",
+            "value": "G:\\Drives compartilhados\\Incremental\\Clientes Atuais\\BS\\@{year(utcNow())}\\@{if(equals(month(utcNow()), 1), 'Janeiro', if(equals(month(utcNow()), 2), 'Fevereiro', if(equals(month(utcNow()), 3), 'Março', if(equals(month(utcNow()), 4), 'Abril', if(equals(month(utcNow()), 5), 'Maio', if(equals(month(utcNow()), 6), 'Junho', if(equals(month(utcNow()), 7), 'Julho', if(equals(month(utcNow()), 8), 'Agosto', if(equals(month(utcNow()), 9), 'Setembro', if(equals(month(utcNow()), 10), 'Outubro', if(equals(month(utcNow()), 11), 'Novembro', 'Dezembro'))))))))))}"
+          },
+          {
+            "name": "ScriptPath",
+            "type": "string",
+            "value": "C:\\Scripts\\preparar_pira_corrigido_completo.py"
+          }
+        ]
+      }
+    },
+    "Verificar_Pasta_Existe": {
+      "runAfter": {
+        "Inicializar_Variaveis": [
+          "Succeeded"
+        ]
+      },
+      "type": "Http",
+      "inputs": {
+        "method": "GET",
+        "uri": "https://graph.microsoft.com/v1.0/drives/@{variables('DriveId')}/root:/@{variables('PastaPira')}"
+      },
+      "runtimeConfiguration": {
+        "contentTransfer": {
+          "transferMode": "Chunked"
+        }
+      }
+    },
+    "Criar_Pasta_Se_Necessario": {
+      "runAfter": {
+        "Verificar_Pasta_Existe": [
+          "Failed"
+        ]
+      },
+      "type": "Http",
+      "inputs": {
+        "method": "POST",
+        "uri": "https://graph.microsoft.com/v1.0/drives/@{variables('DriveId')}/root/children",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "@{if(equals(month(utcNow()), 1), 'Janeiro', if(equals(month(utcNow()), 2), 'Fevereiro', if(equals(month(utcNow()), 3), 'Março', if(equals(month(utcNow()), 4), 'Abril', if(equals(month(utcNow()), 5), 'Maio', if(equals(month(utcNow()), 6), 'Junho', if(equals(month(utcNow()), 7), 'Julho', if(equals(month(utcNow()), 8), 'Agosto', if(equals(month(utcNow()), 9), 'Setembro', if(equals(month(utcNow()), 10), 'Outubro', if(equals(month(utcNow()), 11), 'Novembro', 'Dezembro'))))))))))))}",
+          "folder": {},
+          "@microsoft.graph.conflictBehavior": "rename"
+        }
+      }
+    },
+    "Executar_Script_Python": {
+      "runAfter": {
+        "Verificar_Pasta_Existe": [
+          "Succeeded"
+        ],
+        "Criar_Pasta_Se_Necessario": [
+          "Succeeded"
+        ]
+      },
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connectionName": "shared_powerplatformforadmins",
+          "operationId": "RunScript",
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins"
+        },
+        "parameters": {
+          "script": "python \"@{variables('ScriptPath')}\" --pasta \"@{variables('PastaPira')}\" --cliente \"@{variables('Cliente')}\" --mes @{variables('MesAtual')} --ano @{variables('AnoAtual')}",
+          "timeout": 1800
+        }
+      }
+    },
+    "Verificar_Sucesso_Script": {
+      "runAfter": {
+        "Executar_Script_Python": [
+          "Succeeded"
+        ]
+      },
+      "type": "Condition",
+      "expression": {
+        "and": [
+          {
+            "contains": [
+              "@outputs('Executar_Script_Python')?['body']?['output']",
+              "PIRA preparado com sucesso"
+            ]
+          }
+        ]
+      },
+      "actions": {
+        "Notificar_Sucesso": {
+          "runAfter": {},
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams",
+              "operationId": "PostMessageToChannel",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "groupId": "SEU_TEAM_ID",
+              "channelId": "SEU_CHANNEL_ID",
+              "message": {
+                "subject": "PIRA @{variables('Cliente')} - @{formatDateTime(utcNow(), 'MM/yyyy')} Preparado",
+                "body": {
+                  "contentType": "html",
+                  "content": "<p>✅ <strong>PIRA preparado com sucesso!</strong></p><p><strong>Cliente:</strong> @{variables('Cliente')}<br><strong>Período:</strong> @{formatDateTime(utcNow(), 'MMMM/yyyy')}<br><strong>Pasta:</strong> @{variables('PastaPira')}</p><p>O Power BI pode ser atualizado.</p>"
+                }
+              }
+            }
+          }
+        },
+        "Atualizar_Power_BI": {
+          "runAfter": {
+            "Notificar_Sucesso": [
+              "Succeeded"
+            ]
+          },
+          "type": "ApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_powerbi",
+              "operationId": "RefreshDataset",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerbi"
+            },
+            "parameters": {
+              "workspaceId": "SEU_WORKSPACE_ID",
+              "datasetId": "SEU_DATASET_ID"
+            }
+          }
+        }
+      },
+      "else": {
+        "actions": {
+          "Notificar_Erro": {
+            "runAfter": {},
+            "type": "ApiConnection",
+            "inputs": {
+              "host": {
+                "connectionName": "shared_teams",
+                "operationId": "PostMessageToChannel",
+                "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+              },
+              "parameters": {
+                "groupId": "SEU_TEAM_ID",
+                "channelId": "SEU_CHANNEL_ID",
+                "message": {
+                  "subject": "❌ ERRO - PIRA @{variables('Cliente')} @{formatDateTime(utcNow(), 'MM/yyyy')}",
+                  "body": {
+                    "contentType": "html",
+                    "content": "<p>❌ <strong>Erro ao preparar PIRA!</strong></p><p><strong>Cliente:</strong> @{variables('Cliente')}<br><strong>Período:</strong> @{formatDateTime(utcNow(), 'MMMM/yyyy')}<br><strong>Erro:</strong> @{outputs('Executar_Script_Python')?['body']?['error']}</p><p>Verificar logs e processar manualmente.</p>"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Log_Execucao": {
+      "runAfter": {
+        "Verificar_Sucesso_Script": [
+          "Succeeded",
+          "Failed"
+        ]
+      },
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connectionName": "shared_sharepointonline",
+          "operationId": "CreateItem",
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+        },
+        "parameters": {
+          "dataset": "SEU_SHAREPOINT_SITE",
+          "table": "LogAutomacaoPIRA",
+          "item": {
+            "Title": "PIRA @{variables('Cliente')} - @{formatDateTime(utcNow(), 'MM/yyyy')}",
+            "Cliente": "@{variables('Cliente')}",
+            "Mes": "@{variables('MesAtual')}",
+            "Ano": "@{variables('AnoAtual')}",
+            "DataExecucao": "@{utcNow()}",
+            "Status": "@{if(contains(outputs('Executar_Script_Python')?['body']?['output'], 'sucesso'), 'Sucesso', 'Erro')}",
+            "Detalhes": "@{outputs('Executar_Script_Python')?['body']?['output']}"
+          }
+        }
+      }
+    }
+  },
+  "outputs": {}
+}
