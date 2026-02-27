@@ -113,7 +113,7 @@ const Header = () => {
             </button>
           ))}
           <a
-            href="https://wa.me/5511976956510"
+            href="https://wa.me/5511976273887"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-2"
@@ -142,7 +142,7 @@ const Header = () => {
             {name}
           </button>
         ))}
-        <a href="https://wa.me/5511976956510" target="_blank" rel="noopener noreferrer" className="bg-blue-600 px-8 py-4 rounded-full text-lg font-bold text-white">Agendar Diagnóstico</a>
+        <a href="https://wa.me/5511976273887" target="_blank" rel="noopener noreferrer" className="bg-blue-600 px-8 py-4 rounded-full text-lg font-bold text-white">Agendar Diagnóstico</a>
       </div>
     </header>
   );
@@ -169,7 +169,7 @@ const Hero = () => {
             <button onClick={() => document.getElementById('portfolio')?.scrollIntoView({behavior: 'smooth'})} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-blue-600/20">
               Ver Dashboards <Eye size={20} />
             </button>
-            <a href="https://wa.me/5511976956510" target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all border border-slate-700">
+            <a href="https://wa.me/5511976273887" target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all border border-slate-700">
               WhatsApp Direto <Phone size={20} />
             </a>
           </div>
@@ -312,7 +312,7 @@ const Portfolio = () => {
                   </div>
                 </div>
                 <div className="pt-4">
-                  <a href="https://wa.me/5511976956510" target="_blank" rel="noopener noreferrer" className="bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all border border-blue-500/20 inline-flex items-center gap-3">
+                  <a href="https://wa.me/5511976273887" target="_blank" rel="noopener noreferrer" className="bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all border border-blue-500/20 inline-flex items-center gap-3">
                     Agendar Demonstração <ArrowRight size={14} />
                   </a>
                 </div>
@@ -564,7 +564,7 @@ const Cases = () => {
 
         <div className="text-center mt-16">
           <a
-            href="https://wa.me/5511976956510"
+            href="https://wa.me/5511976273887"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-xl shadow-blue-600/20 uppercase text-sm tracking-widest"
@@ -661,7 +661,7 @@ const Contact = () => {
       `*WhatsApp:* ${form.whatsapp}\n` +
       (form.message ? `*Mensagem:* ${form.message}` : '')
     );
-    window.open(`https://wa.me/5511976956510?text=${text}`, '_blank');
+    window.open(`https://wa.me/5511976273887?text=${text}`, '_blank');
     setSubmitted(true);
   };
 
@@ -685,23 +685,23 @@ const Contact = () => {
               </p>
 
               <div className="space-y-8">
-                <a href="mailto:bruno@incrementalconsultoria.com.br" className="flex items-center gap-6 group max-w-fit">
+                <a href="mailto:contato@incrementalconsultoria.com.br" className="flex items-center gap-6 group max-w-fit">
                   <div className="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                     <Mail size={28} />
                   </div>
                   <div>
                     <span className="block text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">E-mail Profissional</span>
-                    <span className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">bruno@incrementalconsultoria.com.br</span>
+                    <span className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">contato@incrementalconsultoria.com.br</span>
                   </div>
                 </a>
 
-                <a href="https://wa.me/5511976956510" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group max-w-fit">
+                <a href="https://wa.me/5511976273887" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group max-w-fit">
                   <div className="w-16 h-16 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
                     <Phone size={28} />
                   </div>
                   <div>
                     <span className="block text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">WhatsApp Business</span>
-                    <span className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">(11) 9 7695-6510</span>
+                    <span className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">(11) 9 7627-3887</span>
                   </div>
                 </a>
               </div>
@@ -790,14 +790,14 @@ export default function App() {
            <div className="flex items-center gap-6">
               <a href="https://www.incrementalconsultoria.com.br" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors">incrementalconsultoria.com.br</a>
               <span className="hidden md:block text-slate-800">|</span>
-              <a href="https://wa.me/5511976956510" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors">(11) 9 7695-6510</a>
+              <a href="https://wa.me/5511976273887" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors">(11) 9 7627-3887</a>
            </div>
         </div>
       </footer>
 
       {/* Ações Fixas */}
       <a 
-        href="https://wa.me/5511976956510"
+        href="https://wa.me/5511976273887"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 left-8 bg-emerald-600 text-white p-5 rounded-2xl shadow-2xl z-40 hover:bg-emerald-700 transition-all transform hover:scale-110 border border-emerald-500/20 flex items-center gap-3 group"
