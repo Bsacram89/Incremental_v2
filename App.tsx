@@ -284,6 +284,8 @@ const Portfolio = () => {
                     <img
                       src={report.image}
                       alt={report.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
@@ -647,6 +649,85 @@ const Testimonials = () => {
   );
 };
 
+const FAQ = () => {
+  const [open, setOpen] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "Quanto tempo leva para ver os primeiros resultados?",
+      a: "Na maioria dos casos, já no primeiro mês de fechamento você passa a enxergar indicadores que nunca teve acesso. Os primeiros resultados financeiros concretos costumam aparecer entre 2 e 4 meses após a implantação.",
+    },
+    {
+      q: "Minha empresa precisa ter um tamanho mínimo para contratar?",
+      a: "Não. Atendemos desde empresas com faturamento de R$ 500k/mês até operações acima de R$ 10M. O que importa é a disposição do gestor em tomar decisões baseadas em dados.",
+    },
+    {
+      q: "Preciso ter equipe de TI ou infraestrutura específica?",
+      a: "Não é necessário. Trabalhamos com os dados que você já tem — planilhas, ERP, sistema de gestão. Estruturamos tudo via ETL e entregamos os dashboards prontos para uso no Power BI Desktop ou Online.",
+    },
+    {
+      q: "Como funciona o processo de fechamento mensal?",
+      a: "Mensalmente coletamos e organizamos seus dados financeiros e operacionais, aplicamos nossa metodologia de indicadores e atualizamos seus dashboards. Você recebe uma reunião de análise para interpretar os números e definir ações.",
+    },
+    {
+      q: "Vocês trabalham com qual setor?",
+      a: "Temos experiência em varejo, atacado/distribuição, serviços, indústria e agronegócio. Nossa metodologia de Números Fundamentais é adaptada para qualquer segmento.",
+    },
+    {
+      q: "Qual a diferença da Incremental para outras consultorias de BI?",
+      a: "Não entregamos apenas dashboards bonitos. Nossa abordagem começa pela estruturação do dado e termina na decisão gerencial. Humanizamos os números — o gestor entende o que cada indicador significa e o que fazer com ele.",
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-slate-900/40">
+      <div className="max-w-4xl mx-auto px-4">
+        <FadeIn>
+          <div className="text-center mb-16">
+            <h2 className="text-blue-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Dúvidas Frequentes</h2>
+            <h3 className="text-4xl font-bold font-montserrat text-white uppercase tracking-tight">Perguntas & Respostas</h3>
+          </div>
+        </FadeIn>
+
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <FadeIn key={i} delay={i * 60}>
+              <div className="glass-card rounded-2xl border-white/5 overflow-hidden">
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
+                >
+                  <span className="text-white font-semibold text-sm leading-snug">{faq.q}</span>
+                  <span className={`text-blue-400 shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`}>
+                    <ChevronDown size={20} />
+                  </span>
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${open === i ? 'max-h-60' : 'max-h-0'}`}>
+                  <p className="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-4">{faq.a}</p>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+        <FadeIn delay={400}>
+          <div className="text-center mt-12">
+            <p className="text-slate-400 text-sm mb-4">Não encontrou sua dúvida?</p>
+            <a
+              href="https://wa.me/5511976273887"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-sm uppercase tracking-widest transition-colors"
+            >
+              Fale diretamente conosco <ArrowRight size={16} />
+            </a>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+};
+
 const Contact = () => {
   const [form, setForm] = useState({ name: '', company: '', revenue: '', whatsapp: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -786,6 +867,7 @@ export default function App() {
       <Portfolio />
       <Cases />
       <Testimonials />
+      <FAQ />
       <Contact />
       
       <footer className="py-12 border-t border-white/5 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 bg-slate-950">
