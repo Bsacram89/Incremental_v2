@@ -105,6 +105,8 @@ const Header = () => {
                 name === 'Dashboards' ? 'portfolio' :
                 name === 'Início' ? 'home' :
                 name === 'A Incremental' ? 'about' :
+                name === 'Serviços' ? 'services' :
+                name === 'Contato' ? 'contact' :
                 name.toLowerCase()
               )}
               className="text-xs font-semibold text-slate-400 hover:text-blue-400 transition-colors uppercase tracking-widest"
@@ -135,6 +137,8 @@ const Header = () => {
               name === 'Dashboards' ? 'portfolio' :
               name === 'Início' ? 'home' :
               name === 'A Incremental' ? 'about' :
+              name === 'Serviços' ? 'services' :
+              name === 'Contato' ? 'contact' :
               name.toLowerCase()
             )}
             className="text-2xl font-bold text-slate-200 uppercase tracking-widest"
