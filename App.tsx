@@ -229,9 +229,9 @@ const Portfolio = () => {
       title: "Indicadores de Estoque",
       subtitle: "Prevenção de Ruptura e Giro",
       image: "/estoque.png",
-      objective: "Monitoramento de produtos críticos: Estoque Zero, Ruptura de Risco e Margem Negativa.",
-      kpis: ["Estoque Zero", "Ruptura (Risco)", "MG Negativa", "Ação Recomendada"],
-      impact: "Redução de capital imobilizado e otimização imediata das compras e pedidos.",
+      objective: "Monitoramento de produtos críticos: Ruptura de Risco, Capital Parado e Margem Negativa.",
+      kpis: ["Ruptura (Risco)", "Capital Parado", "MG Negativa", "Ação Recomendada"],
+      impact: "Redução de capital parado e otimização das compras.",
       tags: ["Estoque", "Giro", "Operacional"]
     },
     {
@@ -240,7 +240,7 @@ const Portfolio = () => {
       image: "/rotatividade.png",
       objective: "Análise de frequência de compra e giro por departamento para otimização do mix de produtos.",
       kpis: ["Giro por Grupo", "Clientes Ativos", "Status de Giro", "Heatmap"],
-      impact: "Decisões baseadas no comportamento real do consumidor final na loja.",
+      impact: "Decisões baseadas no comportamento real do cliente.",
       tags: ["Rotatividade", "Mix", "Varejo"]
     },
     {
@@ -249,7 +249,7 @@ const Portfolio = () => {
       image: "/despesas.png",
       objective: "Comparativo entre Orçado vs Real para garantir o cumprimento das metas financeiras.",
       kpis: ["Orçado vs Atual", "% Part Despesas", "Gastos Gerenciais", "Desvio %"],
-      impact: "Visibilidade total dos custos fixos e variáveis com foco na preservação da margem líquida.",
+      impact: "Visibilidade total dos gastos fixos com foco na preservação do lucro operacional.",
       tags: ["Despesas", "Orçamento", "DRE"]
     }
   ];
@@ -366,7 +366,7 @@ const About = () => {
                       <div className="w-8 h-8 rounded-lg bg-blue-600/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all">
                         <CheckCircle2 size={18} />
                       </div>
-                      <span className="text-slate-200 font-medium">Power BI & DAX com foco gerencial</span>
+                      <span className="text-slate-200 font-medium">Power BI com foco gerencial</span>
                    </div>
                 </div>
              </div>
@@ -404,11 +404,11 @@ const About = () => {
 
 const Services = () => {
   const services: ServiceItem[] = [
-    { icon: <TrendingUp className="w-8 h-8" />, title: "Números Fundamentais", desc: "Margem de contribuição, ponto de equilíbrio, NCG e geração de caixa — personalizados para o seu negócio.", color: "blue" },
+    { icon: <TrendingUp className="w-8 h-8" />, title: "Números Fundamentais", desc: "Lucro, margem de contribuição, margem de cobertura, ponto de equilíbrio, NCG, ciclo financeiro, geração de caixa e tamanho ótimo — personalizados para o seu negócio.", color: "blue" },
     { icon: <Wallet className="w-8 h-8" />, title: "BI Financeiro", desc: "DRE gerencial, fluxo de caixa e controle orçamentário com visão de Orçado vs Real.", color: "green" },
     { icon: <BarChart3 className="w-8 h-8" />, title: "BI Comercial", desc: "Análise PVM, mix de produtos e margem por unidade gerencial para potencializar faturamento.", color: "indigo" },
     { icon: <Database className="w-8 h-8" />, title: "Gestão de Estoque", desc: "Controle de ruptura, estoque zero e excessos para otimização de capital de giro.", color: "orange" },
-    { icon: <Settings className="w-8 h-8" />, title: "ETL & Automação", desc: "Tratamento de dados via Python e SQL — do fechamento mensal à atualização automática de relatórios.", color: "purple" },
+    { icon: <Settings className="w-8 h-8" />, title: "Automação de Dados", desc: "Tratamento e organização de dados via Python e SQL — do fechamento mensal à atualização automática de relatórios.", color: "purple" },
     { icon: <Briefcase className="w-8 h-8" />, title: "Consultoria Estratégica", desc: "Planejamento personalizado, implementação eficaz e ciclo contínuo de avaliação e ajustes.", color: "red" }
   ];
 
@@ -659,7 +659,7 @@ const FAQ = () => {
     },
     {
       q: "Minha empresa precisa ter um tamanho mínimo para contratar?",
-      a: "Não. Atendemos desde empresas com faturamento de R$ 500k/mês até operações acima de R$ 10M. O que importa é a disposição do gestor em tomar decisões baseadas em dados.",
+      a: "Não. Atendemos desde empresas com faturamento de R$ 100k/mês até operações acima de R$ 10M. O que importa é a disposição do gestor em tomar decisões baseadas em dados.",
     },
     {
       q: "Preciso ter equipe de TI ou infraestrutura específica?",
@@ -671,7 +671,7 @@ const FAQ = () => {
     },
     {
       q: "Vocês trabalham com qual setor?",
-      a: "Temos experiência em varejo, atacado/distribuição, serviços, indústria e agronegócio. Nossa metodologia de Números Fundamentais é adaptada para qualquer segmento.",
+      a: "Temos experiência em varejo, atacado/distribuição, serviços e indústria. Nossa metodologia de Números Fundamentais é adaptada para qualquer segmento.",
     },
     {
       q: "Qual a diferença da Incremental para outras consultorias de BI?",
