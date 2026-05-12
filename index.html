@@ -85,6 +85,28 @@
         background: #1A3059;
         border-radius: 4px;
       }
+      /* ===== Light/Dark section alternation ===== */
+      .section-light { background-color: #C0D2E4; }
+
+      /* Glass cards become dark navy on light sections */
+      [data-section="light"] .glass-card {
+        background: rgba(8, 22, 50, 0.92) !important;
+        border-color: rgba(255,255,255,0.15) !important;
+      }
+
+      /* Text on light section backgrounds */
+      .light-text h2, .light-text h3, .light-text h4 { color: #0C1E3B; }
+      .light-text p { color: #2C5285; }
+      .light-text strong { color: #0C1E3B; }
+      .light-text .text-white  { color: #0C1E3B !important; }
+      .light-text .text-slate-400 { color: #2C5285 !important; }
+      .light-text .text-slate-300 { color: #2C5285 !important; }
+      .light-text .text-slate-500 { color: #3A5F8A !important; }
+      .light-text .text-blue-500  { color: #1B3461 !important; }
+      .light-text .text-blue-400  { color: #1B3461 !important; }
+      .light-text .text-emerald-500 { color: #145C3A !important; }
+      .light-text .text-orange-500  { color: #7A3800 !important; }
+
       @keyframes float {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-15px); }

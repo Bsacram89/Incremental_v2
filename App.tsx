@@ -255,10 +255,10 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-24 bg-slate-900/30">
+    <section id="portfolio" data-section="light" className="py-24 section-light">
       <div className="max-w-7xl mx-auto px-4">
         <FadeIn>
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 light-text">
             <h2 className="text-blue-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Portfólio de Dashboards</h2>
             <h3 className="text-4xl font-bold font-montserrat text-white uppercase tracking-tight">Inteligência que Gera Caixa</h3>
           </div>
@@ -293,7 +293,7 @@ const Portfolio = () => {
               </div>
 
               {/* Informações Estratégicas */}
-              <div className="w-full lg:w-2/5 space-y-6">
+              <div className="w-full lg:w-2/5 space-y-6 glass-card rounded-3xl p-6">
                 <div>
                   <p className="text-blue-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-2">{report.subtitle}</p>
                   <h4 className="text-3xl font-bold text-white font-montserrat tracking-tight uppercase group-hover:text-blue-400 transition-colors">{report.title}</h4>
@@ -334,7 +334,7 @@ const Portfolio = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-slate-900/30">
+    <section id="about" data-section="light" className="py-24 section-light">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
@@ -373,7 +373,7 @@ const About = () => {
              <div className="absolute -bottom-10 -right-10 h-64 w-64 bg-blue-600 rounded-full blur-[120px] opacity-10"></div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 light-text">
             <h2 className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[10px]">A Incremental</h2>
             <h3 className="text-4xl lg:text-5xl font-extrabold font-montserrat text-white uppercase leading-tight">Humanizando Números <br />Desde 2004</h3>
             <p className="text-slate-400 text-lg leading-relaxed">
@@ -619,9 +619,9 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 bg-slate-950">
+    <section data-section="light" className="py-24 section-light">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 light-text">
           <h2 className="text-blue-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Depoimentos</h2>
           <h3 className="text-4xl font-bold font-montserrat text-white uppercase tracking-tight">O Que Dizem Nossos Clientes</h3>
         </div>
@@ -684,10 +684,10 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-900/40">
+    <section data-section="light" className="py-24 section-light">
       <div className="max-w-4xl mx-auto px-4">
         <FadeIn>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 light-text">
             <h2 className="text-blue-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Dúvidas Frequentes</h2>
             <h3 className="text-4xl font-bold font-montserrat text-white uppercase tracking-tight">Perguntas & Respostas</h3>
           </div>
@@ -715,7 +715,7 @@ const FAQ = () => {
         </div>
 
         <FadeIn delay={400}>
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 light-text">
             <p className="text-slate-400 text-sm mb-4">Não encontrou sua dúvida?</p>
             <a
               href="https://wa.me/5511976273887"
