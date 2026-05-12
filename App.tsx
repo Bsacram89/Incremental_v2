@@ -873,6 +873,7 @@ const Clients = () => {
     "https://static.wixstatic.com/media/8695e8_ae5110b8ca38461ea8e13c610745a018~mv2.jpg",
     "https://static.wixstatic.com/media/8695e8_7d2c19cee06949879e7e71a0618f620b~mv2.jpg",
     "https://static.wixstatic.com/media/8695e8_7b2d67bcbfc24293ae0f8cce3d7560a6~mv2.jpg",
+    "https://pampili.com.br/cdn/shop/files/logo_rosa_180x.png?v=1754590686",
   ];
 
   return (
@@ -888,13 +889,13 @@ const Clients = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {logos.map((src, i) => (
             <FadeIn key={i} delay={i * 60}>
-              <div className="bg-white rounded-2xl p-6 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 aspect-[3/2]">
+              <div className="bg-white rounded-2xl p-5 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 aspect-[3/2]">
                 <img
                   src={src}
                   alt={`Cliente ${i + 1}`}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-24 w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                  className="max-h-32 w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             </FadeIn>
