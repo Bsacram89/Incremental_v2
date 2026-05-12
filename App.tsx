@@ -90,11 +90,8 @@ const Header = () => {
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('home')}>
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-            <BarChart3 className="text-white w-6 h-6" />
-          </div>
-          <span className="text-xl font-bold font-montserrat tracking-tight text-white uppercase">INCREMENTAL<span className="text-blue-500 font-light">CONSULTORIA</span></span>
+        <div className="cursor-pointer" onClick={() => scrollToSection('home')}>
+          <img src="/logo.png" alt="Incremental Consultoria" className="h-12 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
         </div>
 
         <nav className="hidden lg:flex items-center gap-8">
