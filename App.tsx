@@ -861,6 +861,50 @@ const Contact = () => {
   );
 };
 
+const Clients = () => {
+  const logos = [
+    "https://static.wixstatic.com/media/8695e8_393b1f965c1543fd8f5be077bd6e4424~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_0d00ee1676324ba3a3f192a6f85e23b3~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_f0f03cba3bc243f29a3bba10582f20f4~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_cf777db575f24a83ab4b4196f449840c~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_53b2d395ce5743a7be083d7343c340e8~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_6a2b148892824c599a5152e258ad6482~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_04175a0211314407964abd5d2baae434~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_ae5110b8ca38461ea8e13c610745a018~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_7d2c19cee06949879e7e71a0618f620b~mv2.jpg",
+    "https://static.wixstatic.com/media/8695e8_7b2d67bcbfc24293ae0f8cce3d7560a6~mv2.jpg",
+  ];
+
+  return (
+    <section className="py-20 bg-slate-950 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4">
+        <FadeIn>
+          <div className="text-center mb-14">
+            <h2 className="text-blue-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-4">Portfólio de Clientes</h2>
+            <h3 className="text-4xl font-bold font-montserrat text-white uppercase tracking-tight">Alguns de Nossos Clientes</h3>
+          </div>
+        </FadeIn>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {logos.map((src, i) => (
+            <FadeIn key={i} delay={i * 60}>
+              <div className="glass-card rounded-2xl border-white/5 p-5 flex items-center justify-center hover:bg-slate-800/40 transition-all duration-300 aspect-[3/2]">
+                <img
+                  src={src}
+                  alt={`Cliente ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function App() {
   return (
     <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-blue-600 selection:text-white">
@@ -871,6 +915,7 @@ export default function App() {
       <Portfolio />
       <Cases />
       <Testimonials />
+      <Clients />
       <FAQ />
       <Contact />
       
