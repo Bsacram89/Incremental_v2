@@ -880,6 +880,11 @@ const Clients = () => {
     "https://static.wixstatic.com/media/8695e8_7d2c19cee06949879e7e71a0618f620b~mv2.jpg",
     "https://static.wixstatic.com/media/8695e8_7b2d67bcbfc24293ae0f8cce3d7560a6~mv2.jpg",
     "https://pampili.com.br/cdn/shop/files/logo_rosa_180x.png?v=1754590686",
+    "/logo-consolidar.svg",
+    "/logo-atica.png",
+    "/logo-tegra.png",
+    "/logo-fluidsystem.png",
+    "/logo-brasterapica.png",
   ];
 
   return (
