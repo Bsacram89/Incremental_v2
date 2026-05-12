@@ -286,7 +286,7 @@ const Portfolio = () => {
                       alt={report.title}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 blur-[3px]"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 blur-[1.5px]"
                     />
                   </div>
                 </div>
