@@ -409,7 +409,7 @@ const About = () => {
 const Services = () => {
   const services: ServiceItem[] = [
     { icon: <TrendingUp className="w-8 h-8" />, title: "Números Fundamentais", desc: "Lucro, margem de contribuição, margem de cobertura, ponto de equilíbrio, NCG, ciclo financeiro, geração de caixa e tamanho ótimo — personalizados para o seu negócio.", color: "blue" },
-    { icon: <Wallet className="w-8 h-8" />, title: "BI Financeiro", desc: "DRE gerencial, fluxo de caixa e controle orçamentário com visão de Orçado vs Real.", color: "green" },
+    { icon: <Wallet className="w-8 h-8" />, title: "BI Financeiro", desc: "DRE gerencial, Balancete Gerencial, fluxo de caixa e controle orçamentário com visão de Orçado vs Real.", color: "green" },
     { icon: <BarChart3 className="w-8 h-8" />, title: "BI Comercial", desc: "Análise PVM, mix de produtos e margem por unidade gerencial para potencializar faturamento.", color: "indigo" },
     { icon: <Database className="w-8 h-8" />, title: "Gestão de Estoque", desc: "Controle de ruptura, estoque zero e excessos para otimização de capital de giro.", color: "orange" },
     { icon: <Settings className="w-8 h-8" />, title: "Automação de Dados", desc: "Tratamento e organização de dados via Python e SQL — do fechamento mensal à atualização automática de relatórios.", color: "purple" },
