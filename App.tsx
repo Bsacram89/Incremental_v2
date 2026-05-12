@@ -885,16 +885,16 @@ const Clients = () => {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {logos.map((src, i) => (
             <FadeIn key={i} delay={i * 60}>
-              <div className="glass-card rounded-2xl border-white/5 p-5 flex items-center justify-center hover:bg-slate-800/40 transition-all duration-300 aspect-[3/2]">
+              <div className="glass-card rounded-2xl border-white/5 p-6 flex items-center justify-center hover:bg-slate-800/40 transition-all duration-300 aspect-[3/2]">
                 <img
                   src={src}
                   alt={`Cliente ${i + 1}`}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="max-h-20 w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
               </div>
             </FadeIn>
