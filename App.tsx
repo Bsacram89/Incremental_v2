@@ -379,20 +379,24 @@ const About = () => {
             <p className="text-slate-400 text-lg leading-relaxed">
               Acreditamos que os números devem estar a serviço do bem-estar de todos — clientes, colaboradores, sócios e parceiros. Nossa consultoria capacita gestores e líderes a usarem indicadores como ferramentas reais de decisão, gerando resultados financeiros consistentes e duradouros.
             </p>
-            <div className="pt-4 flex items-center gap-8">
-               <div>
+            <div className="pt-4 flex flex-col sm:flex-row items-start gap-6">
+               <div className="shrink-0">
                   <p className="text-3xl font-black text-white">20+</p>
                   <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Anos de Trajetória</p>
                </div>
-               <div className="h-10 w-px bg-slate-800"></div>
-               <div>
-                  <p className="text-3xl font-black text-white">NCG</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Capital de Giro</p>
+               <div className="hidden sm:block w-px self-stretch bg-slate-800"></div>
+               <div className="flex-1">
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">Quem ajudamos a prosperar</p>
+                  <p className="text-slate-300 text-sm leading-relaxed">Empresários que buscam visibilidade financeira para tomar decisões para crescer.</p>
                </div>
-               <div className="h-10 w-px bg-slate-800"></div>
-               <div>
-                  <p className="text-3xl font-black text-white">P.E.</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Ponto de Equilíbrio</p>
+               <div className="hidden sm:block w-px self-stretch bg-slate-800"></div>
+               <div className="flex-1">
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-3">O que guia cada uma de nossas decisões</p>
+                  <div className="flex flex-wrap gap-2">
+                     {['Resiliência', 'Cuidado', 'Inquietude', 'Excelência', 'Audácia'].map(v => (
+                        <span key={v} className="text-[10px] font-bold text-blue-400 bg-blue-600/10 border border-blue-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">{v}</span>
+                     ))}
+                  </div>
                </div>
             </div>
           </div>
