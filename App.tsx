@@ -908,7 +908,7 @@ const Clients = () => {
 
 export default function App() {
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-blue-600 selection:text-white">
+    <div className="bg-primary min-h-screen text-slate-200 selection:bg-blue-600 selection:text-white">
       <Header />
       <Hero />
       <About />

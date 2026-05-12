@@ -37,6 +37,23 @@
       gtag('config', 'G-XXXXXXXXXX');
     </script>
 
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              slate: {
+                950: '#0C1E3B',
+                900: '#122446',
+                800: '#1A3059',
+                700: '#214076',
+                600: '#2C548F',
+              }
+            }
+          }
+        }
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,16 +73,16 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
       .bg-primary {
-        background-color: #030712;
+        background-color: #0C1E3B;
       }
       .custom-scrollbar::-webkit-scrollbar {
         width: 8px;
       }
       .custom-scrollbar::-webkit-scrollbar-track {
-        background: #030712;
+        background: #0C1E3B;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #1f2937;
+        background: #1A3059;
         border-radius: 4px;
       }
       @keyframes float {
