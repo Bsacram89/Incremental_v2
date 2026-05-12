@@ -248,6 +248,15 @@ const Portfolio = () => {
       kpis: ["Orçado vs Atual", "% Part Despesas", "Gastos Gerenciais", "Desvio %"],
       impact: "Visibilidade total dos gastos fixos com foco na preservação do lucro operacional.",
       tags: ["Despesas", "Orçamento", "DRE"]
+    },
+    {
+      title: "Desempenho Econômico",
+      subtitle: "NCG & Ciclo Financeiro",
+      image: "/ncg.png",
+      objective: "Monitoramento da Necessidade de Capital de Giro (NCG), Liquidez Corrente e Ciclo Financeiro — prazos de recebimento, estoque e fornecedores — para garantir saúde financeira e eficiência operacional.",
+      kpis: ["NCG", "Liquidez Corrente", "Ciclo Financeiro", "Prazo Médio"],
+      impact: "Antecipação de crises de caixa e decisões precisas sobre prazo de clientes, estoque e fornecedores.",
+      tags: ["NCG", "Capital de Giro", "Financeiro"]
     }
   ];
 
