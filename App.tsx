@@ -341,7 +341,7 @@ const About = () => {
              <div className="glass-card p-10 rounded-[2.5rem] border-blue-500/20 bg-blue-600/5 relative z-10">
                 <h4 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Nossa Metodologia</h4>
                 <p className="text-slate-400 mb-8 leading-relaxed text-lg">
-                  Começamos com um diagnóstico profundo da atual realidade dos dados, controles, processos e utilização do sistema. Isto aliado a uma investigação para entendimento do seu negócio. No segundo mês, implantamos o <strong className="text-white">processo de fechamento</strong> — coleta e organização mensal de dados que se transformam nos seus indicadores financeiros reais. Implementamos também os rituais de análise dos resultados, as reuniões de resultados.
+                  Nossa metodologia transforma o caos operacional em inteligência financeira. Começamos mergulhando na realidade dos seus dados e processos para entender o DNA do seu negócio. Já no segundo mês de trabalho, estabelecemos um ciclo de <strong className="text-white">fechamento rigoroso</strong>, entregando indicadores reais e rituais de análise que garantem que você nunca mais tome decisões no escuro.
                 </p>
                 <div className="space-y-4">
                    <div className="flex items-center gap-4 group">
