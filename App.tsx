@@ -91,7 +91,7 @@ const Header = () => {
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         <div className="cursor-pointer" onClick={() => scrollToSection('home')}>
-          <img src="/logo.png" alt="Incremental Consultoria" className="h-12 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
+          <img src="/logo.png" alt="Incremental Consultoria" className="h-16 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
         </div>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -371,7 +371,7 @@ const About = () => {
           </div>
 
           <div className="space-y-8 light-text">
-            <h2 className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[10px]">A Incremental</h2>
+            <img src="/logo.png" alt="Incremental Consultoria" className="h-16 w-auto" />
             <h3 className="text-4xl lg:text-5xl font-extrabold font-montserrat text-white uppercase leading-tight">Humanizando Números <br />Desde 2004</h3>
             <p className="text-slate-400 text-lg leading-relaxed">
               Acreditamos que os números devem estar a serviço do bem-estar de todos — clientes, colaboradores, sócios e parceiros. Nossa consultoria capacita gestores e líderes a usarem indicadores como ferramentas reais de decisão, gerando resultados financeiros consistentes e duradouros.
